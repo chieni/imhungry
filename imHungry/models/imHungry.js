@@ -29,11 +29,9 @@ var pantrySchema = mongoose.Schema({
 // only searches based on ingredients, does not yet search based on ingredient amounts
 // serving size scaling not yet implemented
 recipeSchema.statics.searchRecipes = function(ingredients, callback) {
-	this.find({ingredients: {$in: ingredients} }, function(err, recipes) {
+	this.find({ingredients: {$not:{$elemMatch:{$nin:ingredients}}}}, function(err, recipes) {
 		if (err) {
 			callback(err, null);
-		} else if (!recipes) {
-			callback({msg: 'No matching recipes found.'}, null);
 		} else {
 			callback(null, recipes);
 		}

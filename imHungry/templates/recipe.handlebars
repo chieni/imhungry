@@ -1,0 +1,18 @@
+
+<div class="recipe" data-recipename={{{recipe.name}}}>
+  <label>{{{recipe.name}}}</label>
+  {{#if isRetweet}}
+  	<label>{{tweet.retweeter}} </label><p> retweeted </p><label> {{tweet.author}}</label><p> : {{tweet.content}}</p>
+  {{else}}
+  	<label>{{tweet.author}} </label><p> tweeted: {{tweet.content}}</p>
+  {{/if}}
+  {{#if isAuthor}}
+  	<a href="#" class="delete-tweet">Delete</a>
+  {{else}}
+  	{{#if isNotRetweeter}}
+  		<a href="#" class="retweet-tweet">Retweet</a>
+  	{{/if}}
+  {{/if}}
+</div>
+
+

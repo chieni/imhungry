@@ -28,7 +28,6 @@ This method loads the home page.  If logged in, it will load
 the fritter feed page.  If not it will load the sign in/register page.
 */
 var loadHomePage = function() {
-	console.log("loadhomepage");
 	if (currentUser) {
 		loadSearchPage();
 	} else {
@@ -53,7 +52,6 @@ $(document).ready(function() {
 		if (response.content.loggedIn) {
 			currentUser = response.content.user;
 		}
-		console.log(currentUser)
 		loadHomePage();
 	});
 });

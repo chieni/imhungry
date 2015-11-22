@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 // Connect to either the MONGOLAB_URI or to the local database.
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mymongodb');
 // connects to the ImHungry database
-//mongoose.connect('mongodb://localhost/fritter')
+//mongoose.connect('mongodb://localhost/imHungry')
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {

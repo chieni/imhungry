@@ -6,3 +6,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+.wrapper{
+   position: relative;
+   float: left;
+   left: 15%;
+   width: 70%;
+}
+.left{
+   position: relative;
+   float: left;
+   left: 0%;
+   width: 50%;
+}
+.right{
+   position: relative;
+   float: right;
+   right: 0%;
+   width: 50%;
+}
+

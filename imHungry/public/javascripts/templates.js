@@ -54,9 +54,19 @@ templates['register'] = template({"1":function(container,depth0,helpers,partials
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  </div>\n  <form id=\"register-form\">\n    <div>Username: <input type=\"text\" name=\"username\" required /></div>\n    <div>Password: <input type=\"password\" name=\"password\" required /></div>\n    <div>Confirm Password: <input type=\"password\" name=\"confirm\" required /></div>\n    <input type=\"submit\" />\n  </form>\n</div>";
 },"useData":true});
-templates['search'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div id=\"search\">\n  <h1>Find recipes:</h1>\n  <div class=\"search\">\n    <label>Serving size</label> <input type=\"text\" name=\"servingsize\"/>\n    <label>Additional ingredients</label> <input type=\"text\" name=\"addIngredients\"/>\n    <input type=\"submit\" text=\"Scavenge\"/>\n  </div>\n  <form id=\"search-form\">\n    <div>Serving <input type=\"text\" name=\"username\" required /></div>\n    <div>Password: <input type=\"password\" name=\"password\" required /></div>\n    <div>Confirm Password: <input type=\"password\" name=\"confirm\" required /></div>\n    <input type=\"submit\" />\n  </form>\n</div>";
-},"useData":true});
+templates['search'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = container.invokePartial(partials.ingredient,depth0,{"name":"ingredient","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"3":function(container,depth0,helpers,partials,data) {
+    return "        <p><em>No ingredients yet!</em></p>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<!-- <div id=\"main\">\n\n  <form id=\"search-form\">\n    <div>Serving <input type=\"text\" name=\"username\" required /></div>\n  </form>\n\n\n\n  </div>\n</div> -->\n\n<div class=\"wrapper\">\n    <div class=\"left\">\n        <h1>Find recipes.</h1>\n        <div class=\"search\">\n          <div><label>Serving size</label> <input type=\"text\" name=\"servingsize\"/></div>\n          <div><label>Additional ingredients</label> <input type=\"text\" name=\"addIngredients\"/></div>\n          <div><button id=\"submit-new-ingredient\">Scavenge</button></div>\n        </div>\n    </div>\n    <div class=\"right\">\n      <h1>Your Pantry.</h1>\n      <div class=\"pantry\">\n\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.ingredient : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "\n      <div>\n        <label for=\"new-ingredient-input\">Add a new ingredient:</label>\n        <input type=\"text\" id=\"new-ingredient-input\" />\n        <button id=\"submit-new-ingredient\">Add</button>\n      </div>\n    </div>\n  </div>";
+},"usePartial":true,"useData":true});
 templates['signin'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
 

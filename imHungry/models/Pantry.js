@@ -15,7 +15,7 @@ var Pantry = (function Pantry() {
     ingredients: [String] //will replace with Ingredient object later
   });
 
-  var pantryModel = mongoose.model("pantryModel", pantrySchema);
+  var pantryModel = mongoose.model("Pantry", pantrySchema);
 
   that.getIngredients = function(username, callback) {  
     User.findByUsername(username, function(err, user) {
@@ -37,7 +37,7 @@ var Pantry = (function Pantry() {
 
   that.addIngredient = function(username, ingredient, callback) {
     
-    User.findByUsername({username: username}, function(err, user) {
+    User.findByUsername(username, function(err, user) {
         if (user) {
           pantryModel.findOne({_id: user.pantryId}, function(err, pantry) {
             if (pantry) {

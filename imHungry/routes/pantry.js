@@ -5,9 +5,9 @@ var utils = require('../utils/utils');
 var Pantry = require('../models/Pantry');
 
 router.get('/', function(req, res) {
-  Pantry.getIngredients(req.body.username, function(err, success) {
+  Pantry.getIngredients(req.body.username, function(err, ingredients) {
     if (success) {
-      utils.sendSuccessResponse(res, { ingredients: success.ingredients });
+      utils.sendSuccessResponse(res, { ingredients: ingredients });
     } else {
       utils.sendErrResponse(res, 403, 'Something went wrong.');
     }

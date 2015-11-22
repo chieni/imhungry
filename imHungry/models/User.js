@@ -70,18 +70,25 @@ Additionally, this stores all the usernames in the username array
 
   that.createNewUser = function (username, password, callback) {
     console.log("entered");
-    userModel.find({username: username}, function(err, users) {
-      if (err) {
-        callback({ taken: true });
-      } 
-      else {
-        var newUser = new User({'username': username,
-          'password': password});
+    userModel.findOne({username: username}, function(err, user) {
+      if (user == null) {
+      //  var newPantryId = Pantry.createNewPantry();
+        var newUser = userModel({
+          username: username,
+          password: password,
+          //pantryId: something
+        });
         newUser.save(function(err) {
-          callback(null);
-
-          Pantry.createNewPantry();
+          if (err) {
+            callback({msg:"error saving user"});
+          }
+          else {
+            callback(null, newUser);
+          }
         })
+      }
+      else {
+        callback({taken:true});
       }
     })
 

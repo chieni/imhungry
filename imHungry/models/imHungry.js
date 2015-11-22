@@ -21,7 +21,7 @@ var recipeSchema = mongoose.Schema({
 var pantrySchema = mongoose.Schema({
 	username: String,
 	ingredients: [String],
-})
+});
 
 // Need some sort of user schema
 
@@ -37,6 +37,8 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 		}
 	});
 }
+
+
 
 exports.Recipe = mongoose.model('Recipe', recipeSchema);
 exports.Pantry = mongoose.model('Pantry', pantrySchema);

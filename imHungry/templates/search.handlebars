@@ -1,6 +1,9 @@
+<p>Welcome, {{currentUser}} (<a href="#" id="logout-link">logout</a>)</p>
+
 <div class="wrapper">
     <div class="left">
         <h1>Find recipes.</h1>
+
         <form id="search-form">
           <div>Serving size: <input type="number" name="servingsize"/></div>
           <div>Additional ingredients: <input type="text" name="additional"/></div>
@@ -21,6 +24,7 @@
             {{/each}}
           {{/if}}
     </div>
+    
     <div class="right">
       <h1>Your pantry.</h1>
       <div class="pantry">
@@ -31,10 +35,13 @@
         <p><em>No ingredients yet!</em></p>
         {{/each}}
 
-      <div>
-        <label for="new-ingredient-input">Add a new ingredient:</label>
-        <input type="text" id="new-ingredient-input" />
+<!--       <div>
+
         <button id="submit-new-ingredient">Add</button>
-      </div>
+      </div> -->
+      <form id="pantry-form">
+        <div>Add a new ingredient: <input type="text" id="new-ingredient-input" required /></div>
+        <input type="submit" value="Add"/>
+      </form>
     </div>
   </div>

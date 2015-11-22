@@ -1,9 +1,11 @@
+<p>Welcome, {{currentUser}} (<a href="#" id="logout-link">logout</a>)</p>
+
 <div class="wrapper">
     <div class="left">
         <h1>Find recipes.</h1>
         <div class="search">
-          <div><label>Serving size</label> <input type="text" name="servingsize"/></div>
-          <div><label>Additional ingredients</label> <input type="text" name="addIngredients"/></div>
+<!--           <div><label>Serving size</label> <input type="text" name="servingsize"/></div>
+          <div><label>Additional ingredients</label> <input type="text" name="addIngredients"/></div> -->
           <div><button id="submit-new-ingredient">Scavenge</button></div>
         </div>
     </div>
@@ -17,10 +19,13 @@
         <p><em>No ingredients yet!</em></p>
         {{/each}}
 
-      <div>
-        <label for="new-ingredient-input">Add a new ingredient:</label>
-        <input type="text" id="new-ingredient-input" />
+<!--       <div>
+
         <button id="submit-new-ingredient">Add</button>
-      </div>
+      </div> -->
+      <form id="pantry-form">
+        <div>Add a new ingredient: <input type="text" id="new-ingredient-input" required /></div>
+        <input type="submit" value="Add"/>
+      </form>
     </div>
   </div>

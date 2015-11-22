@@ -61,11 +61,13 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 },"3":function(container,depth0,helpers,partials,data) {
     return "        <p><em>No ingredients yet!</em></p>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
-  return "<!-- <div id=\"main\">\n\n  <form id=\"search-form\">\n    <div>Serving <input type=\"text\" name=\"username\" required /></div>\n  </form>\n\n\n\n  </div>\n</div> -->\n\n<div class=\"wrapper\">\n    <div class=\"left\">\n        <h1>Find recipes.</h1>\n        <div class=\"search\">\n          <div><label>Serving size</label> <input type=\"text\" name=\"servingsize\"/></div>\n          <div><label>Additional ingredients</label> <input type=\"text\" name=\"addIngredients\"/></div>\n          <div><button id=\"submit-new-ingredient\">Scavenge</button></div>\n        </div>\n    </div>\n    <div class=\"right\">\n      <h1>Your Pantry.</h1>\n      <div class=\"pantry\">\n\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.ingredient : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
-    + "\n      <div>\n        <label for=\"new-ingredient-input\">Add a new ingredient:</label>\n        <input type=\"text\" id=\"new-ingredient-input\" />\n        <button id=\"submit-new-ingredient\">Add</button>\n      </div>\n    </div>\n  </div>";
+  return "<p>Welcome, "
+    + container.escapeExpression(((helper = (helper = helpers.currentUser || (depth0 != null ? depth0.currentUser : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"currentUser","hash":{},"data":data}) : helper)))
+    + " (<a href=\"#\" id=\"logout-link\">logout</a>)</p>\n\n<div class=\"wrapper\">\n    <div class=\"left\">\n        <h1>Find recipes.</h1>\n        <div class=\"search\">\n<!--           <div><label>Serving size</label> <input type=\"text\" name=\"servingsize\"/></div>\n          <div><label>Additional ingredients</label> <input type=\"text\" name=\"addIngredients\"/></div> -->\n          <div><button id=\"submit-new-ingredient\">Scavenge</button></div>\n        </div>\n    </div>\n    <div class=\"right\">\n      <h1>Your pantry.</h1>\n      <div class=\"pantry\">\n\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredient : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "\n<!--       <div>\n\n        <button id=\"submit-new-ingredient\">Add</button>\n      </div> -->\n      <form id=\"pantry-form\">\n        <div>Add a new ingredient: <input type=\"text\" id=\"new-ingredient-input\" required /></div>\n        <input type=\"submit\" value=\"Add\"/>\n      </form>\n    </div>\n  </div>";
 },"usePartial":true,"useData":true});
 templates['signin'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;

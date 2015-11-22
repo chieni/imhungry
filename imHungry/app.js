@@ -22,9 +22,12 @@ db.once('open', function (callback) {
 // Import route handlers
 var index = require('./routes/index');
 var users = require('./routes/users');
+var pantry = require('./routes/pantry')
 
 // Import imHungry model
 var User = require('./models/User');
+var Pantry = require('./models/Pantry');
+var Ingredient = require('./models/Ingredient');
 
 var app = express();
 
@@ -69,6 +72,7 @@ app.use(function(req, res, next) {
 // Map paths to imported route handlers
 app.use('/', index);
 app.use('/users', users);
+app.use('/pantry', pantry)
 
 
 // Catch 404 and forward to error handler.

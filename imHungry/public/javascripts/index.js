@@ -40,6 +40,10 @@ This method loads the fritter feed given that a user is already logged in
 by issuing a get requests for all freets
 */
 var loadSearchPage = function() {
+	console.log("load search");
+	// $.get('/pantry', function(response) {
+	// 	loadPage('search', {currentIngredients: response.content.ingredients });
+	// })
 	loadPage('search');
 };
 

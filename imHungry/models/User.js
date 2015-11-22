@@ -3,17 +3,15 @@
 
 
 var mongoose = require('mongoose');
+var Pantry = require('../models/Pantry');
 
 // A User object in the imHungry app.
 // Each User object stores a username and password
 
-
-
-
-
 var userSchema = mongoose.Schema({
   username: String,
-  password: String
+  password: String,
+  pantryId: mongoose.Schema.Types.ObjectId
 });
 
 userSchema.statics.findByUsername = function(username, callback) {
@@ -77,11 +75,15 @@ userSchema.statics.createNewUser = function (username, password, callback) {
                       'password': password});
       newUser.save(function(err) {
         callback(null);
+
+      Pantry.createNewPantry();
       })
     }
 })
   
 };
+
+//exports.User = mongoose.model('User', userSchema);
 
 var User = mongoose.model('User', userSchema);
 module.exports = User;

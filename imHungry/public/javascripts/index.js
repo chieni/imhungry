@@ -1,3 +1,5 @@
+Handlebars.registerPartial('recipe', Handlebars.templates['recipe']);
+
 var loadPage = function(template, data) {
 	data = data || {};
 	$('#main-container').html(Handlebars.templates[template](data));

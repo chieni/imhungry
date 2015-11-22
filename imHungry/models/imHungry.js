@@ -28,6 +28,12 @@ var pantrySchema = mongoose.Schema({
 // search procedure
 // only searches based on ingredients, does not yet search based on ingredient amounts
 // serving size scaling not yet implemented
+/*
+Search for recipes that only use a subset of the given ingredients
+	params:
+		ingredients - [String] array of string names of ingreidents
+		callback - function to call afterwords, takes two parameters of error and recipe objects
+*/
 recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	this.find({ingredients: {$not:{$elemMatch:{$nin:ingredients}}}}, function(err, recipes) {
 		if (err) {
@@ -36,6 +42,10 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 			callback(null, recipes);
 		}
 	});
+}
+
+pantrySchema.methods.getContents = function(callback) {
+	callback(this.ingredients);
 }
 
 exports.Recipe = mongoose.model('Recipe', recipeSchema);

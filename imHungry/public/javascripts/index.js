@@ -42,10 +42,10 @@ by issuing a get requests for all freets
 */
 var loadSearchPage = function() {
 	console.log("load search");
-	// $.get('/pantry', function(response) {
-	// 	loadPage('search', {currentIngredients: response.content.ingredients });
-	// })
-	loadPage('search');
+	$.get('/pantry', function(response) {
+		loadPage('search', {currentIngredients: response.content.ingredients });
+	})
+	//loadPage('search');
 };
 
 /*

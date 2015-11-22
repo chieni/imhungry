@@ -7,7 +7,6 @@
 
 
 var app = require('../app');
-app.listen(process.env.PORT || 3000);
 var debug = require('debug')('imHungry:server');
 var http = require('http');
 

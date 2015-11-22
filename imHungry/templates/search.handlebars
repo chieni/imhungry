@@ -1,24 +1,40 @@
-<div id="search">
+<div class="wrapper">
+    <div class="left">
+        <h1>Find recipes.</h1>
+        <form id="search-form">
+          <div>Serving size: <input type="number" name="servingsize"/></div>
+          <div>Additional ingredients: <input type="text" name="additional"/></div>
+          <input type="submit" value="Scavenge"/>
+        </form>
 
-  <h1>Find recipes:</h1>
-  <form id="search-form">
-    <div>Serving size: <input type="number" name="size" /></div>
-    <div>Additional ingredients: <input type="text" name="additional" /></div>
-    <input type="submit" value="Scavenge"/>
-  </form>
+          <div class="error">
+            {{#if error}}
+              {{error}}
+            {{/if}}
+          </div>
 
-  <div class="error">
-    {{#if error}}
-      {{error}}
-    {{/if}}
+          {{#if searched}}
+            {{#each recipes}}
+              {{> recipe }}
+            {{else}}
+              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
+            {{/each}}
+          {{/if}}
+    </div>
+    <div class="right">
+      <h1>Your pantry.</h1>
+      <div class="pantry">
+
+        {{#each ingredient}}
+        {{> ingredient}}
+        {{else}}
+        <p><em>No ingredients yet!</em></p>
+        {{/each}}
+
+      <div>
+        <label for="new-ingredient-input">Add a new ingredient:</label>
+        <input type="text" id="new-ingredient-input" />
+        <button id="submit-new-ingredient">Add</button>
+      </div>
+    </div>
   </div>
-
-  {{#if searched}}
-    {{#each recipes}}
-      {{> recipe }}
-    {{else}}
-      <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
-    {{/each}}
-  {{/if}}
-
-</div>

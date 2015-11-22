@@ -23,6 +23,7 @@ var pantrySchema = mongoose.Schema({
 	ingredients: [String],
 })
 
+
 // Need some sort of user schema
 
 // search procedure
@@ -44,9 +45,6 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	});
 }
 
-pantrySchema.methods.getContents = function(callback) {
-	callback(this.ingredients);
-}
 
 exports.Recipe = mongoose.model('Recipe', recipeSchema);
 exports.Pantry = mongoose.model('Pantry', pantrySchema);

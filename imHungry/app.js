@@ -3,11 +3,28 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 require('handlebars/runtime');
 
-var routes = require('./routes/index');
+//Set up Mongoose
+var mongoose = require('mongoose');
+// Connect to either the MONGOLAB_URI or to the local database.
+//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mymongodb');
+// connects to the ImHungry database
+mongoose.connect('mongodb://localhost/imHungry')
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+    console.log("database connected");
+});
+
+// Import route handlers
+var index = require('./routes/index');
 var users = require('./routes/users');
+
+// Import imHungry model
+var User = require('./models/User');
 
 var app = express();
 
@@ -22,19 +39,52 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret : '6170', resave : true, saveUninitialized : true }));
 
-app.use('/', routes);
+
+
+
+// Authentication middleware. This function
+// is called on _every_ request and populates
+// the req.currentUser field with the logged-in
+// user object based off the username provided
+// in the session variable (accessed by the
+// encrypted cookied).
+app.use(function(req, res, next) {
+  if (req.session.username) {
+    User.findByUsername(req.session.username, 
+      function(err, user) {
+        if (user) {
+          req.currentUser = user;
+        } else {
+          req.session.destroy();
+        }
+        next();
+      });
+  } else {
+      next();
+  }
+});
+
+// Map paths to imported route handlers
+app.use('/', index);
 app.use('/users', users);
 
 
+<<<<<<< HEAD
 // use middleware for getting pantry and stuff and logged in user
 
 // catch 404 and forward to error handler
+=======
+// Catch 404 and forward to error handler.
+>>>>>>> 1bbcaa6613099633801512ff614af64fe3cd4115
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
+
+
 
 // error handlers
 

@@ -28,6 +28,7 @@ var pantry = require('./routes/pantry')
 var User = require('./models/User');
 var Pantry = require('./models/Pantry');
 var Ingredient = require('./models/Ingredient');
+var Recipe = require('./models/Recipe');
 
 var app = express();
 

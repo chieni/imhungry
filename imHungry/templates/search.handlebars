@@ -3,12 +3,28 @@
 <div class="wrapper">
     <div class="left">
         <h1>Find recipes.</h1>
-        <div class="search">
-<!--           <div><label>Serving size</label> <input type="text" name="servingsize"/></div>
-          <div><label>Additional ingredients</label> <input type="text" name="addIngredients"/></div> -->
-          <div><button id="submit-new-ingredient">Scavenge</button></div>
-        </div>
+
+        <form id="search-form">
+          <div>Serving size: <input type="number" name="servingsize"/></div>
+          <div>Additional ingredients: <input type="text" name="additional"/></div>
+          <input type="submit" value="Scavenge"/>
+        </form>
+
+          <div class="error">
+            {{#if error}}
+              {{error}}
+            {{/if}}
+          </div>
+
+          {{#if searched}}
+            {{#each recipes}}
+              {{> recipe }}
+            {{else}}
+              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
+            {{/each}}
+          {{/if}}
     </div>
+    
     <div class="right">
       <h1>Your pantry.</h1>
       <div class="pantry">

@@ -1,3 +1,4 @@
+Handlebars.registerPartial('recipe', Handlebars.templates['recipe']);
 
 
 

@@ -75,7 +75,13 @@ app.use('/users', users);
 app.use('/pantry', pantry)
 
 
+<<<<<<< HEAD
+// use middleware for getting pantry and stuff and logged in user
+
+// catch 404 and forward to error handler
+=======
 // Catch 404 and forward to error handler.
+>>>>>>> 1bbcaa6613099633801512ff614af64fe3cd4115
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;

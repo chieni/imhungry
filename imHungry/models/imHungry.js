@@ -23,10 +23,6 @@ var pantrySchema = mongoose.Schema({
 	ingredients: [String],
 })
 
-var userSchema = mongoose.Schema({
-  username: String,
-  password: String
-});
 
 // Need some sort of user schema
 

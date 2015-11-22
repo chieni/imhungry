@@ -10,9 +10,9 @@ require('handlebars/runtime');
 //Set up Mongoose
 var mongoose = require('mongoose');
 // Connect to either the MONGOLAB_URI or to the local database.
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mymongodb');
+//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mymongodb');
 // connects to the ImHungry database
-//mongoose.connect('mongodb://localhost/imHungry')
+mongoose.connect('mongodb://localhost/imHungry')
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
@@ -23,7 +23,7 @@ db.once('open', function (callback) {
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-// Import User model
+// Import imHungry model
 var User = require('./models/User');
 
 var app = express();

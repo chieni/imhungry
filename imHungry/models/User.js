@@ -67,6 +67,7 @@ Additionally, this stores all the usernames in the username array
 */
 
 userSchema.statics.createNewUser = function (username, password, callback) {
+	console.log("entered");
   User.find({username: username}, function(err, users) {
     if (err) {
         callback({ taken: true });
@@ -82,5 +83,5 @@ userSchema.statics.createNewUser = function (username, password, callback) {
   
 };
 
-
-exports.User = mongoose.model('Recipe', userSchema);
+var User = mongoose.model('User', userSchema);
+module.exports = User;

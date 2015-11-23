@@ -24,7 +24,10 @@ var loadPage = function(template, data) {
 	$('#main-container').html(Handlebars.templates[template](data));
 };
 
-
+/*
+Load home search page if user is logged in
+otherwise load index page
+*/
 var loadHomePage = function() {
 	if (currentUser) {
 		loadSearchPage();
@@ -33,17 +36,18 @@ var loadHomePage = function() {
 	}
 };
 
+/*
+Load search page with pantry
+*/
 var loadSearchPage = function() {
-	console.log("load search");
 	$.get('/pantry', function(response) {
-		// console.log(response.content);
-		// console.log(response.ingredients);
-
-		// console.log(response.content.ingredients);
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients });
 	});
 };
 
+/*
+Load recipe search results to search page
+*/
 var loadSearchResults = function() {
 	$.get('/search', function(response) {
 		$.get('/pantry').done(function(resp){
@@ -56,13 +60,12 @@ var loadSearchResults = function() {
 };
 
 /*
-This method populates the field currentUser and calls loadPage
+This method populates the field currentUser and calls loadHomePage
 at all times while the app is running.
 */
 $(document).ready(function() {
 	$.get('/users/current', function(response) {
 		if (response.content.loggedIn) {
-			console.log(response.content);
 			currentUser = response.content.user;
 		}
 		loadHomePage();

@@ -4,7 +4,6 @@
   Once an ingredient has been added, this function is called to add it to the pantry.
   */
   $(document).on('submit', '#pantry-form', function(evt) {
-    console.log("add clicked");
       evt.preventDefault();
       $.post(
           '/pantry/add',
@@ -19,18 +18,14 @@
     $('#new-ingredient').focus();
   });
 
+  /*
+  Deletes an ingredient from pantry when delete button is clicked
+  */
   $(document).on('click', '.delete-button', function(evt) {
-    console.log("delete clicked");
-    console.log($(this));
-    console.log(this.parentNode);
-    console.log($(this).parent());
-    console.log(this.parentNode.getAttribute('data-ingredient-id'));
     evt.preventDefault();
-
-
-  var list = this.parentNode.parentNode;
-  var element = this.parentNode;
-  $.ajax({
+    var list = this.parentNode.parentNode;
+    var element = this.parentNode;
+    $.ajax({
         url: '/pantry/delete',
         type: 'DELETE',
         data: {

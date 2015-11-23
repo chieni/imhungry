@@ -23,6 +23,7 @@ a {
 
 .nav>li>a{
   font-size: 1.3em;
+  padding-top: 1.2em;
 }
 .header-logo {
   background: url('../imgs/imhungry_logo_white.png'), no-repeat center center fixed;
@@ -89,6 +90,13 @@ a {
 .serving-label{
   font-size: 2em;
   padding: 1em 1.8em;
+}
+
+.signin-box {
+  background:rgba(0,0,0,0.75);
+  padding: 2em 4em 4em 4em;
+  margin-top: 8em;
+  border-radius: 5px;
 }
 #signin-form, #register-form {
   max-width: 330px;

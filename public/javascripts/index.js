@@ -92,5 +92,6 @@ This method will load the page with the register template
 whenever the register button is pressed.
 */
 $(document).on('click', '#register-btn', function(evt) {
+	evt.preventDefault();
 	loadPage('register');
 });

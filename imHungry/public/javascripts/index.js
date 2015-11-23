@@ -25,8 +25,8 @@ var loadPage = function(template, data) {
 };
 
 /*
-This method loads the home page.  If logged in, it will load
-the fritter feed page.  If not it will load the sign in/register page.
+Load home search page if user is logged in
+otherwise load index page
 */
 var loadHomePage = function() {
 	if (currentUser) {
@@ -37,34 +37,35 @@ var loadHomePage = function() {
 };
 
 /*
-This method loads the fritter feed given that a user is already logged in
-by issuing a get requests for all freets
+Load search page with pantry
 */
 var loadSearchPage = function() {
-	console.log("load search");
 	$.get('/pantry', function(response) {
-		// console.log(response.content);
-		// console.log(response.ingredients);
-
-		// console.log(response.content.ingredients);
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients });
 	});
 };
 
+/*
+Load recipe search results to search page
+*/
 var loadSearchResults = function() {
 	$.get('/search', function(response) {
-		loadPage('search', {currentUser: currentUser, recipes: response.content.recipes, searched: true});
+		$.get('/pantry').done(function(resp){
+			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true});
+		}).fail(function(responseObject) {
+          var response = $.parseJSON(responseObject.responseText);
+          $('.error').text(response.err);
+      });
 	});
 };
 
 /*
-This method populates the field currentUser and calls loadPage
+This method populates the field currentUser and calls loadHomePage
 at all times while the app is running.
 */
 $(document).ready(function() {
 	$.get('/users/current', function(response) {
 		if (response.content.loggedIn) {
-			console.log(response.content);
 			currentUser = response.content.user;
 		}
 		loadHomePage();

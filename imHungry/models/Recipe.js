@@ -2,13 +2,15 @@
 var mongoose = require("mongoose");
 
 /*
-Recipe schema
-name: name of recipe
-ingredients: array of ingredient names
-servingsize: serving size of recipe
-instructions: body that details how to do the recipe
-
-does not yet incorporate ingredient amounts
+Schema for recipe
+	name: String name of recipe
+	ingredients: List of ingredients
+	ingredientWAmounts: list of ingredients with amounts
+	servingSize: serving size of recipe
+	totalTime: time required to cook recipe
+	sourceURL: source where recipe is from
+	imageURL: list of urls for recipe images
+	rating: rating of recipe
 */
 var recipeSchema = mongoose.Schema({
 	name: String,
@@ -21,12 +23,6 @@ var recipeSchema = mongoose.Schema({
 	rating: Number
 });
 
-
-// Need some sort of user schema
-
-// search procedure
-// only searches based on ingredients, does not yet search based on ingredient amounts
-// serving size scaling not yet implemented
 /*
 Search for recipes that only use a subset of the given ingredients
 params:
@@ -34,12 +30,22 @@ ingredients - [String] array of string names of ingreidents
 callback - function to call afterwords, takes two parameters of error and recipe objects
 */
 recipeSchema.statics.searchRecipes = function(ingredients, callback) {
-	console.log("calling searchRecipes");
+	
 	this.find({ingredients: {$not:{$elemMatch:{$nin:ingredients}}}}, function(err, recipes) {
 		if (err) {
 			callback(err, null);
 		} else {
 			callback(null, recipes);
+		}
+	});
+}
+
+recipeSchema.statics.getRecipe = function(username, recipeId, callback) {
+	this.findById(recipeId, function(err, doc){
+		if (err) {
+			callback(err, null);
+		} else {
+			callback(null,doc);
 		}
 	});
 }

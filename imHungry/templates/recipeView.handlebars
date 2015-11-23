@@ -1,15 +1,15 @@
 <div class="recipe" data-recipeid={{recipe._id}}>
-  <p>{{name}}</p>
-    <img src = {{imageURLs.[0]}}>
+  <p>{{recipe.name}}</p>
+  <img src = {{recipe.imageURLs.[0]}}>
   <label>Ingredients: </label>
   <ul class="ingredients">
-    {{#each ingredients}}
+    {{#each recipe.ingredients}}
       <li>{{ this }}</li>
     {{/each}}
   </ul>
 
-  <label>Serving size: </label><p> {{servingSize}}</p>
+  <label>Serving size: </label><p> {{recipe.servingSize}}</p>
 
   <label>Instructions: </label>
-  <p>{{sourceURL}}</p>
+  <p>{{recipe.sourceURL}}</p>
 </div>

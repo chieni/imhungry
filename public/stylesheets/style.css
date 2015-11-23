@@ -10,7 +10,7 @@ body {
   font-family: 'Brandon Grotesque';
   color: white;
   padding: 50px;
-  background: url("yummy-dinner-party.jpg");
+   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('yummy-dinner-party.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -40,10 +40,34 @@ a {
   height: 35em;
 }
 
+.recipe-box {
+  background:rgba(0,0,0,0.75);
+  padding: 2em 0;
+}
 .ingredient {
   margin:10px;
 }
 
+.recipe-view-img{
+  width: 22em;
+  height: 20em;
+  margin: 0 auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.recipe-name {
+  font-size: 6em;
+  font-weight: 400;
+  line-height: 110%;
+  padding: 0 0.65em;
+}
+
+.serving-label{
+  font-size: 2em;
+  padding: 1em 1.8em;
+}
 #signin-form, #register-form {
   max-width: 330px;
   padding: 15px;

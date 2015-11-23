@@ -52,13 +52,17 @@ router.post('/add', function(req, res) {
 
 router.delete('/delete', function(req, res) {
   console.log("inside delete ingredients call routes");
-  // Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
-  //   if (!err) {
-  //     utils.sendSuccessResponse(res);
-  //   } else {
-  //     utils.sendErrResponse(res, 403, 'Something went wrong.');
-  //   }
-  // });
+  Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
+    if (err) {
+      res.send({
+        success:false,
+        message: err.msg
+      })
+    }
+    else {
+      res.send({success:true});
+    }
+  });
 });
 
 module.exports = router;

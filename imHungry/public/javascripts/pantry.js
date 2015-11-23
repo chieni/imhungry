@@ -21,35 +21,31 @@
 
   $(document).on('click', '.delete-button', function(evt) {
     console.log("delete clicked");
+    console.log($(this));
     console.log(this.parentNode);
+    console.log($(this).parent());
+    console.log(this.parentNode.getAttribute('data-ingredient-id'));
     evt.preventDefault();
-    // $.delete(
-    //   '/pantry/delete'
-    //   ).done(function(response) {
-    //     document.getElementById("ingredientsList").removeChild(this.parentNode);
-    //   }).fail(function(responseObject) {
-    //     var response = $.parseJSON(responseObject.responseText);
-    //       $('.error').text(response.err);
-    //   })
 
 
-  // $.ajax({
-  //       url: '/pantry/delete',
-  //       type: 'DELETE',
-  //       data: {
-  //         username: username,
-  //         ingredient: this.
-  //       },
-  //       success: function(data) {
-  //         if (data.success) {
-  //           table.removeChild(element);
-  //         }
-  //         else {
-  //           alert(data.message);
-  //         }
-  //       },
-  //       dataType: "json"
-  //     });
+  var list = this.parentNode.parentNode;
+  var element = this.parentNode;
+  $.ajax({
+        url: '/pantry/delete',
+        type: 'DELETE',
+        data: {
+          ingredient: this.parentNode.getAttribute('data-ingredient-id')
+        },
+        success: function(data) {
+          if (data.success) {
+            list.removeChild(element);
+          }
+          else {
+            alert(data.message);
+          }
+        },
+        dataType: "json"
+      });
   });
 
 })();

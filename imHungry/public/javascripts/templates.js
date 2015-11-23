@@ -1,5 +1,6 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+<<<<<<< HEAD
 templates['index'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
 
@@ -12,6 +13,10 @@ templates['index'] = template({"1":function(container,depth0,helpers,partials,da
   return "<div id=\"homepage\">\n  <h1>ImHungry</h1>\n  <div id=\"signin\">\n  <h1>Sign in</h1>\n  <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  </div>\n  <form id=\"signin-form\">\n    <div>Username: <input type=\"text\" name=\"username\" required /></div>\n    <div>Password: <input type=\"password\" name=\"password\" required /></div>\n    <input type=\"submit\" />\n  </form>\n</div>\n<p>Or register if you are a new user:</p>\n  <button id=\"register-btn\">Register</button>\n</div>";
+=======
+templates['index'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<div id=\"homepage\">\n  <h1>ImHungry</h1>\n  <p>You must be signed in to continue.</p>\n  <button id=\"signin-btn\">Sign in</button>\n  <button id=\"register-btn\">Register</button>\n</div>";
+>>>>>>> c23c72a066cdd5df7ab5b727922c1be18bc96f6d
 },"useData":true});
 templates['ingredient'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
@@ -72,8 +77,17 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 },"6":function(container,depth0,helpers,partials,data) {
     return "                <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>\n";
 },"8":function(container,depth0,helpers,partials,data) {
+<<<<<<< HEAD
     return "        <li class=\"ingredient\" style=\"list-style-type:none\">"
     + container.escapeExpression(container.lambda(depth0, depth0))
+=======
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "        <li class=\"ingredient\" style=\"list-style-type:none\" data-ingredient-id="
+    + alias2(alias1(depth0, depth0))
+    + ">"
+    + alias2(alias1(depth0, depth0))
+>>>>>>> c23c72a066cdd5df7ab5b727922c1be18bc96f6d
     + "<button class=\"delete-button\" type=\"button\">Delete</button></li>\n";
 },"10":function(container,depth0,helpers,partials,data) {
     return "        <p><em>No ingredients yet!</em></p>\n";
@@ -90,4 +104,20 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.program(10, data, 0),"data":data})) != null ? stack1 : "")
     + "      </div>\n\n      <form id=\"pantry-form\">\n        <div>Add a new ingredient: <input type=\"text\" id=\"new-ingredient\" name=\"ingredient\" required />\n        <input type=\"submit\" value=\"Add\"/></div>\n      </form>\n  </div>\n";
 },"usePartial":true,"useData":true});
+<<<<<<< HEAD
+=======
+templates['signin'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "      "
+    + container.escapeExpression(((helper = (helper = helpers.error || (depth0 != null ? depth0.error : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"error","hash":{},"data":data}) : helper)))
+    + "\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div id=\"signin\">\n  <a href=\"#\" id=\"home-link\">Back to Home</a>\n  <h1>Sign in</h1>\n  <div class=\"error\">\n"
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "  </div>\n  <form id=\"signin-form\">\n    <div>Username: <input type=\"text\" name=\"username\" required /></div>\n    <div>Password: <input type=\"password\" name=\"password\" required /></div>\n    <input type=\"submit\" />\n  </form>\n</div>";
+},"useData":true});
+>>>>>>> c23c72a066cdd5df7ab5b727922c1be18bc96f6d
 })();

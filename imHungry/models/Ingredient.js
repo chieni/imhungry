@@ -1,5 +1,6 @@
-// Data for each recipe ingredient is stored in a database. 
+// NOT USED FOR MVP
 
+// Data for each recipe ingredient is stored in a database. 
 
 var mongoose = require('mongoose');
 

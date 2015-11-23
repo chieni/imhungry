@@ -1,10 +1,10 @@
 // Wrap in an immediately invoked function expression.
 (function() {
   /*
-    Submits sign-in information on click and logs in user (if info is valid)
+    Submits the search query when a user clicks on "Scavenge" given the items in his/her pantry.
+    This returns all recipes in our database the user can create given his/her pantry.
   */
   $(document).on('submit', '#search-form', function(evt) {
-      console.log("clicked scavenge");
       evt.preventDefault();
       loadSearchResults();
   });

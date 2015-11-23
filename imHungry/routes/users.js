@@ -97,19 +97,15 @@ router.post('/', function(req, res) {
   User.User.createNewUser(req.body.username, req.body.password,  
     function(err) {
       if (err) {
-      	console.log("error in creating a user");
         if (err.taken) {
           utils.sendErrResponse(res, 400, 'That username is already taken!');
         } else {
           utils.sendErrResponse(res, 500, 'An unknown error has occurred.');
         }
       } else {
-      	console.log("user created successfully!");
       	Pantry.Pantry.createNewPantry(req.body.username,
       		function(err) {
-      			console.log("trying to create a pantry");
       			if(err) {
-      				console.log("yikes theres an error");
       				utils.sendErrResponse(res, 500, 'An unknown error has occured.');
       			}
       			else {

@@ -64,7 +64,6 @@ var pantrySchema = mongoose.Schema({
     } */
 
 pantrySchema.statics.getIngredients = function(username, callback) {
-  console.log(username);
   this.findOne({username: username}, function(err, pantry) {
     if (pantry) {
       console.log(pantry.ingredients);

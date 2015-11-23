@@ -16,13 +16,16 @@
             {{/if}}
           </div>
 
-          {{#if searched}}
-            {{#each recipes}}
-              {{> recipe }}
-            {{else}}
-              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
-            {{/each}}
-          {{/if}}
+          <div class="results">
+            {{#if searched}}
+              <p>Searched is true</p>
+              {{#each recipes}}
+                {{> recipe }}
+              {{else}}
+                <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
+              {{/each}}
+            {{/if}}
+          </div>
     </div>
 
     <div class="right">

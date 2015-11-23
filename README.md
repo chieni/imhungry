@@ -1,7 +1,6 @@
 chieni_nlucas_zlily_mmgong_final
 ================================
-1. URL:
-
+1. URL: https://im-hungry.herokuapp.com/
 2. Instructions for local deployment:
 	a. in terminal window, run mongo
 		use command: mongod

@@ -34,6 +34,7 @@ ingredients - [String] array of string names of ingreidents
 callback - function to call afterwords, takes two parameters of error and recipe objects
 */
 recipeSchema.statics.searchRecipes = function(ingredients, callback) {
+	console.log("calling searchRecipes");
 	this.find({ingredients: {$not:{$elemMatch:{$nin:ingredients}}}}, function(err, recipes) {
 		if (err) {
 			callback(err, null);
@@ -43,6 +44,4 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	});
 }
 
-
-var Recipe = mongoose.model('Recipe', recipeSchema);
-module.exports = Recipe;
+exports.Recipe = mongoose.model('Recipe', recipeSchema);

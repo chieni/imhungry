@@ -16,28 +16,31 @@
             {{/if}}
           </div>
 
-          {{#if searched}}
-            {{#each recipes}}
-              {{> recipe }}
-            {{else}}
-              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
-            {{/each}}
-          {{/if}}
+          <div class="results">
+            {{#if searched}}
+              <p>Searched is true</p>
+              {{#each recipes}}
+                {{> recipe }}
+              {{else}}
+                <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
+              {{/each}}
+            {{/if}}
+          </div>
     </div>
 
     <div class="right">
       <h1>Your pantry.</h1>
-      <div class="pantry">
 
+      <div id="ingredientsList">
         {{#each ingredients}}
-        <li>{{ this }} </li>
+        <li class="ingredient" style="list-style-type:none">{{ this }}<button class="delete-button" type="button">Delete</button></li>
         {{else}}
         <p><em>No ingredients yet!</em></p>
         {{/each}}
+      </div>
 
       <form id="pantry-form">
-        <div>Add a new ingredient: <input type="text" id="new-ingredient-input" name="ingredient" required /></div>
-        <input type="submit" value="Add"/>
+        <div>Add a new ingredient: <input type="text" id="new-ingredient" name="ingredient" required />
+        <input type="submit" value="Add"/></div>
       </form>
-    </div>
   </div>

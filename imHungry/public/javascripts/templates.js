@@ -29,8 +29,8 @@ templates['recipe'] = template({"1":function(container,depth0,helpers,partials,d
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "\n<div class=\"recipe\" data-recipename="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.name : stack1), depth0))
+  return "\n<div class=\"recipe\" data-recipeid="
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + ">\n  <label>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.name : stack1), depth0))
     + "</label>\n\n  <label>Ingredients: </label>\n  <ul class=\"ingredients\">\n"
@@ -63,17 +63,18 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 },"3":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.recipes : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.program(6, data, 0),"data":data})) != null ? stack1 : "");
+  return "              <p>Searched is true</p>\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.recipes : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.program(6, data, 0),"data":data})) != null ? stack1 : "");
 },"4":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = container.invokePartial(partials.recipe,depth0,{"name":"recipe","data":data,"indent":"              ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+  return ((stack1 = container.invokePartial(partials.recipe,depth0,{"name":"recipe","data":data,"indent":"                ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"6":function(container,depth0,helpers,partials,data) {
-    return "              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>\n";
+    return "                <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>\n";
 },"8":function(container,depth0,helpers,partials,data) {
-    return "        <li>"
+    return "        <li class=\"ingredient\" style=\"list-style-type:none\">"
     + container.escapeExpression(container.lambda(depth0, depth0))
-    + " </li>\n";
+    + "<button class=\"delete-button\" type=\"button\">Delete</button></li>\n";
 },"10":function(container,depth0,helpers,partials,data) {
     return "        <p><em>No ingredients yet!</em></p>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -83,10 +84,10 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
     + container.escapeExpression(((helper = (helper = helpers.currentUser || (depth0 != null ? depth0.currentUser : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"currentUser","hash":{},"data":data}) : helper)))
     + "</b> (<a href=\"#\" id=\"logout-link\">logout</a>)</p>\n\n<div class=\"wrapper\">\n    <div class=\"left\">\n        <h1>Find recipes.</h1>\n\n        <form id=\"search-form\">\n          <div>Serving size: <input type=\"number\" name=\"servingsize\"/></div>\n          <div>Additional ingredients: <input type=\"text\" name=\"additional\"/></div>\n          <input type=\"submit\" value=\"Scavenge\"/>\n        </form>\n\n          <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "          </div>\n\n"
+    + "          </div>\n\n          <div class=\"results\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.searched : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </div>\n\n    <div class=\"right\">\n      <h1>Your pantry.</h1>\n      <div class=\"pantry\">\n\n"
+    + "          </div>\n    </div>\n\n    <div class=\"right\">\n      <h1>Your pantry.</h1>\n\n      <div id=\"ingredientsList\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.program(10, data, 0),"data":data})) != null ? stack1 : "")
-    + "\n      <form id=\"pantry-form\">\n        <div>Add a new ingredient: <input type=\"text\" id=\"new-ingredient-input\" name=\"ingredient\" required /></div>\n        <input type=\"submit\" value=\"Add\"/>\n      </form>\n    </div>\n  </div>\n";
+    + "      </div>\n\n      <form id=\"pantry-form\">\n        <div>Add a new ingredient: <input type=\"text\" id=\"new-ingredient\" name=\"ingredient\" required />\n        <input type=\"submit\" value=\"Add\"/></div>\n      </form>\n  </div>\n";
 },"usePartial":true,"useData":true});
 })();

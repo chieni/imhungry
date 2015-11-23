@@ -64,7 +64,6 @@ var pantrySchema = mongoose.Schema({
     } */
 
 pantrySchema.statics.getIngredients = function(username, callback) {
-  console.log(username);
   this.findOne({username: username}, function(err, pantry) {
     if (pantry) {
       console.log(pantry.ingredients);
@@ -84,7 +83,7 @@ pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
             callback({msg:"error adding ingredient"});
           }
           else {
-            callback(null, pantry);
+            callback(null);
           }
       });
       console.log(pantry.ingredients);
@@ -95,11 +94,28 @@ pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
   });
 }
 
-/*
-  that.deleteIngredient = function(ingredient, callback) {
+
+  pantrySchema.statics.deleteIngredient = function(username, ingredient, callback) {
+    this.findOne({username: username}, function(err, pantry) {
+      if (pantry) {
+        pantry.ingredients.push(ingredient);
+        pantry.save(function(err) {
+            if (err) {
+              callback({msg:"error adding ingredient"});
+            }
+            else {
+              callback(null);
+            }
+        });
+        console.log(pantry.ingredients);
+      }
+      else {
+        callback({msg: "Pantry does not exist"});
+      }
+    });
 
   };
-  */
+  
 /*
   that.createNewPantry = function(callback) {
     var newPantry = new Pantry({'ingredient': []});

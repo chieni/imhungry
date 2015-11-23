@@ -61,9 +61,9 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 },"6":function(container,depth0,helpers,partials,data) {
     return "              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>\n";
 },"8":function(container,depth0,helpers,partials,data) {
-    return "        <li>"
+    return "        <li class=\"ingredient\" style=\"list-style-type:none\">"
     + container.escapeExpression(container.lambda(depth0, depth0))
-    + " </li>\n";
+    + "<button class=\"delete-button\" type=\"button\">Delete</button></li>\n";
 },"10":function(container,depth0,helpers,partials,data) {
     return "        <p><em>No ingredients yet!</em></p>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -75,9 +75,9 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "          </div>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.searched : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </div>\n\n    <div class=\"right\">\n      <h1>Your pantry.</h1>\n      <div class=\"pantry\">\n\n"
+    + "    </div>\n\n    <div class=\"right\">\n      <h1>Your pantry.</h1>\n\n      <div id=\"ingredientsList\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.program(10, data, 0),"data":data})) != null ? stack1 : "")
-    + "\n      <form id=\"pantry-form\">\n        <div>Add a new ingredient: <input type=\"text\" id=\"new-ingredient-input\" name=\"ingredient\" required /></div>\n        <input type=\"submit\" value=\"Add\"/>\n      </form>\n    </div>\n  </div>\n";
+    + "      </div>\n\n      <form id=\"pantry-form\">\n        <div>Add a new ingredient: <input type=\"text\" id=\"new-ingredient\" name=\"ingredient\" required />\n        <input type=\"submit\" value=\"Add\"/></div>\n      </form>\n  </div>\n";
 },"usePartial":true,"useData":true});
 templates['signin'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;

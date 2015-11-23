@@ -10,18 +10,46 @@
           '/pantry/add',
           helpers.getFormData(this)
       ).done(function(response) {
-        console.log(response.content.pantry);
-        console.log("done");
+        $('#new-ingredient').val('');
+        $('#new-ingredient').focus();
+        loadHomePage();
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
       });
   });
 
-  // $('#pantry-form').submit(function (evt) {
-  //   evt.preventDefault();
-  //  console.log("clicked pantry form");
-  //  return false;
-  // });
+  $(document).on('click', '.delete-button', function(evt) {
+    console.log("delete clicked");
+    console.log(this.parentNode);
+    evt.preventDefault();
+    // $.delete(
+    //   '/pantry/delete'
+    //   ).done(function(response) {
+    //     document.getElementById("ingredientsList").removeChild(this.parentNode);
+    //   }).fail(function(responseObject) {
+    //     var response = $.parseJSON(responseObject.responseText);
+    //       $('.error').text(response.err);
+    //   })
+
+
+  // $.ajax({
+  //       url: '/pantry/delete',
+  //       type: 'DELETE',
+  //       data: {
+  //         username: username,
+  //         ingredient: this.
+  //       },
+  //       success: function(data) {
+  //         if (data.success) {
+  //           table.removeChild(element);
+  //         }
+  //         else {
+  //           alert(data.message);
+  //         }
+  //       },
+  //       dataType: "json"
+  //     });
+  });
 
 })();

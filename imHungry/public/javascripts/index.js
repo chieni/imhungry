@@ -53,7 +53,12 @@ var loadSearchPage = function() {
 
 var loadSearchResults = function() {
 	$.get('/search', function(response) {
-		loadPage('search', {currentUser: currentUser, recipes: response.content.recipes, searched: true});
+		$.get('/pantry').done(function(resp){
+			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true});
+		}).fail(function(responseObject) {
+          var response = $.parseJSON(responseObject.responseText);
+          $('.error').text(response.err);
+      });
 	});
 };
 

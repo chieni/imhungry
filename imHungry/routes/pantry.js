@@ -21,11 +21,22 @@ router.post('/add', function(req, res) {
   console.log("inside add ingredients call routes");
   Pantry.Pantry.addIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
     if (!err) {
-      utils.sendSuccessResponse(res, { pantry: pantry});
+      utils.sendSuccessResponse(res);
     } else {
       utils.sendErrResponse(res, 403, 'Something went wrong.');
     }
   });
+});
+
+router.delete('/delete', function(req, res) {
+  console.log("inside delete ingredients call routes");
+  // Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
+  //   if (!err) {
+  //     utils.sendSuccessResponse(res);
+  //   } else {
+  //     utils.sendErrResponse(res, 403, 'Something went wrong.');
+  //   }
+  // });
 });
 
 module.exports = router;

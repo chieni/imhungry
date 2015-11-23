@@ -58,6 +58,7 @@ at all times while the app is running.
 $(document).ready(function() {
 	$.get('/users/current', function(response) {
 		if (response.content.loggedIn) {
+			console.log(response.content);
 			currentUser = response.content.user;
 		}
 		loadHomePage();

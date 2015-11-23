@@ -92,8 +92,21 @@ router.post('/', function(req, res) {
   if (isLoggedInOrInvalidBody(req, res)) {
     return;
   }
+  Pantry.Pantry.createNewPantry(req.body.username,
+  	function(err) {
+  		if(err) {
+  			if(err.taken) {
+  				utils.sendErrResponse(res, 400, 'That username is already taken!');
+  			} else {
+  				utils.sendErrResponse(res, 500, 'An unknown error has occured.');
+  			}
+  		}
+  		else {
+  			utils.sendSuccessResponse(res, req.body.username);
+  		}
+  		})
 
-  User.User.createNewUser(req.body.username, req.body.password, 
+  User.User.createNewUser(req.body.username, req.body.password,  
     function(err) {
       if (err) {
         if (err.taken) {

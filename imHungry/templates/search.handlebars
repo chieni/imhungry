@@ -1,4 +1,4 @@
-<p>Welcome, {{currentUser}} (<a href="#" id="logout-link">logout</a>)</p>
+<p>Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</p>
 
 <div class="wrapper">
     <div class="left">
@@ -16,31 +16,30 @@
             {{/if}}
           </div>
 
-          {{#if searched}}
-            {{#each recipes}}
-              {{> recipe }}
-            {{else}}
-              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
-            {{/each}}
-          {{/if}}
+          <div class="results">
+            {{#if searched}}
+              <p>Searched is true</p>
+              {{#each recipes}}
+                {{> recipe }}
+              {{else}}
+                <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
+              {{/each}}
+            {{/if}}
+          </div>
     </div>
-    
+
     <div class="right">
       <h1>Your pantry.</h1>
       <div class="pantry">
 
-        {{#each ingredient}}
-        {{> ingredient}}
+        {{#each ingredients}}
+        <li>{{ this }} </li>
         {{else}}
         <p><em>No ingredients yet!</em></p>
         {{/each}}
 
-<!--       <div>
-
-        <button id="submit-new-ingredient">Add</button>
-      </div> -->
       <form id="pantry-form">
-        <div>Add a new ingredient: <input type="text" id="new-ingredient-input" required /></div>
+        <div>Add a new ingredient: <input type="text" id="new-ingredient-input" name="ingredient" required /></div>
         <input type="submit" value="Add"/>
       </form>
     </div>

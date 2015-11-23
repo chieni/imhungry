@@ -11,6 +11,7 @@ router.get('/', function(req, res) {
 			if (error) {
 			  utils.sendErrResponse(res, 500, 'An unknown error occurred.');
 			} else {
+				console.log("sending success response");
 			  utils.sendSuccessResponse(res, {recipes: recipes, searched: true});
 			}
 	  	});

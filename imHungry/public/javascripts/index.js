@@ -43,9 +43,12 @@ by issuing a get requests for all freets
 var loadSearchPage = function() {
 	console.log("load search");
 	$.get('/pantry', function(response) {
-		loadPage('search', {currentIngredients: response.content.ingredients });
+		// console.log(response.content);
+		// console.log(response.ingredients);
+
+		// console.log(response.content.ingredients);
+		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients });
 	});
-	//loadPage('search');
 };
 
 /*

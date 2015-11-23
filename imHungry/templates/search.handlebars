@@ -30,7 +30,7 @@
 
       <div id="ingredientsList">
         {{#each ingredients}}
-        <li class="ingredient" style="list-style-type:none">{{ this }}<button class="delete-button" type="button">Delete</button></li>
+        <li class="ingredient" style="list-style-type:none" data-ingredient-id={{this}}>{{ this }}<button class="delete-button" type="button">Delete</button></li>
         {{else}}
         <p><em>No ingredients yet!</em></p>
         {{/each}}

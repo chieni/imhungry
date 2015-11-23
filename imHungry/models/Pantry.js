@@ -99,16 +99,21 @@ pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
   pantrySchema.statics.deleteIngredient = function(username, ingredient, callback) {
     this.findOne({username: username}, function(err, pantry) {
       if (pantry) {
-        pantry.ingredients.push(ingredient);
-        pantry.save(function(err) {
+          var index = pantry.ingredients.indexOf(ingredient);
+          if (index > -1) {
+            pantry.ingredients.splice(index,1);
+          }
+          else {
+            callback({ msg : 'Invalid ingredient.'});
+          }
+          pantry.save(function(err) {
             if (err) {
-              callback({msg:"error adding ingredient"});
+              callback({msg:"Error saving pantry"});
             }
             else {
               callback(null);
             }
-        });
-        console.log(pantry.ingredients);
+          });
       }
       else {
         callback({msg: "Pantry does not exist"});

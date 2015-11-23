@@ -30,7 +30,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
     console.log("database connected");
     // Comment the line below out if already run
-    insertRecipes(db);
+    //insertRecipes(db);
 });
 
 var insertRecipes = function (db) {

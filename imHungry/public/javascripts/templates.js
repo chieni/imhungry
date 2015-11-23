@@ -61,8 +61,12 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 },"6":function(container,depth0,helpers,partials,data) {
     return "              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>\n";
 },"8":function(container,depth0,helpers,partials,data) {
-    return "        <li class=\"ingredient\" style=\"list-style-type:none\">"
-    + container.escapeExpression(container.lambda(depth0, depth0))
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "        <li class=\"ingredient\" style=\"list-style-type:none\" data-ingredient-id="
+    + alias2(alias1(depth0, depth0))
+    + ">"
+    + alias2(alias1(depth0, depth0))
     + "<button class=\"delete-button\" type=\"button\">Delete</button></li>\n";
 },"10":function(container,depth0,helpers,partials,data) {
     return "        <p><em>No ingredients yet!</em></p>\n";

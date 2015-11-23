@@ -124,7 +124,7 @@ Create a new user
     password String desired password for new user
     callback function to call
 */
-userSchema.statics.createNewUser = function(username, password, pantryId, callback) {
+userSchema.statics.createNewUser = function(username, password, callback) {
   var self = this;
   self.findOne({username: username}, function(err, user) {
     if (err) {

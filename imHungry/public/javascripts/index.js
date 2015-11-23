@@ -24,10 +24,7 @@ var loadPage = function(template, data) {
 	$('#main-container').html(Handlebars.templates[template](data));
 };
 
-/*
-This method loads the home page.  If logged in, it will load
-the fritter feed page.  If not it will load the sign in/register page.
-*/
+
 var loadHomePage = function() {
 	if (currentUser) {
 		loadSearchPage();
@@ -36,10 +33,6 @@ var loadHomePage = function() {
 	}
 };
 
-/*
-This method loads the fritter feed given that a user is already logged in
-by issuing a get requests for all freets
-*/
 var loadSearchPage = function() {
 	console.log("load search");
 	$.get('/pantry', function(response) {

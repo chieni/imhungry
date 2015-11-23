@@ -8,12 +8,13 @@
 //var Pantry = (function Pantry() {
 
 //  var that = Object.create(Pantry.prototype);
-  var mongoose = require('mongoose');
-  var User = require('../models/User');
+var mongoose = require('mongoose');
+var User = require('../models/User');
 
-  var pantrySchema = mongoose.Schema({
-    ingredients: [String] //will replace with Ingredient object later
-  });
+var pantrySchema = mongoose.Schema({
+  username: String,
+  ingredients: [String] //will replace with Ingredient object later
+});
 
   //var pantryModel = mongoose.model("Pantry", pantrySchema);
 
@@ -37,11 +38,11 @@
       });
     }; */
 
-  pantrySchema.statics.getIngredients = function(username, callback) {  
+ /* pantrySchema.statics.getIngredients = function(username, callback) {  
     console.log('in get ingredients');
     var self = this;
     User.User.findByUsername(username, function(err, user) {
-      console.log('calling findbyusername');
+      console.log(username);
         if (user) {
           console.log('found a user');
           self.findOne({_id: user.pantryId}, function(err, pantry) {
@@ -60,7 +61,19 @@
           callback({ msg : 'Invalid user.'});
         }
       });
+    } */
+
+pantrySchema.statics.getIngredients = function(username, callback) {
+  this.findOne({username: username}, function(err, pantry) {
+    if (pantry) {
+      callback(null, this.ingredients);
+    } else {
+      callback({msg: "Pantry does not exist"});
     }
+  });
+}
+
+
 /*
   that.addIngredient = function(username, ingredient, callback) {
     
@@ -99,6 +112,19 @@
         }
       });
   }
+
+  userSchema.statics.getPantry = function(username, callback) {
+  this.findOne({username: username}, function(err, user) {
+    if (err) {
+      callback(err, null);
+    } else if (!user) {
+      callback({msg: 'user does not exist'}, null);
+    } else {
+      callback(null, user);
+    }
+  });
+}
+
 /*
   that.deleteIngredient = function(ingredient, callback) {
 
@@ -112,16 +138,16 @@
       })
   }
 */
-  pantrySchema.statics.createNewPantry = function(callback) {
-    this.create({ingredients: []},
-      function(error, record) {
-          if (error) {
-            callback(error);
-          } else {
-            callback(null);
-          }
-        });
-  }
+pantrySchema.statics.createNewPantry = function(username, callback) {
+  this.create({username: username, ingredients: []},
+    function(error, record) {
+        if (error) {
+          callback(error);
+        } else {
+          callback(null);
+        }
+      });
+}
 
 //  Object.freeze(that);
  // return that;

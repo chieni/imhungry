@@ -13,8 +13,12 @@ does not yet incorporate ingredient amounts
 var recipeSchema = mongoose.Schema({
 	name: String,
 	ingredients: [String],
-	servingsize: Number,
-	instructions: String
+	ingredientsWAmounts: [String],
+	servingSize: Number,
+	totalTime: Number,
+	sourceURL: String,
+	imageURLs: [String],
+	rating: Number
 });
 
 

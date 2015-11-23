@@ -37,3 +37,26 @@
 	}
 
 }
+
+
+
+{"flavors": {
+	"sweet": 0.8333333333333334, 
+	"sour": 0.16666666666666666, 
+	"salty": 0.5, 
+	"piquant": 0.0, 
+	"bitter": 0.16666666666666666, 
+	"meaty": 0.3333333333333333
+	}, 
+"rating": 4, 
+"totalTimeInSeconds": 5400, 
+"ingredients": ["pumpkin pur\u00e9e", "vegetable oil", "granulated sugar", "eggs", "vanilla extract", "sour cream", "baking soda", "baking powder", "ground cinnamon", "ground nutmeg", "ground cloves", "ground ginger", "flour"], 
+"smallImageUrls": ["https://lh3.googleusercontent.com/GXgCGK9VioyyBLLWUBXZng5HQj1nLRJCeZydARrlp3QBFd2Cj_oGsYjmybDazV8D7HyrKU84ls4G9Ut9VqrvzO4=s90"], 
+"sourceDisplayName": "Cookie Dough and Oven Mitt", 
+"recipeName": "Pumpkin Bread", 
+"attributes": {
+	"course": ["Breads"]}, 
+	"id": "Pumpkin-Bread-1383567", 
+	"imageUrlsBySize": {"90": "https://lh3.googleusercontent.com/4RTv5cQN0Cp3XRHS1t6R92r-VhqyYF4dGRlyFa4GrWRyDtdPPMjph38tEEVPg9vfJaj7m8AWgN55aEZSJejg=s90-c"}
+}
+

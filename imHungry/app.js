@@ -9,15 +9,6 @@ require('handlebars/runtime');
 
 //Set up Mongoose
 var mongoose = require('mongoose');
-// Connect to either the MONGOLAB_URI or to the local database.
-//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mymongodb');
-// connects to the ImHungry database
-mongoose.connect('mongodb://localhost/imHungry')
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-    console.log("database connected");
-});
 
 // Import route handlers
 var index = require('./routes/index');
@@ -30,6 +21,29 @@ var User = require('./models/User');
 var Pantry = require('./models/Pantry');
 var Ingredient = require('./models/Ingredient');
 var Recipe = require('./models/Recipe');
+// Connect to either the MONGOLAB_URI or to the local database.
+//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mymongodb');
+// connects to the ImHungry database
+mongoose.connect('mongodb://localhost/imHungry')
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+    console.log("database connected");
+    // Comment the line below out if already run
+    insertRecipes(db);
+});
+
+var insertRecipes = function (db) {
+  for (var i = 1200; i < 30900; i+=100) {
+    console.log(i);
+    var recipes = require("./recipe_data/json-files/recipes" + String(i) + "-" + String(i+99)+ ".json");
+    recipes.forEach(function (recipe) {
+      var r = new Recipe(recipe);
+      r.save(function (err) {
+    });
+  });
+  }
+}
 
 var app = express();
 

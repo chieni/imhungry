@@ -51,6 +51,12 @@ var loadSearchPage = function() {
 	});
 };
 
+var loadSearchResults = function() {
+	$.get('/search', function(response) {
+		loadPage('search', {currentUser: currentUser, recipes: response.content.recipes, searched: true});
+	});
+};
+
 /*
 This method populates the field currentUser and calls loadPage
 at all times while the app is running.

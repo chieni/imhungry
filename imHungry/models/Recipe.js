@@ -44,4 +44,5 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	});
 }
 
-exports.Recipe = mongoose.model('Recipe', recipeSchema);
+var Recipe = mongoose.model('Recipe', recipeSchema);
+module.exports = Recipe;

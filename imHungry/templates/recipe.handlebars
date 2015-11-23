@@ -1,18 +1,18 @@
 
 <div class="recipe" data-recipeid={{recipe._id}}>
-  <label>{{recipe.name}}</label>
+  <p>{{name}}</p>
 
   <label>Ingredients: </label>
   <ul class="ingredients">
-    {{#each recipe.ingredients}}
+    {{#each ingredients}}
       <li>{{ this }}</li>
     {{/each}}
   </ul>
 
-  <label>Serving size: </label><p> {{recipe.servingsize}}</p>
+  <label>Serving size: </label><p> {{servingSize}}</p>
 
   <label>Instructions: </label>
-  <p>{{recipe.instructions}}</p>
+  <p>{{sourceURL}}</p>
 </div>
 
 

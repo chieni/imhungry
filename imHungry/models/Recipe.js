@@ -44,5 +44,15 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	});
 }
 
+recipeSchema.statics.getRecipe = function(username, recipeId, callback) {
+	this.findById(recipeId, function(err, doc){
+		if (err) {
+			callback(err, null);
+		} else {
+			callback(null,doc);
+		}
+	});
+}
+
 var Recipe = mongoose.model('Recipe', recipeSchema);
 module.exports = Recipe;

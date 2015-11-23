@@ -3,6 +3,7 @@ var router = express.Router();
 var utils = require('../utils/utils');
 
 var User = require('../models/User');
+var Pantry = require('../models/Pantry');
 
 /*
   For both login and create user, we want to send an error code if the user

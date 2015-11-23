@@ -64,10 +64,12 @@ var pantrySchema = mongoose.Schema({
     } */
 
 pantrySchema.statics.getIngredients = function(username, callback) {
+  console.log(username);
   this.findOne({username: username}, function(err, pantry) {
     if (pantry) {
       callback(null, this.ingredients);
     } else {
+      console.log("pantry does not exist");
       callback({msg: "Pantry does not exist"});
     }
   });
@@ -112,18 +114,6 @@ pantrySchema.statics.getIngredients = function(username, callback) {
         }
       });
   }
-
-  userSchema.statics.getPantry = function(username, callback) {
-  this.findOne({username: username}, function(err, user) {
-    if (err) {
-      callback(err, null);
-    } else if (!user) {
-      callback({msg: 'user does not exist'}, null);
-    } else {
-      callback(null, user);
-    }
-  });
-}
 
 /*
   that.deleteIngredient = function(ingredient, callback) {

@@ -64,10 +64,10 @@ var pantrySchema = mongoose.Schema({
     } */
 
 pantrySchema.statics.getIngredients = function(username, callback) {
-  console.log(username);
   this.findOne({username: username}, function(err, pantry) {
     if (pantry) {
-      callback(null, this.ingredients);
+      console.log(pantry.ingredients);
+      callback(null, pantry.ingredients);
     } else {
       console.log("pantry does not exist");
       callback({msg: "Pantry does not exist"});

@@ -4,12 +4,14 @@
     Submits sign-in information on click and logs in user (if info is valid)
   */
   $(document).on('submit', '#search-form', function(evt) {
+      console.log("clicked scavenge");
       evt.preventDefault();
-      $.post(
+      $.get(
           '/search',
           helpers.getFormData(this)
       ).done(function(response) {
-        loadSearchPage();
+        //loadSearchPage();
+        console.log("not refreshing");
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

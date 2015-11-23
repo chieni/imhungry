@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('../fonts/Brandon_reg.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@baseFontFamily: 'Brandon Grotesque';
+body {
+  font-family: 'Brandon Grotesque';
+  color: white;
+  padding: 50px;
+   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('yummy-dinner-party.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+
+/*div{
+    width:35em;
+    height:32.625em;
+    background-color: #000;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+  }*/
+
+a {
+  color: #00B7FF;
+}
+
+.left{
+  background:rgba(0,0,0,0.75);
+  height: 35em;
+}
+.right{
+  background:rgba(0,0,0,0.75);
+  height: 35em;
+}
+
+.recipe-box {
+  background:rgba(0,0,0,0.75);
+  padding: 2em 0;
+}
+.ingredient {
+  margin:10px;
+}
+
+.recipe-view-img{
+  width: 22em;
+  height: 20em;
+  margin: 0 auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.recipe-name {
+  font-size: 6em;
+  font-weight: 400;
+  line-height: 110%;
+  padding: 0 0.65em;
+}
+
+.serving-label{
+  font-size: 2em;
+  padding: 1em 1.8em;
+}
+#signin-form, #register-form {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+#signin-form #signin-form-heading,
+#register-form  #register-form-heading{
+  margin-bottom: 10px;
+}
+#signin-form,
+#register-form {
+  font-weight: normal;
+}
+#signin-form .form-control,
+#register-form .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+#signin-form .form-control:focus,
+#register-form .form-control:focus{
+  z-index: 2;
+}
+#signin-form input[type="username"],
+#register-form input[type="username"],
+#register-form #inputPassword {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#signin-form input[type="password"],
+#register-form #inputPasswordConfirm {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+

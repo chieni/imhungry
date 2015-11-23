@@ -1,0 +1,35 @@
+<div id="register">
+  <a href="#" id="home-link">Back to Home</a>
+  <h1 class="text-center">imHungry</h1>
+  <div id="register">
+  <h2 class="text-center">Register</h2>
+  <div class="error">
+    {{#if error}}
+      {{error}}
+    {{/if}}
+  </div>
+<!--   <form id="register-form">
+    <div>Username: <input type="text" name="username" required /></div>
+    <div>Password: <input type="password" name="password" required /></div>
+    <div>Confirm Password: <input type="password" name="confirm" required /></div>
+    <input type="submit" />
+  </form> -->
+
+
+  <form id="register-form">
+  <div>
+    <label for="inputUsername" class="sr-only"><span>Username</span></label>
+    <input type="username" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus/>
+  </div>
+  <div>
+    <label for="inputPassword" class="sr-only"><span>Password</span></label>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required/>
+  </div>
+  <div>
+    <label for="inputPasswordConfirm" class="sr-only"><span>Confirm Password</span></label>
+    <input type="password" id="inputPasswordConfirm" name="confirm" class="form-control" placeholder="Confirm Password" required/>
+  </div>
+    <input type="submit" class="btn btn-lg btn-warning btn-block"/>
+  </form>
+</div>
+</div>

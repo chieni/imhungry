@@ -1,0 +1,57 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="">imHungry</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="">Pantry</a></li>
+          <li><a href="">Cookbook</a></li>
+<!-- 
+          <li><img id="mazzetti" class="navpic" src="img/domm.jpg" alt="Bro Science"></li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+<div data-recipeid={{recipe._id}}>
+
+<div class="container-fluid">
+
+<div class="row">
+  <div class="col-md-5 recipe-box">
+    <div class="recipe-view-img" style="background-image: url({{recipe.imageURLs.[0]}})"></div>
+    <div class="serving-label">Serving size: {{recipe.servingSize}}</div>
+    <div class="recipe-name">{{recipe.name}}</div>
+  </div>
+
+  <div class="col-md-6 col-md-offset-1 recipe-box">
+    <div class="ingredients">
+      <div class="ingredients-header">Ingredients: </div>
+      
+      {{#each recipe.ingredients}}
+        <div class="ingredient">{{ this }}</div>
+      {{/each}}
+    </div>
+
+    <div class="instructions">
+      <div class="instructions-label">Instructions: </div>
+      <div class="recipe-url">{{recipe.sourceURL}}</div>
+    </div>
+    
+
+
+  </div>
+</div>
+
+</div>
+</div>

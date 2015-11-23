@@ -15,21 +15,4 @@
           $('.error').text(response.err);
       });
   });
-
-  /*
-    Logs out current user on click and re-loads initial welcome page
-  */
-  $(document).on('click', '#logout-link', function(evt) {
-      evt.preventDefault();
-      $.post(
-          '/users/logout'
-      ).done(function(response) {
-          currentUser = undefined;
-          loadWelcomePage();
-      }).fail(function(responseObject) {
-          var response = $.parseJSON(responseObject.responseText);
-          $('.error').text(response.err);
-      });
-  });
-
 })();

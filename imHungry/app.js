@@ -61,6 +61,7 @@ app.use(function(req, res, next) {
       function(err, user) {
         if (user) {
           req.currentUser = user;
+          Pantry.Pantry
         } else {
           req.session.destroy();
         }

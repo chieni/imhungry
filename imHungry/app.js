@@ -15,6 +15,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var pantry = require('./routes/pantry');
 var search = require('./routes/search');
+var recipe = require('./routes/recipe');
 
 // Import imHungry model
 var User = require('./models/User');
@@ -93,6 +94,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/pantry', pantry);
 app.use('/search', search);
+app.use('/recipe', recipe);
 
 
 // catch 404 and forward to error handler

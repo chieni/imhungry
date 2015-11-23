@@ -13,7 +13,6 @@
   var userSchema = mongoose.Schema({
     username: String,
     password: String,
-    pantryId: mongoose.Schema.Types.ObjectId
   });
 
   //var userModel = mongoose.model("User", userSchema);
@@ -129,7 +128,7 @@ Create a new user
     password String desired password for new user
     callback function to call
 */
-userSchema.statics.createNewUser = function(username, password, callback) {
+userSchema.statics.createNewUser = function(username, password, pantryId, callback) {
   var self = this;
   self.findOne({username: username}, function(err, user) {
     if (err) {
@@ -137,7 +136,8 @@ userSchema.statics.createNewUser = function(username, password, callback) {
     } else if (user) {
       callback({taken: true});
     } else {
-      self.create({username: username, password: password, following: []},
+
+      self.create({username: username, password: password},
         function(error, record) {
           if (error) {
             callback(error);

@@ -1,6 +1,18 @@
 <div id="homepage">
   <h1>ImHungry</h1>
-  <p>You must be signed in to continue.</p>
-  <button id="signin-btn">Sign in</button>
+  <div id="signin">
+  <h1>Sign in</h1>
+  <div class="error">
+    {{#if error}}
+      {{error}}
+    {{/if}}
+  </div>
+  <form id="signin-form">
+    <div>Username: <input type="text" name="username" required /></div>
+    <div>Password: <input type="password" name="password" required /></div>
+    <input type="submit" />
+  </form>
+</div>
+<p>Or register if you are a new user:</p>
   <button id="register-btn">Register</button>
 </div>

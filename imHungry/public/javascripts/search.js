@@ -10,9 +10,7 @@
           '/search',
           helpers.getFormData(this)
       ).done(function(response) {
-        //loadSearchResults();
-        //$(document)
-        console.log("not refreshing");
+        loadSearchResults();
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

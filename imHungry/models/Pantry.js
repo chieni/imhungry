@@ -1,72 +1,28 @@
 // Data for each user's Pantry is stored in
 // a database. 
 
-
-
 // A Pantry object in the imHungry app.
 // Each Pantry object stores zero or more ingredients and contains a unique ID.
-//var Pantry = (function Pantry() {
-
-//  var that = Object.create(Pantry.prototype);
 var mongoose = require('mongoose');
 var User = require('../models/User');
 
+/*
+Schema for pantry
+  username: String username of user who owns this pantry
+  ingredients: array of String of ingredient names in this pantry
+*/
 var pantrySchema = mongoose.Schema({
   username: String,
-  ingredients: [String] //will replace with Ingredient object later
+  ingredients: [String]
 });
 
-  //var pantryModel = mongoose.model("Pantry", pantrySchema);
-
- /* that.getIngredients = function(username, callback) {  
-    console.log('in get ingredients');
-    User.findByUsername(username, function(err, user) {
-      console.log('calling findbyusername');
-        if (user) {
-          pantryModel.findOne({_id: user.pantryId}, function(err, pantry) {
-            if (pantry) {
-              callback(null, pantry.ingredients);
-            }
-            else {
-              callback({msg: "Pantry does not exist"});
-            }
-          })
-        }
-        else {
-          callback({ msg : 'Invalid user.'});
-        }
-      });
-    }; */
-
- /* pantrySchema.statics.getIngredients = function(username, callback) {  
-    console.log('in get ingredients');
-    var self = this;
-    User.User.findByUsername(username, function(err, user) {
-      console.log(username);
-        if (user) {
-          console.log('found a user');
-          self.findOne({_id: user.pantryId}, function(err, pantry) {
-            if (pantry) {
-              console.log('there a pantry');
-              callback(null, pantry.ingredients);
-            }
-            else {
-              console.log('no pantry');
-              callback({msg: "Pantry does not exist"});
-            }
-          })
-        }
-        else {
-          console.log('found no user');
-          callback({ msg : 'Invalid user.'});
-        }
-      });
-    } */
-
+/*
+Get all the ingredients in the pantry of the given user
+  username: String username of specified user
+*/
 pantrySchema.statics.getIngredients = function(username, callback) {
   this.findOne({username: username}, function(err, pantry) {
     if (pantry) {
-      console.log(pantry.ingredients);
       callback(null, pantry.ingredients);
     } else {
       callback({msg: "Pantry does not exist"});
@@ -74,6 +30,12 @@ pantrySchema.statics.getIngredients = function(username, callback) {
   });
 }
 
+/*
+Add ingredient to given user's pantry
+User cannot add the same ingredient again
+  username: String username of specified user
+  ingredient: String ingredient name of ingredient to add
+*/
 pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
   this.findOne({username: username}, function(err, pantry) {
     if (pantry) {
@@ -93,7 +55,6 @@ pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
         callback({msg: "Ingredient already in pantry"});
       }    
 
-      console.log(pantry.ingredients);
     }
     else {
       callback({msg: "Pantry does not exist"});
@@ -101,40 +62,41 @@ pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
   });
 }
 
-
-  pantrySchema.statics.deleteIngredient = function(username, ingredient, callback) {
-    this.findOne({username: username}, function(err, pantry) {
-      if (pantry) {
-          var index = pantry.ingredients.indexOf(ingredient);
-          if (index > -1) {
-            pantry.ingredients.splice(index,1);
+/*
+Delete ingredient from given user's pantry
+  username: String username of specified user
+  ingredient: String name of ingredient to be deleted
+*/
+pantrySchema.statics.deleteIngredient = function(username, ingredient, callback) {
+  this.findOne({username: username}, function(err, pantry) {
+    if (pantry) {
+        var index = pantry.ingredients.indexOf(ingredient);
+        if (index > -1) {
+          pantry.ingredients.splice(index,1);
+        }
+        else {
+          callback({ msg : 'Invalid ingredient.'});
+        }
+        pantry.save(function(err) {
+          if (err) {
+            callback({msg:"Error saving pantry"});
           }
           else {
-            callback({ msg : 'Invalid ingredient.'});
+            callback(null);
           }
-          pantry.save(function(err) {
-            if (err) {
-              callback({msg:"Error saving pantry"});
-            }
-            else {
-              callback(null);
-            }
-          });
-      }
-      else {
-        callback({msg: "Pantry does not exist"});
-      }
-    });
+        });
+    }
+    else {
+      callback({msg: "Pantry does not exist"});
+    }
+  });
 
-  };
+};
   
 /*
-  that.createNewPantry = function(callback) {
-    var newPantry = new Pantry({'ingredient': []});
-      newPantry.save(function(err) {
-        callback(null);
-      })
-  }
+Create a new pantry for specified user
+Pantry is initially empty
+  username: String username of specified user
 */
 pantrySchema.statics.createNewPantry = function(username, callback) {
   this.create({username: username, ingredients: []},
@@ -147,9 +109,4 @@ pantrySchema.statics.createNewPantry = function(username, callback) {
       });
 }
 
-//  Object.freeze(that);
- // return that;
-
-//})();
 exports.Pantry = mongoose.model('Pantry', pantrySchema);
-//module.exports = Pantry;

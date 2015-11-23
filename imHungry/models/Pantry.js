@@ -77,15 +77,22 @@ pantrySchema.statics.getIngredients = function(username, callback) {
 pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
   this.findOne({username: username}, function(err, pantry) {
     if (pantry) {
-      pantry.ingredients.push(ingredient);
-      pantry.save(function(err) {
+      var index = pantry.ingredients.indexOf(ingredient);
+      if (index == -1) {
+        pantry.ingredients.push(ingredient);
+        pantry.save(function(err) {
           if (err) {
             callback({msg:"error adding ingredient"});
           }
           else {
             callback(null);
           }
-      });
+        });
+      }
+      else {
+        callback({msg: "Ingredient already in pantry"});
+      }    
+
       console.log(pantry.ingredients);
     }
     else {

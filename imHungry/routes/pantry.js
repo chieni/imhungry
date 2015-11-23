@@ -45,8 +45,7 @@ router.post('/add', function(req, res) {
     if (!err) {
       utils.sendSuccessResponse(res);
     } else {
-      console.log(err.msg);
-      utils.sendErrResponse(res, 403, 'Something went wrong.');
+      utils.sendErrResponse(res, 400, err.msg);
     }
   });
 });

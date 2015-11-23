@@ -22,44 +22,36 @@ templates['ingredient'] = template({"compiler":[7,">= 4.0.0"],"main":function(co
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.ingredient : depth0)) != null ? stack1.amount : stack1), depth0))
     + " </p>\n</div>";
 },"useData":true});
-templates['recipe'] = template({"1":function(container,depth0,helpers,partials,data) {
-    return "      <li>"
-    + container.escapeExpression(container.lambda(depth0, depth0))
-    + "</li>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=container.escapeExpression, alias2=depth0 != null ? depth0 : {}, alias3=helpers.helperMissing, alias4="function";
+templates['recipe'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "\n<div class=\"recipe\" data-recipeid="
-    + alias1(container.lambda(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + ">\n  <p>"
-    + alias1(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"name","hash":{},"data":data}) : helper)))
+    + alias2(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"name","hash":{},"data":data}) : helper)))
     + "</p>\n  <img src = "
-    + alias1(((helper = (helper = helpers.imageURLs || (depth0 != null ? depth0.imageURLs : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"imageURLs","hash":{},"data":data}) : helper)))
-    + ">\n  <label>Ingredients: </label>\n  <ul class=\"ingredients\">\n"
-    + ((stack1 = helpers.each.call(alias2,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "  </ul>\n\n  <label>Serving size: </label><p> "
-    + alias1(((helper = (helper = helpers.servingSize || (depth0 != null ? depth0.servingSize : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"servingSize","hash":{},"data":data}) : helper)))
-    + "</p>\n\n  <label>Instructions: </label>\n  <p>"
-    + alias1(((helper = (helper = helpers.sourceURL || (depth0 != null ? depth0.sourceURL : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"sourceURL","hash":{},"data":data}) : helper)))
-    + "</p>\n</div>\n\n\n";
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.imageURLs : depth0)) != null ? stack1["1"] : stack1), depth0))
+    + ">\n  \n</div>\n\n\n";
 },"useData":true});
 templates['recipeView'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "      <li>"
     + container.escapeExpression(container.lambda(depth0, depth0))
     + "</li>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=container.escapeExpression, alias2=depth0 != null ? depth0 : {}, alias3=helpers.helperMissing, alias4="function";
+    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
 
   return "<div class=\"recipe\" data-recipeid="
-    + alias1(container.lambda(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + ">\n  <p>"
-    + alias1(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"name","hash":{},"data":data}) : helper)))
-    + "</p>\n  <label>Ingredients: </label>\n  <ul class=\"ingredients\">\n"
-    + ((stack1 = helpers.each.call(alias2,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + alias2(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</p>\n    <img src = "
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.imageURLs : depth0)) != null ? stack1["0"] : stack1), depth0))
+    + ">\n  <label>Ingredients: </label>\n  <ul class=\"ingredients\">\n"
+    + ((stack1 = helpers.each.call(alias3,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  </ul>\n\n  <label>Serving size: </label><p> "
-    + alias1(((helper = (helper = helpers.servingSize || (depth0 != null ? depth0.servingSize : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"servingSize","hash":{},"data":data}) : helper)))
+    + alias2(((helper = (helper = helpers.servingSize || (depth0 != null ? depth0.servingSize : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"servingSize","hash":{},"data":data}) : helper)))
     + "</p>\n\n  <label>Instructions: </label>\n  <p>"
-    + alias1(((helper = (helper = helpers.sourceURL || (depth0 != null ? depth0.sourceURL : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"sourceURL","hash":{},"data":data}) : helper)))
+    + alias2(((helper = (helper = helpers.sourceURL || (depth0 != null ? depth0.sourceURL : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"sourceURL","hash":{},"data":data}) : helper)))
     + "</p>\n</div>";
 },"useData":true});
 templates['register'] = template({"1":function(container,depth0,helpers,partials,data) {
@@ -106,7 +98,7 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 
   return "<p>Welcome, <b>"
     + container.escapeExpression(((helper = (helper = helpers.currentUser || (depth0 != null ? depth0.currentUser : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"currentUser","hash":{},"data":data}) : helper)))
-    + "</b> (<a href=\"#\" id=\"logout-link\">logout</a>)</p>\n\n<div class=\"wrapper\">\n    <div class=\"left\">\n        <h1>Find recipes.</h1>\n\n        <form id=\"search-form\">\n          <div>Serving size: <input type=\"number\" name=\"servingsize\"/></div>\n          <div>Additional ingredients: <input type=\"text\" name=\"additional\"/></div>\n          <input type=\"submit\" value=\"Scavenge\"/>\n        </form>\n\n          <div class=\"error\">\n"
+    + "</b> (<a href=\"#\" id=\"logout-link\">logout</a>)</p>\n\n<div class=\"wrapper\">\n    <div class=\"left\">\n        <h1>Find recipes.</h1>\n\n        <form id=\"search-form\">\n<!--           <div>Serving size: <input type=\"number\" name=\"servingsize\"/></div>\n          <div>Additional ingredients: <input type=\"text\" name=\"additional\"/></div> -->\n          <input type=\"submit\" value=\"Scavenge\"/>\n        </form>\n\n          <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "          </div>\n\n          <div class=\"results\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.searched : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")

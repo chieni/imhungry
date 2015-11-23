@@ -23,9 +23,7 @@ var Pantry = require('./models/Pantry');
 var Ingredient = require('./models/Ingredient');
 var Recipe = require('./models/Recipe');
 // Connect to either the MONGOLAB_URI or to the local database.
-//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/mymongodb');
-// connects to the ImHungry database
-mongoose.connect('mongodb://localhost/imHungry')
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/imHungry');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {

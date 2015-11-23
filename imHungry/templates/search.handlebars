@@ -1,3 +1,28 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="">imHungry</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="">Pantry</a></li>
+          <li><a href="">Cookbook</a></li>
+<!-- 
+          <li><img id="mazzetti" class="navpic" src="img/domm.jpg" alt="Bro Science"></li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
 <p>Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</p>
 
 <div class="wrapper">
@@ -7,7 +32,7 @@
         <form id="search-form">
 <!--           <div>Serving size: <input type="number" name="servingsize"/></div>
           <div>Additional ingredients: <input type="text" name="additional"/></div> -->
-          <input type="submit" value="Scavenge"/>
+          <input type="submit" value="Scavenge" class="btn btn-warning"/>
         </form>
 
           <div class="error">
@@ -32,14 +57,14 @@
 
       <div id="ingredientsList">
         {{#each ingredients}}
-        <li class="ingredient" style="list-style-type:none" data-ingredient-id={{this}}>{{ this }}<button class="delete-button" type="button">Delete</button></li>
+        <li class="ingredient" style="list-style-type:none" data-ingredient-id={{this}}>{{ this }}<button class="btn btn-warning delete-button" type="button">Delete</button></li>
         {{else}}
         <p><em>No ingredients yet!</em></p>
         {{/each}}
       </div>
 
       <form id="pantry-form">
-        <div>Add a new ingredient: <input type="text" id="new-ingredient" name="ingredient" required />
-        <input type="submit" value="Add"/></div>
+        <div>Add a new ingredient: <input class="form-control" id="new-ingredient" name="ingredient" required />
+        <input type="submit" value="Add" class="btn btn-warning"/></div>
       </form>
   </div>

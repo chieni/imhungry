@@ -1,6 +1,5 @@
 Handlebars.registerPartial('recipe', Handlebars.templates['recipe']);
-
-
+Handlebars.registerPartial('header', Handlebars.templates['header']);
 
 // See handlebarsjs.com for details. Here, we register
 // a re-usable fragment of HTML called a "partial" which

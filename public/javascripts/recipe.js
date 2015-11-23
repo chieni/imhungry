@@ -8,7 +8,7 @@
       var recipe_id = item.data('recipeid');
       $.get('/recipe/' + recipe_id, function(response, res) {
         
-        //loadPage('recipeView', { recipe: response.content, currentUser: currentUser });
+        loadPage('recipeView', { recipe: response.content, currentUser: currentUser });
       });
   });
 

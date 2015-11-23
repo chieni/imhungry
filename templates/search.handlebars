@@ -1,33 +1,11 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="">imHungry</a>
-      </div>
+{{> header }}
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="">Pantry</a></li>
-          <li><a href="">Cookbook</a></li>
-<!-- 
-          <li><img id="mazzetti" class="navpic" src="img/domm.jpg" alt="Bro Science"></li> -->
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-<p>Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</p>
+<div class="welcome">Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</div>
 
 <div class="container-fluid">
 <div class="row">
-    <div class="col-md-5 left">
+  <div class="wrapper">
+    <div class="col-md-7 left">
         <h1>Find recipes.</h1>
 
         <form id="search-form">
@@ -53,7 +31,7 @@
           </div>
     </div>
 
-    <div class="col-md-5 col-md-offset-2 right">
+    <div class="col-md-4 col-md-offset-1 right">
       <h1>Your pantry.</h1>
 
       <div id="ingredientsList">
@@ -68,5 +46,6 @@
         <div>Add a new ingredient: <input class="form-control" id="new-ingredient" name="ingredient" required />
         <input type="submit" value="Add" class="btn btn-warning"/></div>
       </form>
+      </div>
   </div>
   </div>

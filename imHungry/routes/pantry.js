@@ -23,7 +23,7 @@ router.post('/add', function(req, res) {
     if (!err) {
       utils.sendSuccessResponse(res);
     } else {
-      utils.sendErrResponse(res, 403, 'Something went wrong.');
+      utils.sendErrResponse(res, 400, err.msg);
     }
   });
 });

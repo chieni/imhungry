@@ -10,13 +10,13 @@
           '/pantry/add',
           helpers.getFormData(this)
       ).done(function(response) {
-        $('#new-ingredient').val('');
-        $('#new-ingredient').focus();
         loadHomePage();
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
       });
+    $('#new-ingredient').val('');
+    $('#new-ingredient').focus();
   });
 
   $(document).on('click', '.delete-button', function(evt) {

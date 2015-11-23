@@ -1,0 +1,12 @@
+{
+
+	"name" : "Grilled Cheese",
+	"ingredients" : ["cheese", "bread"],
+	"ingredientsWAmounts" : ["1 slice cheese", "2 slices bread"],
+	"servingSize" : 1,
+	"totalTime" : 300,
+	"sourceURL" : "www.yourmom.com",
+	"imageURLs" : ["www.yourmomimage.com"],
+	"rating" : 3
+	
+}

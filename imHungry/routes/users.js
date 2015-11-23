@@ -42,8 +42,8 @@ router.post('/login', function(req, res) {
   if (isLoggedInOrInvalidBody(req, res)) {
     return;
   }
-
-  User.verifyPassword(req.body.username, req.body.password, function(err, match) {
+console.log("got here");
+  User.User.verifyPassword(req.body.username, req.body.password, function(err, match) {
     if (match) {
       req.session.username = req.body.username;
       utils.sendSuccessResponse(res, { user : req.body.username });
@@ -93,7 +93,7 @@ router.post('/', function(req, res) {
     return;
   }
 
-  User.createNewUser(req.body.username, req.body.password, 
+  User.User.createNewUser(req.body.username, req.body.password, 
     function(err) {
       if (err) {
         if (err.taken) {

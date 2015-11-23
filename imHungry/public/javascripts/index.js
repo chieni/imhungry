@@ -44,7 +44,7 @@ var loadSearchPage = function() {
 	console.log("load search");
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentIngredients: response.content.ingredients });
-	})
+	});
 	//loadPage('search');
 };
 

@@ -22,7 +22,8 @@ db.once('open', function (callback) {
 // Import route handlers
 var index = require('./routes/index');
 var users = require('./routes/users');
-var pantry = require('./routes/pantry')
+var pantry = require('./routes/pantry');
+var search = require('./routes/search');
 
 // Import imHungry model
 var User = require('./models/User');
@@ -56,7 +57,7 @@ app.use(session({ secret : '6170', resave : true, saveUninitialized : true }));
 // encrypted cookied).
 app.use(function(req, res, next) {
   if (req.session.username) {
-    User.findByUsername(req.session.username, 
+    User.User.findByUsername(req.session.username, 
       function(err, user) {
         if (user) {
           req.currentUser = user;
@@ -73,7 +74,8 @@ app.use(function(req, res, next) {
 // Map paths to imported route handlers
 app.use('/', index);
 app.use('/users', users);
-app.use('/pantry', pantry)
+app.use('/pantry', pantry);
+app.use('/search', search);
 
 
 // catch 404 and forward to error handler

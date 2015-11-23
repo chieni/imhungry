@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 var utils = require('../utils/utils');
 
-var Pantry = require('../models/Pantry');
+var pantry = require('../models/Pantry');
 
 router.get('/', function(req, res) {
-  Pantry.getIngredients(req.body.username, function(err, success) {
-    if (success) {
-      utils.sendSuccessResponse(res, { ingredients: success.ingredients });
+  console.log("inside get");
+  pantry.Pantry.getIngredients(req.body.username, function(err, ingredients) {
+    console.log("inside get ingredients call routes");
+    if (!err) {
+      utils.sendSuccessResponse(res, { ingredients: ingredients });
     } else {
       utils.sendErrResponse(res, 403, 'Something went wrong.');
     }
@@ -15,7 +17,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/add', function(req, res) {
-  Pantry.addIngredient(req.body.username, req.body.ingredient, function(err, success) {
+  Pantry.Pantry.addIngredient(req.body.username, req.body.ingredient, function(err, success) {
     if (success) {
       utils.sendSuccessResponse(res, { user : req.body.username });
     } else {
@@ -24,6 +26,6 @@ router.post('/add', function(req, res) {
   });
 });
 
-router.post('')
+//router.post('')
 
 module.exports = router;

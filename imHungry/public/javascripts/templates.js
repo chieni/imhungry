@@ -71,22 +71,22 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 },"6":function(container,depth0,helpers,partials,data) {
     return "              <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>\n";
 },"8":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = container.invokePartial(partials.ingredient,depth0,{"name":"ingredient","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+    return "        <li>"
+    + container.escapeExpression(container.lambda(depth0, depth0))
+    + " </li>\n";
 },"10":function(container,depth0,helpers,partials,data) {
     return "        <p><em>No ingredients yet!</em></p>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
-  return "<p>Welcome, "
+  return "<p>Welcome, <b>"
     + container.escapeExpression(((helper = (helper = helpers.currentUser || (depth0 != null ? depth0.currentUser : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"currentUser","hash":{},"data":data}) : helper)))
-    + " (<a href=\"#\" id=\"logout-link\">logout</a>)</p>\n\n<div class=\"wrapper\">\n    <div class=\"left\">\n        <h1>Find recipes.</h1>\n\n        <form id=\"search-form\">\n          <div>Serving size: <input type=\"number\" name=\"servingsize\"/></div>\n          <div>Additional ingredients: <input type=\"text\" name=\"additional\"/></div>\n          <input type=\"submit\" value=\"Scavenge\"/>\n        </form>\n\n          <div class=\"error\">\n"
+    + "</b> (<a href=\"#\" id=\"logout-link\">logout</a>)</p>\n\n<div class=\"wrapper\">\n    <div class=\"left\">\n        <h1>Find recipes.</h1>\n\n        <form id=\"search-form\">\n          <div>Serving size: <input type=\"number\" name=\"servingsize\"/></div>\n          <div>Additional ingredients: <input type=\"text\" name=\"additional\"/></div>\n          <input type=\"submit\" value=\"Scavenge\"/>\n        </form>\n\n          <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "          </div>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.searched : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </div>\n    \n    <div class=\"right\">\n      <h1>Your pantry.</h1>\n      <div class=\"pantry\">\n\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredient : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.program(10, data, 0),"data":data})) != null ? stack1 : "")
-    + "\n<!--       <div>\n\n        <button id=\"submit-new-ingredient\">Add</button>\n      </div> -->\n      <form id=\"pantry-form\">\n        <div>Add a new ingredient: <input type=\"text\" id=\"new-ingredient-input\" required /></div>\n        <input type=\"submit\" value=\"Add\"/>\n      </form>\n    </div>\n  </div>\n";
+    + "    </div>\n\n    <div class=\"right\">\n      <h1>Your pantry.</h1>\n      <div class=\"pantry\">\n\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.program(10, data, 0),"data":data})) != null ? stack1 : "")
+    + "\n      <form id=\"pantry-form\">\n        <div>Add a new ingredient: <input type=\"text\" id=\"new-ingredient-input\" name=\"ingredient\" required /></div>\n        <input type=\"submit\" value=\"Add\"/>\n      </form>\n    </div>\n  </div>\n";
 },"usePartial":true,"useData":true});
 })();

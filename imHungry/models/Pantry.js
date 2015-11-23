@@ -67,53 +67,33 @@ pantrySchema.statics.getIngredients = function(username, callback) {
   console.log(username);
   this.findOne({username: username}, function(err, pantry) {
     if (pantry) {
-      callback(null, this.ingredients);
+      console.log(pantry.ingredients);
+      callback(null, pantry.ingredients);
     } else {
-      console.log("pantry does not exist");
       callback({msg: "Pantry does not exist"});
     }
   });
 }
 
-
-/*
-  that.addIngredient = function(username, ingredient, callback) {
-    
-    User.findByUsername(username, function(err, user) {
-        if (user) {
-          pantryModel.findOne({_id: user.pantryId}, function(err, pantry) {
-            if (pantry) {
-              pantry.push(ingredient);
-            }
-            else {
-              callback({msg: "Pantry does not exist"});
-            }
-          })
-        }
-        else {
-          callback({ msg : 'Invalid user.'});
-        }
+pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
+  this.findOne({username: username}, function(err, pantry) {
+    if (pantry) {
+      pantry.ingredients.push(ingredient);
+      pantry.save(function(err) {
+          if (err) {
+            callback({msg:"error adding ingredient"});
+          }
+          else {
+            callback(null, pantry);
+          }
       });
-  };
-*/
-  pantrySchema.statics.addIngredient = function(username, ingredient, callback) {
-    var self = this;
-    User.User.findByUsername(username, function(err, user) {
-        if (user) {
-          self.findOne({_id: user.pantryId}, function(err, pantry) {
-            if (pantry) {
-              pantry.push(ingredient);
-            }
-            else {
-              callback({msg: "Pantry does not exist"});
-            }
-          })
-        }
-        else {
-          callback({ msg : 'Invalid user.'});
-        }
-      });
-  }
+      console.log(pantry.ingredients);
+    }
+    else {
+      callback({msg: "Pantry does not exist"});
+    }
+  });
+}
 
 /*
   that.deleteIngredient = function(ingredient, callback) {

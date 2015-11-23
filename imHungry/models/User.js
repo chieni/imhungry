@@ -31,15 +31,11 @@
 */
 userSchema.statics.findByUsername = function(username, callback) {
   this.findOne({username: username}, function(err, user) {
-    console.log('in findbyusername');
     if (err) {
-      console.log('in err');
       callback(err, null);
     } else if (!user) {
-      console.log('no user');
       callback({msg: 'user does not exist'}, null);
     } else {
-      console.log('yes user');
       callback(null, user);
     }
   });

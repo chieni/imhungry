@@ -23,16 +23,26 @@ var requireAuthentication = function(req, res, next) {
 
 
 // Register the middleware handlers above.
-//router.all('*', requireAuthentication);
+router.all('*', requireAuthentication);
 
+
+/*
+  The following retrieves all recipes from the search.
+
+  GET /recipes
+  Request Paramaters:
+  	- username
+  	- ingredients in pantry
+  Response:
+    - success.recipes: recipes returned from search
+    - err message if error occured
+*/
 router.get('/', function(req, res) {
-	console.log("calling scavenge");
 	Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
 		Recipe.searchRecipes(ingredients, function(error, recipes) {
 			if (error) {
 			  utils.sendErrResponse(res, 500, 'An unknown error occurred.');
 			} else {
-				console.log("sending success response");
 			  utils.sendSuccessResponse(res, {recipes: recipes, searched: true});
 			}
 	  	});

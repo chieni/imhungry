@@ -6,15 +6,17 @@
 }
 
 body {
+  font-family: 'Brandon Grotesque';
+  color: white;
   padding: 50px;
-  font: 14px "Brandon Grotesque", Helvetica, Arial, sans-serif;
-
-  /*background: url("yummy-dinner-party.jpg");*/
-
-
-
+  background: url("yummy-dinner-party.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
 }
+
 
 /*div{
     width:35em;
@@ -50,3 +52,45 @@ a {
 .ingredient {
   margin:10px;
 }
+
+#signin-form, #register-form {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+#signin-form #signin-form-heading,
+#register-form  #register-form-heading{
+  margin-bottom: 10px;
+}
+#signin-form,
+#register-form {
+  font-weight: normal;
+}
+#signin-form .form-control,
+#register-form .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+#signin-form .form-control:focus,
+#register-form .form-control:focus{
+  z-index: 2;
+}
+#signin-form input[type="username"],
+#register-form input[type="username"],
+#register-form #inputPassword {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#signin-form input[type="password"],
+#register-form #inputPasswordConfirm {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+

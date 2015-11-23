@@ -1,6 +1,21 @@
-<div class="recipe" data-recipeid={{recipe._id}}>
+<head>
+<style>
+.recipe-view-img {
+    width: 10em;
+    height: 10em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url({{recipe.imageURLs.[0]}});
+    background-position: 50% 50%;
+}
+
+</style>
+</style>
+</head>
+<body>
+<div data-recipeid={{recipe._id}}>
   <p>{{recipe.name}}</p>
-  <img src = {{recipe.imageURLs.[0]}}>
+  <div class="recipe-view-img"></div>
   <label>Ingredients: </label>
   <ul class="ingredients">
     {{#each recipe.ingredients}}
@@ -13,3 +28,4 @@
   <label>Instructions: </label>
   <p>{{recipe.sourceURL}}</p>
 </div>
+</body>

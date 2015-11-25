@@ -1,31 +1,33 @@
-<head>
-<style>
-.recipe-view-img {
-    width: 10em;
-    height: 10em;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url({{recipe.imageURLs.[0]}});
-    background-position: 50% 50%;
-}
-
-</style>
-</style>
-</head>
-<body>
+{{> header }}
 <div data-recipeid={{recipe._id}}>
-  <p>{{recipe.name}}</p>
-  <div class="recipe-view-img"></div>
-  <label>Ingredients: </label>
-  <ul class="ingredients">
-    {{#each recipe.ingredients}}
-      <li>{{ this }}</li>
-    {{/each}}
-  </ul>
 
-  <label>Serving size: </label><p> {{recipe.servingSize}}</p>
+<div class="container-fluid">
 
-  <label>Instructions: </label>
-  <p>{{recipe.sourceURL}}</p>
+<div class="row">
+  <div class="col-md-5 recipe-box">
+    <div class="recipe-view-img" style="background-image: url({{recipe.imageURLs.[0]}})"></div>
+    <div class="serving-label">Serving size: {{recipe.servingSize}}</div>
+    <div class="recipe-name">{{recipe.name}}</div>
+  </div>
+
+  <div class="col-md-6 col-md-offset-1 recipe-box">
+    <div class="ingredients">
+      <div class="ingredients-header">Ingredients: </div>
+      
+      {{#each recipe.ingredients}}
+        <div class="ingredient">{{ this }}</div>
+      {{/each}}
+    </div>
+
+    <div class="instructions">
+      <div class="instructions-label">Instructions: </div>
+      <a class="recipe-url" href="{{recipe.sourceURL}}">Full instructions here</a>
+    </div>
+    
+
+
+  </div>
 </div>
-</body>
+
+</div>
+</div>

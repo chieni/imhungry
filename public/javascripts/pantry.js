@@ -5,15 +5,19 @@
   */
   $(document).on('submit', '#pantry-form', function(evt) {
       evt.preventDefault();
-      $.post(
-          '/pantry/add',
-          helpers.getFormData(this)
-      ).done(function(response) {
+      var formData = helpers.getFormData(this);
+      var ingredient = formData.ingredient;
+      $.ajax({
+        url: '/pantry/add',
+        type: 'PUT',
+        data: { ingredient: ingredient}
+      }).done(function(response) {
         loadHomePage();
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
       });
+
     $('#new-ingredient').val('');
     $('#new-ingredient').focus();
   });

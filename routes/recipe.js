@@ -31,6 +31,7 @@ router.param('recipe', function(req, res, next, recipeId) {
 */
 router.get('/:recipe', function(req, res) {
   if (req.recipe) {
+    //res.redirect({ recipe: req.recipe, currentUser: req.currentUser }, '/recipe');
   	utils.sendSuccessResponse(res, req.recipe)
   } else {
   	utils.sendErrResponse(res, 404, 'Resource not found.');

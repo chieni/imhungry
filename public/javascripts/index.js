@@ -1,6 +1,5 @@
 Handlebars.registerPartial('recipe', Handlebars.templates['recipe']);
-
-
+Handlebars.registerPartial('header', Handlebars.templates['header']);
 
 // See handlebarsjs.com for details. Here, we register
 // a re-usable fragment of HTML called a "partial" which
@@ -93,5 +92,6 @@ This method will load the page with the register template
 whenever the register button is pressed.
 */
 $(document).on('click', '#register-btn', function(evt) {
+	evt.preventDefault();
 	loadPage('register');
 });

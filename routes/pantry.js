@@ -58,7 +58,7 @@ router.get('/', function(req, res) {
     - err: on error, an error message
 */
 
-router.post('/add', function(req, res) {
+router.put('/add', function(req, res) {
   Pantry.Pantry.addIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
     if (!err) {
       utils.sendSuccessResponse(res);

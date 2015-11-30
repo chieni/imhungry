@@ -9,8 +9,7 @@
 body {
   font-family: 'Brandon Grotesque';
   color: white;
-  padding: 50px;
-   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('yummy-dinner-party.jpg');
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('yummy-dinner-party.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,26 +17,53 @@ body {
 
 }
 
-
-/*div{
-    width:35em;
-    height:32.625em;
-    background-color: #000;
-    opacity:0.6;
-    filter:alpha(opacity=60);
-  }*/
-
 a {
-  color: #00B7FF;
+  color: white;
 }
 
+.nav>li>a{
+  font-size: 1.3em;
+  padding-top: 1.2em;
+}
+.header-logo {
+  background: url('../imgs/imhungry_logo_white.png'), no-repeat center center fixed;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 2em;
+  width: 7em;
+  display: inline-block;
+  margin-left: 3em;
+}
+.navbar {
+  width: 100%;
+}
+.nav {
+  color: white;
+  margin-right: 5em;
+}
+
+.welcome {
+  padding-left: 3.3em;
+  font-size: 1.5em;
+}
+.wrapper {
+  margin: 0 2em;
+}
 .left{
   background:rgba(0,0,0,0.75);
-  height: 35em;
+  min-height: 35em;
+  padding-bottom: 4em;
+  margin-bottom: 5em;
+  margin-left: 3em;
+
 }
 .right{
   background:rgba(0,0,0,0.75);
   height: 35em;
+
 }
 
 .recipe-box {
@@ -67,6 +93,13 @@ a {
 .serving-label{
   font-size: 2em;
   padding: 1em 1.8em;
+}
+
+.signin-box {
+  background:rgba(0,0,0,0.75);
+  padding: 2em 4em 4em 4em;
+  margin-top: 8em;
+  border-radius: 5px;
 }
 #signin-form, #register-form {
   max-width: 330px;

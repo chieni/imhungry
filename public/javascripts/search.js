@@ -6,6 +6,7 @@
   */
   $(document).on('submit', '#search-form', function(evt) {
       evt.preventDefault();
-      loadSearchResults();
+      var formData = helpers.getFormData(this);
+      loadSearchResults(formData);
   });
 })();

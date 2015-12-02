@@ -43,7 +43,7 @@ router.get('/', function(req, res) {
 			if (error) {
 			  utils.sendErrResponse(res, 500, 'An unknown error occurred.');
 			} else {
-			  utils.sendSuccessResponse(res, {recipes: recipes, searched: true});
+			  utils.sendSuccessResponse(res, {recipes: recipes, searched: true, servingSize: req.servingSize});
 			}
 	  	});
 	});

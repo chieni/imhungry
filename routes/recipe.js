@@ -29,10 +29,11 @@ router.param('recipe', function(req, res, next, recipeId) {
     - err if error on request
 
 */
-router.get('/:recipe', function(req, res) {
+router.post('/:recipe', function(req, res) {
   if (req.recipe) {
+    var scaledRecipe = req.recipe.scaleRecipe(req.body.servingSize);
     //res.redirect({ recipe: req.recipe, currentUser: req.currentUser }, '/recipe');
-  	utils.sendSuccessResponse(res, req.recipe)
+  	utils.sendSuccessResponse(res, scaledRecipe);
   } else {
   	utils.sendErrResponse(res, 404, 'Resource not found.');
   }

@@ -56,10 +56,10 @@ var loadCookbookPage = function() {
 /*
 Load recipe search results to search page
 */
-var loadSearchResults = function() {
+var loadSearchResults = function(formData) {
 	$.get('/search', function(response) {
 		$.get('/pantry').done(function(resp){
-			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true});
+			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true, size: formData.servingsize});
 		}).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

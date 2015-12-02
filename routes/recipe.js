@@ -22,16 +22,17 @@ router.param('recipe', function(req, res, next, recipeId) {
 /*
   The following gets a recipe from the database
 
-  GET /:recipe
+  POST /:recipe
   Request body:
-    - none
+    - servingSize: number representing desired serving size to be displayed
   Response:
     - success: response is true if successful, false otherwise
     - err if error on request
 
 */
-router.get('/:recipe', function(req, res) {
+router.post('/:recipe', function(req, res) {
   if (req.recipe) {
+    var scaledRecipe = req.recipe.scaleRecipe(req.body.servingSize);
     inCookbook = false;
     //res.redirect({ recipe: req.recipe, currentUser: req.currentUser }, '/recipe');
     Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
@@ -43,7 +44,7 @@ router.get('/:recipe', function(req, res) {
       utils.sendErrResponse(res, 403, 'Something went wrong.');
     }
   })
-  	utils.sendSuccessResponse(res, {recipe: req.recipe, inCookbook: inCookbook})
+  	utils.sendSuccessResponse(res, {recipe: scaledRecipe, inCookbook: inCookbook})
   } else {
   	utils.sendErrResponse(res, 404, 'Resource not found.');
   }

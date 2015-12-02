@@ -9,8 +9,8 @@
         <h1>Find recipes.</h1>
 
         <form id="search-form">
-<!--           <div>Serving size: <input type="number" name="servingsize"/></div>
-          <div>Additional ingredients: <input type="text" name="additional"/></div> -->
+           <div>Serving size: <input type="number" name="servingsize"/></div>
+          <div>Additional ingredients: <input type="text" name="additional"/></div>
           <input type="submit" value="Scavenge" class="btn btn-warning"/>
         </form>
 
@@ -23,7 +23,7 @@
           <div class="results">
             {{#if searched}}
               {{#each recipes}}
-                {{> recipe }}
+                {{> recipe size=../size}}
               {{else}}
                 <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
               {{/each}}

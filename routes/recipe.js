@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var utils = require('../utils/utils');
-var Recipe = require('../models/Recipe')
+var Recipe = require('../models/Recipe');
+var Cookbook = require('../models/Cookbook');
 
 /*
   The following calls getRecipe from the Recipe schema given a recipeId
@@ -31,8 +32,18 @@ router.param('recipe', function(req, res, next, recipeId) {
 */
 router.get('/:recipe', function(req, res) {
   if (req.recipe) {
+    inCookbook = false;
     //res.redirect({ recipe: req.recipe, currentUser: req.currentUser }, '/recipe');
-  	utils.sendSuccessResponse(res, req.recipe)
+    Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
+    if (!err) {
+      if (req.recipe in recipes) {
+        inCookbook = true;
+      };
+    } else {
+      utils.sendErrResponse(res, 403, 'Something went wrong.');
+    }
+  })
+  	utils.sendSuccessResponse(res, {recipe: req.recipe, inCookbook: inCookbook})
   } else {
   	utils.sendErrResponse(res, 404, 'Resource not found.');
   }

@@ -16,12 +16,14 @@ var users = require('./routes/users');
 var pantry = require('./routes/pantry');
 var search = require('./routes/search');
 var recipe = require('./routes/recipe');
+var cookbook = require('./routes/cookbook');
 
 // Import imHungry model
 var User = require('./models/User');
 var Pantry = require('./models/Pantry');
 var Ingredient = require('./models/Ingredient');
 var Recipe = require('./models/Recipe');
+var Cookbook = require('./models/Cookbook');
 // Connect to either the MONGOLAB_URI or to the local database.
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/imHungry');
 var db = mongoose.connection;
@@ -93,6 +95,7 @@ app.use('/users', users);
 app.use('/pantry', pantry);
 app.use('/search', search);
 app.use('/recipe', recipe);
+app.use('/cookbook', cookbook);
 
 
 // catch 404 and forward to error handler

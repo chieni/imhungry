@@ -1,0 +1,8 @@
+{{> header }}
+<div class="cookbook">
+              {{#each recipes}}
+                {{> cookbookRecipe }}
+              {{else}}
+                <p><em>Your cookbook is currently empty. Save recipes to stash them here!</em></p>
+              {{/each}}
+          </div>

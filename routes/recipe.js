@@ -33,18 +33,23 @@ router.param('recipe', function(req, res, next, recipeId) {
 router.post('/:recipe', function(req, res) {
   if (req.recipe) {
     var scaledRecipe = req.recipe.scaleRecipe(req.body.servingSize);
-    inCookbook = false;
     //res.redirect({ recipe: req.recipe, currentUser: req.currentUser }, '/recipe');
-    Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
+    Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes, recipeIds) {
     if (!err) {
-      if (req.recipe in recipes) {
-        inCookbook = true;
-      };
-    } else {
+      var index = recipeIds.indexOf(req.recipe._id.toString());
+      if (index!=-1) {
+        displayButton = false;
+      }
+      else {
+        displayButton = true;
+      }
+      utils.sendSuccessResponse(res, {recipe: scaledRecipe, displayButton: displayButton})
+    } 
+    else {
       utils.sendErrResponse(res, 403, 'Something went wrong.');
     }
   })
-  	utils.sendSuccessResponse(res, {recipe: scaledRecipe, inCookbook: inCookbook})
+  	
   } else {
   	utils.sendErrResponse(res, 404, 'Resource not found.');
   }

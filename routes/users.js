@@ -4,6 +4,7 @@ var utils = require('../utils/utils');
 
 var User = require('../models/User');
 var Pantry = require('../models/Pantry');
+var Cookbook = require('../models/Cookbook');
 
 /*
   For both login and create user, we want to send an error code if the user
@@ -105,10 +106,22 @@ router.post('/', function(req, res) {
       } else {
       	Pantry.Pantry.createNewPantry(req.body.username,
       		function(err) {
+            console.log("created a new pantry");
       			if(err) {
       				utils.sendErrResponse(res, 500, 'An unknown error has occured.');
       			}
       			else {
+              Cookbook.Cookbook.createNewCookbook(req.body.username, 
+                function(err) {
+                  console.log("trying to create new user!");
+                  if(err) {
+                    utils.sendErrResponse(res, 500, 'An unknown error has occured.');
+                  }
+                  else {
+                    console.log("created!");
+                    utils.sendSuccessResponse(res, req.body.username);
+                  }
+                })
       				utils.sendSuccessResponse(res, req.body.username);
       			}
       		});

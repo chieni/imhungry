@@ -10,7 +10,7 @@
       $.post('/recipe/' + recipe_id,
         {servingSize: serving_size}
       ).done(function(response) {
-        loadPage('recipeView', { recipe: response.content, currentUser: currentUser });
+        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

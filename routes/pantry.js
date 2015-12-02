@@ -58,7 +58,7 @@ router.get('/', function(req, res) {
     - err: on error, an error message
 */
 
-router.put('/add', function(req, res) {
+router.put('/', function(req, res) {
   Pantry.Pantry.addIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
     if (!err) {
       utils.sendSuccessResponse(res);
@@ -80,7 +80,7 @@ router.put('/add', function(req, res) {
     - err: on error, an error message
 */
 
-router.delete('/delete', function(req, res) {
+router.delete('/', function(req, res) {
   Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
     if (err) {
       res.send({

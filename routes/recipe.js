@@ -21,9 +21,9 @@ router.param('recipe', function(req, res, next, recipeId) {
 /*
   The following gets a recipe from the database
 
-  GET /:recipe
+  POST /:recipe
   Request body:
-    - none
+    - servingSize: number representing desired serving size to be displayed
   Response:
     - success: response is true if successful, false otherwise
     - err if error on request

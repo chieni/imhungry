@@ -21,15 +21,6 @@
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
       });
-
-      /*$.get('/recipe/' + recipe_id,
-      {servingSize: 1}
-      ).done(function(response, res) {  
-        loadPage('recipeView', { recipe: response.content, currentUser: currentUser });
-      }).fail(function(responseObject) {
-          var response = $.parseJSON(responseObject.responseText);
-          $('.error').text(response.err);
-      });*/
   });
 
 })();

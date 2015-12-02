@@ -52,6 +52,7 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 }
 
 recipeSchema.statics.flexibleSearch = function(ingredients, extraNum, callback) {
+	this.find({ingredients: {}})
 
 }
 
@@ -70,14 +71,11 @@ Helper function that parses numbers in mixed fraction form and returns answer in
 */
 var evaluateStringNumber = function(number) {
 	if (number.match('/')) {
-		console.log("match");
 		var amount = 0;
 		number.split(" ").forEach(function(piece) {
-			console.log(piece);
 			if (piece) {
 				if (piece.match("/")) {
 					var fraction = piece.split("/");
-					console.log(fraction);
 					amount += parseInt(fraction[0]) / parseInt(fraction[1]);
 				} else {
 					amount += parseInt(piece);
@@ -86,7 +84,6 @@ var evaluateStringNumber = function(number) {
 		});
 		return amount;
 	} else {
-		console.log("here??");
 		return parseInt(number);
 	}
 }
@@ -97,9 +94,7 @@ recipeSchema.methods.scaleRecipe = function(servingSize) {
 		var scaledIngredient = ingredient;
 		if (ingredient.match(/\d/)) {
 			var stringAmt = ingredient.split(/[a-zA-z]/,2)[0];
-			console.log(stringAmt);
 			var remainingIngString = ingredient.substring(stringAmt.length);
-			console.log(remainingIngString);
 			scaledIngredient = scaleFactor*evaluateStringNumber(stringAmt) + " " + remainingIngString;
 		}
 		return scaledIngredient;

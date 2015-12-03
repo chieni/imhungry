@@ -1,0 +1,26 @@
+{{> anonHeader}}
+
+
+<div class ="container-fluid">
+<div class="row">  
+  <div class="hook-box">
+  
+    <div class="hook-text-line">
+    <span class="hook-text">I am cooking for </span> 
+    <input id="hook-number-input" type="number" value="1"/> 
+    <span class="hook-text"> and I have </span>
+    <span class="hook-vert-line"> | </span>
+    <input id="hook-ingr-input" type="text" placeholder="corn, pork shoulder, cilantro, etc."/>
+
+    </div>
+      <div class="error">
+        {{#if error}}
+          {{error}}
+        {{/if}}
+      </div>
+    <form id="hook-search-form">
+        <input type="submit" value="SCAVENGE" class="btn btn-warning"/>
+    </form>
+  </div>
+</div>
+</div>

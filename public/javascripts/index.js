@@ -1,5 +1,8 @@
 Handlebars.registerPartial('recipe', Handlebars.templates['recipe']);
 Handlebars.registerPartial('header', Handlebars.templates['header']);
+Handlebars.registerPartial('cookbook', Handlebars.templates['cookbook']);
+Handlebars.registerPartial('cookbookRecipe', Handlebars.templates['cookbookRecipeView']);
+Handlebars.registerPartial('anonHeader', Handlebars.templates['anonHeader']);
 
 // See handlebarsjs.com for details. Here, we register
 // a re-usable fragment of HTML called a "partial" which
@@ -31,7 +34,7 @@ var loadHomePage = function() {
 	if (currentUser) {
 		loadSearchPage();
 	} else {
-		loadPage('index');
+		loadPage('hook')
 	}
 };
 
@@ -41,8 +44,17 @@ Load search page with pantry
 var loadSearchPage = function() {
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients });
+		console.log(response.content.ingredients);
 	});
 };
+/*
+Load Cookbook Page
+*/
+var loadCookbookPage = function() {
+	loadCookbookRecipes();
+	loadPage('cookbook')
+
+}
 
 /*
 Load recipe search results to search page
@@ -59,6 +71,17 @@ var loadSearchResults = function(formData) {
 };
 
 /*
+Load recipes for cookbook
+*/
+var loadCookbookRecipes = function(){
+	$.get('/cookbook/recipes', function(response) {
+		loadPage('cookbook', {recipes: response.content.recipes});
+	}).fail(function(responseObject) {
+		var response = $.parseJSON(responseObject.responseText);
+	});
+}
+
+/*
 This method populates the field currentUser and calls loadHomePage
 at all times while the app is running.
 */
@@ -70,6 +93,14 @@ $(document).ready(function() {
 		loadHomePage();
 	});
 });
+
+/*
+This method will load the cookbook page when the cookbook link is clicked
+*/
+$(document).on('click', '#cookbook-btn', function(evt) {
+	evt.preventDefault();
+	loadCookbookPage();
+})
 
 /*
 This method will load the home-page when the home link is clicked
@@ -84,7 +115,8 @@ This method will load the page with the signin template
 whenever the sign in button is pressed.
 */
 $(document).on('click', '#signin-btn', function(evt) {
-	loadPage('signin');
+	evt.preventDefault();
+	loadPage('index');
 });
 
 /*

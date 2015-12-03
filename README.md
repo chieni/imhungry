@@ -47,3 +47,8 @@ chieni_nlucas_zlily_mmgong_final
 	  - click Scavenge button
 	- to get recipe view for a recipe
 	  - click on recipe name or image
+
+==============================
+Developer Notes
+==============================
+handlebars -m templates/> public/javascripts/templates.js

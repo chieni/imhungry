@@ -1,11 +1,16 @@
+{{#if currentUser}}
 {{> header }}
+{{else}}
+{{> anonHeader }}
+{{/if}}
 
+{{#if currentUser}}
 <div class="welcome">Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</div>
+{{/if}}
 
-<div class="container-fluid">
+<div class="container">
 <div class="row">
-  <div class="wrapper">
-    <div class="col-md-6 left">
+    <div class="col-md-5 left">
         <h1>Find recipes.</h1>
 
         <form id="search-form">
@@ -31,12 +36,14 @@
           </div>
     </div>
 
-    <div class="col-md-4 col-md-offset-1 right">
+    <div class="col-md-5 col-md-offset-1 right">
       <h1>Your pantry.</h1>
 
       <div id="ingredientsList">
         {{#each ingredients}}
-        <li class="ingredient" style="list-style-type:none" data-ingredient-id={{this}}>{{ this }}<button class="btn btn-warning delete-button" type="button">Delete</button></li>
+        <div class="ingredients-line">
+        <span class="delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this._id}}>{{ this.name }}</span>
+        </div>
         {{else}}
         <p><em>No ingredients yet!</em></p>
         {{/each}}
@@ -46,6 +53,5 @@
         <div>Add a new ingredient: <input class="form-control" id="new-ingredient" name="ingredient" required />
         <input type="submit" value="Add" class="btn btn-warning"/></div>
       </form>
-      </div>
   </div>
   </div>

@@ -4,7 +4,8 @@ var utils = require('../utils/utils');
 
 
 var User = require('../models/User');
-var Pantry = require('../models/Pantry');
+var Cookbook = require('../models/Cookbook');
+var Recipe = require('../models/Recipe');
 
 /*
   Require authentication on ALL access to /freets/*
@@ -33,14 +34,30 @@ router.all('*', requireAuthentication);
     - success.ingredients: the ingredients in the pantry
 */
 
-router.get('/', function(req, res) {
-  Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
-    console.log(ingredients);
+router.get('/recipes', function(req, res) {
+  Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
     if (!err) {
-      utils.sendSuccessResponse(res, { ingredients: ingredients });
+      utils.sendSuccessResponse(res, { recipes: recipes });
     } else {
       utils.sendErrResponse(res, 403, 'Something went wrong.');
     }
+  });
+});
+
+
+
+/*
+  The following calls getRecipe from the Recipe schema given a recipeId
+  It populates req with a recipe object
+*/
+router.param('cookbook', function(req, res, next, recipeId) {
+    Recipe.getRecipe(req.currentUser.username, recipeId, function(err, recipe) {
+      if (recipe) {
+        req.recipe = recipe;
+        next();
+      } else {
+        utils.sendErrResponse(res, 404, 'Resource not found.');
+      }
   });
 });
 
@@ -59,10 +76,14 @@ router.get('/', function(req, res) {
     - err: on error, an error message
 */
 
-router.put('/', function(req, res) {
-  Pantry.Pantry.addIngredient(req.currentUser.username, req.body.ingredientName, function(err, pantry) {
+router.post('/:cookbook', function(req, res) {
+  Cookbook.Cookbook.addRecipe(req.currentUser.username, req.recipe._id.toString(), function(err, cookbook) {
     if (!err) {
-      utils.sendSuccessResponse(res);
+      Recipe.getRecipe(req.currentUser.username, req.recipe._id, function(err, recipe) {
+        if (!err) {
+          utils.sendSuccessResponse(res, {recipe: recipe, displayButton: false});
+        }
+      })
     } else {
       utils.sendErrResponse(res, 400, err.msg);
     }
@@ -82,7 +103,8 @@ router.put('/', function(req, res) {
 */
 
 router.delete('/', function(req, res) {
-  Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredientId, function(err, pantry) {
+  Cookbook.Cookbook.deleteRecipe(req.currentUser.username, req.body.recipeId, function(err, cookbook) {
+    console.log("ok we are calling the model");
     if (err) {
       res.send({
         success:false,
@@ -90,6 +112,7 @@ router.delete('/', function(req, res) {
       })
     }
     else {
+      console.log("called without error!");
       res.send({success:true});
     }
   });

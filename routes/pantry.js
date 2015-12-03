@@ -35,6 +35,7 @@ router.all('*', requireAuthentication);
 
 router.get('/', function(req, res) {
   Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
+    console.log(ingredients);
     if (!err) {
       utils.sendSuccessResponse(res, { ingredients: ingredients });
     } else {
@@ -58,8 +59,8 @@ router.get('/', function(req, res) {
     - err: on error, an error message
 */
 
-router.put('/add', function(req, res) {
-  Pantry.Pantry.addIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
+router.put('/', function(req, res) {
+  Pantry.Pantry.addIngredient(req.currentUser.username, req.body.ingredientName, function(err, pantry) {
     if (!err) {
       utils.sendSuccessResponse(res);
     } else {
@@ -80,8 +81,8 @@ router.put('/add', function(req, res) {
     - err: on error, an error message
 */
 
-router.delete('/delete', function(req, res) {
-  Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredient, function(err, pantry) {
+router.delete('/', function(req, res) {
+  Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredientId, function(err, pantry) {
     if (err) {
       res.send({
         success:false,

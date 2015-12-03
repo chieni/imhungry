@@ -8,9 +8,9 @@
       var formData = helpers.getFormData(this);
       var ingredient = formData.ingredient;
       $.ajax({
-        url: '/pantry/add',
+        url: '/pantry/',
         type: 'PUT',
-        data: { ingredient: ingredient}
+        data: { ingredientName: ingredient}
       }).done(function(response) {
         loadHomePage();
       }).fail(function(responseObject) {
@@ -26,14 +26,16 @@
   Deletes an ingredient from pantry when delete button is clicked
   */
   $(document).on('click', '.delete-button', function(evt) {
+    console.log(this.parentNode);
+    console.log(this.parentNode.getAttribute('data-ingredient-id'));
     evt.preventDefault();
     var list = this.parentNode.parentNode;
     var element = this.parentNode;
     $.ajax({
-        url: '/pantry/delete',
+        url: '/pantry/',
         type: 'DELETE',
         data: {
-          ingredient: this.parentNode.getAttribute('data-ingredient-id')
+          ingredientId: this.parentNode.getAttribute('data-ingredient-id')
         },
         success: function(data) {
           if (data.success) {

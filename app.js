@@ -29,23 +29,76 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/imHungry');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
-    console.log("database connected");
-    // Comment the line below out if already run
-    //insertRecipes(db);
-});
+  console.log("database connected");
+    // Comment the two lines below out if already run
+    // insertRecipes(db);
+    // insertIngredients(db);
+  });
 
+var allIngredients = [];
+var uniqueIngredients = [];
+// var list = ["cheese", "cheese", "milk", "eggs", "egg", "milk", "cheese", "green apple", "red apple"];
 
 var insertRecipes = function (db) {
   for (var i = 1200; i < 30900; i+=100) {
-    console.log(i);
-    var recipes = require("./recipe_data/json-files/recipes" + String(i) + "-" + String(i+99)+ ".json");
-    recipes.forEach(function (recipe) {
+   console.log(i);
+   var recipes = require("./recipe_data/json-files/recipes" + String(i) + "-" + String(i+99)+ ".json");
+   recipes.forEach(function (recipe) {
       var r = new Recipe(recipe);
       r.save(function (err) {
-    });
-  });
+      });
+      recipe.ingredients.forEach(function (ingName) {
+        allIngredients.push(ingName);
+      });
+    })
   }
 }
+
+var insertIngredients = function(db) {
+  allIngredients.forEach(function(ing){
+    if (uniqueIngredients.indexOf(ing) == -1) uniqueIngredients.push(ing);
+  });
+
+  uniqueIngredients.forEach(function(ing) {
+    var i = new Ingredient({name: ing});
+    i.save(function (err) {
+      console.log("added ingredient");
+    });
+  });
+}
+
+// var removeDupIngredients = function(db) {
+//    // console.log("removing");
+//    //  db.collections.ingredients.mapReduce(
+//    //    function() {emit(this.name, this._id)},
+//    //    function(keyName, valuesId) {
+//    //      // var i = new Ingredient({name: keyName});
+//    //      // console.log(keyName);
+//    //      if (valuesId.length > 1) {
+//    //        return mongoose.Types.ObjectId(valuesId[0]);
+//    //      }
+//    //      else {
+//    //        return valuesId[0];
+//    //      }
+//    //    },
+//    //    {out: "ingredients"}
+//    //    )
+// }
+
+        // var i = new Ingredient({name: l});
+      // i.save(function (err) {
+      // });
+  //   console.log(db.collections.ingredients);
+  //   db.collections.ingredients.findOne({name: l}, function(err, ing) {
+  //       console.log(ing);
+  //         if (!ing) {
+  //           var i = new Ingredient({name: l});
+  //           i.save(function (err) {
+  //           });
+  //         }
+  //       });
+//}
+
 
 
 var app = express();
@@ -85,7 +138,7 @@ app.use(function(req, res, next) {
         next();
       });
   } else {
-      next();
+    next();
   }
 });
 
@@ -100,9 +153,9 @@ app.use('/cookbook', cookbook);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 

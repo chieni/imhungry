@@ -44,8 +44,6 @@
         },
         success: function(data) {
           if (data.success) {
-            console.log("remove me");
-            console.log(list);
             list.removeChild(element);
           }
           else {

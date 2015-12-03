@@ -35,7 +35,7 @@
           '/users',
           formData
       ).done(function(response) {
-          loadHomePage();
+          loadPage('index');
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

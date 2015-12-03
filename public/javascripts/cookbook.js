@@ -10,7 +10,6 @@
       $.post(
           '/cookbook/' +recipeId
       ).done(function(response) {
-        console.log(response);
         loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
@@ -20,21 +19,25 @@
     $('#new-recipe').focus();
   });
 
+
   /*
   Deletes a recipe from cookbook when delete button is clicked
   */
-  $(document).on('click', '#recipe-delete-button', function(evt) {
+  $(document).on('click', '#recipe-delete-btn', function(evt) {
+    var id = this.getAttribute('data-id');
     evt.preventDefault();
     var list = this.parentNode.parentNode;
     var element = this.parentNode;
     $.ajax({
-        url: '/cookbook/delete',
+        url: '/cookbook/',
         type: 'DELETE',
         data: {
-          recipeId: this.parentNode.getAttribute('data-recipeid')
+          recipeId: id
         },
         success: function(data) {
           if (data.success) {
+            console.log("remove me");
+            console.log(list);
             list.removeChild(element);
           }
           else {

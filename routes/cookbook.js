@@ -35,7 +35,7 @@ router.all('*', requireAuthentication);
 */
 
 router.get('/recipes', function(req, res) {
-  Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes, recipeIds) {
+  Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
     if (!err) {
       utils.sendSuccessResponse(res, { recipes: recipes });
     } else {
@@ -77,7 +77,7 @@ router.param('cookbook', function(req, res, next, recipeId) {
 */
 
 router.post('/:cookbook', function(req, res) {
-  Cookbook.Cookbook.addRecipe(req.currentUser.username, req.recipe._id, function(err, cookbook) {
+  Cookbook.Cookbook.addRecipe(req.currentUser.username, req.recipe._id.toString(), function(err, cookbook) {
     if (!err) {
       Recipe.getRecipe(req.currentUser.username, req.recipe._id, function(err, recipe) {
         if (!err) {
@@ -102,8 +102,9 @@ router.post('/:cookbook', function(req, res) {
     - err: on error, an error message
 */
 
-router.delete('/delete', function(req, res) {
-  Cookbook.Cookbook.deleteRecipe(req.currentUser.username, req.body.recipeId, function(err, recipe) {
+router.delete('/', function(req, res) {
+  Cookbook.Cookbook.deleteRecipe(req.currentUser.username, req.body.recipeId, function(err, cookbook) {
+    console.log("ok we are calling the model");
     if (err) {
       res.send({
         success:false,
@@ -111,6 +112,7 @@ router.delete('/delete', function(req, res) {
       })
     }
     else {
+      console.log("called without error!");
       res.send({success:true});
     }
   });

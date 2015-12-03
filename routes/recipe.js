@@ -34,10 +34,17 @@ router.post('/:recipe', function(req, res) {
   if (req.recipe) {
     var scaledRecipe = req.recipe.scaleRecipe(req.body.servingSize);
     //res.redirect({ recipe: req.recipe, currentUser: req.currentUser }, '/recipe');
-    Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes, recipeIds) {
+    Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
     if (!err) {
-      var index = recipeIds.indexOf(req.recipe._id.toString());
-      if (index!=-1) {
+      var index = -1
+      var count = 0
+      recipes.forEach(function(recipe) {
+        if (recipe._id.toString() === req.recipe._id.toString()) {
+          index = count;
+        }
+          count += 1;
+        })
+      if (index > -1) {
         displayButton = false;
       }
       else {

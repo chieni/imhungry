@@ -13,8 +13,7 @@ Schema for cookbook
 */
 var cookbookSchema = mongoose.Schema({
   username: String,
-  recipes: [],
-  recipeIds: []
+  recipes: []
 });
 
 /*
@@ -24,7 +23,7 @@ Get all the recipes of the cookbook of the given user
 cookbookSchema.statics.getRecipes = function(username, callback) {
   this.findOne({username: username}, function(err, cookbook) {
     if (cookbook) {
-      callback(null, cookbook.recipes, cookbook.recipeIds);
+      callback(null, cookbook.recipes);
     } else {
       callback({msg: "Cookbook does not exist"});
     }
@@ -40,7 +39,6 @@ User cannot add the same recipe again
 cookbookSchema.statics.addRecipe = function(username, recipeId, callback) {
   this.findOne({username: username}, function(err, cookbook) {
     if (cookbook) {
-      cookbook.recipeIds.push(recipeId);
       Recipe.findOne({_id: recipeId}, function(err, recipe) {
         if(recipe) {
             cookbook.recipes.push(recipe);
@@ -71,46 +69,38 @@ Delete recipe from given user's cookbook
   ingredient: String name of ingredient to be deleted
 */
 cookbookSchema.statics.deleteRecipe = function(username, recipeId, callback) {
-  this.findOne({username: username}, function(err, cookbook) {
+  console.log("fuuu");
+  console.log(username);
+   this.findOne({username: username}, function(err, cookbook) {
+    console.log("ok we here");
     if (cookbook) {
-      var indexInIds = cookbook.recipeIds.indexOf(recipeId);
-      console.log(indexInIds);
-        if(indexInIds>-1) {
-          cookbook.recipeIds.splice(indexInIds, 1);
-        } else {
-          callback({msg: 'Invalid Recipe.'});
-        }
-      Recipe.findOne({_id: recipeId}, function(err, recipe) {
-        if (recipe) {
-          var index = -1
-          var count = 0
+      console.log("fuck you");
+      
+          var index = -1;
+          var count = 0;
           cookbook.recipes.forEach(function(recipe) {
-            if (recipe._id == recipeId.toString()) {
+            if (recipe._id.toString() === recipeId.toString()) {
               index = count;
             }
             count += 1;
-          })
+          });
           console.log(index);
           if (index > -1) {
             cookbook.recipes.splice(index,1);
           }
           cookbook.save(function(err) {
-          if (err) {
-            callback({msg:"Error saving cookbook"});
-          }
-          else {
-            callback(null);
-          }
-        });
+            if (err) {
+              callback({msg: 'Error saving cookbook'}, null);
+            }
+            else {
+              callback(null, cookbook);
+            }
+          });
+
         }
         else {
-          callback({ msg: 'Recipe not found' });
+          callback({msg: 'Cookbook does not exist'}, null);
         }
-      })
-    }
-    else {
-      callback({msg: "Cookbook does not exist"});
-    }
   });
 
 };

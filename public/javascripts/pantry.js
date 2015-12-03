@@ -28,7 +28,8 @@
   $(document).on('click', '.delete-button', function(evt) {
     var list = $(this).parent().parent();
     var element = $(this).parent();
-    $.ajax({
+    if (currentUser) {
+      $.ajax({
         url: '/pantry/',
         type: 'DELETE',
         data: {
@@ -36,7 +37,7 @@
         },
         success: function(data) {
           if (data.success) {
-            element.remove();
+            
           }
           else {
             alert(data.message);
@@ -44,6 +45,10 @@
         },
         dataType: "json"
       });
+    } else {
+      element.remove();
+    }
+
   });
 
 })();

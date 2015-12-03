@@ -52,7 +52,6 @@ Load Cookbook Page
 var loadCookbookPage = function() {
 	loadCookbookRecipes();
 	loadPage('cookbook')
-
 }
 
 /*

@@ -1,5 +1,7 @@
 Handlebars.registerPartial('recipe', Handlebars.templates['recipe']);
 Handlebars.registerPartial('header', Handlebars.templates['header']);
+Handlebars.registerPartial('cookbook', Handlebars.templates['cookbook']);
+Handlebars.registerPartial('cookbookRecipe', Handlebars.templates['cookbookRecipeView']);
 
 // See handlebarsjs.com for details. Here, we register
 // a re-usable fragment of HTML called a "partial" which
@@ -44,20 +46,39 @@ var loadSearchPage = function() {
 		console.log(response.content.ingredients);
 	});
 };
+/*
+Load Cookbook Page
+*/
+var loadCookbookPage = function() {
+	loadCookbookRecipes();
+	loadPage('cookbook')
+
+}
 
 /*
 Load recipe search results to search page
 */
-var loadSearchResults = function() {
+var loadSearchResults = function(formData) {
 	$.get('/search', function(response) {
 		$.get('/pantry').done(function(resp){
-			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true});
+			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true, size: formData.servingsize});
 		}).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
       });
 	});
 };
+
+/*
+Load recipes for cookbook
+*/
+var loadCookbookRecipes = function(){
+	$.get('/cookbook/recipes', function(response) {
+		loadPage('cookbook', {recipes: response.content.recipes});
+	}).fail(function(responseObject) {
+		var response = $.parseJSON(responseObject.responseText);
+	});
+}
 
 /*
 This method populates the field currentUser and calls loadHomePage
@@ -71,6 +92,14 @@ $(document).ready(function() {
 		loadHomePage();
 	});
 });
+
+/*
+This method will load the cookbook page when the cookbook link is clicked
+*/
+$(document).on('click', '#cookbook-btn', function(evt) {
+	evt.preventDefault();
+	loadCookbookPage();
+})
 
 /*
 This method will load the home-page when the home link is clicked

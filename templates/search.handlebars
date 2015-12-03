@@ -49,10 +49,9 @@
       {{/each}}
     </div>
 
-    <form id="pantry-form">
-      <div><input class="form-control" id="new-ingredient" name="ingredient" type="text" placeholder="Add a new ingredient" autocomplete="off" required /></div>
+    <form id="pantry-form" class="form-inline">
+      <div><input class="form-control" id="new-ingredient" name="ingredient" type="text" placeholder="Add a new ingredient" autocomplete="off" required /><input type="submit" value="Add" class="btn btn-warning"/></div>
            <div><ul id="results-list" style="list-style-type:none"></ul></div>
-        <div><input type="submit" value="Add" class="btn btn-warning"/></div>
       </form>
     </div>
   </div>

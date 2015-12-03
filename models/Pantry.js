@@ -31,21 +31,25 @@ Get all the ingredients in the pantry of the given user
       if (pantry) {
         if (pantry.ingredients.length > 0) {
           var pantryIngObjs = [];
-          pantry.ingredients.forEach(function(ingId, index) {
+          console.log(pantry.ingredients);
+          var clone = pantry.ingredients.slice(0);
+          (function addToArray() {
+            var ingId = clone.splice(0,1)[0];
+            console.log(ingId);
             Ingredient.findById(ingId, function(err, ing) {
-              if (ing) {
-                console.log(ing);
-                pantryIngObjs.push(ing);
-                if (index == pantry.ingredients.length-1) {
-                  console.log(pantryIngObjs);
-                  callback(null, pantryIngObjs);
-                }
-              }
-              else {
+              pantryIngObjs.push(ing);
+              if (err) {
                 callback({msg:"Ingredient doesn't exist"});
               }
-            })
-          })
+              if (clone.length == 0) {
+                console.log(pantryIngObjs);
+                callback(null, pantryIngObjs);
+              }
+              else {
+                setTimeout(addToArray, 0); //addToArray();
+              }
+            })      
+          })();
         }
         else {
           callback(null, []);
@@ -56,6 +60,51 @@ Get all the ingredients in the pantry of the given user
       }
     });
   }
+
+          // // for (var i = 0; i < pantry.ingredients.length; i++) {
+          // //   Ingredient.findById(pantry.ingredients[i], function(err, ing) {
+          // //     if (ing) {
+          // //       pantryIngObjs.push(ing);
+          // //       console.log(pantry.ingredients.length);
+          // //       console.log("ind:"+i);
+          // //       if (i == pantry.ingredients.length-1) {
+          // //         console.log(pantryIngObjs);
+          // //         callback(null, pantryIngObjs);
+          // //       }
+          // //     }
+          // //     else {
+          // //       callback({msg:"Ingredient doesn't exist"});
+          // //     }
+          // //   })            
+          // // }
+
+          // pantry.ingredients.forEach(function(ingId, index) {
+          //     Ingredient.findById(ingId, function(err, ing) {
+          //     if (ing) {
+          //       pantryIngObjs.push(ing);
+          //       console.log(pantry.ingredients.length);
+          //       console.log("ind:"+i);
+          //       if (i == pantry.ingredients.length-1) {
+          //         console.log(pantryIngObjs);
+          //         callback(null, pantryIngObjs);
+          //       }
+          //     }
+          //     else {
+          //       callback({msg:"Ingredient doesn't exist"});
+          //     }
+  //         //   })    
+
+  //         })
+  //       }
+  //       else {
+  //         callback(null, []);
+  //       }
+  //     }
+  //     else {
+  //       callback({msg: "Pantry does not exist"});
+  //     }
+  //   });
+  // }
 
 /*
 Add ingredient to given user's pantry
@@ -69,7 +118,12 @@ User cannot add the same ingredient again
       if (ing) {
         self.findOne({username: username}, function(err, pantry) {
           if (pantry) {
-            var index = pantry.ingredients.indexOf(ing);
+            var index = -1;
+            pantry.ingredients.forEach(function(pantryIng) {
+              if (ing.id==pantryIng.id) {
+                index = pantry.ingredients.indexOf(pantryIng);
+              }
+            });
             if (index == -1) {
               pantry.ingredients.push(ing);
               pantry.save(function(err) {
@@ -82,7 +136,7 @@ User cannot add the same ingredient again
               });
             }
             else {
-              callback({msg: "Ingredient already in pantry"});
+              callback({msg: "Ingredient already in pantry."});
             }    
           }
           else {
@@ -106,7 +160,7 @@ Delete ingredient from given user's pantry
     this.findOne({username: username}, function(err, pantry) {
       if (pantry) {
         pantry.ingredients.forEach(function(pantryIng) {
-          if (pantryIng._id == ingredientId) {
+          if (pantryIng.id == ingredientId) {
             index = pantry.ingredients.indexOf(pantryIng);
           }
         });

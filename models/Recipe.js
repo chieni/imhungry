@@ -1,4 +1,5 @@
 // Database model for recipes
+var async = require("async");
 var mongoose = require("mongoose");
 var Ingredient = require('../models/Ingredient');
 
@@ -50,13 +51,14 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	});
 }
 
-var mapFunc = function(doc) {
-	this.findById(doc._id, function(err,recipe) {
+/*var mapFunc = function(doc, callback) {
+	recipeSchema.findById(doc._id, function(err,recipe) {
 		var numExtraIngred = recipe.ingredients.length - doc.total;
-		return {recipe: recipe, numUnmatched: numExtraIngred};
+		var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
+		callback(err, modRecipe);
 	});
 
-}
+}*/
 
 var sortingFunc = function(a,b) {
 	if (a.numUnmatched == b.numUnmatched) {
@@ -78,6 +80,16 @@ var sortingFunc = function(a,b) {
 
 recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 	var self = this;
+
+	var mapFunc = function(doc, callback) {
+		self.findById(doc._id, function(err,recipe) {
+			var numExtraIngred = recipe.ingredients.length - doc.total;
+			var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
+			callback(err, modRecipe);
+		});
+
+	}
+
 	this.aggregate([
 		{$match:{ingredients:{$in: ingredients}}},
 		{$unwind: "$ingredients"},
@@ -91,7 +103,7 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 				var extraIngreds = [];
 				var recipes = [];
 
-				results.forEach(function(result) {
+				/*results.forEach(function(result) {
 					self.findById(result._id, function(err,recipe) {
 						if (err) {
 							callback(err, null);
@@ -115,7 +127,21 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 							}
 						}
 						});
+				});*/
+
+
+				async.map(results, mapFunc, function(err, results) {
+					var sortedRecipes = results.sort(sortingFunc).map(function(recipe) {
+						return recipe.recipe;
+					});
+
+					callback(null, sortedRecipes.slice(0,100));
 				});
+
+
+
+
+
 			}
 		});
 }

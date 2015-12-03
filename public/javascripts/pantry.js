@@ -26,20 +26,17 @@
   Deletes an ingredient from pantry when delete button is clicked
   */
   $(document).on('click', '.delete-button', function(evt) {
-    console.log(this.parentNode);
-    console.log(this.parentNode.getAttribute('data-ingredient-id'));
-    evt.preventDefault();
-    var list = this.parentNode.parentNode;
-    var element = this.parentNode;
+    var list = $(this).parent().parent();
+    var element = $(this).parent();
     $.ajax({
         url: '/pantry/',
         type: 'DELETE',
         data: {
-          ingredientId: this.parentNode.getAttribute('data-ingredient-id')
+          ingredientId: element.find(".ingredient").attr('data-ingredient-id')
         },
         success: function(data) {
           if (data.success) {
-            list.removeChild(element);
+            element.remove();
           }
           else {
             alert(data.message);

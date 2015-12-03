@@ -23,13 +23,13 @@ var requireAuthentication = function(req, res, next) {
 
 
 // Register the middleware handlers above.
-router.all('*', requireAuthentication);
+router.get('*', requireAuthentication);
 
 
 /*
   The following retrieves all recipes from the search.
 
-  GET /recipes
+  GET search/
   Request Paramaters:
   	- username
   	- ingredients in pantry
@@ -47,6 +47,22 @@ router.get('/', function(req, res) {
 			}
 	  	});
 	});
+});
+
+router.post('/', function(req, res) {
+  var ing_list = req.body.ingredients.split(',');
+  var final_list = [];
+  ing_list.forEach(function(i){
+    final_list.push(i.trim());
+  });
+
+  Recipe.searchRecipes(final_list, function(err, recipes) {
+    if (err) {
+      utils.sendErrResponse(res, 500, 'Unable to retrieve recipes.');
+    } else {
+      utils.sendSuccessResponse(res, {recipes: recipes, ingredients: final_list, searched: true, anon: true});
+    }
+  });
 });
 
 module.exports = router;

@@ -13,9 +13,9 @@ templates['cookbook'] = template({"1":function(container,depth0,helpers,partials
     var stack1;
 
   return ((stack1 = container.invokePartial(partials.header,depth0,{"name":"header","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "<div class=\"cookbook\">\n"
+    + "<div class=\"cookbook\">\n	<div class=\"col-md-5 left\">\n		<h1>Cookbook</h1>\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.recipes : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
-    + "          </div>";
+    + "          </div>\n    </div>";
 },"usePartial":true,"useData":true});
 templates['cookbookRecipeView'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
@@ -97,10 +97,12 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + container.escapeExpression(container.lambda(depth0, depth0))
     + "</div>\n";
 },"7":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "      <button id=\"save-btn\" data-id="
-    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + " data-servingsize="
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " class=\"btn btn-lg btn-warning save-btn\">Save Recipe to Cookbook</button>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {}, alias2=container.lambda, alias3=container.escapeExpression;

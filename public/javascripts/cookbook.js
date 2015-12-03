@@ -6,11 +6,19 @@
   */
   $(document).on('click', '#save-btn', function(evt) {
     var recipeId = $(this).data('id');
+    var servingsize = $(this).data('servingsize');
       evt.preventDefault();
       $.post(
           '/cookbook/' +recipeId
       ).done(function(response) {
-        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
+        $.post('/recipe/' + recipeId,
+        {servingSize: servingsize}
+        ).done(function(response) {
+          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
+          }).fail(function(responseObject) {
+              var response = $.parseJSON(responseObject.responseText);
+              $('.error').text(response.err);
+          })
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

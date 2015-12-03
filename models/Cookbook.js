@@ -72,9 +72,7 @@ cookbookSchema.statics.deleteRecipe = function(username, recipeId, callback) {
   console.log("fuuu");
   console.log(username);
    this.findOne({username: username}, function(err, cookbook) {
-    console.log("ok we here");
     if (cookbook) {
-      console.log("fuck you");
       
           var index = -1;
           var count = 0;

@@ -1,8 +1,11 @@
 {{> header }}
 <div class="cookbook">
+	<div class="col-md-5 left">
+		<h1>Cookbook</h1>
               {{#each recipes}}
                 {{> cookbookRecipe }}
               {{else}}
                 <p><em>Your cookbook is currently empty. Save recipes to stash them here!</em></p>
               {{/each}}
           </div>
+    </div>

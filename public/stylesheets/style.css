@@ -196,3 +196,9 @@ input:focus{
   border-top-right-radius: 0;
 }
 
+#results-list li:hover {
+  background: #FFF;
+  color: #000;
+  cursor: pointer;
+}
+

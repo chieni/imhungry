@@ -91,7 +91,7 @@ User cannot add the same ingredient again
         });
       }
       else {
-        callback({msg: "Ingredient does not exist"});
+        callback({msg: "This ingredient does not exist, please pick one from the drop-down list."});
       }
     });
   }

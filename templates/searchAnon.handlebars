@@ -1,13 +1,11 @@
-{{> header }}
+{{> anonHeader }}
 
-<div class="welcome">Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</div>
-
-<div class="container">
+<div class="container" data-ingredientsList-id="{{ingredients}}" data-recipesList-id="{{recipes}}">
 <div class="row">
     <div class="col-md-5 left">
         <h1>Find recipes.</h1>
 
-        <form id="search-form">
+        <form id="anon-search-form">
            <div>Serving size: <input type="number" name="servingsize"/></div>
           <div>Additional ingredients: <input type="text" name="additional"/></div>
           <input type="submit" value="Scavenge" class="btn btn-warning"/>
@@ -37,7 +35,7 @@
         {{#each ingredients}}
 
           <div class="ingredients-line">
-          <span class="delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this._id}}>{{ this.name }}</span>
+          <span class="anon-delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this}}>{{ this }}</span>
 
          </div>
         {{else}}
@@ -45,7 +43,7 @@
         {{/each}}
       </div>
 
-      <form id="pantry-form">
+      <form id="anon-pantry-form">
         <div>Add a new ingredient: <input class="form-control" id="new-ingredient" name="ingredient" required />
         <input type="submit" value="Add" class="btn btn-warning"/></div>
       </form>

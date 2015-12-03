@@ -26,9 +26,7 @@
   Deletes an ingredient from pantry when delete button is clicked
   */
   $(document).on('click', '.delete-button', function(evt) {
-    var list = $(this).parent().parent();
     var element = $(this).parent();
-    if (currentUser) {
       $.ajax({
         url: '/pantry/',
         type: 'DELETE',
@@ -37,7 +35,7 @@
         },
         success: function(data) {
           if (data.success) {
-            
+            element.remove();
           }
           else {
             alert(data.message);
@@ -45,10 +43,30 @@
         },
         dataType: "json"
       });
-    } else {
-      element.remove();
-    }
 
+  });
+
+
+  $(document).on('click', '.anon-delete-button', function(evt) {
+    var element = $(this).parent();
+    element.remove();
+  });
+
+  $(document).on('submit', '#anon-pantry-form', function(evt) {
+      evt.preventDefault();
+      var element = $(this).parent();
+
+      var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
+
+      var formData = helpers.getFormData(this);
+      var ingredient = formData.ingredient;
+
+      ingredientsList.push(ingredient);
+
+    $('#new-ingredient').val('');
+    $('#new-ingredient').focus();
+
+    loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
   });
 
 })();

@@ -20,7 +20,7 @@ Schema for pantry
         ref: 'Ingredient'
       }
     }]
-});
+  });
 
 /*
 Get all the ingredients in the pantry of the given user
@@ -29,23 +29,29 @@ Get all the ingredients in the pantry of the given user
   pantrySchema.statics.getIngredients = function(username, callback) {
     this.findOne({username: username}, function(err, pantry) {
       if (pantry) {
-        var pantryIngObjs = [];
-        pantry.ingredients.forEach(function(ingId, index) {
-          Ingredient.findById(ingId, function(err, ing) {
-            if (ing) {
-              console.log(ing);
-              pantryIngObjs.push(ing);
-              if (index == pantry.ingredients.length-1) {
-                console.log(pantryIngObjs);
-                callback(null, pantryIngObjs);
+        if (pantry.ingredients.length > 0) {
+          var pantryIngObjs = [];
+          pantry.ingredients.forEach(function(ingId, index) {
+            Ingredient.findById(ingId, function(err, ing) {
+              if (ing) {
+                console.log(ing);
+                pantryIngObjs.push(ing);
+                if (index == pantry.ingredients.length-1) {
+                  console.log(pantryIngObjs);
+                  callback(null, pantryIngObjs);
+                }
               }
-            }
-            else {
-              callback({msg:"Ingredient doesn't exist"});
-            }
+              else {
+                callback({msg:"Ingredient doesn't exist"});
+              }
+            })
           })
-        })
-      } else {
+        }
+        else {
+          callback(null, []);
+        }
+      }
+      else {
         callback({msg: "Pantry does not exist"});
       }
     });

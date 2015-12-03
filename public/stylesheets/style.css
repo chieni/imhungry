@@ -206,3 +206,21 @@ input:focus{
   cursor: pointer;
 }
 
+.recipe-image:hover {
+  cursor: pointer;
+}
+
+.recipe-overlay {
+    margin-top:20px;
+    position:relative;
+}
+.recipe-overlay:hover {
+    background:rgba(0,0,0,0.5);
+}
+.recipe-overlay > div {
+    position:absolute;
+    font:50px sans-serif;
+    width:100%;
+    top:33%;
+    text-align:center;
+}

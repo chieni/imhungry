@@ -74,15 +74,15 @@ templates['ingredient'] = template({"compiler":[7,">= 4.0.0"],"main":function(co
 templates['recipe'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<div class=\"recipe\" data-recipeid="
+  return "<div class=\"recipe recipe-overlay\" data-recipeid="
     + alias4(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"_id","hash":{},"data":data}) : helper)))
     + " data-recipesize="
     + alias4(((helper = (helper = helpers.size || (depth0 != null ? depth0.size : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"size","hash":{},"data":data}) : helper)))
     + ">\n  <p>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + "</p>\n  <img src = "
+    + "</p>\n  <img class=\"recipe-image\" src = "
     + alias4(container.lambda(((stack1 = (depth0 != null ? depth0.imageURLs : depth0)) != null ? stack1["1"] : stack1), depth0))
-    + ">\n  \n</div>\n\n\n";
+    + ">\n</div>\n\n\n";
 },"useData":true});
 templates['recipeView'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;

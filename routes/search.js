@@ -23,13 +23,13 @@ var requireAuthentication = function(req, res, next) {
 
 
 // Register the middleware handlers above.
-router.all('*', requireAuthentication);
+router.get('*', requireAuthentication);
 
 
 /*
   The following retrieves all recipes from the search.
 
-  GET /recipes
+  GET search/
   Request Paramaters:
   	- username
   	- ingredients in pantry
@@ -39,7 +39,11 @@ router.all('*', requireAuthentication);
 */
 router.get('/', function(req, res) {
 	Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
-		Recipe.searchRecipes(ingredients, function(error, recipes) {
+    var ingredientNames = ingredients.map(function(ingredient) {
+      return ingredient.name;
+    });
+
+		Recipe.flexibleSearch(ingredientNames, function(error, recipes) {
 			if (error) {
 			  utils.sendErrResponse(res, 500, 'An unknown error occurred.');
 			} else {
@@ -47,6 +51,23 @@ router.get('/', function(req, res) {
 			}
 	  	});
 	});
+});
+
+router.post('/', function(req, res) {
+
+  var ing_list = req.body.ingredients.split(',');
+  var final_list = [];
+  ing_list.forEach(function(i){
+    final_list.push(i.trim());
+  });
+
+  Recipe.flexibleSearch(final_list, function(err, recipes) {
+    if (err) {
+      utils.sendErrResponse(res, 500, 'Unable to retrieve recipes.');
+    } else {
+      utils.sendSuccessResponse(res, {recipes: recipes, ingredients: final_list, searched: true, anon: true});
+    }
+  });
 });
 
 module.exports = router;

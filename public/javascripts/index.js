@@ -2,6 +2,7 @@ Handlebars.registerPartial('recipe', Handlebars.templates['recipe']);
 Handlebars.registerPartial('header', Handlebars.templates['header']);
 Handlebars.registerPartial('cookbook', Handlebars.templates['cookbook']);
 Handlebars.registerPartial('cookbookRecipe', Handlebars.templates['cookbookRecipeView']);
+Handlebars.registerPartial('anonHeader', Handlebars.templates['anonHeader']);
 
 // See handlebarsjs.com for details. Here, we register
 // a re-usable fragment of HTML called a "partial" which
@@ -33,7 +34,7 @@ var loadHomePage = function() {
 	if (currentUser) {
 		loadSearchPage();
 	} else {
-		loadPage('index');
+		loadPage('hook')
 	}
 };
 
@@ -43,7 +44,6 @@ Load search page with pantry
 var loadSearchPage = function() {
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients });
-		console.log(response.content.ingredients);
 	});
 };
 /*
@@ -114,7 +114,8 @@ This method will load the page with the signin template
 whenever the sign in button is pressed.
 */
 $(document).on('click', '#signin-btn', function(evt) {
-	loadPage('signin');
+	evt.preventDefault();
+	loadPage('index');
 });
 
 /*

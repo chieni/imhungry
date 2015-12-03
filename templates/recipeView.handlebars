@@ -1,4 +1,8 @@
+{{#if currentUser}}
 {{> header }}
+{{else}}
+{{> anonHeader}}
+{{/endif}}
 <div data-recipeid={{recipe._id}}>
 
 <div class="container-fluid">

@@ -5,16 +5,16 @@
 {{/if}}
 <div data-recipeid={{recipe._id}}>
 
-<div class="container-fluid">
+<div class="container">
 
 <div class="row">
-  <div class="col-md-5 recipe-box">
+  <div class="col-md-5 recipe-box-left">
     <div class="recipe-view-img" style="background-image: url({{recipe.imageURLs.[0]}})"></div>
     <div class="serving-label">Serving size: {{recipe.servingSize}}</div>
     <div class="recipe-name">{{recipe.name}}</div>
   </div>
 
-  <div class="col-md-6 col-md-offset-1 recipe-box">
+  <div class="col-md-6 col-md-offset-1 recipe-box-right">
     <div class="ingredients">
       <div class="ingredients-header"><font size="40">Ingredients: </font></div>
       
@@ -25,7 +25,7 @@
 
     <div class="instructions">
       <div class="instructions-label"><font size="20">Instructions: </font></div>
-      <a class="recipe-url" href="{{recipe.sourceURL}}"><font size="20">Full instructions here</a>
+      <a class="recipe-url" href="{{recipe.sourceURL}}">Full instructions here</a>
     </div>
     {{#if displayButton}}
       <button id="save-btn" data-id={{recipe._id}} data-servingsize={{recipe.servingSize}} class="btn btn-lg btn-warning save-btn">Save Recipe to Cookbook</button>

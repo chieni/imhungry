@@ -39,7 +39,11 @@ router.get('*', requireAuthentication);
 */
 router.get('/', function(req, res) {
 	Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
-		Recipe.searchRecipes(ingredients, function(error, recipes) {
+    var ingredientNames = ingredients.map(function(ingredient) {
+      return ingredient.name;
+    });
+
+		Recipe.flexibleSearch(ingredientNames, function(error, recipes) {
 			if (error) {
 			  utils.sendErrResponse(res, 500, 'An unknown error occurred.');
 			} else {

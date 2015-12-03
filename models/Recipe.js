@@ -111,7 +111,7 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 									return recipe.recipe;
 								});
 
-								callback(null, sortedRecipes); 
+								callback(null, sortedRecipes.slice(0,100)); 
 							}
 						}
 						});

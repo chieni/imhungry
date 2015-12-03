@@ -1,16 +1,14 @@
 {{> header }}
 
-<div class="welcome">Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</div>
-
 <div class="container">
-  <div class="row">
-    <div class="col-md-5 left">
-
+  <div class="search-row">
+  
+    <div class="col-md-8 left">
       <h1>Find recipes.</h1>
 
       <form id="search-form" class="form-inline">
-       <div><input class="form-control" id="serv-size-input" type="number" name="servingsize" placeholder="Serving size">
-       <input type="submit" value="Scavenge" class="btn btn-warning"/></div>
+       <div class="serving-line">Serving size: <input class="form-control" id="serv-size-input" type="number" name="servingsize"/>
+       <input type="submit" value="SCAVENGE" class="btn btn-warning"/></div>
      </form>
 
      <div class="error">
@@ -30,8 +28,8 @@
     </div>
   </div>
 
-  <div class="col-md-5 col-md-offset-1 right">
-    <h1>Your pantry.</h1>
+  <div class="col-md-3 col-md-offset-1 right">
+    <h1>{{currentUser}}'s pantry.</h1>
     <div id="ingredientsList">
       {{#each ingredients}}
       <div class="ingredients-line">
@@ -43,7 +41,7 @@
     </div>
 
     <form id="pantry-form" class="form-inline">
-      <div><input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required /><input type="submit" value="Add" class="btn btn-warning" id="add-ing-btn"/></div>
+      <div><input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required /><input type="submit" value="ADD" class="btn btn-warning" id="add-ing-btn"/></div>
            <div><ul id="results-list" style="list-style-type:none"></ul></div>
       </form>
     </div>

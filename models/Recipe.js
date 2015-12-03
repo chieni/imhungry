@@ -155,6 +155,10 @@ var evaluateStringNumber = function(number) {
 
 recipeSchema.methods.scaleRecipe = function(servingSize) {
 	var scaleFactor = servingSize / this.servingSize;
+	if (!servingSize) { // if serving size is not specified
+		scaleFactor = 1;
+		servingSize = this.servingSize;
+	}
 	var scaledIngredients = this.ingredientsWAmounts.map(function(ingredient) {
 		var scaledIngredient = ingredient;
 		if (ingredient.match(/\d/)) {

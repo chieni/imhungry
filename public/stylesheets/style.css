@@ -58,6 +58,10 @@ a {
   margin-bottom:4em;
 }
 
+#serv-size-input {
+  color: black;
+}
+
 #hook-number-input {
   color: black;
   width:2.5em;

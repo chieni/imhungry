@@ -59,7 +59,6 @@ var loadCookbookPage = function() {
 Load recipe search results to search page
 */
 var loadSearchResults = function(formData) {
-	console.log(formData.servingSize);
 	$.get('/search', function(response) {
 		$.get('/pantry').done(function(resp){
 			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true, size: formData.servingsize});

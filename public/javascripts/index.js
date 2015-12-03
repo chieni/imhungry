@@ -44,7 +44,6 @@ Load search page with pantry
 var loadSearchPage = function() {
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients });
-		console.log(response.content.ingredients);
 	});
 };
 /*
@@ -60,6 +59,7 @@ var loadCookbookPage = function() {
 Load recipe search results to search page
 */
 var loadSearchResults = function(formData) {
+	console.log(formData.servingSize);
 	$.get('/search', function(response) {
 		$.get('/pantry').done(function(resp){
 			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true, size: formData.servingsize});

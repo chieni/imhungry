@@ -43,11 +43,8 @@
         {{#each ingredients}}
 
           <div class="ingredients-line">
-          {{#if currentUser}}
           <span class="delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this._id}}>{{ this.name }}</span>
-          {{else}}
-          <span class="delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this}}>{{ this }}</span>
-          {{/if}}
+
 
          </div>
         {{else}}

@@ -39,7 +39,11 @@ router.get('*', requireAuthentication);
 */
 router.get('/', function(req, res) {
 	Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
-		Recipe.searchRecipes(ingredients, function(error, recipes) {
+    var ingredientNames = ingredients.map(function(ingredient) {
+      return ingredient.name;
+    });
+
+		Recipe.flexibleSearch(ingredientNames, function(error, recipes) {
 			if (error) {
 			  utils.sendErrResponse(res, 500, 'An unknown error occurred.');
 			} else {
@@ -50,13 +54,14 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
+
   var ing_list = req.body.ingredients.split(',');
   var final_list = [];
   ing_list.forEach(function(i){
     final_list.push(i.trim());
   });
 
-  Recipe.searchRecipes(final_list, function(err, recipes) {
+  Recipe.flexibleSearch(final_list, function(err, recipes) {
     if (err) {
       utils.sendErrResponse(res, 500, 'Unable to retrieve recipes.');
     } else {

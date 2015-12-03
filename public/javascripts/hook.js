@@ -8,8 +8,7 @@
           '/search',
           {ingredients: ingredients}
       ).done(function(response) {
-      	//console.log(response.content.recipes)
-		 loadPage('search', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
+		    loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

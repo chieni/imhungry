@@ -44,7 +44,6 @@ Load search page with pantry
 var loadSearchPage = function() {
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients });
-		console.log(response.content.ingredients);
 	});
 };
 /*

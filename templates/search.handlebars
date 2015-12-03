@@ -1,16 +1,11 @@
-{{#if currentUser}}
 {{> header }}
-{{else}}
-{{> anonHeader }}
-{{/if}}
 
-{{#if currentUser}}
 <div class="welcome">Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</div>
-{{/if}}
 
 <div class="container">
   <div class="row">
     <div class="col-md-5 left">
+
       <h1>Find recipes.</h1>
 
       <form id="search-form">
@@ -38,7 +33,6 @@
 
   <div class="col-md-5 col-md-offset-1 right">
     <h1>Your pantry.</h1>
-
     <div id="ingredientsList">
       {{#each ingredients}}
       <div class="ingredients-line">

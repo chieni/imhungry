@@ -48,7 +48,7 @@ a {
 .hook-box {
   background:rgba(0,0,0,0.55);
   padding: 2em 0;
-  margin-top: 6em;
+  margin-top: 8em;
 }
 
 #hook-search-form {
@@ -56,6 +56,10 @@ a {
   width: 8em;
   margin-top: 3em;
   margin-bottom:4em;
+}
+
+#serv-size-input {
+  color: black;
 }
 
 #hook-number-input {

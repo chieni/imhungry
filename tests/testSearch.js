@@ -18,12 +18,12 @@ before(function(done) {
 
 // Test the recipe search method
  describe('Recipe', function() {
- 	var grilledCheeseRecipe = {name: 'grilled cheese', ingredients: ['bread', 'cheese', 'vegetable oil'],
+ 	var grilledCheeseRecipe = {name: 'grilled cheese', ingredients: ['bread', 'cheese', 'vegetable oil'], rating: 5,
 			instructions: 'oil the bread, then but cheese on one side. Pan fry and serve.'};
-	var frenchFriesRecipe = {name: 'french fries', ingredients: ['potato', 'vegetable oil'],
+	var frenchFriesRecipe = {name: 'french fries', ingredients: ['potato', 'vegetable oil'], rating: 3,
 		instructions: 'chop potatoes and deep fry'};
 	var smoothieRecipe = {name: 'mango smoothie', ingredients: ['orange juice', 'mango',
-		'banana', 'honey']};
+		'banana', 'honey'], rating: 3.1};
 
 	before(function(done) {
 		Recipe.create([grilledCheeseRecipe, frenchFriesRecipe,
@@ -32,6 +32,22 @@ before(function(done) {
 
  	after(function(done) {
  		Recipe.remove({}, done);
+ 	});
+
+ 	describe('#flexibleSearch()', function() {
+
+ 		var mapRecipesToName = function(recipe) {
+			return recipe.name;
+		}
+
+ 		it ('test that search results should be properly ordered', function(done) {
+ 			Recipe.flexibleSearch(['vegetable oil', 'cheese', 'orange juice'],
+ 				function(err, recipes) {
+ 					assert(!err);
+ 					assert.deepEqual(recipes.map(mapRecipesToName), ['grilled cheese', 'french fries', 'mango smoothie']);
+ 					done();
+ 				});
+ 		});
  	});
 
  	describe('#searchRecipes()', function() {

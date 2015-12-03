@@ -1,0 +1,51 @@
+{{> anonHeader }}
+
+<div class="container" data-ingredientsList-id="{{ingredients}}" data-recipesList-id="{{recipes}}">
+<div class="row">
+    <div class="col-md-5 left">
+        <h1>Find recipes.</h1>
+
+        <form id="anon-search-form">
+           <div>Serving size: <input type="number" name="servingsize"/></div>
+          <div>Additional ingredients: <input type="text" name="additional"/></div>
+          <input type="submit" value="Scavenge" class="btn btn-warning"/>
+        </form>
+
+          <div class="error">
+            {{#if error}}
+              {{error}}
+            {{/if}}
+          </div>
+
+          <div class="results">
+            {{#if searched}}
+              {{#each recipes}}
+                {{> recipe size=../size}}
+              {{else}}
+                <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
+              {{/each}}
+            {{/if}}
+          </div>
+    </div>
+
+    <div class="col-md-5 col-md-offset-1 right">
+      <h1>Your pantry.</h1>
+
+      <div id="ingredientsList">
+        {{#each ingredients}}
+
+          <div class="ingredients-line">
+          <span class="anon-delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this}}>{{ this }}</span>
+
+         </div>
+        {{else}}
+          <p><em>No ingredients yet!</em></p>
+        {{/each}}
+      </div>
+
+      <form id="anon-pantry-form">
+        <div>Add a new ingredient: <input class="form-control" id="new-ingredient" name="ingredient" required />
+        <input type="submit" value="Add" class="btn btn-warning"/></div>
+      </form>
+  </div>
+  </div>

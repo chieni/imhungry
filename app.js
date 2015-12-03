@@ -29,8 +29,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   console.log("database connected");
     // Comment the two lines below out if already run
-    insertRecipes(db);
-    insertIngredients(db);
+    // insertRecipes(db);
+    // insertIngredients(db);
   });
 
 var allIngredients = [];
@@ -60,6 +60,7 @@ var insertIngredients = function(db) {
   uniqueIngredients.forEach(function(ing) {
     var i = new Ingredient({name: ing});
     i.save(function (err) {
+      console.log("added ingredient");
     });
   });
 }

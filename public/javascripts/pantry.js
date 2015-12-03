@@ -7,12 +7,10 @@
       evt.preventDefault();
       var formData = helpers.getFormData(this);
       var ingredient = formData.ingredient;
-      console.log(formData);
-      console.log(ingredient);
       $.ajax({
         url: '/pantry/',
         type: 'PUT',
-        data: { ingredient: ingredient}
+        data: { ingredientName: ingredient}
       }).done(function(response) {
         loadHomePage();
       }).fail(function(responseObject) {
@@ -37,7 +35,7 @@
         url: '/pantry/',
         type: 'DELETE',
         data: {
-          ingredient: this.parentNode.getAttribute('data-ingredient-id')
+          ingredientId: this.parentNode.getAttribute('data-ingredient-id')
         },
         success: function(data) {
           if (data.success) {

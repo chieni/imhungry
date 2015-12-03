@@ -152,7 +152,7 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 
   return ((stack1 = container.invokePartial(partials.recipe,depth0,{"name":"recipe","hash":{"size":(depths[1] != null ? depths[1].size : depths[1])},"data":data,"indent":"      ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"6":function(container,depth0,helpers,partials,data) {
-    return "      <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>\n";
+    return "      <p><em>No recipes found.</em></p>\n";
 },"8":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
@@ -169,13 +169,13 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
   return ((stack1 = container.invokePartial(partials.header,depth0,{"name":"header","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n<div class=\"welcome\">Welcome, <b>"
     + container.escapeExpression(((helper = (helper = helpers.currentUser || (depth0 != null ? depth0.currentUser : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"currentUser","hash":{},"data":data}) : helper)))
-    + "</b> (<a href=\"#\" id=\"logout-link\">logout</a>)</div>\n\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-5 left\">\n\n      <h1>Find recipes.</h1>\n\n      <form id=\"search-form\">\n       <div>Serving size: <input id=\"serv-size-input\" type=\"number\" name=\"servingsize\"/></div>\n       <input type=\"submit\" value=\"Scavenge\" class=\"btn btn-warning\"/>\n     </form>\n\n     <div class=\"error\">\n"
+    + "</b> (<a href=\"#\" id=\"logout-link\">logout</a>)</div>\n\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-5 left\">\n\n      <h1>Find recipes.</h1>\n\n      <form id=\"search-form\" class=\"form-inline\">\n       <div>Serving size: <input class=\"form-control\" id=\"serv-size-input\" type=\"number\" name=\"servingsize\"/>\n       <input type=\"submit\" value=\"Scavenge\" class=\"btn btn-warning\"/></div>\n     </form>\n\n     <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n\n    <div class=\"results\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.searched : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n  </div>\n\n  <div class=\"col-md-5 col-md-offset-1 right\">\n    <h1>Your pantry.</h1>\n    <div id=\"ingredientsList\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0, blockParams, depths),"inverse":container.program(10, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
-    + "    </div>\n\n    <form id=\"pantry-form\" class=\"form-inline\">\n      <div><input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" type=\"text\" placeholder=\"Add a new ingredient\" autocomplete=\"off\" required /><input type=\"submit\" value=\"Add\" class=\"btn btn-warning\" id=\"add-ing-btn\"/></div>\n           <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n    </div>\n  </div>\n";
+    + "    </div>\n\n    <form id=\"pantry-form\" class=\"form-inline\">\n      <div><input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" type=\"text\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required /><input type=\"submit\" value=\"Add\" class=\"btn btn-warning\" id=\"add-ing-btn\"/></div>\n           <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n    </div>\n  </div>\n";
 },"usePartial":true,"useData":true,"useDepths":true});
 templates['searchAnon'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
@@ -192,7 +192,7 @@ templates['searchAnon'] = template({"1":function(container,depth0,helpers,partia
 
   return ((stack1 = container.invokePartial(partials.recipe,depth0,{"name":"recipe","hash":{"size":(depths[1] != null ? depths[1].size : depths[1])},"data":data,"indent":"                ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"6":function(container,depth0,helpers,partials,data) {
-    return "                <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>\n";
+    return "                <p><em>No recipes found.</em></p>\n";
 },"8":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
@@ -211,12 +211,12 @@ templates['searchAnon'] = template({"1":function(container,depth0,helpers,partia
     + alias4(((helper = (helper = helpers.ingredients || (depth0 != null ? depth0.ingredients : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"ingredients","hash":{},"data":data}) : helper)))
     + "\" data-recipesList-id=\""
     + alias4(((helper = (helper = helpers.recipes || (depth0 != null ? depth0.recipes : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"recipes","hash":{},"data":data}) : helper)))
-    + "\">\n<div class=\"row\">\n    <div class=\"col-md-5 left\">\n        <h1>Find recipes.</h1>\n\n        <form id=\"anon-search-form\">\n           <div>Serving size: <input type=\"number\" name=\"servingsize\"/></div>\n          <div>Additional ingredients: <input type=\"text\" name=\"additional\"/></div>\n          <input type=\"submit\" value=\"Scavenge\" class=\"btn btn-warning\"/>\n        </form>\n\n          <div class=\"error\">\n"
+    + "\">\n<div class=\"row\">\n    <div class=\"col-md-5 left\">\n        <h1>Find recipes.</h1>\n\n        <form id=\"anon-search-form\" class=\"form-inline\">\n           <div>Serving size: <input type=\"number\" name=\"servingsize\" class=\"form-control\"/>\n          <input type=\"submit\" value=\"Scavenge\" class=\"btn btn-warning\"/></div>\n        </form>\n\n          <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "          </div>\n\n          <div class=\"results\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.searched : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "          </div>\n    </div>\n\n    <div class=\"col-md-5 col-md-offset-1 right\">\n      <h1>Your pantry.</h1>\n\n      <div id=\"ingredientsList\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0, blockParams, depths),"inverse":container.program(10, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
-    + "      </div>\n\n      <form id=\"anon-pantry-form\">\n        <div>Add a new ingredient: <input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" required />\n        <input type=\"submit\" value=\"Add\" class=\"btn btn-warning\"/></div>\n      </form>\n  </div>\n  </div>\n";
+    + "      </div>\n\n      <form id=\"anon-pantry-form\" class=\"form-inline\">\n        <div><input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required />\n        <input type=\"submit\" value=\"Add\" class=\"btn btn-warning\"/></div>\n        <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n  </div>\n  </div>\n";
 },"usePartial":true,"useData":true,"useDepths":true});
 })();

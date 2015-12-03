@@ -8,9 +8,9 @@
 
       <h1>Find recipes.</h1>
 
-      <form id="search-form">
-       <div>Serving size: <input id="serv-size-input" type="number" name="servingsize"/></div>
-       <input type="submit" value="Scavenge" class="btn btn-warning"/>
+      <form id="search-form" class="form-inline">
+       <div>Serving size: <input class="form-control" id="serv-size-input" type="number" name="servingsize"/>
+       <input type="submit" value="Scavenge" class="btn btn-warning"/></div>
      </form>
 
      <div class="error">
@@ -24,7 +24,7 @@
       {{#each recipes}}
       {{> recipe size=../size}}
       {{else}}
-      <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
+      <p><em>No recipes found.</em></p>
       {{/each}}
       {{/if}}
     </div>
@@ -43,7 +43,7 @@
     </div>
 
     <form id="pantry-form" class="form-inline">
-      <div><input class="form-control" id="new-ingredient" name="ingredient" type="text" placeholder="Add a new ingredient" autocomplete="off" required /><input type="submit" value="Add" class="btn btn-warning" id="add-ing-btn"/></div>
+      <div><input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required /><input type="submit" value="Add" class="btn btn-warning" id="add-ing-btn"/></div>
            <div><ul id="results-list" style="list-style-type:none"></ul></div>
       </form>
     </div>

@@ -211,7 +211,8 @@ input:focus{
 }
 
 .recipe-overlay {
-    margin-top:20px;
+    margin:20px;
+    padding: 10px;
     position:relative;
 }
 .recipe-overlay:hover {

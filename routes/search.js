@@ -54,13 +54,14 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
+
   var ing_list = req.body.ingredients.split(',');
   var final_list = [];
   ing_list.forEach(function(i){
     final_list.push(i.trim());
   });
 
-  Recipe.searchRecipes(final_list, function(err, recipes) {
+  Recipe.flexibleSearch(final_list, function(err, recipes) {
     if (err) {
       utils.sendErrResponse(res, 500, 'Unable to retrieve recipes.');
     } else {

@@ -13,15 +13,19 @@
     $(document).on('submit', '#anon-search-form', function(evt) {
       evt.preventDefault();
       var formData = helpers.getFormData(this);
-      
-		$.get('/search', function(response) {
-			$.get('/pantry').done(function(resp){
-				loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true, size: formData.servingsize});
-			}).fail(function(responseObject) {
-	          var response = $.parseJSON(responseObject.responseText);
-	          $('.error').text(response.err);
-	      });
-		});
+      var ingredientsList = $(".container").attr('data-ingredientsList-id');
+   
+      $.post(
+          '/search',
+          {ingredients: ingredientsList}
+      ).done(function(response) {
+      	console.log("done")
+		    loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
+      }).fail(function(responseObject) {
+          var response = $.parseJSON(responseObject.responseText);
+          $('.error').text(response.err);
+      });
+
 
   });
 })();

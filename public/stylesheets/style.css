@@ -119,7 +119,9 @@ input:focus{
 }
 .right{
   background:rgba(0,0,0,0.75);
-  height: 35em;
+  min-height: 35em;
+  padding-bottom: 4em;
+  margin-bottom: 5em;
 
 }
 
@@ -206,3 +208,22 @@ input:focus{
   cursor: pointer;
 }
 
+.recipe-image:hover {
+  cursor: pointer;
+}
+
+.recipe-overlay {
+    margin:20px;
+    padding: 10px;
+    position:relative;
+}
+.recipe-overlay:hover {
+    background:rgba(0,0,0,0.5);
+}
+.recipe-overlay > div {
+    position:absolute;
+    font:50px sans-serif;
+    width:100%;
+    top:33%;
+    text-align:center;
+}

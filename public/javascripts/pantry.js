@@ -15,7 +15,7 @@
         loadHomePage();
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
-          $('.error').text(response.err);
+          alert(response.err);
       });
 
     $('#new-ingredient').val('');

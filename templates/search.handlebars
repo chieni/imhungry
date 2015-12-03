@@ -3,50 +3,49 @@
 <div class="welcome">Welcome, <b>{{currentUser}}</b> (<a href="#" id="logout-link">logout</a>)</div>
 
 <div class="container">
-<div class="row">
+  <div class="row">
     <div class="col-md-5 left">
-        <h1>Find recipes.</h1>
 
-        <form id="search-form">
-           <div>Serving size: <input id="serv-size-input" type="number" name="servingsize"/></div>
-          <input type="submit" value="Scavenge" class="btn btn-warning"/>
-        </form>
+      <h1>Find recipes.</h1>
 
-          <div class="error">
-            {{#if error}}
-              {{error}}
-            {{/if}}
-          </div>
+      <form id="search-form">
+       <div>Serving size: <input type="number" name="servingsize"/></div>
+       <div>Additional ingredients: <input type="text" name="additional"/></div>
+       <input type="submit" value="Scavenge" class="btn btn-warning"/>
+     </form>
 
-          <div class="results">
-            {{#if searched}}
-              {{#each recipes}}
-                {{> recipe size=../size}}
-              {{else}}
-                <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
-              {{/each}}
-            {{/if}}
-          </div>
+     <div class="error">
+      {{#if error}}
+      {{error}}
+      {{/if}}
     </div>
 
-    <div class="col-md-5 col-md-offset-1 right">
-      <h1>Your pantry.</h1>
-
-      <div id="ingredientsList">
-        {{#each ingredients}}
-
-          <div class="ingredients-line">
-          <span class="delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this._id}}>{{ this.name }}</span>
-
-         </div>
-        {{else}}
-          <p><em>No ingredients yet!</em></p>
-        {{/each}}
-      </div>
-
-      <form id="pantry-form">
-        <div>Add a new ingredient: <input class="form-control" id="new-ingredient" name="ingredient" required />
-        <input type="submit" value="Add" class="btn btn-warning"/></div>
-      </form>
+    <div class="results">
+      {{#if searched}}
+      {{#each recipes}}
+      {{> recipe size=../size}}
+      {{else}}
+      <p><em>No recipes found. We suggest that you allow additional ingredients in your search.</em></p>
+      {{/each}}
+      {{/if}}
+    </div>
   </div>
+
+  <div class="col-md-5 col-md-offset-1 right">
+    <h1>Your pantry.</h1>
+    <div id="ingredientsList">
+      {{#each ingredients}}
+      <div class="ingredients-line">
+        <span class="delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this._id}}>{{ this.name }}</span>
+      </div>
+      {{else}}
+      <p><em>No ingredients yet!</em></p>
+      {{/each}}
+    </div>
+
+    <form id="pantry-form" class="form-inline">
+      <div><input class="form-control" id="new-ingredient" name="ingredient" type="text" placeholder="Add a new ingredient" autocomplete="off" required /><input type="submit" value="Add" class="btn btn-warning" id="add-ing-btn"/></div>
+           <div><ul id="results-list" style="list-style-type:none"></ul></div>
+      </form>
+    </div>
   </div>

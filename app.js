@@ -37,7 +37,6 @@ db.once('open', function (callback) {
 
 var allIngredients = [];
 var uniqueIngredients = [];
-// var list = ["cheese", "cheese", "milk", "eggs", "egg", "milk", "cheese", "green apple", "red apple"];
 
 var insertRecipes = function (db) {
   for (var i = 1200; i < 30900; i+=100) {
@@ -59,47 +58,16 @@ var insertIngredients = function(db) {
     if (uniqueIngredients.indexOf(ing) == -1) uniqueIngredients.push(ing);
   });
 
-  uniqueIngredients.forEach(function(ing) {
+  uniqueIngredients.forEach(function(ing, index) {
     var i = new Ingredient({name: ing});
     i.save(function (err) {
-      console.log("added ingredient");
+      console.log("added " + index);
+      if (index == uniqueIngredients.length-1) {
+        console.log("finished adding all ingredients");
+      }
     });
   });
 }
-
-// var removeDupIngredients = function(db) {
-//    // console.log("removing");
-//    //  db.collections.ingredients.mapReduce(
-//    //    function() {emit(this.name, this._id)},
-//    //    function(keyName, valuesId) {
-//    //      // var i = new Ingredient({name: keyName});
-//    //      // console.log(keyName);
-//    //      if (valuesId.length > 1) {
-//    //        return mongoose.Types.ObjectId(valuesId[0]);
-//    //      }
-//    //      else {
-//    //        return valuesId[0];
-//    //      }
-//    //    },
-//    //    {out: "ingredients"}
-//    //    )
-// }
-
-        // var i = new Ingredient({name: l});
-      // i.save(function (err) {
-      // });
-  //   console.log(db.collections.ingredients);
-  //   db.collections.ingredients.findOne({name: l}, function(err, ing) {
-  //       console.log(ing);
-  //         if (!ing) {
-  //           var i = new Ingredient({name: l});
-  //           i.save(function (err) {
-  //           });
-  //         }
-  //       });
-//}
-
-
 
 var app = express();
 

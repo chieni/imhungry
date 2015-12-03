@@ -1,5 +1,5 @@
 var assert = require("assert");
-var imHungry = require('../models/imHungry');
+var Recipe = require('../models/Recipe');
 var mongoose = require('mongoose');
 
 before(function(done) {
@@ -26,12 +26,12 @@ before(function(done) {
 		'banana', 'honey']};
 
 	before(function(done) {
-		imHungry.Recipe.create([grilledCheeseRecipe, frenchFriesRecipe,
+		Recipe.create([grilledCheeseRecipe, frenchFriesRecipe,
 			smoothieRecipe], done);
 	});
 
  	after(function(done) {
- 		imHungry.Recipe.remove({}, done);
+ 		Recipe.remove({}, done);
  	});
 
  	describe('#searchRecipes()', function() {
@@ -41,7 +41,7 @@ before(function(done) {
 		}
 
  		it('test that database is working', function(done) {
- 			imHungry.Recipe.find({}, function(err, recipes) {
+ 			Recipe.find({}, function(err, recipes) {
  				assert.equal(recipes.length, 3);
  				assert.deepEqual(recipes.map(mapRecipesToName).sort(),
  					[frenchFriesRecipe.name, grilledCheeseRecipe.name, smoothieRecipe.name]);
@@ -51,7 +51,7 @@ before(function(done) {
 
 
  		it('should return only grilled cheese recipe', function(done) {
- 			imHungry.Recipe.searchRecipes(['bread', 'cheese', 'vegetable oil', 'mango', 'banana'],
+ 			Recipe.searchRecipes(['bread', 'cheese', 'vegetable oil', 'mango', 'banana'],
  				function(err, recipes) {
  					assert(!err);
  					assert.equal(recipes.length, 1);
@@ -61,7 +61,7 @@ before(function(done) {
  		});
 
  		it('should return no recipes', function(done) {
- 			imHungry.Recipe.searchRecipes(['coconut oil', 'mango'],
+ 			Recipe.searchRecipes(['coconut oil', 'mango'],
  				function(err, recipes) {
  					assert(!err);
  					assert.equal(recipes.length, 0);
@@ -70,7 +70,7 @@ before(function(done) {
  		});
 
  		it('should return grilled cheese recipe and french fries recipe', function(done) {
- 			imHungry.Recipe.searchRecipes(['vegetable oil', 'cheese',
+ 			Recipe.searchRecipes(['vegetable oil', 'cheese',
  				'potato', 'bread', 'mango'], function(err, recipes) {
  					assert(!err);
  					assert.equal(recipes.length, 2);

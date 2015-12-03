@@ -23,7 +23,9 @@
       <div class="instructions-label">Instructions: </div>
       <a class="recipe-url" href="{{recipe.sourceURL}}">Full instructions here</a>
     </div>
-    
+    {{#if displayButton}}
+      <button id="save-btn" data-id={{recipe._id}} class="btn btn-lg btn-warning save-btn">Save Recipe to Cookbook</button>
+    {{/if}}
 
 
   </div>

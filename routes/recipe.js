@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var utils = require('../utils/utils');
-var Recipe = require('../models/Recipe')
+var Recipe = require('../models/Recipe');
+var Cookbook = require('../models/Cookbook');
 
 /*
   The following calls getRecipe from the Recipe schema given a recipeId
@@ -21,18 +22,34 @@ router.param('recipe', function(req, res, next, recipeId) {
 /*
   The following gets a recipe from the database
 
-  GET /:recipe
+  POST /:recipe
   Request body:
-    - none
+    - servingSize: number representing desired serving size to be displayed
   Response:
     - success: response is true if successful, false otherwise
     - err if error on request
 
 */
-router.get('/:recipe', function(req, res) {
+router.post('/:recipe', function(req, res) {
   if (req.recipe) {
+    var scaledRecipe = req.recipe.scaleRecipe(req.body.servingSize);
     //res.redirect({ recipe: req.recipe, currentUser: req.currentUser }, '/recipe');
-  	utils.sendSuccessResponse(res, req.recipe)
+    Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes, recipeIds) {
+    if (!err) {
+      var index = recipeIds.indexOf(req.recipe._id.toString());
+      if (index!=-1) {
+        displayButton = false;
+      }
+      else {
+        displayButton = true;
+      }
+      utils.sendSuccessResponse(res, {recipe: scaledRecipe, displayButton: displayButton})
+    } 
+    else {
+      utils.sendErrResponse(res, 403, 'Something went wrong.');
+    }
+  })
+  	
   } else {
   	utils.sendErrResponse(res, 404, 'Resource not found.');
   }

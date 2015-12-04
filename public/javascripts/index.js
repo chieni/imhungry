@@ -58,10 +58,12 @@ var loadCookbookPage = function() {
 /*
 Load recipe search results to search page
 */
+//switch order of pantry and search, do pantry first, load page with icon, then do search and load page
 var loadSearchResults = function(formData) {
-	$.get('/search', function(response) {
-		$.get('/pantry').done(function(resp){
-			loadPage('search', {currentUser: currentUser, ingredients: resp.content.ingredients, recipes: response.content.recipes, searched: true, size: formData.servingsize});
+	$.get('/pantry', function(response) {
+		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, loading: true });
+		$.get('/search').done(function(resp){
+			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, size: formData.servingsize, loading:false});
 		}).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

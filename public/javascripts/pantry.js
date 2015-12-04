@@ -58,11 +58,11 @@
     $(this).parent().find('.edit-amt').show().focus();
   });
 
-$(document).on('keypress', '.edit-amt', function(evt) {
-      if(evt.which == 13){
-        $(this).blur();    
-    }
-});
+  $(document).on('keypress', '.edit-amt', function(evt) {
+        if(evt.which == 13){
+          $(this).blur();    
+      }
+  });
 
   $(document).on('focusout', '.edit-amt', function(evt) {
     $(this).hide();
@@ -71,20 +71,22 @@ $(document).on('keypress', '.edit-amt', function(evt) {
     var formData = helpers.getFormData(this);
     var amount = formData.editedIngAmt;
     var ingId = $(this).parent().find(".ingredient").attr('data-ingredient-id');
-      $.ajax({
+
+    $.ajax({
         url: '/pantry/amount',
         type: 'PUT',
-        data: { 
+        data: {
           ingredientId: ingId,
           ingredientAmt: amount
-        }
-      }).done(function(response) {
-        $(this).parent().find('.ingredient-amt').text(reponse.content.amount);
-      }).fail(function(responseObject) {
-          var response = $.parseJSON(responseObject.responseText);
-          alert(response.err);
-      });
-      
+        },
+        success: function(data) {
+          if (!data.success) {          
+            alert(data.message);
+          }
+        },
+        dataType: "json"
+      });   
+      $(this).parent().find('.ingredient-amt').text(amount);
   });
 
   $(document).on('click', '.anon-delete-button', function(evt) {

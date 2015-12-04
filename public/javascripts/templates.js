@@ -106,9 +106,9 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
 
   return ((stack1 = container.invokePartial(partials.anonHeader,depth0,{"name":"anonHeader","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"5":function(container,depth0,helpers,partials,data) {
-    return "      <a class=\"back-to-search\">&lt; Back to Search Results</a>\n";
-},"7":function(container,depth0,helpers,partials,data) {
     return "      <a class=\"back-to-cookbook\">&lt; Back to Cookbook</a>\n";
+},"7":function(container,depth0,helpers,partials,data) {
+    return "      <a class=\"back-to-search\">&lt; Back to Search Results</a>    \n";
 },"9":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
@@ -128,7 +128,7 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + "<div data-recipeid="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + ">\n\n<div class=\"container\">\n\n<div class=\"search-row recipe-box\">\n\n\n  <div class=\"col-md-4\">\n    <div class=\"back-btn\">\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.fromSearch : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.fromCookbook : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
     + "  </div>\n\n    <div class=\"recipe-view-img\" style=\"background-image: url("
     + alias3(alias2(((stack1 = ((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.imageURLs : stack1)) != null ? stack1["0"] : stack1), depth0))
     + ")\"></div>\n    <div class=\"serving-label\">Serving size: "
@@ -206,7 +206,7 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
     + container.escapeExpression(((helper = (helper = helpers.currentUser || (depth0 != null ? depth0.currentUser : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"currentUser","hash":{},"data":data}) : helper)))
     + "'s pantry.</h1>\n    <div id=\"ingredientsList\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(10, data, 0, blockParams, depths),"inverse":container.program(12, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
-    + "    </div>\n\n    <form id=\"pantry-form\" class=\"form-inline\">\n      <div>\n        <input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" type=\"text\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required />\n        <input class=\"form-control\" id=\"new-ingredient-amt\" name=\"ingredientAmt\" type=\"text\" autocomplete=\"off\" placeholder=\"Amount\"/>\n        <input type=\"submit\" value=\"ADD\" class=\"btn btn-warning\" id=\"add-ing-btn\" disabled/>\n      </div>\n           <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n    </div>\n  </div>\n</div>\n";
+    + "    </div>\n\n    <form id=\"pantry-form\" class=\"form-inline\">\n      <div class = \"form-group\">\n        <input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" type=\"text\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required />\n        <input class=\"form-control\" id=\"new-ingredient-amt\" name=\"ingredientAmt\" type=\"text\" autocomplete=\"off\" placeholder=\"Amount\"/>\n        <input type=\"submit\" value=\"ADD\" class=\"btn btn-warning\" id=\"add-ing-btn\" disabled/>\n      </div>\n           <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n    </div>\n  </div>\n</div>\n";
 },"usePartial":true,"useData":true,"useDepths":true});
 templates['searchAnon'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;

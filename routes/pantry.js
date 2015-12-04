@@ -72,9 +72,12 @@ router.put('/', function(req, res) {
 router.put('/amount', function(req, res) {
   Pantry.Pantry.editIngredientAmount(req.currentUser.username, req.body.ingredientId, req.body.ingredientAmt, function(err, amt) {
     if (!err) {
-      utils.sendSuccessResponse(res, { amount: amt });
+      res.send({success:true});
     } else {
-      utils.sendErrResponse(res, 400, err.msg);
+      res.send({
+        success:false,
+        message: err.msg
+      })
     }
   });
 });

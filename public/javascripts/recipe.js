@@ -10,7 +10,7 @@
       $.post('/recipe/' + recipe_id,
         {servingSize: serving_size}
       ).done(function(response) {
-        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromSearch: true });
+        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromCookbook: false });
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
@@ -27,7 +27,7 @@
       $.post('/recipe/' + recipe_id,
         {servingSize: serving_size}
       ).done(function(response) {
-        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromSearch: false });
+        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromCookbook: true });
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

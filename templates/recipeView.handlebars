@@ -20,7 +20,7 @@
 
   <div class="col-md-6 col-md-offset-1">
     <div class="ingredients">
-      <div class="ingredients-header"><font size="40">Ingredients: </font></div>
+      <div class="ingredients-header">Ingredients: </div>
       
       {{#each recipe.ingredients}}
         <div class="ingredient">{{ this }}</div>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="instructions">
-      <div class="instructions-label"><font size="20">Instructions: </font></div>
+      <div class="instructions-label">Instructions:</div>
       <a class="recipe-url" href="{{recipe.sourceURL}}">Full instructions here</a>
     </div>
     {{#if displayButton}}

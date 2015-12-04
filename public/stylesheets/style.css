@@ -6,7 +6,7 @@
 }
 
 @font-face {
-    font-family: 'Brandon Grotesque';
+    font-family: 'Brandon Grotesque Light';
     src: url('../fonts/Brandon_light.otf');
     font-weight: lighter;
     font-style: normal;
@@ -23,18 +23,20 @@ body {
   background-size: cover;
 }
 
-/*#cookbook-view {
-  background-size: contain;
-  height: 100%;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('yummy-dinner-party.jpg') no-repeat center center fixed;
-}*/
-
 h1 {
+  font-family: 'Brandon Grotesque Light';
   font-size: 2.2em;
 }
 a {
-  color: white;
   padding-left:0.2em;
+}
+
+.white {
+  color: white;
+}
+
+.gray {
+  color: #706B67;
 }
 
 .nav>li>a{
@@ -85,6 +87,7 @@ a {
 }
 
 .serving-line {
+  font-family: 'Brandon Grotesque Light';
   margin-top: 1.5em;
   padding-bottom: 2em;
   font-size: 1.3em;
@@ -154,9 +157,8 @@ input:focus{
 .cookbook-box {
   background:rgba(0,0,0,0.65);
   min-height: 35em;
-  padding-bottom: 4em;
+  padding: 1.5em 0 4em 1.5em;
   margin-bottom: 5em;
-  padding-left: 1.5em;
   border-radius: 2px;
 }
 
@@ -188,11 +190,21 @@ input:focus{
   min-height:34em;
 }
 
+.ingredients {
+  font-family: 'Brandon Grotesque Light';
+}
+
 .ingredient {
+  font-family: 'Brandon Grotesque Light';
   margin:10px;
   font-size: 1.3em;
   margin: 0.2em;
   list-style-type: none;
+}
+
+.ingredients-header {
+  font-size:2em;
+  font-family: 'Brandon Grotesque Light';
 }
 
 #ingredientsList {
@@ -200,11 +212,30 @@ input:focus{
   margin-bottom: 2em;
 }
 
-.recipe-url a {
-  font-size: 1.5em;
-  padding-bottom: 2em;
+.instructions {
+  margin-top: 1.5em;
 }
 
+.instructions-label {
+  font-size:2em;
+  margin-bottom: 0.5em;
+  font-family: 'Brandon Grotesque Light';
+}
+
+.recipe-url {
+  font-family: 'Brandon Grotesque Light';
+  color: white;
+  text-align: center;
+  background-color: orange;
+  font-size: 1.2em;
+  border-radius: 0.3em;
+  padding: 0.2em 2em;
+}
+
+.recipe-url:hover {
+  text-decoration: none;
+  color: gray;
+}
 .recipe-view-img{
   width: 22em;
   height: 20em;
@@ -215,6 +246,7 @@ input:focus{
 }
 
 .recipe-name {
+  font-family: 'Brandon Grotesque Light';
   font-size: 2.5em;
   line-height: 110%;
   padding: 0 0.4em;
@@ -288,12 +320,14 @@ input:focus{
   width: 16em;
 }
 .cookbookRecipe {
+  font-family: 'Brandon Grotesque Light'; 
   display: inline-block;
   width: 16em;
   font-weight: lighter;
 }
 
 .recipe {
+  font-family: 'Brandon Grotesque Light';
   display: inline-block;
   width: 16em;
   font-weight: lighter;

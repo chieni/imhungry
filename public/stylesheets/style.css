@@ -165,8 +165,10 @@ input:focus{
 #recipe-delete-btn {
   font-size: 1em;
   padding: 0.5em;
-  margin-left:1em;
+  display:block;
+  margin: 0 auto;
 }
+
 .right{
   background:rgba(0,0,0,0.65);
   min-height: 35em;
@@ -187,7 +189,7 @@ input:focus{
   background:rgba(0,0,0,0.75);
   padding: 2em 0;
   margin-bottom: 4em;
-  min-height:38em;
+  min-height:40em;
 }
 
 .ingredients {
@@ -306,6 +308,16 @@ input:focus{
   cursor: pointer;
 }
 
+.back-btn {
+  margin: 0 0 1em 1em;
+}
+
+.back-btn a {
+  color:white;
+  font-family: 'Brandon Grotesque Light';
+  font-size: 1.2em;
+}
+
 .cookbookItem {
   display: inline-block;
   width: 16em;
@@ -351,8 +363,9 @@ input:focus{
 }
 
 .load-more {
-  background-color: orange;
-  position: relative;
+
+  display: block;
+  margin: 1em auto;
 }
 
 .spinner {

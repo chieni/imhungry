@@ -11,6 +11,14 @@
 
 
   <div class="col-md-4">
+    <div class="back-btn">
+    {{#if fromSearch}}
+      <a class="back-to-search">&lt; Back to Search Results</a>
+      {{else}}
+      <a class="back-to-cookbook">&lt; Back to Cookbook</a>
+    {{/if}}
+  </div>
+
     <div class="recipe-view-img" style="background-image: url({{recipe.imageURLs.[0]}})"></div>
     <div class="serving-label">Serving size: {{recipe.servingSize}}</div>
     <div class="recipe-name">{{recipe.name}}</div>

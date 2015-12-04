@@ -85,9 +85,8 @@ a {
 }
 
 .serving-line {
-  margin-top: 1.5em;
-  padding-bottom: 2em;
-  font-size: 1.3em;
+  font-size: 1.2em;
+  padding: 1em 1.05em;
 }
 
 .btn {
@@ -224,10 +223,6 @@ input:focus{
   background: none;
   border: gray 1px solid;
   color: white;
-}
-.serving-label{
-  font-size: 1.2em;
-  padding: 1em 1.05em;
 }
 
 .signin-box {

@@ -126,7 +126,7 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 	this.aggregate([
 		{$match:{ingredients:{$in: ingredients}}},
 		{$unwind: "$ingredients"},
-		{$match:{ingredients:{$in: ingredients}}},
+		{$match:{ingredients:{$in: ingredients}}}, //nin doesn't quite work
 		{ $group: { _id: "$_id", total: {$sum:1}}}],
 		function(err, results) {
 			if (err) {

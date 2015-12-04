@@ -6,17 +6,15 @@
   */
   $(document).on('submit', '#search-form', function(evt) {
       evt.preventDefault();
-      var formData = helpers.getFormData(this);
-      loadSearchResults(formData);
+      loadSearchResults();
   });
 
   $(document).on('submit','#load-more-form', function(evt) {
   	evt.preventDefault();
   	var more = $(this).data('more');
   	more += 1;
-  	var servingSize = $(this).data('serving-size');
   	var formData = helpers.getFormData(this);
-  	loadMoreSearchResults(formData, more, servingSize);
+  	loadMoreSearchResults(formData, more);
   })
 
     $(document).on('submit', '#anon-search-form', function(evt) {

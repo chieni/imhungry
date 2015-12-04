@@ -9,19 +9,19 @@
 
 	  	CONTROLLER.clearSearchResults();
 
-	  	if (foundWords.length == 0) {
-	  		$("#add-ing-btn").attr('disabled','disabled');
-	  		console.log("none found");
-	  	}
-	  	else {
-	  		$("#add-ing-btn").removeAttr('disabled');
+	  	// if (foundWords.length == 0) {
+	  	// 	$("#add-ing-btn").attr('disabled','disabled');
+	  	// 	console.log("none found");
+	  	// }
+	  	// else {
+	  	//	$("#add-ing-btn").removeAttr('disabled');
 		  	// Display the found words
 		  	$.each(foundWords, function(i, w) {
 		  		if (w != undefined) {
 			  	  CONTROLLER.appendToSearchResults(w);
 			  	}
 		  	})	  		
-	  	}
+	  //	}
 
 	  	
       });

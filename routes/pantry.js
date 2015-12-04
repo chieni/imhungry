@@ -60,9 +60,19 @@ router.get('/', function(req, res) {
 */
 
 router.put('/', function(req, res) {
-  Pantry.Pantry.addIngredient(req.currentUser.username, req.body.ingredientName, function(err, pantry) {
+  Pantry.Pantry.addIngredient(req.currentUser.username, req.body.ingredientName, req.body.ingredientAmt, function(err) {
     if (!err) {
       utils.sendSuccessResponse(res);
+    } else {
+      utils.sendErrResponse(res, 400, err.msg);
+    }
+  });
+});
+
+router.put('/amount', function(req, res) {
+  Pantry.Pantry.editIngredientAmount(req.currentUser.username, req.body.ingredientId, req.body.ingredientAmt, function(err, amt) {
+    if (!err) {
+      utils.sendSuccessResponse(res, { amount: amt });
     } else {
       utils.sendErrResponse(res, 400, err.msg);
     }
@@ -82,7 +92,7 @@ router.put('/', function(req, res) {
 */
 
 router.delete('/', function(req, res) {
-  Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredientId, function(err, pantry) {
+  Pantry.Pantry.deleteIngredient(req.currentUser.username, req.body.ingredientId, function(err) {
     if (err) {
       res.send({
         success:false,

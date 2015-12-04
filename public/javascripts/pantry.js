@@ -7,10 +7,14 @@
       evt.preventDefault();
       var formData = helpers.getFormData(this);
       var ingredient = formData.ingredient;
+      var amount = formData.ingredientAmt;
       $.ajax({
         url: '/pantry/',
         type: 'PUT',
-        data: { ingredientName: ingredient}
+        data: { 
+          ingredientName: ingredient,
+          ingredientAmt: amount
+        }
       }).done(function(response) {
         loadHomePage();
       }).fail(function(responseObject) {
@@ -46,6 +50,42 @@
 
   });
 
+  $(document).on('click', '.ingredient-amt', function(evt) {
+    $(this).hide();
+    $(this).parent().find('.parenthesis').hide();
+    var amount = $(this).text();
+    $(this).parent().find('.edit-amt').val(amount);
+    $(this).parent().find('.edit-amt').show().focus();
+  });
+
+$(document).on('keypress', '.edit-amt', function(evt) {
+      if(evt.which == 13){
+        $(this).blur();    
+    }
+});
+
+  $(document).on('focusout', '.edit-amt', function(evt) {
+    $(this).hide();
+    $(this).parent().find('.parenthesis').show();
+    $(this).parent().find('.ingredient-amt').show();
+    var formData = helpers.getFormData(this);
+    var amount = formData.editedIngAmt;
+    var ingId = $(this).parent().find(".ingredient").attr('data-ingredient-id');
+      $.ajax({
+        url: '/pantry/amount',
+        type: 'PUT',
+        data: { 
+          ingredientId: ingId,
+          ingredientAmt: amount
+        }
+      }).done(function(response) {
+        $(this).parent().find('.ingredient-amt').text(reponse.content.amount);
+      }).fail(function(responseObject) {
+          var response = $.parseJSON(responseObject.responseText);
+          alert(response.err);
+      });
+      
+  });
 
   $(document).on('click', '.anon-delete-button', function(evt) {
     var element = $(this).parent();

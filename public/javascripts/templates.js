@@ -178,13 +178,15 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 },"8":function(container,depth0,helpers,partials,data) {
     return "      <p><em>No recipes found.</em></p>\n";
 },"10":function(container,depth0,helpers,partials,data) {
-    var alias1=container.lambda, alias2=container.escapeExpression;
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "      <div class=\"ingredients-line\">\n        <span class=\"delete-button\" style=\"color:orange;\">x</span><span class=\"ingredient\" data-ingredient-id="
-    + alias2(alias1((depth0 != null ? depth0._id : depth0), depth0))
+  return "      <div class=\"ingredients-line\">\n        <span class=\"delete-button\" style=\"color:orange;\">x</span>\n        <span class=\"ingredient\" data-ingredient-id="
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.ingredient : depth0)) != null ? stack1._id : stack1), depth0))
     + ">"
-    + alias2(alias1((depth0 != null ? depth0.name : depth0), depth0))
-    + "</span>\n      </div>\n";
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.ingredient : depth0)) != null ? stack1.name : stack1), depth0))
+    + "</span>\n        <input type=\"text\" class=\"edit-amt form-control\" name=\"editedIngAmt\" type=\"text\" autocomplete=\"off\"></input>\n        <span class=\"parenthesis\">( </span><a class=\"ingredient-amt\">"
+    + alias2(alias1((depth0 != null ? depth0.amount : depth0), depth0))
+    + "</a><span class=\"parenthesis\"> )</span>\n      </div>\n";
 },"12":function(container,depth0,helpers,partials,data) {
     return "      <p><em>No ingredients yet!</em></p>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams,depths) {
@@ -202,7 +204,7 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
     + container.escapeExpression(((helper = (helper = helpers.currentUser || (depth0 != null ? depth0.currentUser : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"currentUser","hash":{},"data":data}) : helper)))
     + "'s pantry.</h1>\n    <div id=\"ingredientsList\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(10, data, 0, blockParams, depths),"inverse":container.program(12, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
-    + "    </div>\n\n    <form id=\"pantry-form\" class=\"form-inline\">\n      <div><input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" type=\"text\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required /><input type=\"submit\" value=\"ADD\" class=\"btn btn-warning\" id=\"add-ing-btn\"/></div>\n           <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n    </div>\n  </div>\n</div>\n";
+    + "    </div>\n\n    <form id=\"pantry-form\" class=\"form-inline\">\n      <div>\n        <input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" type=\"text\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required />\n        <input class=\"form-control\" id=\"new-ingredient-amt\" name=\"ingredientAmt\" type=\"text\" autocomplete=\"off\" placeholder=\"Amount\"/>\n        <input type=\"submit\" value=\"ADD\" class=\"btn btn-warning\" id=\"add-ing-btn\" disabled/>\n      </div>\n           <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n    </div>\n  </div>\n</div>\n";
 },"usePartial":true,"useData":true,"useDepths":true});
 templates['searchAnon'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;

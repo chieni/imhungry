@@ -91,7 +91,7 @@ Load recipes for cookbook
 */
 var loadCookbookRecipes = function(){
 	$.get('/cookbook/recipes', function(response) {
-		loadPage('cookbook', {recipes: response.content.recipes});
+		loadPage('cookbook', {recipes: response.content.recipes, currentUser: response.content.currentUser});
 	}).fail(function(responseObject) {
 		var response = $.parseJSON(responseObject.responseText);
 	});

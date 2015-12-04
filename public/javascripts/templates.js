@@ -10,12 +10,14 @@ templates['cookbook'] = template({"1":function(container,depth0,helpers,partials
 },"3":function(container,depth0,helpers,partials,data) {
     return "                <p><em>Your cookbook is currently empty. Save recipes to stash them here!</em></p>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
   return "<div id=\"cookbook-view\">\n"
     + ((stack1 = container.invokePartial(partials.header,depth0,{"name":"header","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "<div class=\"cookbook\">\n	<div class=\"container\">\n	<div class=\"search-row\">\n	<div class=\"col-md-12 cookbook-box\">\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.recipes : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "<div class=\"cookbook\">\n	<div class=\"container\">\n	<div class=\"search-row\">\n	<div class=\"col-md-12 cookbook-box\">\n    <h1>"
+    + container.escapeExpression(((helper = (helper = helpers.currentUser || (depth0 != null ? depth0.currentUser : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"currentUser","hash":{},"data":data}) : helper)))
+    + "'s cookbook.</h1>\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.recipes : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
     + "          </div>\n    </div>\n    </div>\n    </div>\n</div>";
 },"usePartial":true,"useData":true});
 templates['cookbookRecipeView'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {

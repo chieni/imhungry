@@ -2,13 +2,12 @@
 
 <div class="container" data-ingredientsList-id="{{ingredients}}" data-recipesList-id="{{recipes}}">
 <div class="row">
-    <div class="col-md-5 left">
+    <div class="col-md-8 left">
         <h1>Find recipes.</h1>
 
         <form id="anon-search-form" class="form-inline">
-           <div><input type="number" name="servingsize" class="form-control" placeholder="Serving size"/>
-          <input type="submit" value="Scavenge" class="btn btn-warning"/></div>
-
+         <div class="serving-line">Serving size: <input class="form-control" id="serv-size-input" type="number" name="servingsize"/>
+         <input type="submit" value="SCAVENGE" class="btn btn-warning"/></div>
         </form>
 
           <div class="error">
@@ -28,7 +27,7 @@
           </div>
     </div>
 
-    <div class="col-md-5 col-md-offset-1 right">
+    <div class="col-md-3 col-md-offset-1 right">
       <h1>Your pantry.</h1>
 
       <div id="ingredientsList">

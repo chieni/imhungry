@@ -53,6 +53,25 @@ router.get('/', function(req, res) {
 	});
 });
 
+
+router.post('/more', function(req, res) {
+  Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
+    var ingredientNames = ingredients.map(function(ingredient) {
+      return ingredient.name;
+    });
+
+    Recipe.loadMoreSearchResults(ingredientNames, req.body.more, function(error, recipes) {
+      if (error) {
+        utils.sendErrResponse(res, 500, 'An unknown error occurred.');
+      } else {
+        utils.sendSuccessResponse(res, {recipes: recipes, searched: true, servingSize: req.body.servingSize});
+      }
+      });
+  });
+});
+
+
+
 router.post('/', function(req, res) {
 
   var ing_list = req.body.ingredients.split(',');

@@ -316,6 +316,11 @@ input:focus{
     background:rgba(0,0,0,0.5);
 }
 
+.load-more {
+  background-color: orange;
+  position: relative;
+}
+
 .spinner {
   height: 60px;
   width: 60px;

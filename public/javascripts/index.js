@@ -62,8 +62,21 @@ var loadSearchResults = function(formData) {
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, loading: true });
 		$.get('/search').done(function(resp){
-			console.log(resp.content.recipes[0]);
-			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, size: formData.servingsize, loading:false});
+			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, size: formData.servingsize, loading:false, more: 1});
+		}).fail(function(responseObject) {
+          var response = $.parseJSON(responseObject.responseText);
+          $('.error').text(response.err);
+      });
+	});
+};
+
+var loadMoreSearchResults = function(formData, more, servingSize) {
+	$.get('/pantry', function(response) {
+		//loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, loading: true });
+		$.post('/search/more',
+			{servingSize: servingSize, more: more}
+			).done(function(resp){
+			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, size: servingSize, loading:false, more: more+1});
 		}).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

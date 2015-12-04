@@ -10,6 +10,15 @@
       loadSearchResults(formData);
   });
 
+  $(document).on('submit','#load-more-form', function(evt) {
+  	evt.preventDefault();
+  	var more = $(this).data('more');
+  	more += 1;
+  	var servingSize = $(this).data('serving-size');
+  	var formData = helpers.getFormData(this);
+  	loadMoreSearchResults(formData, more, servingSize);
+  })
+
     $(document).on('submit', '#anon-search-form', function(evt) {
       evt.preventDefault();
       var formData = helpers.getFormData(this);

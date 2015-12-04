@@ -187,7 +187,7 @@ input:focus{
   background:rgba(0,0,0,0.75);
   padding: 2em 0;
   margin-bottom: 4em;
-  min-height:34em;
+  min-height:38em;
 }
 
 .ingredients {
@@ -222,20 +222,11 @@ input:focus{
   font-family: 'Brandon Grotesque Light';
 }
 
-.recipe-url {
-  font-family: 'Brandon Grotesque Light';
-  color: white;
-  text-align: center;
-  background-color: orange;
-  font-size: 1.2em;
-  border-radius: 0.3em;
-  padding: 0.2em 2em;
+.save-recipe-btn {
+  margin-top: 1em;
+  padding: 0 1em;
 }
 
-.recipe-url:hover {
-  text-decoration: none;
-  color: gray;
-}
 .recipe-view-img{
   width: 22em;
   height: 20em;
@@ -348,6 +339,15 @@ input:focus{
 }
 .recipe-overlay:hover {
     background:rgba(0,0,0,0.5);
+}
+
+.recipe-overlay p {
+  text-align: center;
+}
+
+.recipe-overlay img {
+  display: block;
+  margin: 0 auto;
 }
 
 .load-more {

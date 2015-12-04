@@ -87,7 +87,6 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 			var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
 			callback(err, modRecipe);
 		});
-
 	}
 
 	this.aggregate([
@@ -99,49 +98,50 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 			if (err) {
 				callback(err, null);
 			} else {
-
-				var extraIngreds = [];
-				var recipes = [];
-
-				/*results.forEach(function(result) {
-					self.findById(result._id, function(err,recipe) {
-						if (err) {
-							callback(err, null);
-						} else {
-							var numExtraIngred = recipe.ingredients.length - result.total;
-							extraIngreds.push(numExtraIngred);
-							recipes.push(recipe);
-
-							if (recipes.length == results.length) {
-								var sortedRecipes = results.map(function(result) {
-									var newRecipe = recipes[0];
-									recipes.shift();
-									var numAddIng = extraIngreds[0];
-									extraIngreds.shift();
-									return {recipe: newRecipe, numUnmatched: numAddIng};
-								}).sort(sortingFunc).map(function(recipe) {
-									return recipe.recipe;
-								});
-
-								callback(null, sortedRecipes.slice(0,100)); 
-							}
-						}
-						});
-				});*/
-
-
 				async.map(results, mapFunc, function(err, results) {
-					var sortedRecipes = results.sort(sortingFunc).map(function(recipe) {
-						return recipe.recipe;
+					var sortedRecipes = results.sort(sortingFunc)
+					.map(function(recipe) {
+						var objRecipe = recipe.recipe.toObject();
+						objRecipe.numUnmatched = recipe.numUnmatched;
+						return objRecipe;
 					});
 
-					callback(null, sortedRecipes.slice(0,100));
+					callback(null, sortedRecipes.slice(0,99));
 				});
+			}
+		});
+}
 
+recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callback) {
+	var self = this;
 
+	var mapFunc = function(doc, callback) {
+		self.findById(doc._id, function(err,recipe) {
+			var numExtraIngred = recipe.ingredients.length - doc.total;
+			var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
+			callback(err, modRecipe);
+		});
+	}
 
+	this.aggregate([
+		{$match:{ingredients:{$in: ingredients}}},
+		{$unwind: "$ingredients"},
+		{$match:{ingredients:{$in: ingredients}}},
+		{ $group: { _id: "$_id", total: {$sum:1}}}],
+		function(err, results) {
+			if (err) {
+				callback(err, null);
+			} else {
+				async.map(results, mapFunc, function(err, results) {
+					var sortedRecipes = results.sort(sortingFunc)
+					.map(function(recipe) {
+						var objRecipe = recipe.recipe.toObject();
+						objRecipe.numUnmatched = recipe.numUnmatched;
+						return objRecipe;
+					});
 
-
+					callback(null, sortedRecipes.slice(0,more*99));
+				});
 			}
 		});
 }

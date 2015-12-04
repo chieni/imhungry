@@ -5,6 +5,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('../fonts/Brandon_light.otf');
+    font-weight: lighter;
+    font-style: normal;
+}
+
 @baseFontFamily: 'Brandon Grotesque';
 body {
   font-family: 'Brandon Grotesque';
@@ -14,9 +21,17 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 
+/*#cookbook-view {
+  background-size: contain;
+  height: 100%;
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('yummy-dinner-party.jpg') no-repeat center center fixed;
+}*/
+
+h1 {
+  font-size: 2.2em;
+}
 a {
   color: white;
   padding-left:0.2em;
@@ -60,7 +75,23 @@ a {
 }
 
 #serv-size-input {
-  color: black;
+  color: white;
+  width: 4em;
+  margin-left:1em;
+  border: gray 1px solid;
+  background: none;
+  border-radius: 3px;
+  padding-right: 0.5em;
+}
+
+.serving-line {
+  margin-top: 1.5em;
+  padding-bottom: 2em;
+  font-size: 1.3em;
+}
+
+.btn {
+  border-radius: 3px;
 }
 
 #hook-number-input {
@@ -112,34 +143,61 @@ input:focus{
   margin: 0 2em;
 }
 .left{
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,0.65);
   min-height: 35em;
   padding-bottom: 4em;
   margin-bottom: 5em;
+  padding-left: 1.5em;
+  border-radius: 2px;
+}
 
+.cookbook-box {
+  background:rgba(0,0,0,0.65);
+  min-height: 35em;
+  padding-bottom: 4em;
+  margin-bottom: 5em;
+  padding-left: 1.5em;
+  border-radius: 2px;
+}
+
+#recipe-delete-btn {
+  font-size: 1em;
+  padding: 0.5em;
+  margin-left:1em;
 }
 .right{
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,0.65);
   min-height: 35em;
   padding-bottom: 4em;
   margin-bottom: 5em;
+  padding-left: 1.5em;
+  border-radius: 2px;
 
 }
 
-.recipe-box-left {
+.search-row {
+  margin-top: 1em;
+  margin-right: 2.5em;
+  margin-left: 0.5em;
+}
+
+.recipe-box {
   background:rgba(0,0,0,0.75);
   padding: 2em 0;
   margin-bottom: 4em;
+  min-height:34em;
 }
 
-.recipe-box-right {
-  background:rgba(0,0,0,0.75);
-  padding: 2em;
-  margin-bottom: 4em;
-}
 .ingredient {
   margin:10px;
+  font-size: 1.3em;
+  margin: 0.2em;
   list-style-type: none;
+}
+
+#ingredientsList {
+  margin-top:2em;
+  margin-bottom: 2em;
 }
 
 .recipe-url a {
@@ -157,15 +215,19 @@ input:focus{
 }
 
 .recipe-name {
-  font-size: 6em;
-  font-weight: 400;
+  font-size: 2.5em;
   line-height: 110%;
-  padding: 0 0.65em;
+  padding: 0 0.4em;
 }
 
+#new-ingredient {
+  background: none;
+  border: gray 1px solid;
+  color: white;
+}
 .serving-label{
-  font-size: 2em;
-  padding: 1em 1.8em;
+  font-size: 1.2em;
+  padding: 1em 1.05em;
 }
 
 .signin-box {
@@ -221,22 +283,92 @@ input:focus{
   cursor: pointer;
 }
 
+.cookbookItem {
+  display: inline-block;
+  width: 16em;
+}
+.cookbookRecipe {
+  display: inline-block;
+  width: 16em;
+  font-weight: lighter;
+}
+
+.recipe {
+  display: inline-block;
+  width: 16em;
+  font-weight: lighter;
+}
+
+.recipe:hover {
+  background:rgba(0,0,0,0.5);
+}
+
+
 .recipe-image:hover {
   cursor: pointer;
 }
 
 .recipe-overlay {
-    margin: 10px;
-    padding: 10px;
+    padding: 1em;
     position:relative;
 }
 .recipe-overlay:hover {
     background:rgba(0,0,0,0.5);
 }
-.recipe-overlay > div {
-    position:absolute;
-    font:50px sans-serif;
-    width:100%;
-    top:33%;
-    text-align:center;
+
+.load-more {
+  background-color: orange;
+  position: relative;
+}
+
+.spinner {
+  height: 60px;
+  width: 60px;
+  margin: 94px auto 0 auto;
+  position: relative;
+  -webkit-animation: rotation .6s infinite linear;
+  -moz-animation: rotation .6s infinite linear;
+  -o-animation: rotation .6s infinite linear;
+  animation: rotation .6s infinite linear;
+  border-left: 6px solid rgba(0, 174, 239, .15);
+  border-right: 6px solid rgba(0, 174, 239, .15);
+  border-bottom: 6px solid rgba(0, 174, 239, .15);
+  border-top: 6px solid rgba(0, 174, 239, .8);
+  border-radius: 100%;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(359deg);
+  }
+}
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg);
+  }
+  to {
+    -o-transform: rotate(359deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

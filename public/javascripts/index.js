@@ -62,6 +62,7 @@ var loadSearchResults = function(formData) {
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, loading: true });
 		$.get('/search').done(function(resp){
+			console.log(resp.content.recipes[0]);
 			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, size: formData.servingsize, loading:false});
 		}).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);

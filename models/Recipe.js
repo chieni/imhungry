@@ -131,8 +131,11 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 
 
 				async.map(results, mapFunc, function(err, results) {
-					var sortedRecipes = results.sort(sortingFunc).map(function(recipe) {
-						return recipe.recipe;
+					var sortedRecipes = results.sort(sortingFunc)
+					.map(function(recipe) {
+						var objRecipe = recipe.recipe.toObject();
+						objRecipe.numUnmatched = recipe.numUnmatched;
+						return objRecipe;
 					});
 
 					callback(null, sortedRecipes.slice(0,100));

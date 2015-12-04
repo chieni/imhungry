@@ -11,6 +11,7 @@
 
   $(document).on('submit','#load-more-form', function(evt) {
   	evt.preventDefault();
+  	$(this).append("<div class='little-spinner'></div>");
   	var more = $(this).data('more');
   	more += 1;
   	var formData = helpers.getFormData(this);

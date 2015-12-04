@@ -37,7 +37,7 @@ router.all('*', requireAuthentication);
 router.get('/recipes', function(req, res) {
   Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
     if (!err) {
-      utils.sendSuccessResponse(res, { recipes: recipes });
+      utils.sendSuccessResponse(res, { recipes: recipes, currentUser: req.currentUser.username });
     } else {
       utils.sendErrResponse(res, 403, 'Something went wrong.');
     }

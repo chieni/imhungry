@@ -110,5 +110,4 @@
 
     loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
   });
-
 })();

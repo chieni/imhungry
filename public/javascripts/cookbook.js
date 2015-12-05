@@ -45,6 +45,7 @@
         success: function(data) {
           if (data.success) {
             list.removeChild(element);
+            loadCookbookPage();
           }
           else {
             alert(data.message);

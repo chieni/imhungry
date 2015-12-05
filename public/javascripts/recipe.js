@@ -7,10 +7,11 @@
       var item = $(this);
       var recipe_id = item.data('recipeid');
       var serving_size = item.data('recipesize');
+      console.log(serving_size);
       $.post('/recipe/' + recipe_id,
         {servingSize: serving_size}
       ).done(function(response) {
-        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
+        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromCookbook: false });
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
@@ -27,7 +28,7 @@
       $.post('/recipe/' + recipe_id,
         {servingSize: serving_size}
       ).done(function(response) {
-        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
+        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromCookbook: true });
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
@@ -50,6 +51,16 @@
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
     });
+  });
+  $(document).on('click', '.back-to-search', function(evt) {
+      evt.preventDefault();
+      var formData = helpers.getFormData(this);
+      loadSearchResults(formData);
+  });
+
+  $(document).on('click', '.back-to-cookbook', function(evt) {
+      evt.preventDefault();
+      loadCookbookPage();
   });
 
 })();

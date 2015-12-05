@@ -3,7 +3,6 @@ Handlebars.registerPartial('header', Handlebars.templates['header']);
 Handlebars.registerPartial('cookbook', Handlebars.templates['cookbook']);
 Handlebars.registerPartial('cookbookRecipe', Handlebars.templates['cookbookRecipeView']);
 Handlebars.registerPartial('anonHeader', Handlebars.templates['anonHeader']);
-
 // See handlebarsjs.com for details. Here, we register
 // a re-usable fragment of HTML called a "partial" which
 // may be inserted somewhere in the DOM using a function
@@ -34,6 +33,8 @@ var loadHomePage = function() {
 	if (currentUser) {
 		loadSearchPage();
 	} else {
+		$('body').css({'background': 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../imgs/yummy-dinner-party.jpg") no-repeat center center fixed'});
+		$('body').css('background-size', 'cover');
 		loadPage('hook')
 	}
 };
@@ -42,6 +43,8 @@ var loadHomePage = function() {
 Load search page with pantry
 */
 var loadSearchPage = function() {
+	$('body').css({'background': 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),url("../imgs/food.jpg") no-repeat center center fixed'});
+	$('body').css('background-size', 'cover');
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients });
 	});
@@ -72,7 +75,6 @@ var loadSearchResults = function() {
 
 var loadMoreSearchResults = function(formData, more, servingSize) {
 	$.get('/pantry', function(response) {
-		//loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, loading: true });
 		$.post('/search/more',
 			{more: more}
 			).done(function(resp){
@@ -89,7 +91,7 @@ Load recipes for cookbook
 */
 var loadCookbookRecipes = function(){
 	$.get('/cookbook/recipes', function(response) {
-		loadPage('cookbook', {recipes: response.content.recipes});
+		loadPage('cookbook', {recipes: response.content.recipes, currentUser: response.content.currentUser});
 	}).fail(function(responseObject) {
 		var response = $.parseJSON(responseObject.responseText);
 	});

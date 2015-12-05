@@ -31,8 +31,8 @@
       <p><em>No recipes found. Please add more ingredients to your pantry!</em></p>
       {{/each}}
       {{#if recipes}}
-      <form id="load-more-form" class="form-inline" data-more={{more}}>
-        <div><input type="submit" value="LOAD MORE" class="load-more"class="btn btn-warning"/></div>
+      <form id="load-more-form" class="form-inline" data-more={{more}} data-serving-size={{size}}>
+        <div><input type="submit" value="LOAD MORE" class="load-more btn btn-warning"/></div>
       {{/if}}
       {{/if}}
     </div>
@@ -43,7 +43,10 @@
     <div id="ingredientsList">
       {{#each ingredients}}
       <div class="ingredients-line">
-        <span class="delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id={{this._id}}>{{ this.name }}</span>
+        <span class="delete-button" style="color:orange;">x</span>
+        <span class="ingredient" data-ingredient-id={{this.ingredient._id}}>{{ this.ingredient.name }}</span>
+        <input type="text" class="edit-amt form-control" name="editedIngAmt" type="text" autocomplete="off"></input>
+        <span class="parenthesis">( </span><a class="ingredient-amt">{{this.amount}}</a><span class="parenthesis"> )</span>
       </div>
       {{else}}
       <p><em>No ingredients yet!</em></p>
@@ -51,7 +54,11 @@
     </div>
 
     <form id="pantry-form" class="form-inline">
-      <div><input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required /><input type="submit" value="ADD" class="btn btn-warning" id="add-ing-btn"/></div>
+      <div class = "form-group">
+        <input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required />
+        <input class="form-control" id="new-ingredient-amt" name="ingredientAmt" type="text" autocomplete="off" placeholder="Amount"/>
+        <input type="submit" value="ADD" class="btn btn-warning" id="add-ing-btn" disabled/>
+      </div>
            <div><ul id="results-list" style="list-style-type:none"></ul></div>
       </form>
     </div>

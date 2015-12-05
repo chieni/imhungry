@@ -39,8 +39,9 @@ router.get('*', requireAuthentication);
 */
 router.get('/', function(req, res) {
 	Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
+    console.log(ingredients);
     var ingredientNames = ingredients.map(function(ingredient) {
-      return ingredient.name;
+      return ingredient.ingredient.name;
     });
 
 		Recipe.flexibleSearch(ingredientNames, function(error, recipes) {

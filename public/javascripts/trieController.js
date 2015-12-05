@@ -41,6 +41,7 @@ var CONTROLLER = (function(document) {
    */
   function createListElement(value, onClick) {
     var li = document.createElement('li');
+    li.className = 'ing-result';
     li.innerHTML = value;
     li.addEventListener('click', onClick, false);
     return li;
@@ -53,6 +54,7 @@ var CONTROLLER = (function(document) {
    */
   function onResultClick(event) {
     $('#new-ingredient').val(event.target.innerHTML);
+    $("#add-ing-btn").removeAttr('disabled');
     clearSearchResults();
   }
 

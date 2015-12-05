@@ -18,7 +18,8 @@ Schema for pantry
       ingredient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Ingredient'
-      }
+      },
+      amount: String
     }]
   });
 
@@ -31,18 +32,17 @@ Get all the ingredients in the pantry of the given user
       if (pantry) {
         if (pantry.ingredients.length > 0) {
           var pantryIngObjs = [];
-          console.log(pantry.ingredients);
           var clone = pantry.ingredients.slice(0);
           (function addToArray() {
-            var ingId = clone.splice(0,1)[0];
-            console.log(ingId);
+            var poppedIng = clone.splice(0,1)[0];
+            var ingId = poppedIng.ingredient;
+            var ingAmt = poppedIng.amount;
             Ingredient.findById(ingId, function(err, ing) {
-              pantryIngObjs.push(ing);
+              pantryIngObjs.push({ingredient:ing, amount:ingAmt});
               if (err) {
                 callback({msg:"Ingredient doesn't exist"});
               }
               if (clone.length == 0) {
-                console.log(pantryIngObjs);
                 callback(null, pantryIngObjs);
               }
               else {
@@ -61,71 +61,27 @@ Get all the ingredients in the pantry of the given user
     });
   }
 
-          // // for (var i = 0; i < pantry.ingredients.length; i++) {
-          // //   Ingredient.findById(pantry.ingredients[i], function(err, ing) {
-          // //     if (ing) {
-          // //       pantryIngObjs.push(ing);
-          // //       console.log(pantry.ingredients.length);
-          // //       console.log("ind:"+i);
-          // //       if (i == pantry.ingredients.length-1) {
-          // //         console.log(pantryIngObjs);
-          // //         callback(null, pantryIngObjs);
-          // //       }
-          // //     }
-          // //     else {
-          // //       callback({msg:"Ingredient doesn't exist"});
-          // //     }
-          // //   })            
-          // // }
-
-          // pantry.ingredients.forEach(function(ingId, index) {
-          //     Ingredient.findById(ingId, function(err, ing) {
-          //     if (ing) {
-          //       pantryIngObjs.push(ing);
-          //       console.log(pantry.ingredients.length);
-          //       console.log("ind:"+i);
-          //       if (i == pantry.ingredients.length-1) {
-          //         console.log(pantryIngObjs);
-          //         callback(null, pantryIngObjs);
-          //       }
-          //     }
-          //     else {
-          //       callback({msg:"Ingredient doesn't exist"});
-          //     }
-  //         //   })    
-
-  //         })
-  //       }
-  //       else {
-  //         callback(null, []);
-  //       }
-  //     }
-  //     else {
-  //       callback({msg: "Pantry does not exist"});
-  //     }
-  //   });
-  // }
-
 /*
 Add ingredient to given user's pantry
 User cannot add the same ingredient again
   username: String username of specified user
   ingredient: String ingredient name of ingredient to add
   */
-  pantrySchema.statics.addIngredient = function(username, ingredientName, callback) {
+  pantrySchema.statics.addIngredient = function(username, ingredientName, ingredientAmt, callback) {
     var self = this;
     Ingredient.findOne({name:ingredientName}, function(err, ing) {
+      console.log(ing);
       if (ing) {
         self.findOne({username: username}, function(err, pantry) {
           if (pantry) {
             var index = -1;
             pantry.ingredients.forEach(function(pantryIng) {
-              if (ing.id==pantryIng.id) {
+              if (ing.id==pantryIng.ingredient) {
                 index = pantry.ingredients.indexOf(pantryIng);
               }
             });
             if (index == -1) {
-              pantry.ingredients.push(ing);
+              pantry.ingredients.push({ingredient: ing, amount: ingredientAmt});
               pantry.save(function(err) {
                 if (err) {
                   callback({msg:"error adding ingredient"});
@@ -160,7 +116,7 @@ Delete ingredient from given user's pantry
     this.findOne({username: username}, function(err, pantry) {
       if (pantry) {
         pantry.ingredients.forEach(function(pantryIng) {
-          if (pantryIng.id == ingredientId) {
+          if (pantryIng.ingredient == ingredientId) {
             index = pantry.ingredients.indexOf(pantryIng);
           }
         });
@@ -185,6 +141,37 @@ Delete ingredient from given user's pantry
     });
   };
   
+
+  pantrySchema.statics.editIngredientAmount = function(username, ingredientId, ingredientAmt, callback) {
+    console.log("edit");
+    var index = -1;
+    this.findOne({username: username}, function(err, pantry) {
+      if (pantry) {
+        pantry.ingredients.forEach(function(pantryIng) {
+          if (pantryIng.ingredient == ingredientId) {
+            index = pantry.ingredients.indexOf(pantryIng);
+          }
+        });
+        if (index > -1) {
+          pantry.ingredients[index].amount = ingredientAmt;
+        }
+        else {
+          callback({ msg : 'Ingredient does not exist in pantry.'});
+        }
+        pantry.save(function(err) {
+          if (err) {
+            callback({msg:"Error saving pantry"});
+          }
+          else {
+            callback(null, ingredientAmt);
+          }
+        });
+      }
+      else {
+        callback({msg: "Pantry does not exist"});
+      }
+    });
+  }
 /*
 Create a new pantry for specified user
 Pantry is initially empty

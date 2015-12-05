@@ -51,15 +51,6 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	});
 }
 
-/*var mapFunc = function(doc, callback) {
-	recipeSchema.findById(doc._id, function(err,recipe) {
-		var numExtraIngred = recipe.ingredients.length - doc.total;
-		var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
-		callback(err, modRecipe);
-	});
-
-}*/
-
 var sortingFunc = function(a,b) {
 	if (a.numUnmatched == b.numUnmatched) {
 		if (!a.recipe.rating) {
@@ -126,7 +117,7 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 	this.aggregate([
 		{$match:{ingredients:{$in: ingredients}}},
 		{$unwind: "$ingredients"},
-		{$match:{ingredients:{$in: ingredients}}},
+		{$match:{ingredients:{$in: ingredients}}}, //nin doesn't quite work
 		{ $group: { _id: "$_id", total: {$sum:1}}}],
 		function(err, results) {
 			if (err) {
@@ -179,6 +170,9 @@ var evaluateStringNumber = function(number) {
 	}
 }
 
+var vulgarFractionMap = {"¼": 0.25, "¾": 0.75, "⅔": 2/3, "½": 0.5, "⅓": 1/3};
+var vulgarFractions = ["¼","¾","⅔","½","⅓"];
+
 recipeSchema.methods.scaleRecipe = function(servingSize) {
 	var scaleFactor = servingSize / this.servingSize;
 	if (!servingSize) { // if serving size is not specified
@@ -187,7 +181,15 @@ recipeSchema.methods.scaleRecipe = function(servingSize) {
 	}
 	var scaledIngredients = this.ingredientsWAmounts.map(function(ingredient) {
 		var scaledIngredient = ingredient;
-		if (ingredient.match(/\d/)) {
+		if (vulgarFractions.indexOf(ingredient[0])>=0) {
+			var remainingString = ingredient.substring(2);
+			var frac = vulgarFractionMap[ingredient[0]];
+			scaledIngredient = scaleFactor*frac + " " + remainingString;
+		} else if (vulgarFractions.indexOf(ingredient[1])>=0 && ingredient.match(/\d/)) {
+			var remainingString = ingredient.substring(2);
+			var frac = vulgarFractionMap[ingredient[1]];
+			scaledIngredient = scaleFactor*(parseInt(ingredient[0])+frac) + " " + remainingString;
+		} else if (ingredient.match(/\d/)) {
 			var stringAmt = ingredient.split(/[a-zA-z]/,2)[0];
 			var remainingIngString = ingredient.substring(stringAmt.length);
 			scaledIngredient = scaleFactor*evaluateStringNumber(stringAmt) + " " + remainingIngString;

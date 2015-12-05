@@ -48,7 +48,49 @@ before(function(done) {
  					done();
  				});
  		});
+
+ 		it ('test that the number extra ingredients are correct', function(done) {
+ 			Recipe.flexibleSearch(['honey','potato','vegetable oil', 'eggs'],
+ 				function(err, recipes) {
+ 					assert(!err);
+ 					assert.deepEqual(recipes.map(mapRecipesToName), ['french fries', 'grilled cheese', 'mango smoothie']);
+ 					recipes.forEach(function(recipe) {
+ 						if (recipe.name=='french fries') {
+ 							assert.equal(recipe.numUnmatched, 0);
+ 						} else if (recipe.name=='grilled cheese') {
+ 							assert.equal(recipe.numUnmatched, 2);
+ 						} else {
+ 							assert.equal(recipe.numUnmatched, 3);
+ 						}
+ 					});
+ 					done();
+ 				});
+ 		});
  	});
+
+
+	describe('#loadMoreSearchResults()', function() {
+		var testRecipe = {name: 'test', ingredients: ['banana']};
+		before(function(done) {
+			var testRecipes = [];
+			for (var i=0; i<500; i++) {
+				testRecipes.push(testRecipe);
+			}
+			Recipe.create(testRecipes, done);
+		});
+
+	 	after(function(done) {
+	 		Recipe.remove({name: 'test'}, done);
+	 	});
+
+	 	it('should return specified amount of results', function(done) {
+	 		Recipe.loadMoreSearchResults(['banana'], 3, function(err, recipes) {
+	 			assert(!err);
+	 			assert.equal(recipes.length, 3*99);
+	 			done();
+	 		});
+	 	});
+	});
 
  	describe('#searchRecipes()', function() {
 

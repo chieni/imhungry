@@ -31,6 +31,7 @@ router.param('recipe', function(req, res, next, recipeId) {
 
 */
 router.post('/:recipe', function(req, res) {
+  console.log('here');
   if (req.recipe) {
     var scaledRecipe = req.recipe.scaleRecipe(req.body.servingSize);
     //res.redirect({ recipe: req.recipe, currentUser: req.currentUser }, '/recipe');

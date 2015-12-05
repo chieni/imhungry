@@ -58,7 +58,7 @@ router.get('/', function(req, res) {
 router.post('/more', function(req, res) {
   Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
     var ingredientNames = ingredients.map(function(ingredient) {
-      return ingredient.name;
+      return ingredient.ingredient.name;
     });
 
     Recipe.loadMoreSearchResults(ingredientNames, req.body.more, function(error, recipes) {

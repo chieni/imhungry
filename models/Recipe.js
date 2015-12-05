@@ -25,15 +25,6 @@ var recipeSchema = mongoose.Schema({
 	rating: Number
 });
 
-/*var recipeSchema = mongoose.Schema({
-	name: String,
-	ingredients: [Ingredient],
-	servingSize: Number,
-	totalTime: Number,
-	sourceURL: String,
-	imageURLs: [String],
-	rating: Number
-});*/
 
 /*
 Search for recipes that only use a subset of the given ingredients
@@ -126,30 +117,6 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 			}
 		}
 	});
-
-
-
-	/*this.aggregate([
-		{$match:{ingredients:{$in: ingredients}}},
-		{$unwind: "$ingredients"},
-		{$match:{ingredients:{$in: ingredients}}},
-		{ $group: { _id: "$_id", total: {$sum:1}}}],
-		function(err, results) {
-			if (err) {
-				callback(err, null);
-			} else {
-				async.map(results, mapFunc, function(err, results) {
-					var sortedRecipes = results.sort(sortingFunc)
-					.map(function(recipe) {
-						var objRecipe = recipe.recipe.toObject();
-						objRecipe.numUnmatched = recipe.numUnmatched;
-						return objRecipe;
-					});
-
-					callback(null, sortedRecipes.slice(0,99));
-				});
-			}
-		});*/
 }
 
 recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callback) {
@@ -210,31 +177,6 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 			}
 		}
 	});
-
-
-
-
-	/*this.aggregate([
-		{$match:{ingredients:{$in: ingredients}}},
-		{$unwind: "$ingredients"},
-		{$match:{ingredients:{$in: ingredients}}}, //nin doesn't quite work
-		{ $group: { _id: "$_id", total: {$sum:1}}}],
-		function(err, results) {
-			if (err) {
-				callback(err, null);
-			} else {
-				async.map(results, mapFunc, function(err, results) {
-					var sortedRecipes = results.sort(sortingFunc)
-					.map(function(recipe) {
-						var objRecipe = recipe.recipe.toObject();
-						objRecipe.numUnmatched = recipe.numUnmatched;
-						return objRecipe;
-					});
-
-					callback(null, sortedRecipes.slice(0,more*99));
-				});
-			}
-		});*/
 }
 
 // should this have a username field??

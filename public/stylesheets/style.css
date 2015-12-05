@@ -190,11 +190,11 @@ input:focus{
   /*float: right;*/
 }
 #new-ingredient-amt {
+  font-family: 'Brandon Grotesque Light';
   background: none;
   border: gray 1px solid;
   color: white;
-  width: 5.5em;
-  /*float:right;*/
+  width: 5em;
 }
 
 .ingredient-amt {
@@ -280,9 +280,15 @@ input:focus{
 }
 
 #new-ingredient {
+  font-family: 'Brandon Grotesque Light';
   background: none;
   border: gray 1px solid;
   color: white;
+}
+
+.serving-label{
+  font-size: 1.2em;
+  padding: 1em 1.05em;
 }
 
 .signin-box {
@@ -465,4 +471,8 @@ input:focus{
   to {
     transform: rotate(359deg);
   }
+}
+
+#tags {
+  color:black;
 }

@@ -139,6 +139,8 @@ whenever the sign in button is pressed.
 */
 $(document).on('click', '#signin-btn', function(evt) {
 	evt.preventDefault();
+	$('body').css({'background': 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../imgs/yummy-dinner-party.jpg") no-repeat center center fixed'});
+	$('body').css('background-size', 'cover');
 	loadPage('index');
 });
 
@@ -148,5 +150,7 @@ whenever the register button is pressed.
 */
 $(document).on('click', '#register-btn', function(evt) {
 	evt.preventDefault();
+	$('body').css({'background': 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../imgs/yummy-dinner-party.jpg") no-repeat center center fixed'});
+	$('body').css('background-size', 'cover');
 	loadPage('register');
 });

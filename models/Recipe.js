@@ -157,8 +157,8 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 
 	var mapFunc = function(doc, callback) {
 		self.findById(doc._id, function(err,recipe) {
-			var numExtraIngred = recipe.ingredients.length - doc.total;
-			var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
+			//var numExtraIngred = recipe.ingredients.length - doc.total;
+			var modRecipe = {recipe: recipe, numUnmatched: doc.total};
 			callback(err, modRecipe);
 		});
 	}

@@ -19,9 +19,6 @@ var requireAuthentication = function(req, res, next) {
 };
 
 
-
-
-
 // Register the middleware handlers above.
 router.get('*', requireAuthentication);
 
@@ -54,7 +51,18 @@ router.get('/', function(req, res) {
 	});
 });
 
+/*
+The following retrieves more additional results from the search
 
+POST search/more
+Request parameters:
+  - username
+  - more: factor of how many more results
+Response:
+  - success.recipes: recipes returned from search
+  - moreToLoad: boolean that indicates whether there are still more recipes that can be loaded
+  - err message if error occurred
+*/
 router.post('/more', function(req, res) {
   Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
     var ingredientNames = ingredients.map(function(ingredient) {

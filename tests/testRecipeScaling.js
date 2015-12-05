@@ -2,6 +2,10 @@ var assert = require("assert");
 var Recipe = require('../models/Recipe');
 var mongoose = require('mongoose');
 
+/*
+Test suite for recipe scaling function
+*/
+
 before(function(done) {
     mongoose.connect('mongodb://localhost/test');
     var db = mongoose.connection;

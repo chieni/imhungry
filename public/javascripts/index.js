@@ -60,7 +60,6 @@ var loadCookbookPage = function() {
 /*
 Load recipe search results to search page
 */
-//switch order of pantry and search, do pantry first, load page with icon, then do search and load page
 var loadSearchResults = function() {
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, loading: true });
@@ -76,6 +75,9 @@ var loadSearchResults = function() {
 	});
 };
 
+/*
+Load additional recipe search results to search page
+*/
 var loadMoreSearchResults = function(formData, more, servingSize) {
 	$.get('/pantry', function(response) {
 		$.post('/search/more',

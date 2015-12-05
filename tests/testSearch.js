@@ -2,6 +2,9 @@ var assert = require("assert");
 var Recipe = require('../models/Recipe');
 var mongoose = require('mongoose');
 
+/*
+Testing suite for various search functions
+*/
 before(function(done) {
     mongoose.connect('mongodb://localhost/test');
     var db = mongoose.connection;

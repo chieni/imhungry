@@ -48,7 +48,7 @@ router.get('/', function(req, res) {
 			if (error) {
 			  utils.sendErrResponse(res, 500, 'An unknown error occurred.');
 			} else {
-			  utils.sendSuccessResponse(res, {recipes: recipes, searched: true});
+			  utils.sendSuccessResponse(res, {recipes: recipes.recipes, searched: true, moreToLoad: recipes.moreToLoad});
 			}
 	  	});
 	});
@@ -61,11 +61,11 @@ router.post('/more', function(req, res) {
       return ingredient.ingredient.name;
     });
 
-    Recipe.loadMoreSearchResults(ingredientNames, req.body.more, function(error, recipes) {
+    Recipe.loadMoreSearchResults(ingredientNames, req.body.more, function(error, results) {
       if (error) {
         utils.sendErrResponse(res, 500, 'An unknown error occurred.');
       } else {
-        utils.sendSuccessResponse(res, {recipes: recipes, searched: true});
+        utils.sendSuccessResponse(res, {recipes: results.recipes, searched: true, moreToLoad: results.moreToLoad});
       }
       });
   });
@@ -85,7 +85,7 @@ router.post('/', function(req, res) {
     if (err) {
       utils.sendErrResponse(res, 500, 'Unable to retrieve recipes.');
     } else {
-      utils.sendSuccessResponse(res, {recipes: recipes, ingredients: final_list, searched: true, anon: true});
+      utils.sendSuccessResponse(res, {recipes: recipes.recipes, ingredients: final_list, searched: true, anon: true});
     }
   });
 });

@@ -74,13 +74,62 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 
 	var mapFunc = function(doc, callback) {
 		self.findById(doc._id, function(err,recipe) {
-			var numExtraIngred = recipe.ingredients.length - doc.total;
-			var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
+			//var numExtraIngred = recipe.ingredients.length - doc.total;
+			var modRecipe = {recipe: recipe, numUnmatched: doc.total};
 			callback(err, modRecipe);
 		});
 	}
 
-	this.aggregate([
+
+	var moreToLoad = true;
+
+	this.find({ingredients: {$not:{$elemMatch:{$nin:ingredients}}}}).sort({rating:-1}).limit(99).exec(function(err, recipes) {
+		if (err) {
+			callback(err, null);
+		} else {
+			var limit = 99-recipes.length;
+			recipes = recipes.map(function(recipe) {
+				var obRec = recipe.toObject();
+				obRec.numUnmatched = 0;
+				return obRec;
+			});
+			if (limit > 0) {
+				self.aggregate([
+					{$match:{ingredients:{$in: ingredients}}},
+					{$unwind: "$ingredients"},
+					{$match:{ingredients:{$nin: ingredients}}},
+					{ $group: { _id: "$_id", total: {$sum:1}}},
+					{$sort: {total: 1}},
+					{$limit: limit}],
+					function(err, results) {
+						if (err) {
+							callback(err, null);
+						} else {
+							async.map(results, mapFunc, function(err, res) {
+								var sortedRecipes = res.sort(sortingFunc)
+								.map(function(recipe) {
+									var objRecipe = recipe.recipe.toObject();
+									objRecipe.numUnmatched = recipe.numUnmatched;
+									return objRecipe;
+								});
+
+								recipes = recipes.concat(sortedRecipes);
+
+								moreToLoad = recipes.length == 99;
+								callback(null, {moreToLoad: moreToLoad, recipes: recipes});
+							});
+						}
+					});
+			} else {
+				moreToLoad = recipes.length == 99;
+				callback(null, {moreToLoad: moreToLoad, recipes: recipes});
+			}
+		}
+	});
+
+
+
+	/*this.aggregate([
 		{$match:{ingredients:{$in: ingredients}}},
 		{$unwind: "$ingredients"},
 		{$match:{ingredients:{$in: ingredients}}},
@@ -100,7 +149,7 @@ recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 					callback(null, sortedRecipes.slice(0,99));
 				});
 			}
-		});
+		});*/
 }
 
 recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callback) {
@@ -114,7 +163,58 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 		});
 	}
 
-	this.aggregate([
+	var moreLimit = more*99;
+	var moreToLoad = true;
+
+	this.find({ingredients: {$not:{$elemMatch:{$nin:ingredients}}}}).sort({rating:-1}).limit(moreLimit).exec(function(err, recipes) {
+		if (err) {
+			callback(err, null);
+		} else {
+			var limit = moreLimit-recipes.length;
+			recipes = recipes.map(function(recipe) {
+				var obRec = recipe.toObject();
+				obRec.numUnmatched = 0;
+				return obRec;
+			});
+			if (limit > 0) {
+				self.aggregate([
+					{$match:{ingredients:{$in: ingredients}}},
+					{$unwind: "$ingredients"},
+					{$match:{ingredients:{$nin: ingredients}}},
+					{ $group: { _id: "$_id", total: {$sum:1}}},
+					{$sort: {total: 1}},
+					{$limit: limit}],
+					function(err, results) {
+						if (err) {
+							callback(err, null);
+						} else {
+							async.map(results, mapFunc, function(err, res) {
+								var sortedRecipes = res.sort(sortingFunc)
+								.map(function(recipe) {
+									var objRecipe = recipe.recipe.toObject();
+									objRecipe.numUnmatched = recipe.numUnmatched;
+									return objRecipe;
+								});
+
+								recipes = recipes.concat(sortedRecipes);
+
+								moreToLoad = recipes.length == moreLimit;
+
+								callback(null, {moreToLoad: moreToLoad, recipes: recipes});
+							});
+						}
+					});
+			} else {
+				moreToLoad = recipes.length == moreLimit;
+				callback(null, {moreToLoad: moreToLoad, recipes: recipes});
+			}
+		}
+	});
+
+
+
+
+	/*this.aggregate([
 		{$match:{ingredients:{$in: ingredients}}},
 		{$unwind: "$ingredients"},
 		{$match:{ingredients:{$in: ingredients}}}, //nin doesn't quite work
@@ -134,7 +234,7 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 					callback(null, sortedRecipes.slice(0,more*99));
 				});
 			}
-		});
+		});*/
 }
 
 // should this have a username field??

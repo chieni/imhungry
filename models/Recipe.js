@@ -51,15 +51,6 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	});
 }
 
-/*var mapFunc = function(doc, callback) {
-	recipeSchema.findById(doc._id, function(err,recipe) {
-		var numExtraIngred = recipe.ingredients.length - doc.total;
-		var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
-		callback(err, modRecipe);
-	});
-
-}*/
-
 var sortingFunc = function(a,b) {
 	if (a.numUnmatched == b.numUnmatched) {
 		if (!a.recipe.rating) {
@@ -191,7 +182,7 @@ recipeSchema.methods.scaleRecipe = function(servingSize) {
 	var scaledIngredients = this.ingredientsWAmounts.map(function(ingredient) {
 		var scaledIngredient = ingredient;
 		if (vulgarFractions.indexOf(ingredient[0])>=0) {
-			var remainingString = ingredient.substring(1);
+			var remainingString = ingredient.substring(2);
 			var frac = vulgarFractionMap[ingredient[0]];
 			scaledIngredient = scaleFactor*frac + " " + remainingString;
 		} else if (vulgarFractions.indexOf(ingredient[1])>=0 && ingredient.match(/\d/)) {

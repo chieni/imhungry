@@ -139,10 +139,4 @@ Fires the event to add ingredients on the hook page
     loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
   });
 
-  $(document).on('click', '.anon-create-btn', function(evt){
-    evt.preventDefault();
-
-    // Popup register window
-  });
-
 })();

@@ -21,7 +21,7 @@
   /*
   Once a user has registered, this function is called to ensure
   the correct data has been entered, store the data, and subsequently
-  load the home page.
+  load the signin page.
   */
   $(document).on('submit', '#register-form', function(evt) {
       evt.preventDefault();
@@ -35,6 +35,33 @@
           '/users',
           formData
       ).done(function(response) {
+          loadPage('index');
+      }).fail(function(responseObject) {
+          var response = $.parseJSON(responseObject.responseText);
+          $('.error').text(response.err);
+      });
+  });
+
+  /*
+  Once a user has registered from entering via the hook, this function is called to ensure
+  the correct data has been entered, store the data, and subsequently
+  load the signin page.
+  */
+  $(document).on('submit', '#anon-register-form', function(evt) {
+      evt.preventDefault();
+
+      var formData = helpers.getFormData(this);
+      if (formData.password !== formData.confirm) {
+          $('.error').text('Password and confirmation do not match!');
+          return;
+      }
+      delete formData['confirm'];
+      formData['ingredients'] = $(".container").attr('data-ingredientsList-id');
+
+      $.post(
+          '/users/anon',
+          formData
+      ).done(function(response) {
         $("#signup-modal").modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
@@ -44,7 +71,6 @@
           $('.error').text(response.err);
       });
   });
-
   /*
   When a user logs out, currentUser goes back to being undefined 
   and the generic home page is reloaded.

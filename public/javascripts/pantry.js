@@ -4,23 +4,23 @@
   Once an ingredient has been added, this function is called to add it and an optional amount to the pantry.
   */
   $(document).on('submit', '#pantry-form', function(evt) {
-      evt.preventDefault();
-      var formData = helpers.getFormData(this);
-      var ingredient = formData.ingredient;
-      var amount = formData.ingredientAmt;
-      $.ajax({
-        url: '/pantry/',
-        type: 'PUT',
-        data: { 
-          ingredientName: ingredient,
-          ingredientAmt: amount
-        }
-      }).done(function(response) {
-        loadHomePage();
-      }).fail(function(responseObject) {
-          var response = $.parseJSON(responseObject.responseText);
-          alert(response.err);
-      });
+    evt.preventDefault();
+    var formData = helpers.getFormData(this);
+    var ingredient = formData.ingredient;
+    var amount = formData.ingredientAmt;
+    $.ajax({
+      url: '/pantry/',
+      type: 'PUT',
+      data: { 
+        ingredientName: ingredient,
+        ingredientAmt: amount
+      }
+    }).done(function(response) {
+      loadHomePage();
+    }).fail(function(responseObject) {
+      var response = $.parseJSON(responseObject.responseText);
+      alert(response.err);
+    });
 
     $('#new-ingredient').val('');
     $('#new-ingredient').focus();
@@ -31,22 +31,22 @@
   */
   $(document).on('click', '.delete-button', function(evt) {
     var element = $(this).parent();
-      $.ajax({
-        url: '/pantry/',
-        type: 'DELETE',
-        data: {
-          ingredientId: element.find(".ingredient").attr('data-ingredient-id')
-        },
-        success: function(data) {
-          if (data.success) {
-            element.remove();
-          }
-          else {
-            alert(data.message);
-          }
-        },
-        dataType: "json"
-      });
+    $.ajax({
+      url: '/pantry/',
+      type: 'DELETE',
+      data: {
+        ingredientId: element.find(".ingredient").attr('data-ingredient-id')
+      },
+      success: function(data) {
+        if (data.success) {
+          element.remove();
+        }
+        else {
+          alert(data.message);
+        }
+      },
+      dataType: "json"
+    });
 
   });
 
@@ -55,8 +55,10 @@
   */
   $(document).on('click', '.ingredient-amt', function(evt) {
     $(this).hide();
-    $(this).parent().find('.parenthesis').hide();
-    var amount = $(this).text();
+    //$(this).parent().find('.parenthesis').hide();
+    var text = $(this).text();
+    var amount = text.substring(2,text.length-2);
+    console.log(amount);
     $(this).parent().find('.edit-amt').val(amount);
     $(this).parent().find('.edit-amt').show().focus();
   });
@@ -65,9 +67,9 @@
   This triggers the focusout even when the user presses enter in the edit amount text box
   */
   $(document).on('keypress', '.edit-amt', function(evt) {
-        if(evt.which == 13){
-          $(this).blur();    
-      }
+    if(evt.which == 13){
+      $(this).blur();    
+    }
   });
 
   /*
@@ -75,27 +77,29 @@
   */
   $(document).on('focusout', '.edit-amt', function(evt) {
     $(this).hide();
-    $(this).parent().find('.parenthesis').show();
+    //$(this).parent().find('.parenthesis').show();
     $(this).parent().find('.ingredient-amt').show();
     var formData = helpers.getFormData(this);
     var amount = formData.editedIngAmt;
+    console.log(amount);
     var ingId = $(this).parent().find(".ingredient").attr('data-ingredient-id');
 
     $.ajax({
-        url: '/pantry/amount',
-        type: 'PUT',
-        data: {
-          ingredientId: ingId,
-          ingredientAmt: amount
-        },
-        success: function(data) {
-          if (!data.success) {          
-            alert(data.message);
-          }
-        },
-        dataType: "json"
-      });   
-      $(this).parent().find('.ingredient-amt').text(amount);
+      url: '/pantry/amount',
+      type: 'PUT',
+      data: {
+        ingredientId: ingId,
+        ingredientAmt: amount
+      },
+      success: function(data) {
+        if (!data.success) {          
+          alert(data.message);
+        }
+      },
+      dataType: "json"
+    });
+    console.log(amount);
+    $(this).parent().find('.ingredient-amt').text("( "+amount+" )");
   });
 
   /*
@@ -119,28 +123,28 @@
 /*
 Fires the event to add ingredients on the hook page
 */
-  $(document).on('submit', '#anon-pantry-form', function(evt) {
-      evt.preventDefault();
-      var element = $(this).parent();
+$(document).on('submit', '#anon-pantry-form', function(evt) {
+  evt.preventDefault();
+  var element = $(this).parent();
 
-      var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
+  var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
 
-      var formData = helpers.getFormData(this);
-      var ingredient = formData.ingredient;
+  var formData = helpers.getFormData(this);
+  var ingredient = formData.ingredient;
 
-      var index = ingredientsList.indexOf(ingredient);
-      if (index < 0){
-        ingredientsList.push(ingredient);
-      }
+  var index = ingredientsList.indexOf(ingredient);
+  if (index < 0){
+    ingredientsList.push(ingredient);
+  }
 
-    $('#new-ingredient').val('');
-    $('#new-ingredient').focus();
+  $('#new-ingredient').val('');
+  $('#new-ingredient').focus();
 
-    loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
-  });
+  loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
+});
 
-  $(document).on('click', '.anon-create-btn', function(evt){
-    evt.preventDefault();
+$(document).on('click', '.anon-create-btn', function(evt){
+  evt.preventDefault();
 
     // Popup register window
   });

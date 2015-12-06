@@ -200,10 +200,15 @@ Pantry is initially empty
       (function addToArray() {
         var poppedIng = clone.splice(0,1)[0];
         Ingredient.findOne({name: poppedIng}, function(err, ing) {
-          ingredientsObjs.push({ingredient:ing});
+          
           if (err) {
             callback({msg:"Ingredient doesn't exist"});
+          } 
+
+          if (ing != null) {
+            ingredientsObjs.push({ingredient: ing});
           }
+
           if (clone.length == 0) {
             callback(null, ingredientsObjs);
           }
@@ -231,9 +236,9 @@ Pantry is initially empty
       self.create({username: username, ingredients: ingredientsObjs},
         function(error, record) {
           if (error) {
-            console.log(error)
             callback(error);
           } else {
+            console.log("create pantry")
             console.log(record)
             callback(null);
           }

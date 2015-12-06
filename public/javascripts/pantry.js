@@ -91,7 +91,18 @@
 
   $(document).on('click', '.anon-delete-button', function(evt) {
     var element = $(this).parent();
-    element.remove();
+    var ing = element.find('.ingredient').text();
+    var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
+    
+    var index = ingredientsList.indexOf(ing);
+    console.log(index)
+    if (index > -1){
+      ingredientsList.splice(index, 1);
+    }
+    // element.remove();
+    console.log(ingredientsList);
+    loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
+
   });
 
   $(document).on('submit', '#anon-pantry-form', function(evt) {
@@ -107,7 +118,7 @@
 
     $('#new-ingredient').val('');
     $('#new-ingredient').focus();
-
+ console.log(ingredientsList);
     loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
   });
 })();

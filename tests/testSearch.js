@@ -2,6 +2,9 @@ var assert = require("assert");
 var Recipe = require('../models/Recipe');
 var mongoose = require('mongoose');
 
+/*
+Testing suite for various search functions
+*/
 before(function(done) {
     mongoose.connect('mongodb://localhost/test');
     var db = mongoose.connection;
@@ -44,7 +47,7 @@ before(function(done) {
  			Recipe.flexibleSearch(['vegetable oil', 'cheese', 'orange juice'],
  				function(err, recipes) {
  					assert(!err);
- 					assert.deepEqual(recipes.map(mapRecipesToName), ['grilled cheese', 'french fries', 'mango smoothie']);
+ 					assert.deepEqual(recipes.recipes.map(mapRecipesToName), ['grilled cheese', 'french fries', 'mango smoothie']);
  					done();
  				});
  		});
@@ -53,8 +56,8 @@ before(function(done) {
  			Recipe.flexibleSearch(['honey','potato','vegetable oil', 'eggs'],
  				function(err, recipes) {
  					assert(!err);
- 					assert.deepEqual(recipes.map(mapRecipesToName), ['french fries', 'grilled cheese', 'mango smoothie']);
- 					recipes.forEach(function(recipe) {
+ 					assert.deepEqual(recipes.recipes.map(mapRecipesToName), ['french fries', 'grilled cheese', 'mango smoothie']);
+ 					recipes.recipes.forEach(function(recipe) {
  						if (recipe.name=='french fries') {
  							assert.equal(recipe.numUnmatched, 0);
  						} else if (recipe.name=='grilled cheese') {
@@ -76,6 +79,7 @@ before(function(done) {
 			for (var i=0; i<500; i++) {
 				testRecipes.push(testRecipe);
 			}
+			testRecipes.push({name:'test', ingredients: ['milk']});
 			Recipe.create(testRecipes, done);
 		});
 
@@ -86,7 +90,17 @@ before(function(done) {
 	 	it('should return specified amount of results', function(done) {
 	 		Recipe.loadMoreSearchResults(['banana'], 3, function(err, recipes) {
 	 			assert(!err);
-	 			assert.equal(recipes.length, 3*99);
+	 			assert.equal(recipes.recipes.length, 3*99);
+	 			assert(recipes.moreToLoad);
+	 			done();
+	 		});
+	 	});
+
+	 	it('should return only one recipe and have moreToLoad false', function(done) {
+	 		Recipe.loadMoreSearchResults(['milk'], 2, function(err, recipes) {
+	 			assert(!err);
+	 			assert.equal(recipes.recipes.length, 1);
+	 			assert(!recipes.moreToLoad);
 	 			done();
 	 		});
 	 	});

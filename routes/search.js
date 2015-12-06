@@ -19,9 +19,6 @@ var requireAuthentication = function(req, res, next) {
 };
 
 
-
-
-
 // Register the middleware handlers above.
 router.get('*', requireAuthentication);
 
@@ -48,24 +45,35 @@ router.get('/', function(req, res) {
 			if (error) {
 			  utils.sendErrResponse(res, 500, 'An unknown error occurred.');
 			} else {
-			  utils.sendSuccessResponse(res, {recipes: recipes, searched: true});
+			  utils.sendSuccessResponse(res, {recipes: recipes.recipes, searched: true, moreToLoad: recipes.moreToLoad});
 			}
 	  	});
 	});
 });
 
+/*
+The following retrieves more additional results from the search
 
+POST search/more
+Request parameters:
+  - username
+  - more: factor of how many more results
+Response:
+  - success.recipes: recipes returned from search
+  - moreToLoad: boolean that indicates whether there are still more recipes that can be loaded
+  - err message if error occurred
+*/
 router.post('/more', function(req, res) {
   Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
     var ingredientNames = ingredients.map(function(ingredient) {
       return ingredient.ingredient.name;
     });
 
-    Recipe.loadMoreSearchResults(ingredientNames, req.body.more, function(error, recipes) {
+    Recipe.loadMoreSearchResults(ingredientNames, req.body.more, function(error, results) {
       if (error) {
         utils.sendErrResponse(res, 500, 'An unknown error occurred.');
       } else {
-        utils.sendSuccessResponse(res, {recipes: recipes, searched: true});
+        utils.sendSuccessResponse(res, {recipes: results.recipes, searched: true, moreToLoad: results.moreToLoad});
       }
       });
   });
@@ -85,7 +93,7 @@ router.post('/', function(req, res) {
     if (err) {
       utils.sendErrResponse(res, 500, 'Unable to retrieve recipes.');
     } else {
-      utils.sendSuccessResponse(res, {recipes: recipes, ingredients: final_list, searched: true, anon: true});
+      utils.sendSuccessResponse(res, {recipes: recipes.recipes, ingredients: final_list, searched: true, anon: true});
     }
   });
 });

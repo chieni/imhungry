@@ -16,7 +16,7 @@
   	more += 1;
   	var formData = helpers.getFormData(this);
   	loadMoreSearchResults(formData, more);
-  })
+  });
 
     $(document).on('submit', '#anon-search-form', function(evt) {
       evt.preventDefault();

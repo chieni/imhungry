@@ -60,12 +60,14 @@ var loadCookbookPage = function() {
 /*
 Load recipe search results to search page
 */
-//switch order of pantry and search, do pantry first, load page with icon, then do search and load page
 var loadSearchResults = function() {
 	$.get('/pantry', function(response) {
 		loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, loading: true });
 		$.get('/search').done(function(resp){
-			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, loading:false, more: 1});
+			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, loading:false, more: 1, moreToLoad: resp.content.moreToLoad});
+			if (resp.content.moreToLoad) {
+				$("#load-more-btn").removeAttr('disabled');
+			}
 		}).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
@@ -73,12 +75,19 @@ var loadSearchResults = function() {
 	});
 };
 
+/*
+Load additional recipe search results to search page
+*/
 var loadMoreSearchResults = function(formData, more, servingSize) {
 	$.get('/pantry', function(response) {
 		$.post('/search/more',
 			{more: more}
 			).done(function(resp){
-			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, loading:false, more: more+1});
+				console.log("more ,", resp.content.moreToLoad);
+			loadPage('search', {currentUser: currentUser, ingredients: response.content.ingredients, recipes: resp.content.recipes, searched: true, loading:false, more: more+1, moreToLoad: resp.content.moreToLoad});
+			if (resp.content.moreToLoad) {
+				$("#load-more-btn").removeAttr('disabled');
+			}
 		}).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

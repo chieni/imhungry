@@ -2,6 +2,10 @@ var assert = require("assert");
 var Recipe = require('../models/Recipe');
 var mongoose = require('mongoose');
 
+/*
+Test suite for recipe scaling function
+*/
+
 before(function(done) {
     mongoose.connect('mongodb://localhost/test');
     var db = mongoose.connection;
@@ -48,7 +52,32 @@ before(function(done) {
 	 			done();
 	 		});
 	 	});
- 	});
 
+	 	it('should correctly scale french fries recipe', function(done) {
+	 		Recipe.findOne({name: 'french fries'}, function(error, recipe) {
+	 			var scaledRecipe = recipe.scaleRecipe(6);
+	 			assert.equal(scaledRecipe.servingSize, 6);
+	 			var sortedIngredients = scaledRecipe.ingredients.sort();
+	 			var answers = ['5.5 cup vegetable oil', '6 potato'];
+	 			for (var i=0; i<2; i++) {
+	 				assert.equal(sortedIngredients[i], answers[i]);
+	 			}
+	 			done();
+	 		});
+	 	});
+
+	 	it('should correctly scale smoothieRecipe', function(done) {
+	 		Recipe.findOne({name: 'mango smoothie'}, function(error, recipe) {
+	 			var scaledRecipe = recipe.scaleRecipe(1);
+	 			assert.equal(scaledRecipe.servingSize, 1);
+	 			var sortedIngredients = scaledRecipe.ingredients.sort();
+	 			var answers = ['0.25 banana', '0.3333333333333333 cup orange juice', '0.5 mango', 'honey to taste'];
+	 			for (var i=0; i<4; i++) {
+	 				assert.equal(sortedIngredients[i], answers[i]);
+	 			}
+	 			done();
+	 		});
+	 	});
+ 	});
 
  });

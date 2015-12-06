@@ -29,15 +29,6 @@ var recipeSchema = mongoose.Schema({
 	}]
 });
 
-/*var recipeSchema = mongoose.Schema({
-	name: String,
-	ingredients: [Ingredient],
-	servingSize: Number,
-	totalTime: Number,
-	sourceURL: String,
-	imageURLs: [String],
-	rating: Number
-});*/
 
 /*
 Search for recipes that only use a subset of the given ingredients
@@ -55,6 +46,11 @@ recipeSchema.statics.searchRecipes = function(ingredients, callback) {
 	});
 }
 
+/*
+Sorting algorithm used to sort recipes
+Recipes are first sorted in ascending order by the number of extra ingredients they require, and
+then sorted in descending order by rating
+*/
 var sortingFunc = function(a,b) {
 	if (a.numUnmatched == b.numUnmatched) {
 		if (!a.recipe.rating) {
@@ -73,72 +69,133 @@ var sortingFunc = function(a,b) {
 	}
 }
 
+
+/*
+Search for recipes that use AT LEAST one ingredient from given list of ingredients and returns
+the recipes in the sorted order described in the sortingFunc above. Limit 99 recipes
+params:
+	ingredients [String] ingredients to use in search
+*/
 recipeSchema.statics.flexibleSearch = function(ingredients, callback) {
 	var self = this;
 
 	var mapFunc = function(doc, callback) {
 		self.findById(doc._id, function(err,recipe) {
-			var numExtraIngred = recipe.ingredients.length - doc.total;
-			var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
+			var modRecipe = {recipe: recipe, numUnmatched: doc.total};
 			callback(err, modRecipe);
 		});
 	}
 
-	this.aggregate([
-		{$match:{ingredients:{$in: ingredients}}},
-		{$unwind: "$ingredients"},
-		{$match:{ingredients:{$in: ingredients}}},
-		{ $group: { _id: "$_id", total: {$sum:1}}}],
-		function(err, results) {
-			if (err) {
-				callback(err, null);
-			} else {
-				async.map(results, mapFunc, function(err, results) {
-					var sortedRecipes = results.sort(sortingFunc)
-					.map(function(recipe) {
-						var objRecipe = recipe.recipe.toObject();
-						objRecipe.numUnmatched = recipe.numUnmatched;
-						return objRecipe;
-					});
+	var moreToLoad = true;
 
-					callback(null, sortedRecipes.slice(0,99));
-				});
+	this.find({ingredients: {$not:{$elemMatch:{$nin:ingredients}}}}).sort({rating:-1}).limit(99).exec(function(err, recipes) {
+		if (err) {
+			callback(err, null);
+		} else {
+			var limit = 99-recipes.length;
+			recipes = recipes.map(function(recipe) {
+				var obRec = recipe.toObject();
+				obRec.numUnmatched = 0;
+				return obRec;
+			});
+			if (limit > 0) {
+				self.aggregate([
+					{$match:{ingredients:{$in: ingredients}}},
+					{$unwind: "$ingredients"},
+					{$match:{ingredients:{$nin: ingredients}}},
+					{ $group: { _id: "$_id", total: {$sum:1}}},
+					{$sort: {total: 1}},
+					{$limit: limit}],
+					function(err, results) {
+						if (err) {
+							callback(err, null);
+						} else {
+							async.map(results, mapFunc, function(err, res) {
+								var sortedRecipes = res.sort(sortingFunc)
+								.map(function(recipe) {
+									var objRecipe = recipe.recipe.toObject();
+									objRecipe.numUnmatched = recipe.numUnmatched;
+									return objRecipe;
+								});
+
+								recipes = recipes.concat(sortedRecipes);
+
+								moreToLoad = recipes.length == 99;
+								callback(null, {moreToLoad: moreToLoad, recipes: recipes});
+							});
+						}
+					});
+			} else {
+				moreToLoad = recipes.length == 99;
+				callback(null, {moreToLoad: moreToLoad, recipes: recipes});
 			}
-		});
+		}
+	});
 }
 
+/*
+Searches for recipes except the limit is now a multiple of 99 and a given positive int
+params:
+	ingredients [String] list of ingredients to search with
+	more Number positive integer to determine how many recipes to return
+*/
 recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callback) {
 	var self = this;
 
 	var mapFunc = function(doc, callback) {
 		self.findById(doc._id, function(err,recipe) {
-			var numExtraIngred = recipe.ingredients.length - doc.total;
-			var modRecipe = {recipe: recipe, numUnmatched: numExtraIngred};
+			var modRecipe = {recipe: recipe, numUnmatched: doc.total};
 			callback(err, modRecipe);
 		});
 	}
 
-	this.aggregate([
-		{$match:{ingredients:{$in: ingredients}}},
-		{$unwind: "$ingredients"},
-		{$match:{ingredients:{$in: ingredients}}}, //nin doesn't quite work
-		{ $group: { _id: "$_id", total: {$sum:1}}}],
-		function(err, results) {
-			if (err) {
-				callback(err, null);
-			} else {
-				async.map(results, mapFunc, function(err, results) {
-					var sortedRecipes = results.sort(sortingFunc)
-					.map(function(recipe) {
-						var objRecipe = recipe.recipe.toObject();
-						objRecipe.numUnmatched = recipe.numUnmatched;
-						return objRecipe;
-					});
+	var moreLimit = more*99;
+	var moreToLoad = true;
 
-					callback(null, sortedRecipes.slice(0,more*99));
-				});
+	this.find({ingredients: {$not:{$elemMatch:{$nin:ingredients}}}}).sort({rating:-1}).limit(moreLimit).exec(function(err, recipes) {
+		if (err) {
+			callback(err, null);
+		} else {
+			var limit = moreLimit-recipes.length;
+			recipes = recipes.map(function(recipe) {
+				var obRec = recipe.toObject();
+				obRec.numUnmatched = 0;
+				return obRec;
+			});
+			if (limit > 0) {
+				self.aggregate([
+					{$match:{ingredients:{$in: ingredients}}},
+					{$unwind: "$ingredients"},
+					{$match:{ingredients:{$nin: ingredients}}},
+					{ $group: { _id: "$_id", total: {$sum:1}}},
+					{$sort: {total: 1}},
+					{$limit: limit}],
+					function(err, results) {
+						if (err) {
+							callback(err, null);
+						} else {
+							async.map(results, mapFunc, function(err, res) {
+								var sortedRecipes = res.sort(sortingFunc)
+								.map(function(recipe) {
+									var objRecipe = recipe.recipe.toObject();
+									objRecipe.numUnmatched = recipe.numUnmatched;
+									return objRecipe;
+								});
+
+								recipes = recipes.concat(sortedRecipes);
+
+								moreToLoad = recipes.length == moreLimit;
+
+								callback(null, {moreToLoad: moreToLoad, recipes: recipes});
+							});
+						}
+					});
+			} else {
+				moreToLoad = recipes.length == moreLimit;
+				callback(null, {moreToLoad: moreToLoad, recipes: recipes});
 			}
-		});
+		}
+	});
 }
 
 // should this have a username field??
@@ -175,9 +232,15 @@ var evaluateStringNumber = function(number) {
 	}
 }
 
+// maps of vulgar unicode fractions to values
 var vulgarFractionMap = {"¼": 0.25, "¾": 0.75, "⅔": 2/3, "½": 0.5, "⅓": 1/3};
 var vulgarFractions = ["¼","¾","⅔","½","⅓"];
 
+/*
+Scales recipe ingredients from default serving size to new specified serving size
+params:
+	servingSize Number new desired serving size
+*/
 recipeSchema.methods.scaleRecipe = function(servingSize) {
 	var scaleFactor = servingSize / this.servingSize;
 	if (!servingSize) { // if serving size is not specified

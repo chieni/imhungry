@@ -32,7 +32,8 @@
       {{/each}}
       {{#if recipes}}
       <form id="load-more-form" class="form-inline" data-more={{more}}>
-        <div><input type="submit" value="LOAD MORE" class="load-more btn btn-warning"/></div>
+        <div><input type="submit" value="LOAD MORE" id="load-more-btn" class="load-more btn btn-warning" disabled/></div>
+      
       {{/if}}
       {{/if}}
     </div>
@@ -54,12 +55,12 @@
     </div>
 
     <form id="pantry-form" class="form-inline">
-      <div class = "form-group">
-        <input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required />
+      <div class = "form-group ui-widget">
+        <input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required/>
         <input class="form-control" id="new-ingredient-amt" name="ingredientAmt" type="text" autocomplete="off" placeholder="Amount"/>
         <input type="submit" value="ADD" class="btn btn-warning" id="add-ing-btn" disabled/>
       </div>
-           <div><ul id="results-list" style="list-style-type:none"></ul></div>
+           <!--<div><ul id="results-list" style="list-style-type:none"></ul></div>-->
       </form>
     </div>
   </div>

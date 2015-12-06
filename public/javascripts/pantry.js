@@ -135,18 +135,17 @@
     var index = ingredientsList.indexOf(ingredient);
     if (index < 0){
       ingredientsList.push(ingredient);
+      var cleanIngredientsList = [];
+      ingredientsList.forEach(function(i){
+        if (i.length > 0) {
+          cleanIngredientsList.push(i);
+        }
+      });
+
+      $('#new-ingredient').val('');
+      $('#new-ingredient').focus();
+
+      loadPage('searchAnon', {currentUser: null, ingredients: cleanIngredientsList});
     }
-
-    var cleanIngredientsList = [];
-    ingredientsList.forEach(function(i){
-      if (i.length > 0) {
-        cleanIngredientsList.push(i);
-      }
-    });
-
-    $('#new-ingredient').val('');
-    $('#new-ingredient').focus();
-
-    loadPage('searchAnon', {currentUser: null, ingredients: cleanIngredientsList});
   });
 })();

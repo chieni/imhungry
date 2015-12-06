@@ -53,17 +53,60 @@
     </div>
 
 
-
-
-   <div class="rating">
+<div class="rating">
+    {{#if one}}
     <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
-    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</i></span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    {{/if}}
+    {{#if two}}
+    <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</i></span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    {{/if}}
+    {{#if three}}
+    <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</i></span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    {{/if}}
+    {{#if four}}
+    <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</i></span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    {{/if}}
+    {{#if five}}
+    <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</i></span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>★</span></a>
+    {{/if}}
+
+
+
+    {{#if zero}}
+   
+    <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</i></span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+  {{/if}}
   </div>
-  </div>
 
 
 
@@ -73,3 +116,6 @@
 
 </div>
 </div>
+
+
+

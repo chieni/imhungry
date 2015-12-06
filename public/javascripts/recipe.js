@@ -91,7 +91,7 @@
     var item = $(this);
     rateForm(item, 4);
   });
-  
+
   $(document).on('click', '#five-star', function(evt) {
     evt.preventDefault();
     var item = $(this);
@@ -116,7 +116,17 @@
         $.post('/recipe/' + recipe_id,
           {servingSize: serving_size}
         ).done(function(response) {
-          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: displayButton });
+          console.log("hello there!!");
+          console.log(response.content.recipe.rating);
+          var zero = response.content.recipe.rating==0;
+          var one = response.content.recipe.rating==1;
+          var two = response.content.recipe.rating==2;
+          var three = response.content.recipe.rating==3;
+          var four = response.content.recipe.rating==4;
+          var five = response.content.recipe.rating==5;
+          console.log(zero, one, two, three, four, five);
+          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: displayButton,
+           zero: zero, one: one, two: two, three: three, four: four, five: five});
         }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

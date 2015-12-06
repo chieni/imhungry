@@ -340,7 +340,7 @@ input:focus{
   margin-top: 8em;
   border-radius: 5px;
 }
-#signin-form, #register-form {
+#signin-form, #register-form, #anon-register-form {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
@@ -350,11 +350,12 @@ input:focus{
   margin-bottom: 10px;
 }
 #signin-form,
-#register-form {
+#register-form, #anon-register-form {
   font-weight: normal;
 }
 #signin-form .form-control,
-#register-form .form-control {
+#register-form .form-control,
+ #anon-register-form .form-control {
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
@@ -364,18 +365,22 @@ input:focus{
   font-size: 16px;
 }
 #signin-form .form-control:focus,
-#register-form .form-control:focus{
+#register-form .form-control:focus,
+#anon-register-form .form-control:focus{
   z-index: 2;
 }
 #signin-form input[type="username"],
 #register-form input[type="username"],
-#register-form #inputPassword {
+#register-form #inputPassword,
+#anon-register-form input[type="username"],
+#anon-register-form #inputPassword {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 #signin-form input[type="password"],
-#register-form #inputPasswordConfirm {
+#register-form #inputPasswordConfirm,
+#anon-register-form #inputPasswordConfirm {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;

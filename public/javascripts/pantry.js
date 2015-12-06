@@ -142,11 +142,4 @@ $(document).on('submit', '#anon-pantry-form', function(evt) {
 
   loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
 });
-
-$(document).on('click', '.anon-create-btn', function(evt){
-  evt.preventDefault();
-
-    // Popup register window
-  });
-
 })();

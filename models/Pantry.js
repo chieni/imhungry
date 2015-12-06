@@ -193,4 +193,55 @@ Pantry is initially empty
       });
   }
 
+  var getValidIngredients = function(ingredientsList, callback) {
+    if (ingredientsList.length > 0) {
+      var ingredientsObjs = [];
+      var clone = ingredientsList.slice(0);
+      (function addToArray() {
+        var poppedIng = clone.splice(0,1)[0];
+        Ingredient.findOne({name: poppedIng}, function(err, ing) {
+          ingredientsObjs.push({ingredient:ing});
+          if (err) {
+            callback({msg:"Ingredient doesn't exist"});
+          }
+          if (clone.length == 0) {
+            callback(null, ingredientsObjs);
+          }
+          else {
+            setTimeout(addToArray, 0); //addToArray();
+          }
+        })      
+      })();
+    }
+    else {
+      callback(null, []);
+    }
+  }
+
+  /*
+  Create a new pantry for a specified user who entered via the hook
+  Pantry has ingredients that the user entered from the anonymous pantry
+    username: String username of specified user
+    ingredients: [String] ingredients from
+  */
+  pantrySchema.statics.createNewPantryWithIngredients = function(username, ingredients, callback) {
+    var ingredientsList = ingredients.split(',');
+    var self = this;
+    getValidIngredients(ingredientsList, function(err, ingredientsObjs){
+      self.create({username: username, ingredients: ingredientsObjs},
+        function(error, record) {
+          if (error) {
+            console.log(error)
+            callback(error);
+          } else {
+            console.log(record)
+            callback(null);
+          }
+        });
+    });
+
+
+
+  }
+
   exports.Pantry = mongoose.model('Pantry', pantrySchema);

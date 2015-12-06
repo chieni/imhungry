@@ -52,7 +52,7 @@
 
       var formData = helpers.getFormData(this);
       if (formData.password !== formData.confirm) {
-          $('.error').text('Password and confirmation do not match!');
+          $('.anon-error').text('Password and confirmation do not match!');
           return;
       }
       delete formData['confirm'];
@@ -71,7 +71,7 @@
           loadPage('index');
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
-          $('.error').text(response.err);
+          $('.anon-error').text(response.err);
       });
   });
   /*

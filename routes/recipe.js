@@ -63,4 +63,33 @@ router.post('/:recipe', function(req, res) {
   }
 });
 
+router.put('/rate', function(req, res) {
+
+  Recipe.rateRecipe(req.body.recipeid, req.body.rating, req.currentUser.username, function(err, rating) {
+    if (err) {
+      utils.sendErrResponse(res, 403, 'Something went wrong.');
+    }
+    else {
+      Recipe.getRecipe(req.currentUser.username, req.body.recipeid, function(err, recipe) {
+      if (recipe) {
+        console.log("found");
+        console.log("rating before scaling: "+recipe.rating);
+        console.log("recipe: "+recipe);
+        var scaledRecipe = recipe.scaleRecipe(req.body.serving_size);
+        console.log("rating after scaling: "+scaledRecipe.rating);
+        utils.sendSuccessResponse(res, {recipe: scaledRecipe});
+        
+      } else {
+        utils.sendErrResponse(res, 404, 'Resource not found.');
+      }
+    });
+    }
+  });
+  
+  
+
+
+  
+});
+
 module.exports = router;

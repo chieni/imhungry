@@ -7,7 +7,6 @@
       var item = $(this);
       var recipe_id = item.data('recipeid');
       var serving_size = item.data('recipesize');
-      console.log(serving_size);
       $.post('/recipe/' + recipe_id,
         {servingSize: serving_size}
       ).done(function(response) {
@@ -42,7 +41,6 @@
    // var recipe_id = $("container").attr('data-recipeid');
     var recipe_id = item.data('recipeid');
     var formData = helpers.getFormData(this);
-    console.log(recipe_id);
     $.post('/recipe/' + recipe_id,
       {servingSize: formData.servingsize}
     ).done(function(response) {
@@ -63,4 +61,36 @@
       loadCookbookPage();
   });
 
+  $(document).on('submit', '#rating-form', function(evt) {
+    evt.preventDefault();
+    var item = $(this);
+    var recipe_id = item.data('recipeid');
+    var formData = helpers.getFormData(this);
+    var serving_size = item.data('servingsize');
+    var displayButton = item.data('displaybutton');
+    $.ajax({
+        url: '/recipe/rate',
+        type: 'PUT',
+        data: { 
+          recipeid: recipe_id,
+          rating: formData.rating,
+          servingsize: serving_size
+        }
+      }).done(function(response) {
+        console.log("ok done")
+        $.post('/recipe/' + recipe_id,
+          {servingSize: serving_size}
+        ).done(function(response) {
+          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: displayButton });
+        }).fail(function(responseObject) {
+          var response = $.parseJSON(responseObject.responseText);
+          $('.error').text(response.err);
+          });
+      }).fail(function(responseObject) {
+        var response = $.parseJSON(responseObject.responseText);
+        $('.error').text(response.err);
+      });
+  });
+
 })();
+

@@ -22,7 +22,11 @@ var recipeSchema = mongoose.Schema({
 	totalTime: Number,
 	sourceURL: String,
 	imageURLs: [String],
-	rating: Number
+	rating: Number,
+	ratingDict: [{
+		userId: String,
+		rating: Number
+	}]
 });
 
 /*var recipeSchema = mongoose.Schema({
@@ -138,6 +142,7 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 }
 
 // should this have a username field??
+// probably not! It is never used
 recipeSchema.statics.getRecipe = function(username, recipeId, callback) {
 	this.findById(recipeId, function(err, doc){
 		if (err) {
@@ -199,6 +204,50 @@ recipeSchema.methods.scaleRecipe = function(servingSize) {
 	this.ingredients = scaledIngredients;
 	this.servingSize = servingSize;
 	return this;
+}
+
+/*
+The following method is used to calculate the rating of a recipe given a rating
+*/
+recipeSchema.statics.rateRecipe = function(recipeId, rating, userId, callback) {
+	var index = -1;
+	this.findById(recipeId, function(err, recipe){
+		if (err) {
+			callback({msg: 'Recipe does not exist'});
+		} else {
+			recipe.ratingDict.forEach(function(userRating) {
+				if (userRating.userId.toString() === userId.toString()) {
+					index = recipe.ratingDict.indexOf(userRating)
+				}
+			});
+			if (index==-1) {
+				console.log("ok first time");
+				recipe.ratingDict.push({userId: userId, rating: rating});
+			}
+			else {
+				console.log("should replace rating now");
+				recipe.ratingDict[index].rating=rating;
+			}
+			aggregateRating = 0;
+			recipe.ratingDict.forEach(function(userRating){
+				aggregateRating+=userRating.rating
+			})
+			numUsers = recipe.ratingDict.length
+			rating = aggregateRating/numUsers
+			recipe.rating = rating;
+			recipe.save(function(err) {
+              if(err) {
+                callback({msg:"error rating recipe"}, null);
+              }
+              else {
+              	console.log(recipe);
+                callback(null, rating);
+              }
+            });
+		}
+
+			
+	});
 }
 
 

@@ -26,6 +26,8 @@
        <input type="submit" value="Scale Recipe" class="btn btn-warning"/></div>
      </form>
 
+
+
     <div class="recipe-name">{{recipe.name}}</div>
     {{#if displayButton}}
     <div class="save-recipe-btn">
@@ -49,6 +51,14 @@
       <div class="instructions-label">Instructions:</div>
       <a class="recipe-url btn btn-lg btn-warning save-btn" href="{{recipe.sourceURL}}">Full instructions here</a>
     </div>
+
+    <div class="rating">
+      <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
+    <form id="rating-form" class="form-inline" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}>
+       <div class="serving-line">Rate this recipe: <input class="form-control" id="rating-input" value={{recipe.rating}} type="number" name="rating" />
+       <input type="submit" value="Rate" class="btn btn-warning"/></div>
+     </form>
+   </div>
   </div>
 
 

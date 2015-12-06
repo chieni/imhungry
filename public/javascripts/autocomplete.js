@@ -6,25 +6,18 @@ $(function() {
 		$( "#new-ingredient" ).autocomplete({
 			source: function(request, response) {
 				var results = $.ui.autocomplete.filter(INGREDIENT_NAMES, request.term);
-				response(results.slice(0, 10));
+				response(results.slice(0, 15));
 			},
-			// source: function (request, response) {
-		 //        var term = $.ui.autocomplete.escapeRegex(request.term)
-		 //            , startsWithMatcher = new RegExp("^" + term, "i")
-		 //            , startsWith = $.grep(INGREDIENT_NAMES, function(value) {
-		 //                return startsWithMatcher.test(value.label || value.value || value);
-		 //            })
-		 //            , containsMatcher = new RegExp(term, "i")
-		 //            , contains = $.grep(INGREDIENT_NAMES, function (value) {
-		 //                return $.inArray(value, startsWith) < 0 &&
-		 //                    containsMatcher.test(value.label || value.value || value);
-		 //            });
-
-		 //        response(startsWith.concat(contains));
-		 //    },
 			select: function( event, ui ) {
 				$('#add-ing-btn').prop("disabled", false);
 			}
 		});
+
+		$.ui.autocomplete.filter = function (array, term) {
+			var matcher = new RegExp('(^| )' + $.ui.autocomplete.escapeRegex(term), 'i');
+			return $.grep(array, function (value) {
+				return matcher.test(value.label || value.value || value);
+			});
+		};
 	});
 });

@@ -11,11 +11,17 @@
 
 
   <div class="col-md-4">
+
     <div class="back-btn">
     {{#if fromCookbook}}
       <a class="back-to-cookbook">&lt; Back to Cookbook</a>
       {{else}}
-      <a class="back-to-search">&lt; Back to Search Results</a>    
+
+      {{#if currentUser}}
+      <a class="back-to-search">&lt; Back to Search Results</a> 
+      {{else}}   
+      <a class="back-to-search-anon">&lt; Back to Search Results</a> 
+      {{/if}}
     {{/if}}
   </div>
 
@@ -25,6 +31,8 @@
        <div class="serving-line">Serving size: <input class="form-control" id="serv-size-input" value={{recipe.servingSize}} type="number" name="servingsize" />
        <input type="submit" value="Scale Recipe" class="btn btn-warning"/></div>
      </form>
+
+
 
     <div class="recipe-name">{{recipe.name}}</div>
     {{#if displayButton}}
@@ -49,6 +57,18 @@
       <div class="instructions-label">Instructions:</div>
       <a class="recipe-url btn btn-lg btn-warning save-btn" href="{{recipe.sourceURL}}">Full instructions here</a>
     </div>
+
+
+
+
+   <div class="rating">
+    <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+  </div>
   </div>
 
 

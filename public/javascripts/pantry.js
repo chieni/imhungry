@@ -1,7 +1,7 @@
 // Wrap in an immediately invoked function expression.
 (function() {
   /*
-  Once an ingredient has been added, this function is called to add it to the pantry.
+  Once an ingredient has been added, this function is called to add it and an optional amount to the pantry.
   */
   $(document).on('submit', '#pantry-form', function(evt) {
       evt.preventDefault();
@@ -50,6 +50,9 @@
 
   });
 
+  /*
+  When the ingredient amount is clicked, this brings up the edit text box to allow the user to edit the amount
+  */
   $(document).on('click', '.ingredient-amt', function(evt) {
     $(this).hide();
     $(this).parent().find('.parenthesis').hide();
@@ -58,12 +61,18 @@
     $(this).parent().find('.edit-amt').show().focus();
   });
 
+  /*
+  This triggers the focusout even when the user presses enter in the edit amount text box
+  */
   $(document).on('keypress', '.edit-amt', function(evt) {
         if(evt.which == 13){
           $(this).blur();    
       }
   });
 
+  /*
+  When users focus out of the edit amount text box, it will update the ingredient amount
+  */
   $(document).on('focusout', '.edit-amt', function(evt) {
     $(this).hide();
     $(this).parent().find('.parenthesis').show();
@@ -89,6 +98,9 @@
       $(this).parent().find('.ingredient-amt').text(amount);
   });
 
+  /*
+  Fires the event to delete ingredients from the pantry on the "hook" page
+  */
   $(document).on('click', '.anon-delete-button', function(evt) {
     var element = $(this).parent();
     var ing = element.find('.ingredient').text();
@@ -99,12 +111,14 @@
     if (index > -1){
       ingredientsList.splice(index, 1);
     }
-    // element.remove();
     console.log(ingredientsList);
     loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
 
   });
 
+/*
+Fires the event to add ingredients on the hook page
+*/
   $(document).on('submit', '#anon-pantry-form', function(evt) {
       evt.preventDefault();
       var element = $(this).parent();
@@ -114,11 +128,21 @@
       var formData = helpers.getFormData(this);
       var ingredient = formData.ingredient;
 
-      ingredientsList.push(ingredient);
+      var index = ingredientsList.indexOf(ingredient);
+      if (index < 0){
+        ingredientsList.push(ingredient);
+      }
 
     $('#new-ingredient').val('');
     $('#new-ingredient').focus();
- console.log(ingredientsList);
+
     loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
   });
+
+  $(document).on('click', '.anon-create-btn', function(evt){
+    evt.preventDefault();
+
+    // Popup register window
+  });
+
 })();

@@ -27,7 +27,7 @@ router.all('*', requireAuthentication);
 /*
   The following retrieves all ingredients from the current pantry.
 
-  GET /pantry/current
+  GET /pantry/
   No request parameters
   Response:
     - success.ingredients: the ingredients in the pantry
@@ -50,12 +50,13 @@ router.get('/', function(req, res) {
   All ingredients in the pantry must be distinct. If a request arrives with a ingredient that
   already exists, the response will be an error.
 
-  POST /add
+  PUT /
   Request body:
     - username
-    - ingredient
+    - ingredient name
+    - ingredient amount (can be empty)
   Response:
-    - success: true if user creation succeeded; false otherwise
+    - success: true if adding ingredient succeeded; false otherwise
     - err: on error, an error message
 */
 
@@ -69,6 +70,19 @@ router.put('/', function(req, res) {
   });
 });
 
+
+/*
+  Edits the amount of an ingredient in the pantry. Amounts can be nothing.
+
+  PUT /amount
+  Request body:
+    - username
+    - ingredient id
+    - ingredient amount
+  Response:
+    - success: true if editing the amount succeeded; false otherwise
+    - err: on error, an error message
+*/
 router.put('/amount', function(req, res) {
   Pantry.Pantry.editIngredientAmount(req.currentUser.username, req.body.ingredientId, req.body.ingredientAmt, function(err, amt) {
     if (!err) {
@@ -85,10 +99,10 @@ router.put('/amount', function(req, res) {
 /*
   Deletes an ingredient from the pantry
 
-  DELETE /delete
+  DELETE /
   Request body:
     - username
-    - ingredient
+    - ingredient id
   Response:
     - success: true if ingredient deleted; false otherwise
     - err: on error, an error message

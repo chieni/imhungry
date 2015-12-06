@@ -35,6 +35,9 @@
           '/users',
           formData
       ).done(function(response) {
+        $("#signup-modal").modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
           loadPage('index');
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);

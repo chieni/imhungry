@@ -31,16 +31,20 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   console.log("database connected");
     // Comment the two lines below out if already run
-     // insertRecipes(db);
-     // insertIngredients(db);
+     insertRecipes(db);
+     insertIngredients(db);
   });
 
 var allIngredients = [];
 var uniqueIngredients = [];
 
+/*
+Adds all parsed recipes to the database.
+The last recipe is designated by the console logging "recipe 30800".
+*/
 var insertRecipes = function (db) {
   for (var i = 1200; i < 30900; i+=100) {
-   console.log(i);
+   console.log("recipe " + i);
    var recipes = require("./recipe_data/json-files/recipes" + String(i) + "-" + String(i+99)+ ".json");
    recipes.forEach(function (recipe) {
       var r = new Recipe(recipe);
@@ -53,6 +57,10 @@ var insertRecipes = function (db) {
   }
 }
 
+/*
+Adds all unique ingredients pulled from the recipes to the database.
+The last ingredient to be added is designated by the console logging "ingredient 6039".
+*/
 var insertIngredients = function(db) {
   allIngredients.forEach(function(ing){
     if (uniqueIngredients.indexOf(ing) == -1) uniqueIngredients.push(ing);
@@ -61,10 +69,7 @@ var insertIngredients = function(db) {
   uniqueIngredients.forEach(function(ing, index) {
     var i = new Ingredient({name: ing});
     i.save(function (err) {
-      console.log("added " + index);
-      if (index == uniqueIngredients.length-1) {
-        console.log("finished adding all ingredients");
-      }
+      console.log("ingredient " + index);
     });
   });
 }

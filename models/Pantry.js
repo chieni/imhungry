@@ -10,7 +10,7 @@ var Ingredient = require('../models/Ingredient');
 /*
 Schema for pantry
   username: String username of user who owns this pantry
-  ingredients: array of String of ingredient names in this pantry
+  ingredients: array of ingredient objects and String amount of ingredients that this user owns
   */
   var pantrySchema = mongoose.Schema({
     username: String,
@@ -65,7 +65,8 @@ Get all the ingredients in the pantry of the given user
 Add ingredient to given user's pantry
 User cannot add the same ingredient again
   username: String username of specified user
-  ingredient: String ingredient name of ingredient to add
+  ingredientName: String ingredient name of ingredient to add
+  ingredientAmt: String amount of ingredient that is being added
   */
   pantrySchema.statics.addIngredient = function(username, ingredientName, ingredientAmt, callback) {
     var self = this;
@@ -109,7 +110,7 @@ User cannot add the same ingredient again
 /*
 Delete ingredient from given user's pantry
   username: String username of specified user
-  ingredient: String name of ingredient to be deleted
+  ingredientId: ObjectId of ingredient to be deleted
   */
   pantrySchema.statics.deleteIngredient = function(username, ingredientId, callback) {
     var index = -1;
@@ -141,9 +142,13 @@ Delete ingredient from given user's pantry
     });
   };
   
-
+/*
+Edit ingredient amount of a given ingredient of a given user
+  username: String username of specified user
+  ingredientId: ObjectId of ingredient whose amount is to be edited
+  ingredientAmt: String of the new amount
+  */
   pantrySchema.statics.editIngredientAmount = function(username, ingredientId, ingredientAmt, callback) {
-    console.log("edit");
     var index = -1;
     this.findOne({username: username}, function(err, pantry) {
       if (pantry) {
@@ -172,6 +177,7 @@ Delete ingredient from given user's pantry
       }
     });
   }
+  
 /*
 Create a new pantry for specified user
 Pantry is initially empty

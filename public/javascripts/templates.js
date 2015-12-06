@@ -48,15 +48,23 @@ templates['hook'] = template({"1":function(container,depth0,helpers,partials,dat
     var helper;
 
   return "          "
+
+  return "            "
     + container.escapeExpression(((helper = (helper = helpers.error || (depth0 != null ? depth0.error : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"error","hash":{},"data":data}) : helper)))
     + "\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
   return ((stack1 = container.invokePartial(partials.anonHeader,depth0,{"name":"anonHeader","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+
     + "\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"hook-box\">\n  \n    <div class=\"hook-text-line\">\n    <span class=\"hook-text\">I am cooking for </span> \n    <input id=\"hook-number-input\" type=\"number\" value=\"1\"/> \n    <span class=\"hook-text\"> and I have </span>\n    <span class=\"hook-vert-line\"> | </span>\n    <input id=\"hook-ingr-input\" type=\"text\" placeholder=\"corn, pork shoulder, cilantro, etc.\" required/>\n\n    </div>\n      <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\n    <form id=\"hook-search-form\">\n        <input type=\"submit\" value=\"SCAVENGE\" class=\"btn btn-warning\"/>\n    </form>\n  </div>\n</div>\n</div>";
+
+    + "\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"hook-box\">\n  <form id=\"hook-search-form\">\n    <div class=\"hook-text-line\">\n    <span class=\"hook-text\">I am cooking for </span> \n    <input id=\"hook-number-input\" type=\"number\" value=\"1\"/> \n    <span class=\"hook-text\"> and I have </span>\n    <span class=\"hook-vert-line\"> | </span>\n    \n      <input id=\"hook-ingr-input\" type=\"text\" placeholder=\"corn, pork shoulder, cilantro, etc.\" required/>\n\n      </div>\n        <div class=\"error\">\n"
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        </div>\n    \n      <div class=\"hook-search-btn\">\n        <input type=\"submit\" value=\"SCAVENGE\" class=\"btn btn-warning\"/>\n      </div>\n    </form>\n  </div>\n</div>\n</div>";
+
 },"usePartial":true,"useData":true});
 templates['index'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
@@ -115,6 +123,7 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
 },"10":function(container,depth0,helpers,partials,data) {
     return "      <a class=\"back-to-search-anon\">&lt; Back to Search Results</a> \n";
 },"12":function(container,depth0,helpers,partials,data) {
+
     return "      <div class=\"star\"><span>☆</span></div>\n";
 },"14":function(container,depth0,helpers,partials,data) {
     return "      <div class=\"star\"><span>★</span></div>\n";
@@ -125,6 +134,7 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
 },"20":function(container,depth0,helpers,partials,data) {
     return "      <div class=\"star\"  ><span>☆</span></div>\n";
 },"22":function(container,depth0,helpers,partials,data) {
+
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "    <div class=\"save-recipe-btn\">\n      <button id=\"save-btn\" data-id="
@@ -132,7 +142,11 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + " data-servingsize="
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " class=\"btn btn-lg btn-warning save-btn\">Save Recipe to Cookbook</button>\n    </div>\n";
+
 },"24":function(container,depth0,helpers,partials,data) {
+
+},"14":function(container,depth0,helpers,partials,data) {
+
     return "        <div class=\"ingredient\">"
     + container.escapeExpression(container.lambda(depth0, depth0))
     + "</div>\n";
@@ -146,6 +160,7 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.fromCookbook : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
     + "  </div>\n\n    <div class=\"recipe-view-img\" style=\"background-image: url("
     + alias3(alias2(((stack1 = ((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.imageURLs : stack1)) != null ? stack1["0"] : stack1), depth0))
+
     + ")\"></div>\n\n    \n\n\n\n    <div class=\"recipe-name\">"
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.name : stack1), depth0))
     + "</div>\n    <div class=\"aggregaterating\">\n  <div class=\"rate\">Rating</div>\n"
@@ -160,35 +175,69 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),1,{"name":"compare","hash":{"operator":"<"},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),1,{"name":"compare","hash":{"operator":">="},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n  </div>\n\n  <div class=\"rating\">\n    <div class=\"rate\">Rate this Recipe</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
+
+    + ")\"></div>\n\n    <form id=\"scale-form\" class=\"form-inline\" data-recipeid="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + ">\n       <div class=\"serving-line\">Serving size: <input class=\"form-control\" id=\"serv-size-input\" value="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
+    + " type=\"number\" name=\"servingsize\" />\n       <input type=\"submit\" value=\"Scale Recipe\" class=\"btn btn-warning\"/></div>\n     </form>\n\n\n\n    <div class=\"recipe-name\">"
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.name : stack1), depth0))
+    + "</div>\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.displayButton : depth0),{"name":"if","hash":{},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "  </div>\n\n\n\n  <div class=\"col-md-6 col-md-offset-1\">\n    <div class=\"ingredients\">\n      <div class=\"ingredients-header\">Ingredients: </div>\n      \n"
+    + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.ingredients : stack1),{"name":"each","hash":{},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    </div>\n\n    <div class=\"instructions\">\n      <div class=\"instructions-label\">Instructions:</div>\n      <a class=\"recipe-url btn btn-lg btn-warning save-btn\" href=\""
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.sourceURL : stack1), depth0))
+    + "\">Full instructions here</a>\n    </div>\n\n\n\n\n   <div class=\"rating\">\n    <div class=\"display-rating\">This recipe is rated "
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1), depth0))
+    + " stars</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
+
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + " data-servingsize="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " data-displaybutton="
     + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+
     + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
+
+    + "><span><i class=\"fa fa-star-o\"></i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
+
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + " data-servingsize="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " data-displaybutton="
     + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+
     + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
+
+    + "><span><i class=\"fa fa-star-o\"></i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
+
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + " data-servingsize="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " data-displaybutton="
     + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+
     + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
+
+    + "><span><i class=\"fa fa-star-o\"></i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
+
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + " data-servingsize="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " data-displaybutton="
     + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+
     + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
+
+    + "><span><i class=\"fa fa-star-o\"></i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
+
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + " data-servingsize="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " data-displaybutton="
     + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+
     + "><span>☆</span></a>\n  </div>\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.displayButton : depth0),{"name":"if","hash":{},"fn":container.program(22, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  </div>\n\n\n\n  <div class=\"col-md-6 col-md-offset-1\">\n\n    <form id=\"scale-form\" class=\"form-inline\" data-recipeid="
@@ -200,6 +249,9 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + "    </div>\n\n    <div class=\"instructions\">\n      <div class=\"instructions-label\">Instructions:</div>\n      <a class=\"recipe-url btn btn-lg btn-warning save-btn\" href=\""
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.sourceURL : stack1), depth0))
     + "\">Full instructions here</a>\n    </div>\n\n\n\n\n\n\n\n\n</div>\n\n</div>\n</div>\n\n\n\n";
+
+    + "><span><i class=\"fa fa-star-o\"></i></span></a>\n  </div>\n  </div>\n\n\n\n\n\n</div>\n\n</div>\n</div>";
+
 },"usePartial":true,"useData":true});
 templates['register'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
@@ -210,7 +262,11 @@ templates['register'] = template({"1":function(container,depth0,helpers,partials
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
+
   return "<nav class=\"navbar navbar-static-top\">\n    <div class=\"container-fluid \">\n      <div class=\"navbar-header\">\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n          <span class=\"sr-only\">Toggle navigation</span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"\"><div class=\"header-logo\"></div></a>\n      </div>\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li class=\"active\"><a class=\"white\" href=\"\" id=\"signin-btn\" >LOGIN</a></li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  \n\n\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"col-md-4 col-md-offset-4 signin-box\" >\n  \n\n  <h2 class=\"text-center\">Register</h2>\n  <div class=\"error\">\n"
+
+  return "<nav class=\"navbar navbar-static-top\">\n    <div class=\"container-fluid \">\n      <div class=\"navbar-header\">\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n          <span class=\"sr-only\">Toggle navigation</span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"\"><div class=\"header-logo\"></div></a>\n      </div>\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li class=\"active\"><a class=\"white\" href=\"\" id=\"signin-btn\" >LOGIN</a></li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  \n\n\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"col-md-4 col-md-offset-4 signin-box\" >\n  \n\n  <h2 class=\"text-center\">Get Cooking</h2>\n  <div class=\"error\">\n"
+
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  </div>\n\n\n  <form id=\"register-form\">\n  <div>\n    <label for=\"inputUsername\" class=\"sr-only\"><span>Username</span></label>\n    <input type=\"username\" id=\"inputUsername\" name=\"username\" class=\"form-control\" placeholder=\"Username\" required autofocus/>\n  </div>\n  <div>\n    <label for=\"inputPassword\" class=\"sr-only\"><span>Password</span></label>\n    <input type=\"password\" id=\"inputPassword\" name=\"password\" class=\"form-control\" placeholder=\"Password\" required/>\n  </div>\n  <div>\n    <label for=\"inputPasswordConfirm\" class=\"sr-only\"><span>Confirm Password</span></label>\n    <input type=\"password\" id=\"inputPasswordConfirm\" name=\"confirm\" class=\"form-control\" placeholder=\"Confirm Password\" required/>\n  </div>\n    <input type=\"submit\" class=\"btn btn-lg btn-warning btn-block\"/>\n  </form>\n</div>\n</div>\n</div>";
 },"useData":true});
@@ -308,6 +364,10 @@ templates['searchAnon'] = template({"1":function(container,depth0,helpers,partia
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.searched : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0, blockParams, depths),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "          </div>\n    </div>\n\n    <div class=\"col-md-3 col-md-offset-1 right\">\n      <h1>Your pantry.</h1>\n\n      <div id=\"ingredientsList\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.ingredients : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0, blockParams, depths),"inverse":container.program(10, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
+
     + "      </div>\n\n      <form id=\"anon-pantry-form\" class=\"form-inline\">\n        <div><input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required />\n        <input type=\"submit\" value=\"Add\" class=\"btn btn-warning\"/></div>\n        <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n  </div>\n  </div>\n";
+
+    + "      </div>\n\n      <form id=\"anon-pantry-form\" class=\"form-inline\">\n        <div><input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required />\n        <input type=\"submit\" value=\"Add\" class=\"btn btn-warning\"/></div>\n        <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n\n      <button class=\"btn btn-lg btn-warning anon-create-btn\" data-toggle=\"modal\" data-target=\"#signup-modal\">Create Account</button>\n\n      <!-- Modal -->\n      <div id=\"signup-modal\" class=\"modal fade\" role=\"dialog\">\n        <div class=\"anon-dialog modal-dialog\">\n\n          <!-- Modal content-->\n          <div class=\"anon-dialog-content  modal-content\">\n\n            <div class=\"modal-header\">\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n              <div class=\"anon-modal-title\">Get Cooking</div>\n            </div>\n            <div class=\"modal-body\">\n              \n                <form id=\"register-form\">\n                <div>\n                  <label for=\"inputUsername\" class=\"sr-only\"><span>Username</span></label>\n                  <input type=\"username\" id=\"inputUsername\" name=\"username\" class=\"form-control\" placeholder=\"Username\" required autofocus/>\n                </div>\n                <div>\n                  <label for=\"inputPassword\" class=\"sr-only\"><span>Password</span></label>\n                  <input type=\"password\" id=\"inputPassword\" name=\"password\" class=\"form-control\" placeholder=\"Password\" required/>\n                </div>\n                <div>\n                  <label for=\"inputPasswordConfirm\" class=\"sr-only\"><span>Confirm Password</span></label>\n                  <input type=\"password\" id=\"inputPasswordConfirm\" name=\"confirm\" class=\"form-control\" placeholder=\"Confirm Password\" required/>\n                </div>\n                  <input type=\"submit\" class=\"btn btn-lg btn-warning btn-block\"/>\n                </form>\n            </div>\n\n          </div>\n\n        </div>\n      </div>\n  </div>\n  </div>\n";
+
 },"usePartial":true,"useData":true,"useDepths":true});
 })();

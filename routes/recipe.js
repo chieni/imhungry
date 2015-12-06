@@ -66,6 +66,10 @@ router.post('/:recipe', function(req, res) {
   }
 });
 
+
+/*
+Add comments
+*/
 router.put('/rate', function(req, res) {
 
   Recipe.rateRecipe(req.body.recipeid, req.body.rating, req.currentUser.username, function(err, rating) {

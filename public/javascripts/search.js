@@ -18,20 +18,23 @@
   	loadMoreSearchResults(formData, more);
   });
 
-    $(document).on('submit', '#anon-search-form', function(evt) {
-      evt.preventDefault();
-      var formData = helpers.getFormData(this);
-      var ingredientsList = $(".container").attr('data-ingredientsList-id');
-   
-      $.post(
-          '/search',
-          {ingredients: ingredientsList}
-      ).done(function(response) {
-		    loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
-      }).fail(function(responseObject) {
-          var response = $.parseJSON(responseObject.responseText);
-          $('.error').text(response.err);
-      });
+  /*
+  Submits the search query for an anonymous user, from the anonymous search page. 
+  */
+  $(document).on('submit', '#anon-search-form', function(evt) {
+    evt.preventDefault();
+    var formData = helpers.getFormData(this);
+    var ingredientsList = $(".container").attr('data-ingredientsList-id');
+ 
+    $.post(
+        '/search',
+        {ingredients: ingredientsList}
+    ).done(function(response) {
+	    loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
+    }).fail(function(responseObject) {
+        var response = $.parseJSON(responseObject.responseText);
+        $('.error').text(response.err);
+    });
 
 
   });

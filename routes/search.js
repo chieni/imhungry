@@ -80,9 +80,18 @@ router.post('/more', function(req, res) {
 });
 
 
+/*
+  The following retrieves all recipes from the search given a string with comma separated ingredient values.
 
+  POST search/
+  Request Paramaters:
+    - username
+    - ingredients
+  Response:
+    - success.recipes: recipes returned from search
+    - err message if error occured
+*/
 router.post('/', function(req, res) {
-
   var ing_list = req.body.ingredients.split(',');
   var final_list = [];
   ing_list.forEach(function(i){

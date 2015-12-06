@@ -99,7 +99,6 @@
     if (index > -1){
       ingredientsList.splice(index, 1);
     }
-    // element.remove();
     console.log(ingredientsList);
     loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
 
@@ -114,11 +113,21 @@
       var formData = helpers.getFormData(this);
       var ingredient = formData.ingredient;
 
-      ingredientsList.push(ingredient);
+      var index = ingredientsList.indexOf(ingredient);
+      if (index < 0){
+        ingredientsList.push(ingredient);
+      }
 
     $('#new-ingredient').val('');
     $('#new-ingredient').focus();
- console.log(ingredientsList);
+
     loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
   });
+
+  $(document).on('click', '.anon-create-btn', function(evt){
+    evt.preventDefault();
+
+    // Popup register window
+  });
+
 })();

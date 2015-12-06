@@ -47,5 +47,42 @@
         <input type="submit" value="Add" class="btn btn-warning"/></div>
         <div><ul id="results-list" style="list-style-type:none"></ul></div>
       </form>
+
+      <button class="btn btn-lg btn-warning anon-create-btn" data-toggle="modal" data-target="#signup-modal">Create Account</button>
+
+      <!-- Modal -->
+      <div id="signup-modal" class="modal fade" role="dialog">
+        <div class="anon-dialog modal-dialog">
+
+          <!-- Modal content-->
+          <div class="anon-dialog-content  modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <div class="anon-modal-title">Get Cooking</div>
+            </div>
+            <div class="modal-body">
+              
+                <form id="register-form">
+                <div>
+                  <label for="inputUsername" class="sr-only"><span>Username</span></label>
+                  <input type="username" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus/>
+                </div>
+                <div>
+                  <label for="inputPassword" class="sr-only"><span>Password</span></label>
+                  <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required/>
+                </div>
+                <div>
+                  <label for="inputPasswordConfirm" class="sr-only"><span>Confirm Password</span></label>
+                  <input type="password" id="inputPasswordConfirm" name="confirm" class="form-control" placeholder="Confirm Password" required/>
+                </div>
+                  <input type="submit" class="btn btn-lg btn-warning btn-block"/>
+                </form>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
   </div>
   </div>

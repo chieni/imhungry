@@ -69,8 +69,6 @@ Delete recipe from given user's cookbook
   ingredient: String name of ingredient to be deleted
 */
 cookbookSchema.statics.deleteRecipe = function(username, recipeId, callback) {
-  console.log("fuuu");
-  console.log(username);
    this.findOne({username: username}, function(err, cookbook) {
     if (cookbook) {
       
@@ -82,7 +80,6 @@ cookbookSchema.statics.deleteRecipe = function(username, recipeId, callback) {
             }
             count += 1;
           });
-          console.log(index);
           if (index > -1) {
             cookbook.recipes.splice(index,1);
           }

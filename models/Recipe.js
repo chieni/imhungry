@@ -296,7 +296,7 @@ recipeSchema.statics.rateRecipe = function(recipeId, rating, userId, callback) {
 				aggregateRating+=userRating.rating
 			})
 			numUsers = recipe.ratingDict.length
-			rating = aggregateRating/numUsers
+			rating = Math.round(10*aggregateRating/numUsers)/10
 			recipe.rating = rating;
 			recipe.save(function(err) {
               if(err) {

@@ -224,6 +224,7 @@ input:focus{
   padding: 2em 0;
   margin-bottom: 4em;
   min-height:40em;
+  display: inline-block;
 }
 
 .ingredients {
@@ -435,6 +436,34 @@ input:focus{
   border-bottom: 6px solid rgba(0, 174, 239, .15);
   border-top: 6px solid rgba(0, 174, 239, .8);
   border-radius: 100%;
+}
+.star {
+  color:white;
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+}
+.rating > .star {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  color: gold;
+}
+.rating > .star:hover,
+.rating > .star:hover ~ .star {
+  color: transparent;
+}
+.rating > .star:hover:before,
+.rating > .star:hover ~ .star:before {
+   content: "\2605";
+   position: absolute;
+   left: 0; 
+   color: gold;
+}
+.rating:hover {
+  
 }
 
 @-webkit-keyframes rotation {

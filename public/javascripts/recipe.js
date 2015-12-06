@@ -64,8 +64,44 @@
   $(document).on('submit', '#rating-form', function(evt) {
     evt.preventDefault();
     var item = $(this);
+    formData = helpers.getFormData(this);
+    rateForm(item, formData.rating);
+  });
+
+  $(document).on('click', '#one-star', function(evt) {
+    evt.preventDefault();
+    var item = $(this);
+    rateForm(item, 1);
+  });
+
+  $(document).on('click', '#two-star', function(evt) {
+    evt.preventDefault();
+    var item = $(this);
+    rateForm(item, 2);
+  });
+
+  $(document).on('click', '#three-star', function(evt) {
+    evt.preventDefault();
+    var item = $(this);
+    rateForm(item, 3);
+  });
+
+  $(document).on('click', '#four-star', function(evt) {
+    evt.preventDefault();
+    var item = $(this);
+    rateForm(item, 4);
+  });
+  
+  $(document).on('click', '#five-star', function(evt) {
+    evt.preventDefault();
+    var item = $(this);
+    rateForm(item, 5);
+  });
+
+
+
+  var rateForm = function(item, rating) {
     var recipe_id = item.data('recipeid');
-    var formData = helpers.getFormData(this);
     var serving_size = item.data('servingsize');
     var displayButton = item.data('displaybutton');
     $.ajax({
@@ -73,11 +109,10 @@
         type: 'PUT',
         data: { 
           recipeid: recipe_id,
-          rating: formData.rating,
+          rating: rating,
           servingsize: serving_size
         }
       }).done(function(response) {
-        console.log("ok done")
         $.post('/recipe/' + recipe_id,
           {servingSize: serving_size}
         ).done(function(response) {
@@ -90,7 +125,11 @@
         var response = $.parseJSON(responseObject.responseText);
         $('.error').text(response.err);
       });
-  });
+  }
+
+
+
+
 
 })();
 

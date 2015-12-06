@@ -52,13 +52,17 @@
       <a class="recipe-url btn btn-lg btn-warning save-btn" href="{{recipe.sourceURL}}">Full instructions here</a>
     </div>
 
-    <div class="rating">
-      <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
-    <form id="rating-form" class="form-inline" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}>
-       <div class="serving-line">Rate this recipe: <input class="form-control" id="rating-input" value={{recipe.rating}} type="number" name="rating" />
-       <input type="submit" value="Rate" class="btn btn-warning"/></div>
-     </form>
-   </div>
+
+
+
+   <div class="rating">
+    <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
+  </div>
   </div>
 
 

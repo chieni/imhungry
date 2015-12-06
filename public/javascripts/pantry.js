@@ -111,35 +111,42 @@
     var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
     
     var index = ingredientsList.indexOf(ing);
-    console.log(index)
+
     if (index > -1){
       ingredientsList.splice(index, 1);
     }
-    console.log(ingredientsList);
+
     loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
 
   });
 
-/*
-Fires the event to add ingredients on the hook page
-*/
-$(document).on('submit', '#anon-pantry-form', function(evt) {
-  evt.preventDefault();
-  var element = $(this).parent();
+  /*
+  Fires the event to add ingredients on the hook page
+  */
+  $(document).on('submit', '#anon-pantry-form', function(evt) {
+    evt.preventDefault();
+    var element = $(this).parent();
 
-  var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
+    var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
 
-  var formData = helpers.getFormData(this);
-  var ingredient = formData.ingredient;
+    var formData = helpers.getFormData(this);
+    var ingredient = formData.ingredient;
 
-  var index = ingredientsList.indexOf(ingredient);
-  if (index < 0){
-    ingredientsList.push(ingredient);
-  }
+    var index = ingredientsList.indexOf(ingredient);
+    if (index < 0){
+      ingredientsList.push(ingredient);
+    }
 
-  $('#new-ingredient').val('');
-  $('#new-ingredient').focus();
+    var cleanIngredientsList = [];
+    ingredientsList.forEach(function(i){
+      if (i.length > 0) {
+        cleanIngredientsList.push(i);
+      }
+    });
 
-  loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
-});
+    $('#new-ingredient').val('');
+    $('#new-ingredient').focus();
+
+    loadPage('searchAnon', {currentUser: null, ingredients: cleanIngredientsList});
+  });
 })();

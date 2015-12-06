@@ -244,9 +244,6 @@ Pantry is initially empty
           }
         });
     });
-
-
-
   }
 
   exports.Pantry = mongoose.model('Pantry', pantrySchema);

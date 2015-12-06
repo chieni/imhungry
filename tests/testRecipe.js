@@ -28,6 +28,7 @@ before(function(done) {
 	var smoothieRecipe = {name: 'mango smoothie', ingredients: ['orange juice', 'mango',
 		'banana', 'honey'], servingSize: 2, ingredientsWAmounts: ['2/3 cup orange juice', '1 mango',
 		'1/2 banana', 'honey to taste'], rating: 3.1};
+	var rater = "testUser";
 
 	before(function(done) {
 		Recipe.create([grilledCheeseRecipe, frenchFriesRecipe,
@@ -148,6 +149,29 @@ before(function(done) {
 	 		});
 	 	});
  	});
+	
+	describe('#rateRecipe()', function(done) {
+		it('test that a user can rate a recipe', function(done) {
+			Recipe.findOne({name: 'french fries'}, function(error, recipe) {
+				var recipeId = recipe._id;
+				Recipe.rateRecipe(recipeId, 1, rater, function(error, rating) {
+				assert.equal(rating, 1);
+				done();
+			});
+			})
+			
+		})
+
+		it('test that a user can only rate a recipe once', function(done) {
+			Recipe.findOne({name: 'french fries'}, function(error, recipe) {
+				var recipeId = recipe._id;
+				Recipe.rateRecipe(recipeId, 5, rater, function(error, rating) {
+					assert.equal(rating, 5);
+					done();
+				})
+			});
+		})
+	})
 
  	describe('#searchRecipes()', function() {
 

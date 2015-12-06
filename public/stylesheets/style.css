@@ -57,6 +57,7 @@ a {
 }
 .navbar {
   width: 100%;
+  margin-bottom: 0;
 }
 .nav {
   color: white;
@@ -88,7 +89,7 @@ a {
 
 .serving-line {
   font-size: 1.2em;
-  padding: 1em 1.05em;
+  padding-bottom: 1em;
 }
 
 .btn {
@@ -265,7 +266,7 @@ input:focus{
   background:rgba(0,0,0,0.65);
   padding: 2em 0;
   margin-bottom: 4em;
-  min-height:40em;
+  min-height:42em;
   display: block;
 }
 
@@ -303,23 +304,33 @@ input:focus{
 
 .save-recipe-btn {
   margin-top: 1em;
-  padding: 0 1em;
+  padding: 0.5em 1em;
+  display: inline-block;
+}
+
+#save-btn {
+  padding: 0.3em 0.5em;
 }
 
 .recipe-view-img{
   width: 22em;
-  height: 20em;
+  height: 18em;
   margin: 0 auto;
+  margin-top: 1em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+}
+
+.recipe-info-wrapper {
+  margin-left: 1em;
 }
 
 .recipe-name {
   font-family: 'Brandon Grotesque Light';
   font-size: 2.5em;
   line-height: 110%;
-  padding: 0 0.4em;
+  padding: 0.5em 0.4em;
 }
 
 #new-ingredient {
@@ -394,6 +405,7 @@ input:focus{
 
 .back-btn {
   margin: 0 0 1em 1em;
+  display: inline-block;
 }
 
 .back-btn a {
@@ -491,23 +503,26 @@ input:focus{
   width: 1.1em;
   content:"/2605";
   color: gold;
+
 }
 .aggregaterating {
   unicode-bidi: bidi-override;
   direction: rtl;
   text-align: left;
-  font-size:2em;
+  font-size:1.2em;
   margin-bottom: 0.5em;
   font-family: 'Brandon Grotesque Light';
+  margin-left: 0.8em;
 }
 
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
   text-align: left;
-  font-size:2em;
+  font-size:1.2em;
   margin-bottom: 0.5em;
   font-family: 'Brandon Grotesque Light';
+  margin-left: 0.8em;
 }
 .rating > .star {
   display: inline-block;

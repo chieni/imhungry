@@ -31,8 +31,10 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   console.log("database connected");
     // Comment the two lines below out if already run
-     //insertRecipes(db);
-     //insertIngredients(db);
+
+     // insertRecipes(db);
+     // insertIngredients(db);
+
   });
 
 var allIngredients = [];

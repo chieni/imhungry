@@ -48,7 +48,7 @@
         <span class="delete-button" style="color:orange;">x</span>
         <span class="ingredient" data-ingredient-id={{this.ingredient._id}}>{{ this.ingredient.name }}</span>
         <input type="text" class="edit-amt form-control" name="editedIngAmt" type="text" autocomplete="off"></input>
-        <span class="parenthesis">( </span><a class="ingredient-amt">{{this.amount}}</a><span class="parenthesis"> )</span>
+        <a class="ingredient-amt">( {{this.amount}} )</a>
       </div>
       {{else}}
       <p><em>No ingredients yet!</em></p>

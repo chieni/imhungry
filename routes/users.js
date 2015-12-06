@@ -130,6 +130,48 @@ router.post('/', function(req, res) {
   });
 });
 
+router.post('/anon', function(req, res) {
+  if (isLoggedInOrInvalidBody(req, res)) {
+    return;
+  }
+
+  User.User.createNewUser(req.body.username, req.body.password,  
+    function(err) {
+      if (err) {
+        if (err.taken) {
+          utils.sendErrResponse(res, 400, 'That username is already taken!');
+        } else {
+          utils.sendErrResponse(res, 500, 'An unknown error has occurred.');
+        }
+      } else {
+        Pantry.Pantry.createNewPantryWithIngredients(req.body.username, req.body.ingredients,
+          function(err) {
+            console.log("created a new pantry");
+            console.log(req.body.ingredients);
+            if(err) {
+              utils.sendErrResponse(res, 500, 'An unknown error has occured.');
+            }
+            else {
+              Cookbook.Cookbook.createNewCookbook(req.body.username, 
+                function(err) {
+                  console.log("trying to create new user!");
+                  if(err) {
+                    utils.sendErrResponse(res, 500, 'An unknown error has occured.');
+                  }
+                  else {
+                    console.log("created!");
+                    utils.sendSuccessResponse(res, req.body.username);
+                  }
+                })
+              utils.sendSuccessResponse(res, req.body.username);
+            }
+          });
+        utils.sendSuccessResponse(res, req.body.username);
+      }
+  });
+});
+
+
 /*
   Determine whether there is a current user logged in
 

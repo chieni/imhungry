@@ -46,7 +46,7 @@ Get all the ingredients in the pantry of the given user
                 callback(null, pantryIngObjs);
               }
               else {
-                setTimeout(addToArray, 0); //addToArray();
+                setTimeout(addToArray, 0);
               }
             })      
           })();
@@ -71,7 +71,6 @@ User cannot add the same ingredient again
   pantrySchema.statics.addIngredient = function(username, ingredientName, ingredientAmt, callback) {
     var self = this;
     Ingredient.findOne({name:ingredientName}, function(err, ing) {
-      console.log(ing);
       if (ing) {
         self.findOne({username: username}, function(err, pantry) {
           if (pantry) {
@@ -177,7 +176,7 @@ Edit ingredient amount of a given ingredient of a given user
       }
     });
   }
-  
+
 /*
 Create a new pantry for specified user
 Pantry is initially empty
@@ -192,6 +191,62 @@ Pantry is initially empty
           callback(null);
         }
       });
+  }
+
+  var getValidIngredients = function(ingredientsList, callback) {
+    if (ingredientsList.length > 0) {
+      var ingredientsObjs = [];
+      var clone = ingredientsList.slice(0);
+      (function addToArray() {
+        var poppedIng = clone.splice(0,1)[0];
+        Ingredient.findOne({name: poppedIng}, function(err, ing) {
+          
+          if (err) {
+            callback({msg:"Ingredient doesn't exist"});
+          } 
+
+          if (ing != null) {
+            ingredientsObjs.push({ingredient: ing});
+          }
+
+          if (clone.length == 0) {
+            callback(null, ingredientsObjs);
+          }
+          else {
+            setTimeout(addToArray, 0); //addToArray();
+          }
+        })      
+      })();
+    }
+    else {
+      callback(null, []);
+    }
+  }
+
+  /*
+  Create a new pantry for a specified user who entered via the hook
+  Pantry has ingredients that the user entered from the anonymous pantry
+    username: String username of specified user
+    ingredients: [String] ingredients from
+  */
+  pantrySchema.statics.createNewPantryWithIngredients = function(username, ingredients, callback) {
+    var ingredientsList = ingredients.split(',');
+    var self = this;
+    getValidIngredients(ingredientsList, function(err, ingredientsObjs){
+      self.create({username: username, ingredients: ingredientsObjs},
+        function(error, record) {
+          if (error) {
+            callback(error);
+          } else {
+            console.log("create pantry")
+            console.log(record)
+            callback(null);
+          }
+        });
+    });
+
+
+
   }
 
   exports.Pantry = mongoose.model('Pantry', pantrySchema);

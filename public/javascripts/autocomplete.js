@@ -18,6 +18,8 @@ $(function() {
 			},
 			select: function( event, ui ) {
 				$('#add-ing-btn').prop("disabled", false);
+				$("#anon-add-ing-btn").prop("disabled", false);
+				
 			}
 		});
 

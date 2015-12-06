@@ -38,6 +38,7 @@
   $(document).on('submit', '#scale-form', function(evt) {
     evt.preventDefault();
     var item = $(this);
+   // var recipe_id = $("container").attr('data-recipeid');
     var recipe_id = item.data('recipeid');
     var formData = helpers.getFormData(this);
     $.post('/recipe/' + recipe_id,
@@ -49,15 +50,10 @@
           $('.error').text(response.err);
     });
   });
-
   $(document).on('click', '.back-to-search', function(evt) {
       evt.preventDefault();
-      loadSearchResults({});
-  });
-
-    $(document).on('click', '.back-to-search-anon', function(evt) {
-      evt.preventDefault();
-      // fill in
+      var formData = helpers.getFormData(this);
+      loadSearchResults(formData);
   });
 
   $(document).on('click', '.back-to-cookbook', function(evt) {
@@ -120,17 +116,7 @@
         $.post('/recipe/' + recipe_id,
           {servingSize: serving_size}
         ).done(function(response) {
-          console.log("hello there!!");
-          console.log(response.content.recipe.rating);
-          var zero = response.content.recipe.rating==0;
-          var one = response.content.recipe.rating==1;
-          var two = response.content.recipe.rating==2;
-          var three = response.content.recipe.rating==3;
-          var four = response.content.recipe.rating==4;
-          var five = response.content.recipe.rating==5;
-          console.log(zero, one, two, three, four, five);
-          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: displayButton,
-           zero: zero, one: one, two: two, three: three, four: four, five: five});
+          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: displayButton});
         }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

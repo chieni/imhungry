@@ -1,4 +1,3 @@
-
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['anonHeader'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -55,7 +54,7 @@ templates['hook'] = template({"1":function(container,depth0,helpers,partials,dat
     var stack1;
 
   return ((stack1 = container.invokePartial(partials.anonHeader,depth0,{"name":"anonHeader","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"hook-box\">\n  \n    <div class=\"hook-text-line\">\n    <span class=\"hook-text\">I am cooking for </span> \n    <input id=\"hook-number-input\" type=\"number\" value=\"1\"/> \n    <span class=\"hook-text\"> and I have </span>\n    <span class=\"hook-vert-line\"> | </span>\n    <input id=\"hook-ingr-input\" type=\"text\" placeholder=\"corn, pork shoulder, cilantro, etc.\"/>\n\n    </div>\n      <div class=\"error\">\n"
+    + "\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"hook-box\">\n  \n    <div class=\"hook-text-line\">\n    <span class=\"hook-text\">I am cooking for </span> \n    <input id=\"hook-number-input\" type=\"number\" value=\"1\"/> \n    <span class=\"hook-text\"> and I have </span>\n    <span class=\"hook-vert-line\"> | </span>\n    <input id=\"hook-ingr-input\" type=\"text\" placeholder=\"corn, pork shoulder, cilantro, etc.\" required/>\n\n    </div>\n      <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\n    <form id=\"hook-search-form\">\n        <input type=\"submit\" value=\"SCAVENGE\" class=\"btn btn-warning\"/>\n    </form>\n  </div>\n</div>\n</div>";
 },"usePartial":true,"useData":true});
@@ -107,8 +106,25 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
 },"5":function(container,depth0,helpers,partials,data) {
     return "      <a class=\"back-to-cookbook\">&lt; Back to Cookbook</a>\n";
 },"7":function(container,depth0,helpers,partials,data) {
-    return "      <a class=\"back-to-search\">&lt; Back to Search Results</a>    \n";
-},"9":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "\n"
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.currentUser : depth0),{"name":"if","hash":{},"fn":container.program(8, data, 0),"inverse":container.program(10, data, 0),"data":data})) != null ? stack1 : "");
+},"8":function(container,depth0,helpers,partials,data) {
+    return "      <a class=\"back-to-search\">&lt; Back to Search Results</a> \n";
+},"10":function(container,depth0,helpers,partials,data) {
+    return "      <a class=\"back-to-search-anon\">&lt; Back to Search Results</a> \n";
+},"12":function(container,depth0,helpers,partials,data) {
+    return "      <div class=\"star\"><span>☆</span></div>\n";
+},"14":function(container,depth0,helpers,partials,data) {
+    return "      <div class=\"star\"><span>★</span></div>\n";
+},"16":function(container,depth0,helpers,partials,data) {
+    return "      <div class=\"star\" ><span>☆</span></div>\n";
+},"18":function(container,depth0,helpers,partials,data) {
+    return "      <div class=\"star\"  ><span>★</span></div>\n";
+},"20":function(container,depth0,helpers,partials,data) {
+    return "      <div class=\"star\"  ><span>☆</span></div>\n";
+},"22":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "    <div class=\"save-recipe-btn\">\n      <button id=\"save-btn\" data-id="
@@ -116,257 +132,74 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + " data-servingsize="
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " class=\"btn btn-lg btn-warning save-btn\">Save Recipe to Cookbook</button>\n    </div>\n";
-},"11":function(container,depth0,helpers,partials,data) {
+},"24":function(container,depth0,helpers,partials,data) {
     return "        <div class=\"ingredient\">"
     + container.escapeExpression(container.lambda(depth0, depth0))
     + "</div>\n";
-},"13":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
-
-  return "    <div class=\"display-rating\">This recipe is rated "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1), depth0))
-    + " stars</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n";
-},"15":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
-
-  return "    <div class=\"display-rating\">This recipe is rated "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1), depth0))
-    + " stars</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n";
-},"17":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
-
-  return "    <div class=\"display-rating\">This recipe is rated "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1), depth0))
-    + " stars</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n";
-},"19":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
-
-  return "    <div class=\"display-rating\">This recipe is rated "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1), depth0))
-    + " stars</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n";
-},"21":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
-
-  return "    <div class=\"display-rating\">This recipe is rated "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1), depth0))
-    + " stars</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>★</span></a>\n";
-},"23":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
-
-  return "   \n    <div class=\"display-rating\">This recipe is rated "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1), depth0))
-    + " stars</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</i></span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + " data-servingsize="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " data-displaybutton="
-    + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
-    + "><span>☆</span></a>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : {}, alias2=container.lambda, alias3=container.escapeExpression;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=container.lambda, alias3=container.escapeExpression, alias4=helpers.helperMissing, alias5="function";
 
   return ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.currentUser : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
     + "<div data-recipeid="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
-    + ">\n\n<div class=\"container\">\n\n<div class=\"search-row recipe-box\">\n\n\n  <div class=\"col-md-4\">\n    <div class=\"back-btn\">\n"
+    + ">\n\n<div class=\"container\">\n\n<div class=\"search-row recipe-box\">\n\n\n  <div class=\"col-md-4\">\n\n    <div class=\"back-btn\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.fromCookbook : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
     + "  </div>\n\n    <div class=\"recipe-view-img\" style=\"background-image: url("
     + alias3(alias2(((stack1 = ((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.imageURLs : stack1)) != null ? stack1["0"] : stack1), depth0))
-    + ")\"></div>\n\n    <form id=\"scale-form\" class=\"form-inline\" data-recipeid="
+    + ")\"></div>\n\n    \n\n\n\n    <div class=\"recipe-name\">"
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.name : stack1), depth0))
+    + "</div>\n    <div class=\"aggregaterating\">\n  <div class=\"rate\">Rating</div>\n"
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),5,{"name":"compare","hash":{"operator":"<"},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),5,{"name":"compare","hash":{"operator":">="},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),4,{"name":"compare","hash":{"operator":"<"},"fn":container.program(16, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),4,{"name":"compare","hash":{"operator":">="},"fn":container.program(18, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),3,{"name":"compare","hash":{"operator":"<"},"fn":container.program(20, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),3,{"name":"compare","hash":{"operator":">="},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),2,{"name":"compare","hash":{"operator":"<"},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),2,{"name":"compare","hash":{"operator":">="},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),1,{"name":"compare","hash":{"operator":"<"},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),1,{"name":"compare","hash":{"operator":">="},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n  </div>\n\n  <div class=\"rating\">\n    <div class=\"rate\">Rate this Recipe</div>\n    <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + " data-servingsize="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
+    + " data-displaybutton="
+    + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"four-star\" data-recipeid="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + " data-servingsize="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
+    + " data-displaybutton="
+    + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"three-star\" data-recipeid="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + " data-servingsize="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
+    + " data-displaybutton="
+    + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"two-star\" data-recipeid="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + " data-servingsize="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
+    + " data-displaybutton="
+    + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+    + "><span>☆</span></a>\n    <a class=\"star\" href=\"#\"  id=\"one-star\" data-recipeid="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
+    + " data-servingsize="
+    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
+    + " data-displaybutton="
+    + alias3(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias1,{"name":"displayButton","hash":{},"data":data}) : helper)))
+    + "><span>☆</span></a>\n  </div>\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.displayButton : depth0),{"name":"if","hash":{},"fn":container.program(22, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "  </div>\n\n\n\n  <div class=\"col-md-6 col-md-offset-1\">\n\n    <form id=\"scale-form\" class=\"form-inline\" data-recipeid="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + ">\n       <div class=\"serving-line\">Serving size: <input class=\"form-control\" id=\"serv-size-input\" value="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
-    + " type=\"number\" name=\"servingsize\" />\n       <input type=\"submit\" value=\"Scale Recipe\" class=\"btn btn-warning\"/></div>\n     </form>\n\n\n\n    <div class=\"recipe-name\">"
-    + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.name : stack1), depth0))
-    + "</div>\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.displayButton : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "  </div>\n\n\n\n  <div class=\"col-md-6 col-md-offset-1\">\n    <div class=\"ingredients\">\n      <div class=\"ingredients-header\">Ingredients: </div>\n      \n"
-    + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.ingredients : stack1),{"name":"each","hash":{},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + " type=\"number\" name=\"servingsize\" />\n       <input type=\"submit\" value=\"Scale Recipe\" class=\"btn btn-warning\"/></div>\n     </form>\n    <div class=\"ingredients\">\n      <div class=\"ingredients-header\">Ingredients: </div>\n      \n"
+    + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.ingredients : stack1),{"name":"each","hash":{},"fn":container.program(24, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n\n    <div class=\"instructions\">\n      <div class=\"instructions-label\">Instructions:</div>\n      <a class=\"recipe-url btn btn-lg btn-warning save-btn\" href=\""
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.sourceURL : stack1), depth0))
-    + "\">Full instructions here</a>\n    </div>\n\n\n<div class=\"rating\">\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.one : depth0),{"name":"if","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.two : depth0),{"name":"if","hash":{},"fn":container.program(15, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.three : depth0),{"name":"if","hash":{},"fn":container.program(17, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.four : depth0),{"name":"if","hash":{},"fn":container.program(19, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.five : depth0),{"name":"if","hash":{},"fn":container.program(21, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n\n\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.zero : depth0),{"name":"if","hash":{},"fn":container.program(23, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "  </div>\n\n\n\n\n\n</div>\n\n</div>\n</div>\n\n\n\n";
+    + "\">Full instructions here</a>\n    </div>\n\n\n\n\n\n\n\n\n</div>\n\n</div>\n</div>\n\n\n\n";
 },"usePartial":true,"useData":true});
 templates['register'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
@@ -377,9 +210,9 @@ templates['register'] = template({"1":function(container,depth0,helpers,partials
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<nav class=\"navbar navbar-static-top\">\n    <div class=\"container-fluid \">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class=\"navbar-header\">\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n          <span class=\"sr-only\">Toggle navigation</span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"\"><div class=\"header-logo\"></div></a>\n      </div>\n\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li class=\"active\"><a class=\"white\" href=\"\" id=\"signin-btn\" >LOGIN</a></li>\n<!-- \n          <li><img id=\"mazzetti\" class=\"navpic\" src=\"img/domm.jpg\" alt=\"Bro Science\"></li> -->\n        </ul>\n      </div>\n    </div>\n  </nav>\n  \n\n\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"col-md-4 col-md-offset-4 signin-box\" >\n  \n\n  <h2 class=\"text-center\">Register</h2>\n  <div class=\"error\">\n"
+  return "<nav class=\"navbar navbar-static-top\">\n    <div class=\"container-fluid \">\n      <div class=\"navbar-header\">\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n          <span class=\"sr-only\">Toggle navigation</span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n        </button>\n        <a class=\"navbar-brand\" href=\"\"><div class=\"header-logo\"></div></a>\n      </div>\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n        <ul class=\"nav navbar-nav navbar-right\">\n          <li class=\"active\"><a class=\"white\" href=\"\" id=\"signin-btn\" >LOGIN</a></li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  \n\n\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"col-md-4 col-md-offset-4 signin-box\" >\n  \n\n  <h2 class=\"text-center\">Register</h2>\n  <div class=\"error\">\n"
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "  </div>\n<!--   <form id=\"register-form\">\n    <div>Username: <input type=\"text\" name=\"username\" required /></div>\n    <div>Password: <input type=\"password\" name=\"password\" required /></div>\n    <div>Confirm Password: <input type=\"password\" name=\"confirm\" required /></div>\n    <input type=\"submit\" />\n  </form> -->\n\n\n  <form id=\"register-form\">\n  <div>\n    <label for=\"inputUsername\" class=\"sr-only\"><span>Username</span></label>\n    <input type=\"username\" id=\"inputUsername\" name=\"username\" class=\"form-control\" placeholder=\"Username\" required autofocus/>\n  </div>\n  <div>\n    <label for=\"inputPassword\" class=\"sr-only\"><span>Password</span></label>\n    <input type=\"password\" id=\"inputPassword\" name=\"password\" class=\"form-control\" placeholder=\"Password\" required/>\n  </div>\n  <div>\n    <label for=\"inputPasswordConfirm\" class=\"sr-only\"><span>Confirm Password</span></label>\n    <input type=\"password\" id=\"inputPasswordConfirm\" name=\"confirm\" class=\"form-control\" placeholder=\"Confirm Password\" required/>\n  </div>\n    <input type=\"submit\" class=\"btn btn-lg btn-warning btn-block\"/>\n  </form>\n</div>\n</div>\n</div>";
+    + "  </div>\n\n\n  <form id=\"register-form\">\n  <div>\n    <label for=\"inputUsername\" class=\"sr-only\"><span>Username</span></label>\n    <input type=\"username\" id=\"inputUsername\" name=\"username\" class=\"form-control\" placeholder=\"Username\" required autofocus/>\n  </div>\n  <div>\n    <label for=\"inputPassword\" class=\"sr-only\"><span>Password</span></label>\n    <input type=\"password\" id=\"inputPassword\" name=\"password\" class=\"form-control\" placeholder=\"Password\" required/>\n  </div>\n  <div>\n    <label for=\"inputPasswordConfirm\" class=\"sr-only\"><span>Confirm Password</span></label>\n    <input type=\"password\" id=\"inputPasswordConfirm\" name=\"confirm\" class=\"form-control\" placeholder=\"Confirm Password\" required/>\n  </div>\n    <input type=\"submit\" class=\"btn btn-lg btn-warning btn-block\"/>\n  </form>\n</div>\n</div>\n</div>";
 },"useData":true});
 templates['search'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;
@@ -478,6 +311,3 @@ templates['searchAnon'] = template({"1":function(container,depth0,helpers,partia
     + "      </div>\n\n      <form id=\"anon-pantry-form\" class=\"form-inline\">\n        <div><input class=\"form-control\" id=\"new-ingredient\" name=\"ingredient\" autocomplete=\"off\" placeholder=\"Add a new ingredient\" required />\n        <input type=\"submit\" value=\"Add\" class=\"btn btn-warning\"/></div>\n        <div><ul id=\"results-list\" style=\"list-style-type:none\"></ul></div>\n      </form>\n  </div>\n  </div>\n";
 },"usePartial":true,"useData":true,"useDepths":true});
 })();
-
-!function(){var n=Handlebars.template,a=Handlebars.templates=Handlebars.templates||{};a.anonHeader=n({compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){return'<nav class="navbar navbar-static-top">\n    <div class="container-fluid ">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class="navbar-header">\n        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\n          <span class="sr-only">Toggle navigation</span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n        </button>\n        <a class="navbar-brand" href=""><div class="header-logo"></div></a>\n      </div>\n\n      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n        <ul class="nav navbar-nav navbar-right">\n          <li class="active"><a class="white" href="" id="register-btn">SIGN UP</a></li>\n           <li class="active"><a class="white"  href="" id="signin-btn" >LOGIN</a></li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n\n  '},useData:!0}),a.cookbook=n({1:function(n,a,e,l,s){var i;return null!=(i=n.invokePartial(l.cookbookRecipe,a,{name:"cookbookRecipe",data:s,indent:"                ",helpers:e,partials:l,decorators:n.decorators}))?i:""},3:function(n,a,e,l,s){return"                <p><em>Your cookbook is currently empty. Save recipes to stash them here!</em></p>\n"},compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){var i;return'<div id="cookbook-view">\n'+(null!=(i=n.invokePartial(l.header,a,{name:"header",data:s,helpers:e,partials:l,decorators:n.decorators}))?i:"")+'<div class="cookbook">\n	<div class="container">\n	<div class="search-row">\n	<div class="col-md-12 cookbook-box">\n'+(null!=(i=e.each.call(null!=a?a:{},null!=a?a.recipes:a,{name:"each",hash:{},fn:n.program(1,s,0),inverse:n.program(3,s,0),data:s}))?i:"")+"          </div>\n    </div>\n    </div>\n    </div>\n</div>"},usePartial:!0,useData:!0}),a.cookbookRecipeView=n({compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){var i,r,t=null!=a?a:{},o=e.helperMissing,d="function",c=n.escapeExpression,p=n.lambda;return'<div class = "cookbookItem" data-recipid='+c((r=null!=(r=e._id||(null!=a?a._id:a))?r:o,typeof r===d?r.call(t,{name:"_id",hash:{},data:s}):r))+'>\n\n	<div class="cookbookRecipe recipe-overlay" data-recipeid='+c((r=null!=(r=e._id||(null!=a?a._id:a))?r:o,typeof r===d?r.call(t,{name:"_id",hash:{},data:s}):r))+">\n	  <p>"+c((r=null!=(r=e.name||(null!=a?a.name:a))?r:o,typeof r===d?r.call(t,{name:"name",hash:{},data:s}):r))+'</p>\n	  <img class="recipe-image" src = '+c(p(null!=(i=null!=a?a.imageURLs:a)?i[1]:i,a))+'>\n	</div>\n	<button id="recipe-delete-btn" data-id='+c((r=null!=(r=e._id||(null!=a?a._id:a))?r:o,typeof r===d?r.call(t,{name:"_id",hash:{},data:s}):r))+' class="btn btn-lg btn-warning recipe-delete-btn" type="button">Delete</button>\n</div>\n\n\n<!-- \n<div class="recipe recipe-overlay" data-recipeid='+c((r=null!=(r=e._id||(null!=a?a._id:a))?r:o,typeof r===d?r.call(t,{name:"_id",hash:{},data:s}):r))+" data-recipesize="+c((r=null!=(r=e.size||(null!=a?a.size:a))?r:o,typeof r===d?r.call(t,{name:"size",hash:{},data:s}):r))+">\n  <p>"+c((r=null!=(r=e.name||(null!=a?a.name:a))?r:o,typeof r===d?r.call(t,{name:"name",hash:{},data:s}):r))+'</p>\n  <img class="recipe-image" src = '+c(p(null!=(i=null!=a?a.imageURLs:a)?i[1]:i,a))+">\n</div> -->"},useData:!0}),a.header=n({compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){return'<nav class="navbar navbar-static-top">\n    <div class="container-fluid ">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class="navbar-header">\n        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\n          <span class="sr-only">Toggle navigation</span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n        </button>\n        <a class="navbar-brand" href=""><div class="header-logo"></div></a>\n      </div>\n\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n        <ul class="nav navbar-nav navbar-right">\n          <li class="active"><a class="white" href="">PANTRY</a></li>\n          <li class="active"><a class="white"  href="" id="cookbook-btn">COOKBOOK</a></li>\n          <li class="active"><a class="white"  href="#" id="logout-link">LOGOUT</a></li>\n<!-- \n          <li><img id="mazzetti" class="navpic" src="img/domm.jpg" alt="Bro Science"></li> -->\n        </ul>\n      </div>\n    </div>\n  </nav>\n  '},useData:!0}),a.hook=n({1:function(n,a,e,l,s){var i;return"          "+n.escapeExpression((i=null!=(i=e.error||(null!=a?a.error:a))?i:e.helperMissing,"function"==typeof i?i.call(null!=a?a:{},{name:"error",hash:{},data:s}):i))+"\n"},compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){var i;return(null!=(i=n.invokePartial(l.anonHeader,a,{name:"anonHeader",data:s,helpers:e,partials:l,decorators:n.decorators}))?i:"")+'\n\n<div class ="container-fluid">\n<div class="row">  \n  <div class="hook-box">\n  \n    <div class="hook-text-line">\n    <span class="hook-text">I am cooking for </span> \n    <input id="hook-number-input" type="number" value="1"/> \n    <span class="hook-text"> and I have </span>\n    <span class="hook-vert-line"> | </span>\n    <input id="hook-ingr-input" type="text" placeholder="corn, pork shoulder, cilantro, etc." required/>\n\n    </div>\n      <div class="error">\n'+(null!=(i=e["if"].call(null!=a?a:{},null!=a?a.error:a,{name:"if",hash:{},fn:n.program(1,s,0),inverse:n.noop,data:s}))?i:"")+'      </div>\n    <form id="hook-search-form">\n        <input type="submit" value="SCAVENGE" class="btn btn-warning"/>\n    </form>\n  </div>\n</div>\n</div>'},usePartial:!0,useData:!0}),a.index=n({1:function(n,a,e,l,s){var i;return"          "+n.escapeExpression((i=null!=(i=e.error||(null!=a?a.error:a))?i:e.helperMissing,"function"==typeof i?i.call(null!=a?a:{},{name:"error",hash:{},data:s}):i))+"\n"},compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){var i;return'<nav class="navbar navbar-static-top">\n    <div class="container-fluid ">\n      <!-- Brand and toggle get grouped for better mobile display -->\n      <div class="navbar-header">\n        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\n          <span class="sr-only">Toggle navigation</span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n        </button>\n        <a class="navbar-brand" href=""><div class="header-logo"></div></a>\n      </div>\n\n      <!-- Collect the nav links, forms, and other content for toggling -->\n      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n        <ul class="nav navbar-nav navbar-right">\n          <li class="active"><a class="white" href="" id="register-btn">SIGN UP</a></li>\n<!-- \n          <li><img id="mazzetti" class="navpic" src="img/domm.jpg" alt="Bro Science"></li> -->\n        </ul>\n      </div>\n    </div>\n  </nav>\n\n  \n\n\n<div class ="container-fluid">\n<div class="row">  \n  <div class="col-md-4 col-md-offset-4 signin-box" >\n    <h2 class="text-center">Sign in</h2>\n      <div class="error">\n'+(null!=(i=e["if"].call(null!=a?a:{},null!=a?a.error:a,{name:"if",hash:{},fn:n.program(1,s,0),inverse:n.noop,data:s}))?i:"")+'      </div>\n\n      <form id="signin-form">\n      <div>\n        <label for="inputUsername" class="sr-only"><span>Username</span></label>\n        <input type="username" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus/>\n      </div>\n      <div>\n        <label for="inputPassword" class="sr-only"><span>Password</span></label>\n        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required/>\n      </div>\n        <input type="submit" class="btn btn-lg btn-warning btn-block"/>\n      </form>\n</div>\n</div>\n</div>\n'},useData:!0}),a.ingredient=n({compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){var i,r=n.lambda,t=n.escapeExpression;return'<div class="ingredient">\n  <label>'+t(r(null!=(i=null!=a?a.ingredient:a)?i.name:i,a))+" </label><p>: "+t(r(null!=(i=null!=a?a.ingredient:a)?i.amount:i,a))+" </p>\n</div>"},useData:!0}),a.recipe=n({compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){var i,r,t=null!=a?a:{},o=e.helperMissing,d="function",c=n.escapeExpression;return'<div class="recipe recipe-overlay" data-recipeid='+c((r=null!=(r=e._id||(null!=a?a._id:a))?r:o,typeof r===d?r.call(t,{name:"_id",hash:{},data:s}):r))+" data-recipesize="+c((r=null!=(r=e.size||(null!=a?a.size:a))?r:o,typeof r===d?r.call(t,{name:"size",hash:{},data:s}):r))+">\n  <p>"+c((r=null!=(r=e.name||(null!=a?a.name:a))?r:o,typeof r===d?r.call(t,{name:"name",hash:{},data:s}):r))+"</p><p><em>	Number of Extra Ingredients: "+c((r=null!=(r=e.numUnmatched||(null!=a?a.numUnmatched:a))?r:o,typeof r===d?r.call(t,{name:"numUnmatched",hash:{},data:s}):r))+'</em></p>\n  <img class="recipe-image" src = '+c(n.lambda(null!=(i=null!=a?a.imageURLs:a)?i[1]:i,a))+">\n</div>\n\n\n"},useData:!0}),a.recipeView=n({1:function(n,a,e,l,s){var i;return null!=(i=n.invokePartial(l.header,a,{name:"header",data:s,helpers:e,partials:l,decorators:n.decorators}))?i:""},3:function(n,a,e,l,s){var i;return null!=(i=n.invokePartial(l.anonHeader,a,{name:"anonHeader",data:s,helpers:e,partials:l,decorators:n.decorators}))?i:""},5:function(n,a,e,l,s){return'      <a class="back-to-cookbook">&lt; Back to Cookbook</a>\n'},7:function(n,a,e,l,s){var i;return"\n"+(null!=(i=e["if"].call(null!=a?a:{},null!=a?a.currentUser:a,{name:"if",hash:{},fn:n.program(8,s,0),inverse:n.program(10,s,0),data:s}))?i:"")},8:function(n,a,e,l,s){return'      <a class="back-to-search">&lt; Back to Search Results</a> \n'},10:function(n,a,e,l,s){return'      <a class="back-to-search-anon">&lt; Back to Search Results</a> \n'},12:function(n,a,e,l,s){var i,r=n.lambda,t=n.escapeExpression;return'    <div class="save-recipe-btn">\n      <button id="save-btn" data-id='+t(r(null!=(i=null!=a?a.recipe:a)?i._id:i,a))+" data-servingsize="+t(r(null!=(i=null!=a?a.recipe:a)?i.servingSize:i,a))+' class="btn btn-lg btn-warning save-btn">Save Recipe to Cookbook</button>\n    </div>\n'},14:function(n,a,e,l,s){return'        <div class="ingredient">'+n.escapeExpression(n.lambda(a,a))+"</div>\n"},compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){var i,r,t=null!=a?a:{},o=n.lambda,d=n.escapeExpression,c=e.helperMissing,p="function";return(null!=(i=e["if"].call(t,null!=a?a.currentUser:a,{name:"if",hash:{},fn:n.program(1,s,0),inverse:n.program(3,s,0),data:s}))?i:"")+"<div data-recipeid="+d(o(null!=(i=null!=a?a.recipe:a)?i._id:i,a))+'>\n\n<div class="container">\n\n<div class="search-row recipe-box">\n\n\n  <div class="col-md-4">\n\n    <div class="back-btn">\n'+(null!=(i=e["if"].call(t,null!=a?a.fromCookbook:a,{name:"if",hash:{},fn:n.program(5,s,0),inverse:n.program(7,s,0),data:s}))?i:"")+'  </div>\n\n    <div class="recipe-view-img" style="background-image: url('+d(o(null!=(i=null!=(i=null!=a?a.recipe:a)?i.imageURLs:i)?i[0]:i,a))+')"></div>\n\n    <form id="scale-form" class="form-inline" data-recipeid='+d(o(null!=(i=null!=a?a.recipe:a)?i._id:i,a))+'>\n       <div class="serving-line">Serving size: <input class="form-control" id="serv-size-input" value='+d(o(null!=(i=null!=a?a.recipe:a)?i.servingSize:i,a))+' type="number" name="servingsize" />\n       <input type="submit" value="Scale Recipe" class="btn btn-warning"/></div>\n     </form>\n\n\n\n    <div class="recipe-name">'+d(o(null!=(i=null!=a?a.recipe:a)?i.name:i,a))+"</div>\n"+(null!=(i=e["if"].call(t,null!=a?a.displayButton:a,{name:"if",hash:{},fn:n.program(12,s,0),inverse:n.noop,data:s}))?i:"")+'  </div>\n\n\n\n  <div class="col-md-6 col-md-offset-1">\n    <div class="ingredients">\n      <div class="ingredients-header">Ingredients: </div>\n      \n'+(null!=(i=e.each.call(t,null!=(i=null!=a?a.recipe:a)?i.ingredients:i,{name:"each",hash:{},fn:n.program(14,s,0),inverse:n.noop,data:s}))?i:"")+'    </div>\n\n    <div class="instructions">\n      <div class="instructions-label">Instructions:</div>\n      <a class="recipe-url btn btn-lg btn-warning save-btn" href="'+d(o(null!=(i=null!=a?a.recipe:a)?i.sourceURL:i,a))+'">Full instructions here</a>\n    </div>\n\n\n\n\n   <div class="rating">\n    <div class="display-rating">This recipe is rated '+d(o(null!=(i=null!=a?a.recipe:a)?i.rating:i,a))+' stars</div>\n    <a class="star" href="#"  id="five-star" data-recipeid='+d(o(null!=(i=null!=a?a.recipe:a)?i._id:i,a))+" data-servingsize="+d(o(null!=(i=null!=a?a.recipe:a)?i.servingSize:i,a))+" data-displaybutton="+d((r=null!=(r=e.displayButton||(null!=a?a.displayButton:a))?r:c,typeof r===p?r.call(t,{name:"displayButton",hash:{},data:s}):r))+'><span><i class="fa fa-star-o"></i></span></a>\n    <a class="star" href="#"  id="four-star" data-recipeid='+d(o(null!=(i=null!=a?a.recipe:a)?i._id:i,a))+" data-servingsize="+d(o(null!=(i=null!=a?a.recipe:a)?i.servingSize:i,a))+" data-displaybutton="+d((r=null!=(r=e.displayButton||(null!=a?a.displayButton:a))?r:c,typeof r===p?r.call(t,{name:"displayButton",hash:{},data:s}):r))+'><span><i class="fa fa-star-o"></i></span></a>\n    <a class="star" href="#"  id="three-star" data-recipeid='+d(o(null!=(i=null!=a?a.recipe:a)?i._id:i,a))+" data-servingsize="+d(o(null!=(i=null!=a?a.recipe:a)?i.servingSize:i,a))+" data-displaybutton="+d((r=null!=(r=e.displayButton||(null!=a?a.displayButton:a))?r:c,typeof r===p?r.call(t,{name:"displayButton",hash:{},data:s}):r))+'><span><i class="fa fa-star-o"></i></span></a>\n    <a class="star" href="#"  id="two-star" data-recipeid='+d(o(null!=(i=null!=a?a.recipe:a)?i._id:i,a))+" data-servingsize="+d(o(null!=(i=null!=a?a.recipe:a)?i.servingSize:i,a))+" data-displaybutton="+d((r=null!=(r=e.displayButton||(null!=a?a.displayButton:a))?r:c,typeof r===p?r.call(t,{name:"displayButton",hash:{},data:s}):r))+'><span><i class="fa fa-star-o"></i></span></a>\n    <a class="star" href="#"  id="one-star" data-recipeid='+d(o(null!=(i=null!=a?a.recipe:a)?i._id:i,a))+" data-servingsize="+d(o(null!=(i=null!=a?a.recipe:a)?i.servingSize:i,a))+" data-displaybutton="+d((r=null!=(r=e.displayButton||(null!=a?a.displayButton:a))?r:c,typeof r===p?r.call(t,{name:"displayButton",hash:{},data:s}):r))+'><span><i class="fa fa-star-o"></i></span></a>\n  </div>\n  </div>\n\n\n\n\n\n</div>\n\n</div>\n</div>'},usePartial:!0,useData:!0}),a.register=n({1:function(n,a,e,l,s){var i;return"      "+n.escapeExpression((i=null!=(i=e.error||(null!=a?a.error:a))?i:e.helperMissing,"function"==typeof i?i.call(null!=a?a:{},{name:"error",hash:{},data:s}):i))+"\n"},compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s){var i;return'<nav class="navbar navbar-static-top">\n    <div class="container-fluid ">\n      <div class="navbar-header">\n        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\n          <span class="sr-only">Toggle navigation</span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n          <span class="icon-bar"></span>\n        </button>\n        <a class="navbar-brand" href=""><div class="header-logo"></div></a>\n      </div>\n      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n        <ul class="nav navbar-nav navbar-right">\n          <li class="active"><a class="white" href="" id="signin-btn" >LOGIN</a></li>\n        </ul>\n      </div>\n    </div>\n  </nav>\n  \n\n\n\n<div class ="container-fluid">\n<div class="row">  \n  <div class="col-md-4 col-md-offset-4 signin-box" >\n  \n\n  <h2 class="text-center">Register</h2>\n  <div class="error">\n'+(null!=(i=e["if"].call(null!=a?a:{},null!=a?a.error:a,{name:"if",hash:{},fn:n.program(1,s,0),inverse:n.noop,data:s}))?i:"")+'  </div>\n\n\n  <form id="register-form">\n  <div>\n    <label for="inputUsername" class="sr-only"><span>Username</span></label>\n    <input type="username" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus/>\n  </div>\n  <div>\n    <label for="inputPassword" class="sr-only"><span>Password</span></label>\n    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required/>\n  </div>\n  <div>\n    <label for="inputPasswordConfirm" class="sr-only"><span>Confirm Password</span></label>\n    <input type="password" id="inputPasswordConfirm" name="confirm" class="form-control" placeholder="Confirm Password" required/>\n  </div>\n    <input type="submit" class="btn btn-lg btn-warning btn-block"/>\n  </form>\n</div>\n</div>\n</div>'},useData:!0}),a.search=n({1:function(n,a,e,l,s){var i;return"      "+n.escapeExpression((i=null!=(i=e.error||(null!=a?a.error:a))?i:e.helperMissing,"function"==typeof i?i.call(null!=a?a:{},{name:"error",hash:{},data:s}):i))+"\n"},3:function(n,a,e,l,s){return'         <div class="spinner"></div>\n'},5:function(n,a,e,l,s,i,r){var t,o=null!=a?a:{};return(null!=(t=e.each.call(o,null!=a?a.recipes:a,{name:"each",hash:{},fn:n.program(6,s,0,i,r),inverse:n.program(8,s,0,i,r),data:s}))?t:"")+(null!=(t=e["if"].call(o,null!=a?a.recipes:a,{name:"if",hash:{},fn:n.program(10,s,0,i,r),inverse:n.noop,data:s}))?t:"")},6:function(n,a,e,l,s,i,r){var t;return null!=(t=n.invokePartial(l.recipe,a,{name:"recipe",hash:{size:null!=r[1]?r[1].size:r[1]},data:s,indent:"      ",helpers:e,partials:l,decorators:n.decorators}))?t:""},8:function(n,a,e,l,s){return"      <p><em>No recipes found. Please add more ingredients to your pantry!</em></p>\n"},10:function(n,a,e,l,s){var i;return'      <form id="load-more-form" class="form-inline" data-more='+n.escapeExpression((i=null!=(i=e.more||(null!=a?a.more:a))?i:e.helperMissing,"function"==typeof i?i.call(null!=a?a:{},{name:"more",hash:{},data:s}):i))+'>\n        <div><input type="submit" value="LOAD MORE" id="load-more-btn" class="load-more btn btn-warning" disabled/></div>\n      \n'},12:function(n,a,e,l,s){var i,r=n.lambda,t=n.escapeExpression;return'      <div class="ingredients-line">\n        <span class="delete-button" style="color:orange;">x</span>\n        <span class="ingredient" data-ingredient-id='+t(r(null!=(i=null!=a?a.ingredient:a)?i._id:i,a))+">"+t(r(null!=(i=null!=a?a.ingredient:a)?i.name:i,a))+'</span>\n        <input type="text" class="edit-amt form-control" name="editedIngAmt" type="text" autocomplete="off"></input>\n        <span class="parenthesis">( </span><a class="ingredient-amt">'+t(r(null!=a?a.amount:a,a))+'</a><span class="parenthesis"> )</span>\n      </div>\n'},14:function(n,a,e,l,s){return"      <p><em>No ingredients yet!</em></p>\n"},compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s,i,r){var t,o,d=null!=a?a:{};return'\n<div id="search-view">\n'+(null!=(t=n.invokePartial(l.header,a,{name:"header",data:s,helpers:e,partials:l,decorators:n.decorators}))?t:"")+'\n<div class="container">\n  <div class="search-row">\n  \n    <div class="col-md-8 left">\n      <h1>Find recipes.</h1>\n\n      <form id="search-form" class="form-inline">\n       <div class="serving-line">\n       <input type="submit" value="SCAVENGE" class="btn btn-warning"/></div>\n     </form>\n\n     <div class="error">\n'+(null!=(t=e["if"].call(d,null!=a?a.error:a,{name:"if",hash:{},fn:n.program(1,s,0,i,r),inverse:n.noop,data:s}))?t:"")+'    </div>\n\n    <div class="results">\n'+(null!=(t=e["if"].call(d,null!=a?a.loading:a,{name:"if",hash:{},fn:n.program(3,s,0,i,r),inverse:n.noop,data:s}))?t:"")+"\n"+(null!=(t=e["if"].call(d,null!=a?a.searched:a,{name:"if",hash:{},fn:n.program(5,s,0,i,r),inverse:n.noop,data:s}))?t:"")+'    </div>\n  </div>\n\n  <div class="col-md-3 col-md-offset-1 right">\n    <h1>'+n.escapeExpression((o=null!=(o=e.currentUser||(null!=a?a.currentUser:a))?o:e.helperMissing,"function"==typeof o?o.call(d,{name:"currentUser",hash:{},data:s}):o))+'\'s pantry.</h1>\n    <div id="ingredientsList">\n'+(null!=(t=e.each.call(d,null!=a?a.ingredients:a,{name:"each",hash:{},fn:n.program(12,s,0,i,r),inverse:n.program(14,s,0,i,r),data:s}))?t:"")+'    </div>\n\n    <form id="pantry-form" class="form-inline">\n      <div class = "form-group ui-widget">\n        <input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required/>\n        <input class="form-control" id="new-ingredient-amt" name="ingredientAmt" type="text" autocomplete="off" placeholder="Amount"/>\n        <input type="submit" value="ADD" class="btn btn-warning" id="add-ing-btn" disabled/>\n      </div>\n           <!--<div><ul id="results-list" style="list-style-type:none"></ul></div>-->\n      </form>\n    </div>\n  </div>\n</div>'},usePartial:!0,useData:!0,useDepths:!0}),a.searchAnon=n({1:function(n,a,e,l,s){var i;return"              "+n.escapeExpression((i=null!=(i=e.error||(null!=a?a.error:a))?i:e.helperMissing,"function"==typeof i?i.call(null!=a?a:{},{name:"error",hash:{},data:s}):i))+"\n"},3:function(n,a,e,l,s,i,r){var t;return null!=(t=e.each.call(null!=a?a:{},null!=a?a.recipes:a,{name:"each",hash:{},fn:n.program(4,s,0,i,r),inverse:n.program(6,s,0,i,r),data:s}))?t:""},4:function(n,a,e,l,s,i,r){var t;return null!=(t=n.invokePartial(l.recipe,a,{name:"recipe",hash:{size:null!=r[1]?r[1].size:r[1]},data:s,indent:"                ",helpers:e,partials:l,decorators:n.decorators}))?t:""},6:function(n,a,e,l,s){return"                <p><em>No recipes found.</em></p>\n"},8:function(n,a,e,l,s){var i=n.lambda,r=n.escapeExpression;return'\n          <div class="ingredients-line">\n          <span class="anon-delete-button" style="color:orange;">x</span><span class="ingredient" data-ingredient-id='+r(i(a,a))+">"+r(i(a,a))+"</span>\n\n         </div>\n"},10:function(n,a,e,l,s){return"          <p><em>No ingredients yet!</em></p>\n"},compiler:[7,">= 4.0.0"],main:function(n,a,e,l,s,i,r){var t,o,d=null!=a?a:{},c=e.helperMissing,p="function",u=n.escapeExpression;return(null!=(t=n.invokePartial(l.anonHeader,a,{name:"anonHeader",data:s,helpers:e,partials:l,decorators:n.decorators}))?t:"")+'\n<div class="container" data-ingredientsList-id="'+u((o=null!=(o=e.ingredients||(null!=a?a.ingredients:a))?o:c,typeof o===p?o.call(d,{name:"ingredients",hash:{},data:s}):o))+'" data-recipesList-id="'+u((o=null!=(o=e.recipes||(null!=a?a.recipes:a))?o:c,typeof o===p?o.call(d,{name:"recipes",hash:{},data:s}):o))+'">\n<div class="row">\n    <div class="col-md-8 left">\n        <h1>Find recipes.</h1>\n\n        <form id="anon-search-form" class="form-inline">\n         <div class="serving-line">\n         <input type="submit" value="SCAVENGE" class="btn btn-warning"/></div>\n        </form>\n\n          <div class="error">\n'+(null!=(t=e["if"].call(d,null!=a?a.error:a,{name:"if",hash:{},fn:n.program(1,s,0,i,r),inverse:n.noop,data:s}))?t:"")+'          </div>\n\n          <div class="results">\n'+(null!=(t=e["if"].call(d,null!=a?a.searched:a,{name:"if",hash:{},fn:n.program(3,s,0,i,r),inverse:n.noop,data:s}))?t:"")+'          </div>\n    </div>\n\n    <div class="col-md-3 col-md-offset-1 right">\n      <h1>Your pantry.</h1>\n\n      <div id="ingredientsList">\n'+(null!=(t=e.each.call(d,null!=a?a.ingredients:a,{name:"each",hash:{},fn:n.program(8,s,0,i,r),inverse:n.program(10,s,0,i,r),data:s}))?t:"")+'      </div>\n\n      <form id="anon-pantry-form" class="form-inline">\n        <div><input class="form-control" id="new-ingredient" name="ingredient" autocomplete="off" placeholder="Add a new ingredient" required />\n        <input type="submit" value="Add" class="btn btn-warning"/></div>\n        <div><ul id="results-list" style="list-style-type:none"></ul></div>\n      </form>\n  </div>\n  </div>\n'},usePartial:!0,useData:!0,useDepths:!0})}();
-

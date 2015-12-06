@@ -438,6 +438,22 @@ input:focus{
   border-radius: 100%;
 }
 
+.aggregaterating > .star {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  content:"/2605";
+  color: gold;
+}
+.aggregaterating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+  font-size:2em;
+  margin-bottom: 0.5em;
+  font-family: 'Brandon Grotesque Light';
+}
+
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;

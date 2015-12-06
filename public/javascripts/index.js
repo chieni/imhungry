@@ -3,6 +3,30 @@ Handlebars.registerPartial('header', Handlebars.templates['header']);
 Handlebars.registerPartial('cookbook', Handlebars.templates['cookbook']);
 Handlebars.registerPartial('cookbookRecipe', Handlebars.templates['cookbookRecipeView']);
 Handlebars.registerPartial('anonHeader', Handlebars.templates['anonHeader']);
+Handlebars.registerHelper('compare', function(lvalue, rvalue, options) {
+		if (arguments.length < 3)
+			throw new Error("Handlebars Helper 'compare' needs 2 parameters");
+
+		var operator = options.hash.operator || "==";
+		
+		var operators = {
+			'==':		function(l,r) { return l == r; },
+			'===':	function(l,r) { return l === r; },
+			'!=':		function(l,r) { return l != r; },
+			'<':		function(l,r) { return l < r; },
+			'>':		function(l,r) { return l > r; },
+			'<=':		function(l,r) { return l <= r; },
+			'>=':		function(l,r) { return l >= r; },
+		}
+		if (!operators[operator])
+			throw new Error("Unknown Operator");
+		var result = operators[operator](lvalue,rvalue);
+		if( result ) {
+			return options.fn(this);
+		} else {
+			return options.inverse(this);
+		}
+	});
 // See handlebarsjs.com for details. Here, we register
 // a re-usable fragment of HTML called a "partial" which
 // may be inserted somewhere in the DOM using a function

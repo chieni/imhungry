@@ -200,7 +200,9 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 
 
 recipeSchema.statics.getRecipe = function(recipeId, callback) {
+	console.log("recipeid: "+recipeId);
 	this.findById(recipeId, function(err, doc){
+		console.log("wat")
 		if (err) {
 			callback(err, null);
 		} else {

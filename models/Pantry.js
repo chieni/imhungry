@@ -227,7 +227,7 @@ Pantry is initially empty
   Create a new pantry for a specified user who entered via the hook
   Pantry has ingredients that the user entered from the anonymous pantry
     username: String username of specified user
-    ingredients: [String] ingredients from
+    ingredients: [String] ingredients
   */
   pantrySchema.statics.createNewPantryWithIngredients = function(username, ingredients, callback) {
     var ingredientsList = ingredients.split(',');

@@ -25,12 +25,12 @@
     evt.preventDefault();
     var formData = helpers.getFormData(this);
     var ingredientsList = $(".container").attr('data-ingredientsList-id');
- 
+    loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList.split(","), loading: true});
     $.post(
         '/search',
         {ingredients: ingredientsList}
     ).done(function(response) {
-	    loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
+	    loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true, loading: false});
     }).fail(function(responseObject) {
         var response = $.parseJSON(responseObject.responseText);
         $('.error').text(response.err);

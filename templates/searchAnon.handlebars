@@ -17,6 +17,11 @@
           </div>
 
           <div class="results">
+          {{#if loading}}
+             <div class="spinner"></div>
+          {{/if}}
+
+      
             {{#if searched}}
               {{#each recipes}}
                 {{> recipe size=../size}}

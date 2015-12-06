@@ -27,14 +27,54 @@
 
     <div class="recipe-view-img" style="background-image: url({{recipe.imageURLs.[0]}})"></div>
 
-    <form id="scale-form" class="form-inline" data-recipeid={{recipe._id}}>
-       <div class="serving-line">Serving size: <input class="form-control" id="serv-size-input" value={{recipe.servingSize}} type="number" name="servingsize" />
-       <input type="submit" value="Scale Recipe" class="btn btn-warning"/></div>
-     </form>
+    
 
 
 
     <div class="recipe-name">{{recipe.name}}</div>
+    <div class="aggregaterating">
+  <div class="rate">Rating</div>
+    {{#compare recipe.rating 5 operator="<"}}
+      <div class="star"><span>☆</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 5 operator=">="}}
+      <div class="star"><span>★</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 4 operator="<"}}
+      <div class="star" ><span>☆</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 4 operator=">="}}
+      <div class="star"  ><span>★</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 3 operator="<"}}
+      <div class="star"  ><span>☆</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 3 operator=">="}}
+      <div class="star"><span>★</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 2 operator="<"}}
+      <div class="star"><span>☆</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 2 operator=">="}}
+      <div class="star"><span>★</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 1 operator="<"}}
+      <div class="star"><span>☆</span></div>
+    {{/compare}}
+    {{#compare recipe.rating 1 operator=">="}}
+      <div class="star"><span>★</span></div>
+    {{/compare}}
+
+  </div>
+
+  <div class="rating">
+    <div class="rate">Rate this Recipe</div>
+    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
+  </div>
     {{#if displayButton}}
     <div class="save-recipe-btn">
       <button id="save-btn" data-id={{recipe._id}} data-servingsize={{recipe.servingSize}} class="btn btn-lg btn-warning save-btn">Save Recipe to Cookbook</button>
@@ -45,6 +85,11 @@
 
 
   <div class="col-md-6 col-md-offset-1">
+
+    <form id="scale-form" class="form-inline" data-recipeid={{recipe._id}}>
+       <div class="serving-line">Serving size: <input class="form-control" id="serv-size-input" value={{recipe.servingSize}} type="number" name="servingsize" />
+       <input type="submit" value="Scale Recipe" class="btn btn-warning"/></div>
+     </form>
     <div class="ingredients">
       <div class="ingredients-header">Ingredients: </div>
       
@@ -61,16 +106,6 @@
 
 
 
-   <div class="rating">
-    <div class="display-rating">This recipe is rated {{recipe.rating}} stars</div>
-    <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-    <a class="star" href="#"  id="four-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-    <a class="star" href="#"  id="three-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-    <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-    <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span><i class="fa fa-star-o"></i></span></a>
-  </div>
-  </div>
-
 
 
 
@@ -79,3 +114,6 @@
 
 </div>
 </div>
+
+
+

@@ -73,13 +73,9 @@ router.put('/rate', function(req, res) {
       utils.sendErrResponse(res, 403, 'Something went wrong.');
     }
     else {
-      Recipe.getRecipe(req.currentUser.username, req.body.recipeid, function(err, recipe) {
+      Recipe.getRecipe(req.body.recipeid, function(err, recipe) {
       if (recipe) {
-        console.log("found");
-        console.log("rating before scaling: "+recipe.rating);
-        console.log("recipe: "+recipe);
         var scaledRecipe = recipe.scaleRecipe(req.body.serving_size);
-        console.log("rating after scaling: "+scaledRecipe.rating);
         utils.sendSuccessResponse(res, {recipe: scaledRecipe});
         
       } else {

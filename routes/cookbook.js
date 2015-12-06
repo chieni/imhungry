@@ -51,7 +51,7 @@ router.get('/recipes', function(req, res) {
   It populates req with a recipe object
 */
 router.param('cookbook', function(req, res, next, recipeId) {
-    Recipe.getRecipe(req.currentUser.username, recipeId, function(err, recipe) {
+    Recipe.getRecipe(recipeId, function(err, recipe) {
       if (recipe) {
         req.recipe = recipe;
         next();
@@ -79,7 +79,7 @@ router.param('cookbook', function(req, res, next, recipeId) {
 router.post('/:cookbook', function(req, res) {
   Cookbook.Cookbook.addRecipe(req.currentUser.username, req.recipe._id.toString(), function(err, cookbook) {
     if (!err) {
-      Recipe.getRecipe(req.currentUser.username, req.recipe._id, function(err, recipe) {
+      Recipe.getRecipe(req.recipe._id, function(err, recipe) {
         if (!err) {
           utils.sendSuccessResponse(res, {recipe: recipe, displayButton: false});
         }

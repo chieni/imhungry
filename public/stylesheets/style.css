@@ -479,18 +479,36 @@ input:focus{
   border-top: 6px solid rgba(0, 174, 239, .8);
   border-radius: 100%;
 }
-.star {
-  color:white;
+
+.aggregaterating > .star {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  content:"/2605";
+  color: gold;
 }
+.aggregaterating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+  font-size:2em;
+  margin-bottom: 0.5em;
+  font-family: 'Brandon Grotesque Light';
+}
+
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
-  text-align: center;
+  text-align: left;
+  font-size:2em;
+  margin-bottom: 0.5em;
+  font-family: 'Brandon Grotesque Light';
 }
 .rating > .star {
   display: inline-block;
   position: relative;
   width: 1.1em;
+  content:"\2605";
   color: gold;
 }
 .rating > .star:hover,
@@ -500,13 +518,10 @@ input:focus{
 .rating > .star:hover:before,
 .rating > .star:hover ~ .star:before {
    content: "\2605";
-   position: absolute;
-   left: 0; 
+   position: absolute; 
    color: gold;
 }
-.rating:hover {
-  
-}
+
 
 @-webkit-keyframes rotation {
   from {

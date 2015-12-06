@@ -200,7 +200,9 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 
 
 recipeSchema.statics.getRecipe = function(recipeId, callback) {
+	console.log("recipeid: "+recipeId);
 	this.findById(recipeId, function(err, doc){
+		console.log("wat")
 		if (err) {
 			callback(err, null);
 		} else {
@@ -295,7 +297,7 @@ recipeSchema.statics.rateRecipe = function(recipeId, rating, userId, callback) {
 				aggregateRating+=userRating.rating
 			})
 			numUsers = recipe.ratingDict.length
-			rating = Math.round(10*aggregateRating/numUsers)/10
+			rating = Math.round(aggregateRating/numUsers)
 			recipe.rating = rating;
 			recipe.save(function(err) {
               if(err) {

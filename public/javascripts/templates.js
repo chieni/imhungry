@@ -219,7 +219,7 @@ templates['search'] = template({"1":function(container,depth0,helpers,partials,d
 
   return "      <form id=\"load-more-form\" class=\"form-inline\" data-more="
     + container.escapeExpression(((helper = (helper = helpers.more || (depth0 != null ? depth0.more : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"more","hash":{},"data":data}) : helper)))
-    + ">\n        <div><input type=\"submit\" value=\"LOAD MORE\" id=\"load-more-btn\" class=\"load-more btn btn-warning\" disabled/></div>\n      \n";
+    + ">\n        <div><input type=\"submit\" value=\"LOAD MORE\" id=\"load-more-btn\" class=\"load-more btn btn-warning\" disabled/></div>\n      </form>\n      \n";
 },"12":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 

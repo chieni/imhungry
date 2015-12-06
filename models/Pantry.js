@@ -46,7 +46,7 @@ Get all the ingredients in the pantry of the given user
                 callback(null, pantryIngObjs);
               }
               else {
-                setTimeout(addToArray, 0); //addToArray();
+                setTimeout(addToArray, 0);
               }
             })      
           })();
@@ -71,7 +71,6 @@ User cannot add the same ingredient again
   pantrySchema.statics.addIngredient = function(username, ingredientName, ingredientAmt, callback) {
     var self = this;
     Ingredient.findOne({name:ingredientName}, function(err, ing) {
-      console.log(ing);
       if (ing) {
         self.findOne({username: username}, function(err, pantry) {
           if (pantry) {
@@ -177,7 +176,7 @@ Edit ingredient amount of a given ingredient of a given user
       }
     });
   }
-  
+
 /*
 Create a new pantry for specified user
 Pantry is initially empty

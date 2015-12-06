@@ -55,6 +55,12 @@
       {{/each}}
     </div>
 
+     <div class="pantry-error">
+      {{#if error}}
+      {{error}}
+      {{/if}}
+    </div>
+
     <form id="pantry-form" class="form-inline">
       <div class = "form-group ui-widget">
         <input class="form-control" id="new-ingredient" name="ingredient" type="text" autocomplete="off" placeholder="Add a new ingredient" required/>

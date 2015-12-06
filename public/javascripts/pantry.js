@@ -19,7 +19,7 @@
       loadHomePage();
     }).fail(function(responseObject) {
       var response = $.parseJSON(responseObject.responseText);
-      alert(response.err);
+      $('.pantry-error').text(response.err);
     });
 
     $('#new-ingredient').val('');
@@ -42,7 +42,7 @@
           element.remove();
         }
         else {
-          alert(data.message);
+          $('.pantry-error').text(data.message);
         }
       },
       dataType: "json"
@@ -93,7 +93,7 @@
       },
       success: function(data) {
         if (!data.success) {          
-          alert(data.message);
+          $('.pantry-error').text(data.message);
         }
       },
       dataType: "json"

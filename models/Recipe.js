@@ -198,9 +198,8 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 	});
 }
 
-// should this have a username field??
-// probably not! It is never used
-recipeSchema.statics.getRecipe = function(username, recipeId, callback) {
+
+recipeSchema.statics.getRecipe = function(recipeId, callback) {
 	this.findById(recipeId, function(err, doc){
 		if (err) {
 			callback(err, null);

@@ -224,7 +224,7 @@ input:focus{
   padding: 2em 0;
   margin-bottom: 4em;
   min-height:40em;
-  display: inline-block;
+  display: block;
 }
 
 .ingredients {

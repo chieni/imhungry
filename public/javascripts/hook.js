@@ -4,6 +4,8 @@
   $(document).on('submit', '#hook-search-form', function(evt) {
       evt.preventDefault();
       var ingredients = $("#hook-ingr-input").val();
+      if (ingredients.length < 1) {
+      } else {
       $.post(
           '/search',
           {ingredients: ingredients}
@@ -15,6 +17,7 @@
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
       });
+    }
   });
 
 })();

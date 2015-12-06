@@ -9,7 +9,7 @@ var Cookbook = require('../models/Cookbook');
   It populates req with a recipe object
 */
 router.param('recipe', function(req, res, next, recipeId) {
-  	Recipe.getRecipe(req.currentUser.username, recipeId, function(err, recipe) {
+  	Recipe.getRecipe(recipeId, function(err, recipe) {
 	    if (recipe) {
 	      req.recipe = recipe;
 	      next();
@@ -34,29 +34,33 @@ router.post('/:recipe', function(req, res) {
   console.log('here');
   if (req.recipe) {
     var scaledRecipe = req.recipe.scaleRecipe(req.body.servingSize);
-    Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
-    if (!err) {
-      var index = -1
-      var count = 0
-      recipes.forEach(function(recipe) {
-        if (recipe._id.toString() === req.recipe._id.toString()) {
-          index = count;
+    var displayButton = false;
+    if (req.currentUser){
+      Cookbook.Cookbook.getRecipes(req.currentUser.username, function(err, recipes) {
+        if (!err) {
+          var index = -1
+          var count = 0
+          recipes.forEach(function(recipe) {
+            if (recipe._id.toString() === req.recipe._id.toString()) {
+              index = count;
+            }
+              count += 1;
+            })
+          if (index > -1) {
+            displayButton = false;
+          }
+          else {
+            displayButton = true;
+          }
+          utils.sendSuccessResponse(res, {recipe: scaledRecipe, displayButton: displayButton})
+        } 
+        else {
+          utils.sendErrResponse(res, 403, 'Something went wrong.');
         }
-          count += 1;
-        })
-      if (index > -1) {
-        displayButton = false;
-      }
-      else {
-        displayButton = true;
-      }
+      })
+  	} else {
       utils.sendSuccessResponse(res, {recipe: scaledRecipe, displayButton: displayButton})
-    } 
-    else {
-      utils.sendErrResponse(res, 403, 'Something went wrong.');
     }
-  })
-  	
   } else {
   	utils.sendErrResponse(res, 404, 'Resource not found.');
   }

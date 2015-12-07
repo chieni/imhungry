@@ -101,6 +101,11 @@
        <span style="display:inline-block"> {{recipe.servingSize}}</span>
         {{/if}}
        </div>
+       <div class="sizing-error">
+        {{#if sizing-error}}
+          {{sizing-error}}
+        {{/if}}
+      </div>
      </form>
     
     <div class="ingredients">
@@ -113,7 +118,7 @@
 
     <div class="instructions">
       <div class="instructions-label">Instructions:</div>
-      <a class="recipe-url btn btn-lg btn-warning save-btn" href="{{recipe.sourceURL}}">Full instructions here</a>
+      <a class="recipe-url btn btn-lg btn-warning save-btn" href="{{recipe.sourceURL}}" target="_blank">Full instructions here</a>
     </div>
     </div>
 

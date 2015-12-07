@@ -54,14 +54,21 @@
     var item = $(this);
     var recipe_id = item.data('recipeid');
     var formData = helpers.getFormData(this);
-    $.post('/recipe/' + recipe_id,
-      {servingSize: formData.servingsize}
-    ).done(function(response) {
-      loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
-    }).fail(function(responseObject) {
-          var response = $.parseJSON(responseObject.responseText);
-          $('.error').text(response.err);
-    });
+    if (formData.servingsize>0) {
+      $.post('/recipe/' + recipe_id,
+        {servingSize: formData.servingsize}
+      ).done(function(response) {
+        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
+      }).fail(function(responseObject) {
+            var response = $.parseJSON(responseObject.responseText);
+            $('.error').text(response.err);
+      });
+    }
+    else {
+      $('.sizing-error').text('Serving size must be a positive number!');
+          return;
+    }
+    
   });
 
   /*

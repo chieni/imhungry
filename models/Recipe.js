@@ -263,6 +263,8 @@ recipeSchema.methods.scaleRecipe = function(servingSize) {
 			var stringAmt = ingredient.split(/[a-zA-z]/,2)[0];
 			var remainingIngString = ingredient.substring(stringAmt.length);
 			scaledIngredient = scaleFactor*evaluateStringNumber(stringAmt) + " " + remainingIngString;
+		} else {
+			scaledIngredient = scaleFactor +"x " + ingredient;
 		}
 		return scaledIngredient;
 	});

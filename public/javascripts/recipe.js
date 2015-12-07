@@ -6,15 +6,21 @@
   $(document).on('click', '.recipe', function(evt) {
       var item = $(this);
       var recipe_id = item.data('recipeid');
-      var serving_size = item.data('recipesize');
+      var serving_size = $(".container").attr('data-serving-size');
+
+      if (serving_size) {
+      } else {
+        serving_size = item.data('recipesize');
+      }
+
       var ingredientsList = $(".container").attr('data-ingredientsList-id');
       $.post('/recipe/' + recipe_id,
         {servingSize: serving_size}
       ).done(function(response) {
         if (ingredientsList) {
-          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, ingredients: ingredientsList });
+          loadPage('recipeView', { recipe: response.content.recipe, servingSize: serving_size, currentUser: currentUser, displayButton: response.content.displayButton, ingredients: ingredientsList });
         } else {
-          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton});
+          loadPage('recipeView', { recipe: response.content.recipe, servingSize: serving_size, currentUser: currentUser, displayButton: response.content.displayButton});
 
         }
       }).fail(function(responseObject) {
@@ -80,7 +86,7 @@
   $(document).on('click', '.back-to-search-anon', function(evt) {
       evt.preventDefault();
       var ingredients = $(".container").attr('data-ingredientsList-id');
-
+      var size = $(".container").attr('data-servingSize');
       if (ingredients.length < 1) {
       } else {
       $.post(
@@ -89,7 +95,7 @@
       ).done(function(response) {
         $('body').css({'background': 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),url("../imgs/food.jpg") no-repeat center center fixed'});
         $('body').css('background-size', 'cover');
-        loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
+        loadPage('searchAnon', {currentUser: null, servingSize: size, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

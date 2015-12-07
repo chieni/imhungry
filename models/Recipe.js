@@ -203,9 +203,7 @@ This function gets a recipe object
 	recipeId: the id of the recipe to be fetched
 */
 recipeSchema.statics.getRecipe = function(recipeId, callback) {
-	console.log("recipeid: "+recipeId);
 	this.findById(recipeId, function(err, doc){
-		console.log("wat")
 		if (err) {
 			callback(err, null);
 		} else {
@@ -291,11 +289,9 @@ recipeSchema.statics.rateRecipe = function(recipeId, rating, userId, callback) {
 				}
 			});
 			if (index==-1) {
-				console.log("ok first time");
 				recipe.ratingDict.push({userId: userId, rating: rating});
 			}
 			else {
-				console.log("should replace rating now");
 				recipe.ratingDict[index].rating=rating;
 			}
 			aggregateRating = 0;
@@ -310,7 +306,6 @@ recipeSchema.statics.rateRecipe = function(recipeId, rating, userId, callback) {
                 callback({msg:"error rating recipe"}, null);
               }
               else {
-              	console.log(recipe);
                 callback(null, rating);
               }
             });

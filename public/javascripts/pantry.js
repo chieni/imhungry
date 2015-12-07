@@ -58,7 +58,6 @@
     //$(this).parent().find('.parenthesis').hide();
     var text = $(this).text();
     var amount = text.substring(2,text.length-2);
-    console.log(amount);
     $(this).parent().find('.edit-amt').val(amount);
     $(this).parent().find('.edit-amt').show().focus();
   });
@@ -81,7 +80,6 @@
     $(this).parent().find('.ingredient-amt').show();
     var formData = helpers.getFormData(this);
     var amount = formData.editedIngAmt;
-    console.log(amount);
     var ingId = $(this).parent().find(".ingredient").attr('data-ingredient-id');
 
     $.ajax({
@@ -98,7 +96,6 @@
       },
       dataType: "json"
     });
-    console.log(amount);
     $(this).parent().find('.ingredient-amt').text("( "+amount+" )");
   });
 
@@ -145,14 +142,15 @@
     var element = $(this).parent();
     var ing = element.find('.ingredient').text();
     var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
-    
+    var size = $(".container").attr('data-serving-size');
+
     var index = ingredientsList.indexOf(ing);
 
     if (index > -1){
       ingredientsList.splice(index, 1);
     }
 
-    loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
+    loadPage('searchAnon', {currentUser: null, servingSize: size, ingredients: ingredientsList});
 
   });
 
@@ -164,6 +162,7 @@
     var element = $(this).parent();
 
     var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
+    var size = $(".container").attr('data-serving-size');
 
     var formData = helpers.getFormData(this);
     var ingredient = formData.ingredient;
@@ -181,7 +180,7 @@
       $('#new-ingredient').val('');
       $('#new-ingredient').focus();
 
-      loadPage('searchAnon', {currentUser: null, ingredients: cleanIngredientsList});
+      loadPage('searchAnon', {currentUser: null, servingSize: size, ingredients: cleanIngredientsList});
     } else {
       $('.anon-pantry-error').text("You already have this ingredient!");
     }

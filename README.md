@@ -56,6 +56,7 @@ chieni_nlucas_zlily_mmgong_final
 		- In the recipe view, user can scale the ingredients amounts of the recipe to match the desired serving size
 		- initially, the default serving size is the serving size specified in the original recipe
 		- the user can specify a desrired serving size and click scale, which will scale the displayed ingredient amounts to the desired serving size.
+		- NOTE - if recipe initially does not include ingredient amounts, then the scaled ingredient will just show the scaling factor * the original ingredient.
 
 4. How to use Final Product
 	- Create an account or use the Hook

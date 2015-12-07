@@ -12,9 +12,9 @@
         {servingSize: serving_size}
       ).done(function(response) {
         if (ingredientsList) {
-          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromCookbook: false, ingredients: ingredientsList });
+          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, ingredients: ingredientsList });
         } else {
-          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromCookbook: false });
+          loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton});
 
         }
       }).fail(function(responseObject) {
@@ -33,7 +33,7 @@
       $.post('/recipe/' + recipe_id,
         {servingSize: serving_size}
       ).done(function(response) {
-        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton, fromCookbook: true });
+        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

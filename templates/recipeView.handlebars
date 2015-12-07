@@ -13,16 +13,12 @@
   <div class="col-md-4">
 
     <div class="back-btn">
-    {{#if fromCookbook}}
-      <a class="back-to-cookbook">&lt; Back to Cookbook</a>
-      {{else}}
-
       {{#if currentUser}}
       <a class="back-to-search">&lt; Back to Search Results</a> 
       {{else}}   
       <a class="back-to-search-anon">&lt; Back to Search Results</a> 
       {{/if}}
-    {{/if}}
+
   </div>
     {{#if displayButton}}
     <div class="save-recipe-btn">

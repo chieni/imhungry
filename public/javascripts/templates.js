@@ -104,17 +104,10 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
 
   return ((stack1 = container.invokePartial(partials.anonHeader,depth0,{"name":"anonHeader","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"5":function(container,depth0,helpers,partials,data) {
-    return "      <a class=\"back-to-cookbook\">&lt; Back to Cookbook</a>\n";
-},"7":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return "\n"
-    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.currentUser : depth0),{"name":"if","hash":{},"fn":container.program(8, data, 0),"inverse":container.program(10, data, 0),"data":data})) != null ? stack1 : "");
-},"8":function(container,depth0,helpers,partials,data) {
     return "      <a class=\"back-to-search\">&lt; Back to Search Results</a> \n";
-},"10":function(container,depth0,helpers,partials,data) {
+},"7":function(container,depth0,helpers,partials,data) {
     return "      <a class=\"back-to-search-anon\">&lt; Back to Search Results</a> \n";
-},"12":function(container,depth0,helpers,partials,data) {
+},"9":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "    <div class=\"save-recipe-btn\">\n      <button id=\"save-btn\" data-id="
@@ -122,17 +115,17 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + " data-servingsize="
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " class=\"btn btn-lg btn-warning save-btn\">Save</button>\n    </div>\n";
-},"14":function(container,depth0,helpers,partials,data) {
+},"11":function(container,depth0,helpers,partials,data) {
     return "          <div class=\"star\"><span>☆</span></div>\n";
-},"16":function(container,depth0,helpers,partials,data) {
+},"13":function(container,depth0,helpers,partials,data) {
     return "          <div class=\"star\"><span>★</span></div>\n";
-},"18":function(container,depth0,helpers,partials,data) {
+},"15":function(container,depth0,helpers,partials,data) {
     return "          <div class=\"star\" ><span>☆</span></div>\n";
-},"20":function(container,depth0,helpers,partials,data) {
+},"17":function(container,depth0,helpers,partials,data) {
     return "          <div class=\"star\"  ><span>★</span></div>\n";
-},"22":function(container,depth0,helpers,partials,data) {
+},"19":function(container,depth0,helpers,partials,data) {
     return "          <div class=\"star\"  ><span>☆</span></div>\n";
-},"24":function(container,depth0,helpers,partials,data) {
+},"21":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {}, alias4=helpers.helperMissing, alias5="function";
 
   return "      <div class=\"rating\">\n        <div class=\"rate\">Rate this Recipe</div>\n        <a class=\"star\" href=\"#\"  id=\"five-star\" data-recipeid="
@@ -166,7 +159,7 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + " data-displaybutton="
     + alias2(((helper = (helper = helpers.displayButton || (depth0 != null ? depth0.displayButton : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"displayButton","hash":{},"data":data}) : helper)))
     + "><span>☆</span></a>\n      </div>\n";
-},"26":function(container,depth0,helpers,partials,data) {
+},"23":function(container,depth0,helpers,partials,data) {
     return "        <div class=\"ingredient\">"
     + container.escapeExpression(container.lambda(depth0, depth0))
     + "</div>\n";
@@ -179,32 +172,32 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + ">\n\n<div class=\"container\" data-ingredientsList-id=\""
     + alias3(((helper = (helper = helpers.ingredients || (depth0 != null ? depth0.ingredients : depth0)) != null ? helper : alias4),(typeof helper === "function" ? helper.call(alias1,{"name":"ingredients","hash":{},"data":data}) : helper)))
     + "\">\n\n<div class=\"search-row recipe-box\">\n\n\n  <div class=\"col-md-4\">\n\n    <div class=\"back-btn\">\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.fromCookbook : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
-    + "  </div>\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.displayButton : depth0),{"name":"if","hash":{},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.currentUser : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
+    + "\n  </div>\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.displayButton : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n\n    <div class=\"recipe-view-img\" style=\"background-image: url("
     + alias3(alias2(((stack1 = ((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.imageURLs : stack1)) != null ? stack1["0"] : stack1), depth0))
     + ")\"></div>\n\n    <div class=\"recipe-name\">"
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.name : stack1), depth0))
     + "</div>\n\n    <div class=\"recipe-ratings-wrapper\">\n\n        \n\n        <div class=\"aggregaterating\">\n      <div class=\"rate\">Rating</div>\n"
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),5,{"name":"compare","hash":{"operator":"<"},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),5,{"name":"compare","hash":{"operator":">="},"fn":container.program(16, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),4,{"name":"compare","hash":{"operator":"<"},"fn":container.program(18, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),4,{"name":"compare","hash":{"operator":">="},"fn":container.program(20, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),3,{"name":"compare","hash":{"operator":"<"},"fn":container.program(22, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),3,{"name":"compare","hash":{"operator":">="},"fn":container.program(16, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),2,{"name":"compare","hash":{"operator":"<"},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),2,{"name":"compare","hash":{"operator":">="},"fn":container.program(16, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),1,{"name":"compare","hash":{"operator":"<"},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),1,{"name":"compare","hash":{"operator":">="},"fn":container.program(16, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),5,{"name":"compare","hash":{"operator":"<"},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),5,{"name":"compare","hash":{"operator":">="},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),4,{"name":"compare","hash":{"operator":"<"},"fn":container.program(15, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),4,{"name":"compare","hash":{"operator":">="},"fn":container.program(17, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),3,{"name":"compare","hash":{"operator":"<"},"fn":container.program(19, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),3,{"name":"compare","hash":{"operator":">="},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),2,{"name":"compare","hash":{"operator":"<"},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),2,{"name":"compare","hash":{"operator":">="},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),1,{"name":"compare","hash":{"operator":"<"},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias4).call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.rating : stack1),1,{"name":"compare","hash":{"operator":">="},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n      </div>\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.currentUser : depth0),{"name":"if","hash":{},"fn":container.program(24, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.currentUser : depth0),{"name":"if","hash":{},"fn":container.program(21, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n\n\n\n  </div>\n\n\n\n  <div class=\"col-md-6 col-md-offset-1\">\n\n    <div class=\"recipe-info-wrapper\">\n    <form id=\"scale-form\" class=\"form-inline\" data-recipeid="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + ">\n       <div class=\"serving-line\">Serving size: <input class=\"form-control\" id=\"serv-size-input\" value="
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + " type=\"number\" name=\"servingsize\" />\n       <input type=\"submit\" value=\"Scale Recipe\" class=\"btn btn-warning\"/></div>\n     </form>\n    <div class=\"ingredients\">\n      <div class=\"ingredients-header\">Ingredients: </div>\n      \n"
-    + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.ingredients : stack1),{"name":"each","hash":{},"fn":container.program(26, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.ingredients : stack1),{"name":"each","hash":{},"fn":container.program(23, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n\n    <div class=\"instructions\">\n      <div class=\"instructions-label\">Instructions:</div>\n      <a class=\"recipe-url btn btn-lg btn-warning save-btn\" href=\""
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.sourceURL : stack1), depth0))
     + "\">Full instructions here</a>\n    </div>\n    </div>\n\n\n\n\n\n\n\n\n</div>\n\n\n\n\n\n\n</div>\n</div>\n\n\n\n";

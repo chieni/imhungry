@@ -428,7 +428,7 @@ Recipe view
 
 .serving-line {
   font-size: 1.2em;
-  padding-bottom: 1em;
+  padding-top: 0.5em;
 }
 
 .recipe-box {
@@ -454,6 +454,7 @@ Recipe view
 .ingredients-header {
   font-size:2em;
   font-family: 'Brandon Grotesque Light';
+  margin-top: 1em;
 }
 
 #ingredientsList {
@@ -484,6 +485,7 @@ Recipe view
   width: 22em;
   height: 18em;
   margin: 0 auto;
+  margin-top: 0.75em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;

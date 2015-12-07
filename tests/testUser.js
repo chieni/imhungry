@@ -1,4 +1,4 @@
-
+// Primary author: nlucas
 var assert = require("assert"); 
 var User = require('../models/User');
 var mongoose = require('mongoose');
@@ -16,10 +16,6 @@ before(function(done) {
     mongoose.connection.close();
     done();
   });
-
-
-
-
 
 describe('User', function() {
   // First populate the user database and then call the methods on it

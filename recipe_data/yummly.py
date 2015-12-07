@@ -1,6 +1,7 @@
 from urllib2 import Request, urlopen, URLError
 import json
 
+# Primary author: chieni
 def retrieve_recipes(start, maxResult):
 	APP_ID = "d98c2df5"
 	APP_KEY = "53bfdf37d6791000dd39d4a054ba26ff"

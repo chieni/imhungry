@@ -1,3 +1,4 @@
+// Primary author: mmgong, contributing author: nlucas
 var assert = require("assert");
 var Recipe = require('../models/Recipe');
 var mongoose = require('mongoose');

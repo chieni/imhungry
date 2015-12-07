@@ -1,3 +1,4 @@
+// Primary author: zlily
 var assert = require("assert");
 var Pantry = require('../models/Pantry');
 var Ingredient = require('../models/Ingredient');

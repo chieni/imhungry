@@ -1,3 +1,4 @@
+/* Primary author: nlucas */
 var assert = require("assert");
 var Cookbook = require('../models/Cookbook');
 var Recipe = require('../models/Recipe');

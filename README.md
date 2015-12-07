@@ -30,10 +30,11 @@ chieni_nlucas_zlily_mmgong_final
 	-Pantry
 	  	- User can add and delete ingredients to their pantry
 	  	- Pantry supports auto-complete so it only allows a User to add ingredients that already exist in the database (ingredients that exist in at least one recipe in the database)
-	  	- Pantry also allows for inputting ingredient amounts for the User's own account keeping (this does not translate in the search)
+        - Duplicate ingredients cannot be added to the pantry
+	  	- Pantry also allows the option to input ingredient amounts for the User's own pantry (this does not translate in the search). If no amount is specified, it will be left blank
 	  	- Existing ingredient amounts may be edited within the pantry
 	-Search
-	  	- By clicking Scavenge button, User can search for recipes that use a subset of ingredients in the logged-in user's pantry
+	  	- By clicking Scavenge button, the user can search for recipes that use a subset of ingredients in the logged-in user's pantry
 	  	- The Recipes displayed in the Search results are ordered first by how many extra ingredients they use from what the User has in their pantry. Within all recipes with the same number of extra ingredients, the recipes are then ordered by their ratings
 	  		- This allows for flexible search so a User can choose to substitute ingredients if they don't happen to have everything certain recipes call for
 	  	- Displays found recipes with name and picture
@@ -61,6 +62,7 @@ chieni_nlucas_zlily_mmgong_final
 		- If using the Hook:
 			- Input how many people you are cooking for and what ingredients you currently have to cook for
 				- This is the only time the hook user can change the 'serving size', which is usually scaleable for registered users.
+                - The ingredients must be separated by commas
 			- Click Scavenge
 			- Edit pantry items by deleting or adding new ingredients
 			- View Recipes by clicking on the Recipe in Search view
@@ -70,7 +72,7 @@ chieni_nlucas_zlily_mmgong_final
 	- Sign in
 		- Enter in your username and password and click sign in
 	- Add ingredients to the pantry
-		- Once logged in, just type in ingredient name in the text field, you will be presented with a drop down of all valid ingredients you can add to the pantry, either click on one or type in one exactly. Then specify an amount, any amount will do, including any sort of units you might want to add to the amount. For example, ("5 slices") for the ingredient, "Colby Jack Cheese". Then click the Add button.
+		- Once logged in, just type in ingredient name in the text field, you will be presented with a drop down of all valid ingredients you can add to the pantry. To add one, select the ingredient from the drop-down list. Then specify an amount (any amount will do) including any sort of units you might want to add to the amount. For example, "5 slices" for the ingredient "Colby Jack Cheese". Then click the Add button.
 	- Edit ingredients in pantry
 		- Click on the "()" next to an existing ingredient to edit the ingredient amount
 		- Click on the "x" next to an ingredient to delete it from the pantry
@@ -82,6 +84,8 @@ chieni_nlucas_zlily_mmgong_final
 		- Enter the serving size you wish to scale the recipe to in the upper right box of the Recipe view and click Scale
 	- Save to Cookbook
 		- Click on the Save button in a Recipe View
+    - Go Back to Search Results
+        - Click the "Back to Search Results" button above the recipe image 
 	- View Cookbook
 		- Click on COOKBOOK in the Header to view
 	- Delete Recipes from Cookbook

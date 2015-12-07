@@ -193,6 +193,12 @@ Pantry is initially empty
       });
   }
 
+  /*
+  The following is a helper method used when creating a pantry from an anonymous user
+  Pantry gets populated only with valid ingredients
+    ingredientsList: a list of the original ingredients as strings in the pantry
+  */
+
   var getValidIngredients = function(ingredientsList, callback) {
     if (ingredientsList.length > 0) {
       var ingredientsObjs = [];

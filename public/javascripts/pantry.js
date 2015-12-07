@@ -58,7 +58,6 @@
     //$(this).parent().find('.parenthesis').hide();
     var text = $(this).text();
     var amount = text.substring(2,text.length-2);
-    console.log(amount);
     $(this).parent().find('.edit-amt').val(amount);
     $(this).parent().find('.edit-amt').show().focus();
   });
@@ -81,7 +80,6 @@
     $(this).parent().find('.ingredient-amt').show();
     var formData = helpers.getFormData(this);
     var amount = formData.editedIngAmt;
-    console.log(amount);
     var ingId = $(this).parent().find(".ingredient").attr('data-ingredient-id');
 
     $.ajax({
@@ -98,7 +96,6 @@
       },
       dataType: "json"
     });
-    console.log(amount);
     $(this).parent().find('.ingredient-amt').text("( "+amount+" )");
   });
 

@@ -1,6 +1,10 @@
 // Wrap in an immediately invoked function expression.
 (function() {
 
+  /*
+  Directs the user from the hook homepage to the anonymous search page, using the comma separated ingredient values they entered
+  to enanct a recipe search
+  */
   $(document).on('submit', '#hook-search-form', function(evt) {
       evt.preventDefault();
       var ingredients = $("#hook-ingr-input").val();

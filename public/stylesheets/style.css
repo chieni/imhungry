@@ -1,3 +1,6 @@
+/*
+Basics
+*/
 @font-face {
     font-family: 'Brandon Grotesque';
     src: url('../fonts/Brandon_reg.otf');
@@ -31,6 +34,10 @@ a {
   padding-left:0.2em;
 }
 
+p {
+  margin-bottom: 5px;
+}
+
 .white {
   color: white;
 }
@@ -39,6 +46,29 @@ a {
   color: #706B67;
 }
 
+.btn {
+  border-radius: 3px;
+}
+
+input:focus{
+    outline: 0;
+}
+
+.welcome {
+  padding-left: 3.3em;
+  font-size: 1.5em;
+}
+.wrapper {
+  margin: 0 2em;
+}
+
+#tags {
+  color:black;
+}
+
+/*
+Header
+*/
 .nav>li>a{
   font-size: 1.3em;
   padding-top: 1.2em;
@@ -57,12 +87,16 @@ a {
 }
 .navbar {
   width: 100%;
+  margin-bottom: 0;
 }
 .nav {
   color: white;
   margin-right: 5em;
 }
 
+/*
+Hook
+*/
 .hook-box {
   background:rgba(0,0,0,0.55);
   padding: 2em 0;
@@ -74,25 +108,6 @@ a {
   width: 8em;
   margin-top: 3em;
   margin-bottom:4em;
-}
-
-#serv-size-input {
-  color: white;
-  width: 4em;
-  margin-left:1em;
-  border: gray 1px solid;
-  background: none;
-  border-radius: 3px;
-  padding-right: 0.5em;
-}
-
-.serving-line {
-  font-size: 1.2em;
-  padding: 1em 1.05em;
-}
-
-.btn {
-  border-radius: 3px;
 }
 
 #hook-number-input {
@@ -114,6 +129,27 @@ a {
   padding-left:0.5em;
 
 }
+
+.hook-text-line {
+  padding-top:4em;
+  margin-bottom:2em;
+  margin-left: 18em;
+}
+.hook-vert-line {
+  font-size:2em;
+  color:orange;
+  vertical-align:top;
+}
+
+.hook-text {
+  font-size:2em;
+  text-align:center;
+  padding: 0 0.5em;
+}
+
+/*
+Anonymous Search View
+*/
 
 .anon-create-btn {
   position: absolute;
@@ -156,34 +192,10 @@ a {
   font-size: 2em;
 }
 
-input:focus{
-    outline: 0;
-}
 
-.hook-text-line {
-  padding-top:4em;
-  margin-bottom:2em;
-  margin-left: 18em;
-}
-.hook-vert-line {
-  font-size:2em;
-  color:orange;
-  vertical-align:top;
-}
-
-.hook-text {
-  font-size:2em;
-  text-align:center;
-  padding: 0 0.5em;
-}
-
-.welcome {
-  padding-left: 3.3em;
-  font-size: 1.5em;
-}
-.wrapper {
-  margin: 0 2em;
-}
+/*
+Search View
+*/
 .left{
   background:rgba(0,0,0,0.65);
   min-height: 35em;
@@ -191,23 +203,6 @@ input:focus{
   margin-bottom: 5em;
   padding-left: 1.5em;
   border-radius: 2px;
-}
-
-.cookbook-box {
-  background:rgba(0,0,0,0.65);
-  min-height: 35em;
-  padding: 1.5em 0 4em 1.5em;
-  margin-bottom: 5em;
-  border-radius: 2px;
-  display:block;
-  margin:0 auto;
-}
-
-#recipe-delete-btn {
-  font-size: 1em;
-  padding: 0.5em;
-  display:block;
-  margin: 0 auto;
 }
 
 .right{
@@ -218,19 +213,8 @@ input:focus{
   padding-left: 1.5em;
   border-radius: 2px;
   position: relative;
-
 }
 
-.delete-button {
-  cursor:pointer;
-  font-family: 'Brandon Grotesque Light';
-  font-size: 1.3em;
-}
-
-#add-ing-btn {
-  margin-top: 0.5em;
-  /*float: right;*/
-}
 #new-ingredient-amt {
   font-family: 'Brandon Grotesque Light';
   background: none;
@@ -261,11 +245,197 @@ input:focus{
   margin-left: 0.5em;
 }
 
+.delete-button {
+  cursor:pointer;
+  font-family: 'Brandon Grotesque Light';
+  font-size: 1.3em;
+}
+
+#add-ing-btn {
+  margin-top: 0.5em;
+  /*float: right;*/
+}
+
+.recipe {
+  font-family: 'Brandon Grotesque Light';
+  display: inline-block;
+  width: 16em;
+  font-weight: lighter;
+}
+
+.recipe:hover {
+  background:rgba(0,0,0,0.5);
+}
+
+
+.recipe-image:hover {
+  cursor: pointer;
+}
+
+.recipe-overlay {
+    padding: 1em;
+    position:relative;
+}
+.recipe-overlay:hover {
+    background:rgba(0,0,0,0.5);
+}
+
+.recipe-overlay p {
+  text-align: center;
+}
+
+.recipe-overlay img {
+  display: block;
+  margin: 0 auto;
+}
+
+.load-more {
+
+  display: block;
+  margin: 1em auto;
+}
+
+.spinner {
+  height: 60px;
+  width: 60px;
+  margin: 94px auto 0 auto;
+  position: relative;
+  -webkit-animation: rotation .6s infinite linear;
+  -moz-animation: rotation .6s infinite linear;
+  -o-animation: rotation .6s infinite linear;
+  animation: rotation .6s infinite linear;
+  border-left: 6px solid rgba(255, 255, 255, .15);
+  border-right: 6px solid rgba(255, 255, 255, .15);
+  border-bottom: 6px solid rgba(255, 255, 255, .15);
+  border-top: 6px solid rgba(255, 255, 255, .8);
+  border-radius: 100%;
+}
+
+.little-spinner {
+  height: 30px;
+  width: 30px;
+  margin: 30px auto 0 auto;
+  position: relative;
+  -webkit-animation: rotation .6s infinite linear;
+  -moz-animation: rotation .6s infinite linear;
+  -o-animation: rotation .6s infinite linear;
+  animation: rotation .6s infinite linear;
+  border-left: 6px solid rgba(255, 255, 255, .15);
+  border-right: 6px solid rgba(255, 255, 255, .15);
+  border-bottom: 6px solid rgba(255, 255, 255, .15);
+  border-top: 6px solid rgba(255, 255, 255, .8);
+  border-radius: 100%;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(359deg);
+  }
+}
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg);
+  }
+  to {
+    -o-transform: rotate(359deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+#results-list li:hover {
+  background: #FFF;
+  color: #000;
+  cursor: pointer;
+}
+
+/*
+Cookbook View
+*/
+.cookbook-box {
+  background:rgba(0,0,0,0.65);
+  min-height: 35em;
+  padding: 1.5em 0 4em 1.5em;
+  margin-bottom: 5em;
+  border-radius: 2px;
+  display:block;
+  margin:0 auto;
+}
+
+#recipe-delete-btn {
+  font-size: 1em;
+  padding: 0.5em;
+  display:block;
+  margin: 0 auto;
+}
+
+.back-btn {
+  margin: 0 0 1em 1em;
+  display: inline-block;
+}
+
+.back-btn a {
+  color:white;
+  font-family: 'Brandon Grotesque Light';
+  font-size: 1.2em;
+  cursor:pointer;
+}
+
+.cookbookItem {
+  display: inline-block;
+  width: 16em;
+}
+.cookbookRecipe {
+  font-family: 'Brandon Grotesque Light'; 
+  display: inline-block;
+  width: 16em;
+  font-weight: lighter;
+}
+
+
+/*
+Recipe view
+*/
+#serv-size-input {
+  color: white;
+  width: 4em;
+  margin-left:1em;
+  border: gray 1px solid;
+  background: none;
+  border-radius: 3px;
+  padding-right: 0.5em;
+}
+
+.serving-line {
+  font-size: 1.2em;
+  padding-bottom: 1em;
+}
+
 .recipe-box {
   background:rgba(0,0,0,0.65);
   padding: 2em 0;
   margin-bottom: 4em;
-  min-height:40em;
+  min-height:42em;
   display: block;
 }
 
@@ -303,23 +473,33 @@ input:focus{
 
 .save-recipe-btn {
   margin-top: 1em;
-  padding: 0 1em;
+  padding: 0.5em 1em;
+  display: inline-block;
+}
+
+#save-btn {
+  padding: 0.3em 0.5em;
 }
 
 .recipe-view-img{
   width: 22em;
-  height: 20em;
+  height: 18em;
   margin: 0 auto;
+  margin-top: 1em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+}
+
+.recipe-info-wrapper {
+  margin-left: 1em;
 }
 
 .recipe-name {
   font-family: 'Brandon Grotesque Light';
   font-size: 2.5em;
   line-height: 110%;
-  padding: 0 0.4em;
+  padding: 0.5em 0.4em;
 }
 
 #new-ingredient {
@@ -334,6 +514,9 @@ input:focus{
   padding: 1em 1.05em;
 }
 
+/*
+Sign In and Register Views
+*/
 .signin-box {
   background:rgba(0,0,0,0.75);
   padding: 2em 4em 4em 4em;
@@ -386,104 +569,10 @@ input:focus{
   border-top-right-radius: 0;
 }
 
-#results-list li:hover {
-  background: #FFF;
-  color: #000;
-  cursor: pointer;
-}
 
-.back-btn {
-  margin: 0 0 1em 1em;
-}
-
-.back-btn a {
-  color:white;
-  font-family: 'Brandon Grotesque Light';
-  font-size: 1.2em;
-  cursor:pointer;
-}
-
-.cookbookItem {
-  display: inline-block;
-  width: 16em;
-}
-.cookbookRecipe {
-  font-family: 'Brandon Grotesque Light'; 
-  display: inline-block;
-  width: 16em;
-  font-weight: lighter;
-}
-
-.recipe {
-  font-family: 'Brandon Grotesque Light';
-  display: inline-block;
-  width: 16em;
-  font-weight: lighter;
-}
-
-.recipe:hover {
-  background:rgba(0,0,0,0.5);
-}
-
-
-.recipe-image:hover {
-  cursor: pointer;
-}
-
-.recipe-overlay {
-    padding: 1em;
-    position:relative;
-}
-.recipe-overlay:hover {
-    background:rgba(0,0,0,0.5);
-}
-
-.recipe-overlay p {
-  text-align: center;
-}
-
-.recipe-overlay img {
-  display: block;
-  margin: 0 auto;
-}
-
-.load-more {
-
-  display: block;
-  margin: 1em auto;
-}
-
-.spinner {
-  height: 60px;
-  width: 60px;
-  margin: 94px auto 0 auto;
-  position: relative;
-  -webkit-animation: rotation .6s infinite linear;
-  -moz-animation: rotation .6s infinite linear;
-  -o-animation: rotation .6s infinite linear;
-  animation: rotation .6s infinite linear;
-  border-left: 6px solid rgba(0, 174, 239, .15);
-  border-right: 6px solid rgba(0, 174, 239, .15);
-  border-bottom: 6px solid rgba(0, 174, 239, .15);
-  border-top: 6px solid rgba(0, 174, 239, .8);
-  border-radius: 100%;
-}
-
-.little-spinner {
-  height: 30px;
-  width: 30px;
-  margin: 30px auto 0 auto;
-  position: relative;
-  -webkit-animation: rotation .6s infinite linear;
-  -moz-animation: rotation .6s infinite linear;
-  -o-animation: rotation .6s infinite linear;
-  animation: rotation .6s infinite linear;
-  border-left: 6px solid rgba(0, 174, 239, .15);
-  border-right: 6px solid rgba(0, 174, 239, .15);
-  border-bottom: 6px solid rgba(0, 174, 239, .15);
-  border-top: 6px solid rgba(0, 174, 239, .8);
-  border-radius: 100%;
-}
+/*
+Ratings 
+*/
 
 .aggregaterating > .star {
   display: inline-block;
@@ -491,23 +580,26 @@ input:focus{
   width: 1.1em;
   content:"/2605";
   color: gold;
+
 }
 .aggregaterating {
   unicode-bidi: bidi-override;
   direction: rtl;
   text-align: left;
-  font-size:2em;
+  font-size:1.2em;
   margin-bottom: 0.5em;
   font-family: 'Brandon Grotesque Light';
+  margin-left: 0.8em;
 }
 
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
   text-align: left;
-  font-size:2em;
+  font-size:1.2em;
   margin-bottom: 0.5em;
   font-family: 'Brandon Grotesque Light';
+  margin-left: 0.8em;
 }
 .rating > .star {
   display: inline-block;
@@ -525,45 +617,4 @@ input:focus{
    content: "\2605";
    position: absolute; 
    color: gold;
-}
-
-
-@-webkit-keyframes rotation {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(359deg);
-  }
-}
-
-@-moz-keyframes rotation {
-  from {
-    -moz-transform: rotate(0deg);
-  }
-  to {
-    -moz-transform: rotate(359deg);
-  }
-}
-
-@-o-keyframes rotation {
-  from {
-    -o-transform: rotate(0deg);
-  }
-  to {
-    -o-transform: rotate(359deg);
-  }
-}
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
-
-#tags {
-  color:black;
 }

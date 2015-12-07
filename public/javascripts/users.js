@@ -52,7 +52,7 @@
 
       var formData = helpers.getFormData(this);
       if (formData.password !== formData.confirm) {
-          $('.error').text('Password and confirmation do not match!');
+          $('.anon-error').text('Password and confirmation do not match!');
           return;
       }
       delete formData['confirm'];
@@ -65,10 +65,13 @@
         $("#signup-modal").modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
+
+        $('body').css({'background': 'linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../imgs/yummy-dinner-party.jpg") no-repeat center center fixed'});
+        $('body').css('background-size', 'cover');
           loadPage('index');
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
-          $('.error').text(response.err);
+          $('.anon-error').text(response.err);
       });
   });
   /*

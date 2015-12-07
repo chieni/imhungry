@@ -147,6 +147,7 @@ router.post('/anon', function(req, res) {
         Pantry.Pantry.createNewPantryWithIngredients(req.body.username, req.body.ingredients,
           function(err) {
             console.log("created a new pantry");
+            console.log(req.body.ingredients);
             if(err) {
               utils.sendErrResponse(res, 500, 'An unknown error has occured.');
             }

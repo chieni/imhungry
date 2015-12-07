@@ -200,10 +200,15 @@ Pantry is initially empty
       (function addToArray() {
         var poppedIng = clone.splice(0,1)[0];
         Ingredient.findOne({name: poppedIng}, function(err, ing) {
-          ingredientsObjs.push({ingredient:ing});
+          
           if (err) {
             callback({msg:"Ingredient doesn't exist"});
+          } 
+
+          if (ing != null) {
+            ingredientsObjs.push({ingredient: ing});
           }
+
           if (clone.length == 0) {
             callback(null, ingredientsObjs);
           }
@@ -222,7 +227,7 @@ Pantry is initially empty
   Create a new pantry for a specified user who entered via the hook
   Pantry has ingredients that the user entered from the anonymous pantry
     username: String username of specified user
-    ingredients: [String] ingredients from
+    ingredients: [String] ingredients
   */
   pantrySchema.statics.createNewPantryWithIngredients = function(username, ingredients, callback) {
     var ingredientsList = ingredients.split(',');
@@ -231,17 +236,12 @@ Pantry is initially empty
       self.create({username: username, ingredients: ingredientsObjs},
         function(error, record) {
           if (error) {
-            console.log(error)
             callback(error);
           } else {
-            console.log(record)
             callback(null);
           }
         });
     });
-
-
-
   }
 
   exports.Pantry = mongoose.model('Pantry', pantrySchema);

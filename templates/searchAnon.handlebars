@@ -17,6 +17,11 @@
           </div>
 
           <div class="results">
+          {{#if loading}}
+             <div class="spinner"></div>
+          {{/if}}
+
+      
             {{#if searched}}
               {{#each recipes}}
                 {{> recipe size=../size}}
@@ -44,7 +49,7 @@
 
       <form id="anon-pantry-form" class="form-inline">
         <div><input class="form-control" id="new-ingredient" name="ingredient" autocomplete="off" placeholder="Add a new ingredient" required />
-        <input type="submit" value="Add" class="btn btn-warning"/></div>
+        <input type="submit" value="Add" class="btn btn-warning" id="anon-add-ing-btn" disabled/></div>
         <div><ul id="results-list" style="list-style-type:none"></ul></div>
       </form>
 
@@ -76,6 +81,7 @@
                   <label for="inputPasswordConfirm" class="sr-only"><span>Confirm Password</span></label>
                   <input type="password" id="inputPasswordConfirm" name="confirm" class="form-control" placeholder="Confirm Password" required/>
                 </div>
+                <div class="anon-error"></div>
                   <input type="submit" class="btn btn-lg btn-warning btn-block"/>
                 </form>
             </div>

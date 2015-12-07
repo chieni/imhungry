@@ -18,21 +18,37 @@
   	loadMoreSearchResults(formData, more);
   });
 
-    $(document).on('submit', '#anon-search-form', function(evt) {
-      evt.preventDefault();
-      var formData = helpers.getFormData(this);
-      var ingredientsList = $(".container").attr('data-ingredientsList-id');
-   
+  /*
+  Submits the search query for an anonymous user, from the anonymous search page. 
+  */
+  $(document).on('submit', '#anon-search-form', function(evt) {
+    evt.preventDefault();
+
+    var ingredients = $(".container").attr('data-ingredientsList-id');
+    var ingredientsList = [];
+    if (ingredients.length > 0) {
+      ingredientsList = ingredients.split(",");
+      var cleanIngredientsList = [];
+      ingredientsList.forEach(function(i){
+        if (i.length > 0) {
+          cleanIngredientsList.push(i);
+        }
+      });
+      loadPage('searchAnon', {currentUser: null, ingredients: cleanIngredientsList, loading: true});
       $.post(
           '/search',
-          {ingredients: ingredientsList}
+          {ingredients: ingredients}
       ).done(function(response) {
-      	console.log("done")
-		    loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true});
+        loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true, loading: false});
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);
       });
+
+    } else {
+      $('.error').text("Please add ingredients to pantry!");
+    }
+
 
 
   });

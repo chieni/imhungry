@@ -105,7 +105,6 @@ router.put('/:cookbook', function(req, res) {
 
 router.delete('/', function(req, res) {
   Cookbook.Cookbook.deleteRecipe(req.currentUser.username, req.body.recipeId, function(err, cookbook) {
-    console.log("ok we are calling the model");
     if (err) {
       res.send({
         success:false,
@@ -113,7 +112,6 @@ router.delete('/', function(req, res) {
       })
     }
     else {
-      console.log("called without error!");
       res.send({success:true});
     }
   });

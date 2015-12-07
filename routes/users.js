@@ -106,19 +106,16 @@ router.post('/', function(req, res) {
       } else {
       	Pantry.Pantry.createNewPantry(req.body.username,
       		function(err) {
-            console.log("created a new pantry");
       			if(err) {
       				utils.sendErrResponse(res, 500, 'An unknown error has occured.');
       			}
       			else {
               Cookbook.Cookbook.createNewCookbook(req.body.username, 
                 function(err) {
-                  console.log("trying to create new user!");
                   if(err) {
                     utils.sendErrResponse(res, 500, 'An unknown error has occured.');
                   }
                   else {
-                    console.log("created!");
                     utils.sendSuccessResponse(res, req.body.username);
                   }
                 })
@@ -167,20 +164,16 @@ router.post('/anon', function(req, res) {
       } else {
         Pantry.Pantry.createNewPantryWithIngredients(req.body.username, req.body.ingredients,
           function(err) {
-            console.log("created a new pantry");
-            console.log(req.body.ingredients);
             if(err) {
               utils.sendErrResponse(res, 500, 'An unknown error has occured.');
             }
             else {
               Cookbook.Cookbook.createNewCookbook(req.body.username, 
                 function(err) {
-                  console.log("trying to create new user!");
                   if(err) {
                     utils.sendErrResponse(res, 500, 'An unknown error has occured.');
                   }
                   else {
-                    console.log("created!");
                     utils.sendSuccessResponse(res, req.body.username);
                   }
                 })

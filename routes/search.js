@@ -36,7 +36,6 @@ router.get('*', requireAuthentication);
 */
 router.get('/', function(req, res) {
 	Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
-    console.log(ingredients);
     var ingredientNames = ingredients.map(function(ingredient) {
       return ingredient.ingredient.name;
     });
@@ -103,7 +102,6 @@ router.post('/', function(req, res) {
     }
   });
 
-  console.log(final_list);
   Recipe.flexibleSearch(final_list, function(err, recipes) {
     if (err) {
       utils.sendErrResponse(res, 500, 'Unable to retrieve recipes.');

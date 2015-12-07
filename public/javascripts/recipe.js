@@ -9,12 +9,8 @@
       var serving_size = $(".container").attr('data-serving-size');
 
       if (serving_size) {
-        console.log('before')
-        console.log(serving_size)
-
       } else {
         serving_size = item.data('recipesize');
-        console.log("serving size changed")
       }
 
       var ingredientsList = $(".container").attr('data-ingredientsList-id');
@@ -84,7 +80,6 @@
       evt.preventDefault();
       var ingredients = $(".container").attr('data-ingredientsList-id');
       var size = $(".container").attr('data-servingSize');
-      console.log(size)
       if (ingredients.length < 1) {
       } else {
       $.post(

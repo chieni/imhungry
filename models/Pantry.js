@@ -238,8 +238,6 @@ Pantry is initially empty
           if (error) {
             callback(error);
           } else {
-            console.log("create pantry")
-            console.log(record)
             callback(null);
           }
         });

@@ -433,7 +433,7 @@ Recipe view
 
 .recipe-box {
   background:rgba(0,0,0,0.65);
-  padding: 2em 0;
+  padding: 1.5em 0;
   margin-bottom: 4em;
   min-height:42em;
   display: block;
@@ -472,8 +472,7 @@ Recipe view
 }
 
 .save-recipe-btn {
-  margin-top: 1em;
-  padding: 0.5em 1em;
+  margin-left:1em;
   display: inline-block;
 }
 
@@ -485,7 +484,6 @@ Recipe view
   width: 22em;
   height: 18em;
   margin: 0 auto;
-  margin-top: 1em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;

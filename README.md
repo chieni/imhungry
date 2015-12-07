@@ -12,7 +12,7 @@ chieni_nlucas_zlily_mmgong_final
 	c. in browser, navigate to localhost:3000
 
 3. Features
-	-Hook
+	-Hook: Primary contributor - chieni
 		- When a User first navigates to our app, they are presented with a Hook page
 		- This Hook provides limited functionality to a User that has never used ImHungry before and does not have a user account
 		- User can initially search for recipes by typing in a serving size and some ingredients they have
@@ -25,34 +25,34 @@ chieni_nlucas_zlily_mmgong_final
 		- User is able to view the recipe but is unable to save the recipe or scale the serving size in recipe view or rate the recipe
 		- From the Hook search page, the User may create an account if they like the functionality they've been presented with
 			- If the User has ingredients in their anonymous pantry, these automatically get transferred over to their pantry once they create an account, except for ingredients that are not present in the database (which will not be part of the registered user's pantry). The ingredients will default to empty amounts, but they can easily be edited
-	-Account Creation
+	-Account Creation: Primary contributor - nlucas
 		- User can create an account with a unique username, a password, and their own pre-filled pantry (if done from the hook pantry page)
-	-Pantry
+	-Pantry: Primary contributor - zlily
 	  	- User can add and delete ingredients to their pantry
 	  	- Pantry supports auto-complete so it only allows a User to add ingredients that already exist in the database (ingredients that exist in at least one recipe in the database)
         - Duplicate ingredients cannot be added to the pantry
 	  	- Pantry also allows the option to input ingredient amounts for the User's own pantry (this does not translate in the search). If no amount is specified, it will be left blank
 	  	- Existing ingredient amounts may be edited within the pantry
-	-Search
+	-Search: Primary contributor - mmgong
 	  	- By clicking Scavenge button, the user can search for recipes that use a subset of ingredients in the logged-in user's pantry
 	  	- The Recipes displayed in the Search results are ordered first by how many extra ingredients they use from what the User has in their pantry. Within all recipes with the same number of extra ingredients, the recipes are then ordered by their ratings
 	  		- This allows for flexible search so a User can choose to substitute ingredients if they don't happen to have everything certain recipes call for
 	  	- Displays found recipes with name and picture
 	  	- User can click on a recipe to get a more indepth view with recipe ingredients, picture, name, serving size and instructions.
-	-Recipe Mining
+	-Recipe Mining: Primary contributor - chieni
 	 	- Recipe database has been populated with recipes and ingredients mined from external recipe sites.
-	- Cookbook
+	- Cookbook: Primary contributor - nlucas
 	  	- User can save a Recipe they are currently viewing to their personal Cookbook using the Save button
 	  	- If a Recipe is already in User's Cookbook, there is no Save button option on that Recipe's view
 	  	- User can navigate to their Cookbook to view Recipes they have saved. They can click on these Recipes to view them. They can also delete Recipes from their Cookbook
-	- Ratings
+	- Ratings: Primary contributor - nlucas
 	  	- There is a current Rating displayed to the User in Recipe view that is uneditabale.  
 	  		- For now, if no User's have rated the Recipe, the Rating is the Rating as mined from Yummly's website. Once a User in our app has rated a recipe, the recipe then defaults to being the aggregate of only our users' ratings
 	  		- IMPORTANT NOTE: If you are the first User to rate a recipe (which is the case with most recipes at this point in time), the Recipe Rating will be the same as the rating you input.  This is because we switch over to only using the ratings of Users in our system right when you rate it and you are the only User to have rated that Recipe. If another User rates it, the rating will be displayed as the average of the two ratings.
 	  	- Under the current Rating, there is a set of 5 stars the User may use to rate the Recipe
 	  		- Once a User clicks on the Rating they wish to rate the Recipe (only whole numbers), that number is then immediately saved to that Recipe's aggregate rating
 	  		- Additionally, a User may only rate a Recipe once.  Once a User has rated a Recipe, they may rate it again multiple times but only their latest Rating will count towards the aggregate Rating of the Recipe
-	- Scaling
+	- Scaling: Primary contributor - mmgong
 		- In the recipe view, user can scale the ingredients amounts of the recipe to match the desired serving size
 		- initially, the default serving size is the serving size specified in the original recipe
 		- the user can specify a desrired serving size and click scale, which will scale the displayed ingredient amounts to the desired serving size.

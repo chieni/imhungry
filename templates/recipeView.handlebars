@@ -97,6 +97,11 @@
        <input type="submit" value="Scale Recipe" class="btn btn-warning"/>
         {{/if}}
        </div>
+       <div class="sizing-error">
+        {{#if sizing-error}}
+          {{sizing-error}}
+        {{/if}}
+      </div>
      </form>
     
     <div class="ingredients">

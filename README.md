@@ -1,6 +1,6 @@
 chieni_nlucas_zlily_mmgong_final
 ================================
-1. URL: imhungry.herokuapp.com
+1. URL: im-hungry.herokuapp.com
 
 2. Instructions for local deployment:
 	a. in terminal window, run mongo
@@ -16,13 +16,17 @@ chieni_nlucas_zlily_mmgong_final
 		- When a User first navigates to our app, they are presented with a Hook page
 		- This Hook provides limited functionality to a User that has never used ImHungry before and does not havea  user account
 		- User can initially search for recipes by typing in a serving size and some ingredients they have
-		- User can also maintain an anonymous pantry that will not persist (as they have no account) but is editable within the session
+			- Ingredients will be identified by comma separations. They will not be validated when placed
+			into the anonymous pantry, but if a user decides to create an account from the ingredients
+			they entered into the hook page, ingredients that are not present in the database will
+			not be added into the registered pantry
+		- User can also maintain an anonymous pantry with no ingredient amountsthat will not persist (as they have no account) but is editable within the session
 		- User has access to a limited search (there is no "Load More Recipes" functionality)
 		- User is able to view the recipe but is unable to save the recipe or scale the serving size in recipe view or rate the recipe
 		- From the Hook search page, the User may create an account if they like the functionality they've been presented with
-			- If the User has ingredients in their anonymous pantry, these automatically get transferred over to their pantry once they create an account
+			- If the User has ingredients in their anonymous pantry, these automatically get transferred over to their pantry once they create an account, except for ingredients that are not present in the database (which will not be part of the registered user's pantry).
 	-Account Creation
-		- User can create an account with a unique username, a password, and their own pantry (if done from the hook pantry page)
+		- User can create an account with a unique username, a password, and their own pre-filled pantry (if done from the hook pantry page)
 	-Pantry
 	  	- User can add and delete ingredients to their pantry
 	  	- Pantry supports auto-complete so it only allows a User to add ingredients that already exist in the database (ingredients that exist in at least one recipe in the database)
@@ -35,7 +39,7 @@ chieni_nlucas_zlily_mmgong_final
 	  	- Displays found recipes with name and picture
 	  	- User can click on a recipe to get a more indepth view with recipe ingredients, picture, name, serving size and instructions.
 	-Recipe Mining
-	 	- Recipe databases has been populated with recipes mined from external recipe sites.
+	 	- Recipe database has been populated with recipes and ingredients mined from external recipe sites.
 	- Cookbook
 	  	- User can save a Recipe they are currently viewing to their personal Cookbook using the Save button
 	  	- If a Recipe is already in User's Cookbook, there is no Save button option on that Recipe's view
@@ -56,9 +60,9 @@ chieni_nlucas_zlily_mmgong_final
 	- Create an account or use the Hook
 		- If using the Hook:
 			- Input how many people you are cooking for and what ingredients you currently have to cook for
+				- This is the only time the hook user can change the 'serving size', which is usually scaleable for registered users.
 			- Click Scavenge
 			- Edit pantry items by deleting or adding new ingredients
-			- Edit pantry amounts by clicking on the amount next to the ingredient in question
 			- View Recipes by clicking on the Recipe in Search view
 			- Create an account from the Pantry/Search page
 		- Or just create an account right away
@@ -75,7 +79,7 @@ chieni_nlucas_zlily_mmgong_final
 	- View Recipe
 		- Click on the Recipe from the search page
 	- Scale a Recipe
-		- Enter the serving size you wish to scale the recipe to in the upper right box and click Scale
+		- Enter the serving size you wish to scale the recipe to in the upper right box of the Recipe view and click Scale
 	- Save to Cookbook
 		- Click on the Save button in a Recipe View
 	- View Cookbook
@@ -85,8 +89,3 @@ chieni_nlucas_zlily_mmgong_final
 	- Rate a Recipe
 		- When viewing a recipe, simply click on the number of stars you wish to rate the recipe under Rate Recipe. If you click multiple times, only your last rating counts
 
-
-==============================
-Developer Notes
-==============================
-handlebars -m templates/> public/javascripts/templates.js

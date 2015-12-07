@@ -65,7 +65,7 @@
       });
     }
     else {
-      $('.sizing-error').text('Serving size must be a positive number!');
+      $('.sizing-error').text('Serving size must be a positive number');
           return;
     }
     

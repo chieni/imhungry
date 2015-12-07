@@ -12,6 +12,11 @@
     <span class="hook-vert-line"> | </span>
     
       <input id="hook-ingr-input" type="text" placeholder="corn, pork shoulder, cilantro, etc." required/>
+       <div class="anon-sizing-error">
+          {{#if anon-sizing-error}}
+            {{anon-sizing-error}}
+          {{/if}}
+        </div>
 
       </div>
         <div class="error">

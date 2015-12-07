@@ -3,6 +3,12 @@ Handlebars.registerPartial('header', Handlebars.templates['header']);
 Handlebars.registerPartial('cookbook', Handlebars.templates['cookbook']);
 Handlebars.registerPartial('cookbookRecipe', Handlebars.templates['cookbookRecipeView']);
 Handlebars.registerPartial('anonHeader', Handlebars.templates['anonHeader']);
+/*
+The following helper is registered for handlebars so as to be able to compare
+two items in handlebars 
+For example:
+	- if(itemA > itemB){body} translates to {{#compare itemA itemB operator=">"}}body{{/compare}}
+*/
 Handlebars.registerHelper('compare', function(lvalue, rvalue, options) {
 		if (arguments.length < 3)
 			throw new Error("Handlebars Helper 'compare' needs 2 parameters");

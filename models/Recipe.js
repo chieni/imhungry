@@ -198,7 +198,10 @@ recipeSchema.statics.loadMoreSearchResults = function(ingredients, more, callbac
 	});
 }
 
-
+/*
+This function gets a recipe object
+	recipeId: the id of the recipe to be fetched
+*/
 recipeSchema.statics.getRecipe = function(recipeId, callback) {
 	console.log("recipeid: "+recipeId);
 	this.findById(recipeId, function(err, doc){
@@ -272,6 +275,9 @@ recipeSchema.methods.scaleRecipe = function(servingSize) {
 
 /*
 The following method is used to calculate the rating of a recipe given a rating
+	rating: rating of the recipe
+	recipeId: id of the recipe being rated
+	userId: id of the user rarting the recipe
 */
 recipeSchema.statics.rateRecipe = function(recipeId, rating, userId, callback) {
 	var index = -1;

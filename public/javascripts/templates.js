@@ -222,7 +222,7 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.ingredients : stack1),{"name":"each","hash":{},"fn":container.program(29, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n\n    <div class=\"instructions\">\n      <div class=\"instructions-label\">Instructions:</div>\n      <a class=\"recipe-url btn btn-lg btn-warning save-btn\" href=\""
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.sourceURL : stack1), depth0))
-    + "\">Full instructions here</a>\n    </div>\n    </div>\n\n\n\n\n\n\n\n\n</div>\n\n\n\n\n\n\n</div>\n</div>\n\n\n\n";
+    + "\" target=\"_blank\">Full instructions here</a>\n    </div>\n    </div>\n\n\n\n\n\n\n\n\n</div>\n\n\n\n\n\n\n</div>\n</div>\n\n\n\n";
 },"usePartial":true,"useData":true});
 templates['register'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;

@@ -142,7 +142,7 @@ before(function(done) {
 	 			var scaledRecipe = recipe.scaleRecipe(1);
 	 			assert.equal(scaledRecipe.servingSize, 1);
 	 			var sortedIngredients = scaledRecipe.ingredients.sort();
-	 			var answers = ['0.25 banana', '0.3333333333333333 cup orange juice', '0.5 mango', 'honey to taste'];
+	 			var answers = ['0.25 banana', '0.3333333333333333 cup orange juice', '0.5 mango', '0.5x honey to taste'];
 	 			for (var i=0; i<4; i++) {
 	 				assert.equal(sortedIngredients[i], answers[i]);
 	 			}
@@ -188,15 +188,6 @@ before(function(done) {
  		var mapRecipesToName = function(recipe) {
 			return recipe.name;
 		}
-
- 		it('test that database is working', function(done) {
- 			Recipe.find({}, function(err, recipes) {
- 				assert.equal(recipes.length, 3);
- 				assert.deepEqual(recipes.map(mapRecipesToName).sort(),
- 					[frenchFriesRecipe.name, grilledCheeseRecipe.name, smoothieRecipe.name]);
- 				done();
- 			});
- 		});
 
 
  		it('should return only grilled cheese recipe', function(done) {

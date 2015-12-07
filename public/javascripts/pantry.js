@@ -113,7 +113,10 @@
   Adding is disabled until the user selects an ingredient from the list.
   */
   $(document).on('keyup', '#new-ingredient', function(evt) {
-    $('#add-ing-btn').prop("disabled", true);
+    if (evt.which != 13) {
+      $('#add-ing-btn').prop("disabled", true);
+      $("#anon-add-ing-btn").prop("disabled", true);
+    }
     $( "#new-ingredient" ).autocomplete({
       source: function(request, response) {
         var results = $.ui.autocomplete.filter(INGREDIENT_NAMES, request.term);

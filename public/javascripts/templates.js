@@ -164,6 +164,12 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.servingSize : stack1), depth0))
     + "</span>\n";
 },"27":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "          "
+    + container.escapeExpression(((helper = (helper = helpers["sizing-error"] || (depth0 != null ? depth0["sizing-error"] : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"sizing-error","hash":{},"data":data}) : helper)))
+    + "\n";
+},"29":function(container,depth0,helpers,partials,data) {
     return "        <div class=\"ingredient\">"
     + container.escapeExpression(container.lambda(depth0, depth0))
     + "</div>\n";
@@ -202,8 +208,10 @@ templates['recipeView'] = template({"1":function(container,depth0,helpers,partia
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1._id : stack1), depth0))
     + ">\n       <div class=\"serving-line\">Serving size: \n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.currentUser : depth0),{"name":"if","hash":{},"fn":container.program(23, data, 0),"inverse":container.program(25, data, 0),"data":data})) != null ? stack1 : "")
-    + "       </div>\n     </form>\n    \n    <div class=\"ingredients\">\n      <div class=\"ingredients-header\">Ingredients: </div>\n      \n"
-    + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.ingredients : stack1),{"name":"each","hash":{},"fn":container.program(27, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "       </div>\n       <div class=\"sizing-error\">\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0["sizing-error"] : depth0),{"name":"if","hash":{},"fn":container.program(27, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "      </div>\n     </form>\n    \n    <div class=\"ingredients\">\n      <div class=\"ingredients-header\">Ingredients: </div>\n      \n"
+    + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.ingredients : stack1),{"name":"each","hash":{},"fn":container.program(29, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n\n    <div class=\"instructions\">\n      <div class=\"instructions-label\">Instructions:</div>\n      <a class=\"recipe-url btn btn-lg btn-warning save-btn\" href=\""
     + alias3(alias2(((stack1 = (depth0 != null ? depth0.recipe : depth0)) != null ? stack1.sourceURL : stack1), depth0))
     + "\" target=\"_blank\">Full instructions here</a>\n    </div>\n    </div>\n\n\n\n\n\n\n\n\n</div>\n\n\n\n\n\n\n</div>\n</div>\n\n\n\n";

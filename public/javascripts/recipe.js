@@ -9,12 +9,8 @@
       var serving_size = $(".container").attr('data-serving-size');
 
       if (serving_size) {
-        console.log('before')
-        console.log(serving_size)
-
       } else {
         serving_size = item.data('recipesize');
-        console.log("serving size changed")
       }
 
       var ingredientsList = $(".container").attr('data-ingredientsList-id');
@@ -58,14 +54,21 @@
     var item = $(this);
     var recipe_id = item.data('recipeid');
     var formData = helpers.getFormData(this);
-    $.post('/recipe/' + recipe_id,
-      {servingSize: formData.servingsize}
-    ).done(function(response) {
-      loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
-    }).fail(function(responseObject) {
-          var response = $.parseJSON(responseObject.responseText);
-          $('.error').text(response.err);
-    });
+    if (formData.servingsize>0) {
+      $.post('/recipe/' + recipe_id,
+        {servingSize: formData.servingsize}
+      ).done(function(response) {
+        loadPage('recipeView', { recipe: response.content.recipe, currentUser: currentUser, displayButton: response.content.displayButton });
+      }).fail(function(responseObject) {
+            var response = $.parseJSON(responseObject.responseText);
+            $('.error').text(response.err);
+      });
+    }
+    else {
+      $('.sizing-error').text('Serving size must be a positive number!');
+          return;
+    }
+    
   });
 
   /*
@@ -84,7 +87,6 @@
       evt.preventDefault();
       var ingredients = $(".container").attr('data-ingredientsList-id');
       var size = $(".container").attr('data-servingSize');
-      console.log(size)
       if (ingredients.length < 1) {
       } else {
       $.post(

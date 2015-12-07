@@ -101,6 +101,11 @@
        <span style="display:inline-block"> {{recipe.servingSize}}</span>
         {{/if}}
        </div>
+       <div class="sizing-error">
+        {{#if sizing-error}}
+          {{sizing-error}}
+        {{/if}}
+      </div>
      </form>
     
     <div class="ingredients">

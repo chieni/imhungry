@@ -14,7 +14,7 @@ chieni_nlucas_zlily_mmgong_final
 3. Features
 	-Hook
 		- When a User first navigates to our app, they are presented with a Hook page
-		- This Hook provides limited functionality to a User that has never used ImHungry before and does not havea  user account
+		- This Hook provides limited functionality to a User that has never used ImHungry before and does not have a user account
 		- User can initially search for recipes by typing in a serving size and some ingredients they have
 			- Ingredients will be identified by comma separations. They will not be validated when placed
 			into the anonymous pantry, but if a user decides to create an account from the ingredients

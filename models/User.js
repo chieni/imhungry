@@ -1,3 +1,4 @@
+//Primary Author: nlucas
 // Data for each User is stored in a database. 
 
 // A User object in the imHungry app.

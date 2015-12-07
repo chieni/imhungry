@@ -1,3 +1,4 @@
+// Contributing Authors: mmgong, chieni, zlily
 // Wrap in an immediately invoked function expression.
 (function() {
   /*

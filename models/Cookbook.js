@@ -1,7 +1,8 @@
+// Primary author: nlucas
 // a database. 
 
 // A Cookbook object in the imHungry app.
-// Each Pantry object stores zero or more ingredients and contains a unique ID.
+// Each Cookbook object stores zero or more recipes and contains a unique ID.
 var mongoose = require('mongoose');
 var User = require('../models/User');
 var Recipe = require('../models/Recipe');

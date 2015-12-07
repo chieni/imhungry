@@ -1,3 +1,5 @@
+//Contributing Authors: chieni, mmgong, nlucas, zlily
+
 Handlebars.registerPartial('recipe', Handlebars.templates['recipe']);
 Handlebars.registerPartial('header', Handlebars.templates['header']);
 Handlebars.registerPartial('cookbook', Handlebars.templates['cookbook']);

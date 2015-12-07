@@ -1,3 +1,4 @@
+//Primary Authors: chieni, mmgong, nlucas
 // Database model for recipes
 var async = require("async");
 var mongoose = require("mongoose");

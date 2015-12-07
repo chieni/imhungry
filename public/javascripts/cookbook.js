@@ -1,4 +1,4 @@
-
+//Primary author: nlucas
 // Wrap in an immediately invoked function expression.
 (function() {
   /*

@@ -5,8 +5,10 @@ chieni_nlucas_zlily_mmgong_final
 2. Instructions for local deployment:
 	a. in terminal window, run mongo
 		use command: mongod
-	b. in another terminal window run: npm install
+	b. if it is the first time you open the app, make sure lines 35 and 	36 in app.js are NOT commented out
+		in another terminal window run: npm install
 			    		   npm start
+		After running the first time, comment out lines 35 and 36 in app.js
 	c. in browser, navigate to localhost:3000
 
 3. Features
@@ -45,6 +47,10 @@ chieni_nlucas_zlily_mmgong_final
 	  	- Under the current Rating, there is a set of 5 stars the User may use to rate the Recipe
 	  		- Once a User clicks on the Rating they wish to rate the Recipe (only whole numbers), that number is then immediately saved to that Recipe's aggregate rating
 	  		- Additionally, a User may only rate a Recipe once.  Once a User has rated a Recipe, they may rate it again multiple times but only their latest Rating will count towards the aggregate Rating of the Recipe
+	- Scaling
+		- In the recipe view, user can scale the ingredients amounts of the recipe to match the desired serving size
+		- initially, the default serving size is the serving size specified in the original recipe
+		- the user can specify a desrired serving size and click scale, which will scale the displayed ingredient amounts to the desired serving size.
 
 4. How to use Final Product
 	- Create an account or use the Hook

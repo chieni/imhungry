@@ -142,7 +142,7 @@ before(function(done) {
 	 			var scaledRecipe = recipe.scaleRecipe(1);
 	 			assert.equal(scaledRecipe.servingSize, 1);
 	 			var sortedIngredients = scaledRecipe.ingredients.sort();
-	 			var answers = ['0.25 banana', '0.3333333333333333 cup orange juice', '0.5 mango', '0.5x honey to taste'];
+	 			var answers = ['0.25 banana', '0.33 cup orange juice', '0.5 mango', '0.5x honey to taste'];
 	 			for (var i=0; i<4; i++) {
 	 				assert.equal(sortedIngredients[i], answers[i]);
 	 			}

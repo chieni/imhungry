@@ -235,7 +235,7 @@ var evaluateStringNumber = function(number) {
 }
 
 // maps of vulgar unicode fractions to values
-var vulgarFractionMap = {"¼": 0.25, "¾": 0.75, "⅔": 2/3, "½": 0.5, "⅓": 1/3};
+var vulgarFractionMap = {"¼": 0.25, "¾": 0.75, "⅔": 0.67, "½": 0.5, "⅓": 0.33};
 var vulgarFractions = ["¼","¾","⅔","½","⅓"];
 
 /*
@@ -263,7 +263,7 @@ recipeSchema.methods.scaleRecipe = function(servingSize) {
 			if (ingredient[0].match(/\d/) || ingredient[1].match(/\d/)) {
 				var stringAmt = ingredient.split(/[a-zA-z]/,2)[0];
 				var remainingIngString = ingredient.substring(stringAmt.length);
-				scaledIngredient = scaleFactor*evaluateStringNumber(stringAmt) + " " + remainingIngString;
+				scaledIngredient = Math.round(100*scaleFactor*evaluateStringNumber(stringAmt))/100 + " " + remainingIngString;
 			} else {
 				scaledIngredient = scaleFactor +"x " + ingredient;
 			}

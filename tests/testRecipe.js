@@ -29,6 +29,7 @@ before(function(done) {
 		'banana', 'honey'], servingSize: 2, ingredientsWAmounts: ['2/3 cup orange juice', '1 mango',
 		'1/2 banana', 'honey to taste'], rating: 3.1};
 	var rater = "testUser";
+	var rater2 = "anotherUser";
 
 	before(function(done) {
 		Recipe.create([grilledCheeseRecipe, frenchFriesRecipe,
@@ -170,6 +171,15 @@ before(function(done) {
 					done();
 				})
 			});
+		})
+		it('test that a rating will aggregate over multiple users ratings', function(done) {
+			Recipe.findOne({name: 'french fries'}, function(error, recipe) {
+				var recipeId = recipe._id;
+				Recipe.rateRecipe(recipeId, 1, rater2, function(error, rating) {
+					assert.equal(rating, 3);
+					done();
+				} )
+			})
 		})
 	})
 

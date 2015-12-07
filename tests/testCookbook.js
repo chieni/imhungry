@@ -43,10 +43,56 @@ before(function(done) {
  	describe('#createNewCookbook()', function() {
 
  		it ('should create a new cookbook for the given user', function(done) {
- 			Cookbook.Cookbook.createNewCookbook("user", function(err, res) {
+ 			Cookbook.Cookbook.createNewCookbook("username", function(err, res) {
  				assert.equal(err, null);
  				done();
  			});
  		});
  	});
+ 	describe('#addRecipe()', function() {
+ 		it ("should add a recipe to a user's cookbook", function(done) {
+ 			Recipe.findOne({name:'mango smoothie'}, function(err, recipe) {
+ 				Cookbook.Cookbook.addRecipe("username", recipe._id, function(err, res) {
+ 					Cookbook.Cookbook.findOne({username: "username"}, function(err,res){ 
+ 						assert.equal(res.username, "username");
+ 						assert.equal(res.recipes.length, 1);
+ 						assert.equal(res.recipes[0]._id.toString(), recipe._id.toString());
+ 						done();
+ 					});
+ 				});
+ 			});			
+ 		});
+
+ 		it ("should not allow recipes not found in the database to be added", function(done) {
+ 			Cookbook.Cookbook.addRecipe("username", 1, function(err, res) {
+ 				Cookbook.Cookbook.findOne({username: "username"}, function(err,res){ 
+ 					assert.equal(res.username, "username");
+ 					assert.equal(res.recipes.length, 1);
+ 					done();
+ 				});
+ 			});
+ 		});
+ 	});
+ 	describe('#getRecipes()', function() {
+		it ('should get all recipes in the cookbook of the specified user', function(done) {
+			Cookbook.Cookbook.getRecipes("username", function(err, res) {
+				assert.equal(res.length, 1);
+				assert.equal(res[0].name, "mango smoothie");
+				done();
+			});
+		});
+	});
+ 	describe('#deleteRecipe()', function() {
+		it ("should delete a specified recipe from the user's cookbook", function(done) {
+			Recipe.findOne({name:'mango smoothie'}, function(err, recipe) {
+				Cookbook.Cookbook.deleteRecipe("username", recipe._id, function(err, res) {
+					Cookbook.Cookbook.findOne({username: "username"}, function(err,res){ 
+						assert.equal(res.username, "username");
+						assert.equal(res.recipes.length, 0);
+						done();
+					});
+				});
+			});
+		});
+	});
  });

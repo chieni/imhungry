@@ -206,15 +206,12 @@ Pantry is initially empty
       (function addToArray() {
         var poppedIng = clone.splice(0,1)[0];
         Ingredient.findOne({name: poppedIng}, function(err, ing) {
-          
           if (err) {
             callback({msg:"Ingredient doesn't exist"});
           } 
-
-          if (ing != null) {
+          if (ing) {
             ingredientsObjs.push({ingredient: ing});
           }
-
           if (clone.length == 0) {
             callback(null, ingredientsObjs);
           }
@@ -237,14 +234,22 @@ Pantry is initially empty
   */
   pantrySchema.statics.createNewPantryWithIngredients = function(username, ingredients, callback) {
     var ingredientsList = ingredients.split(',');
+
+    var cleanIngredientsList = [];
+    ingredientsList.forEach(function(i){
+      if (i.length > 0) {
+        cleanIngredientsList.push(i.trim());
+      }
+    });
+
     var self = this;
-    getValidIngredients(ingredientsList, function(err, ingredientsObjs){
+    getValidIngredients(cleanIngredientsList, function(err, ingredientsObjs){
       self.create({username: username, ingredients: ingredientsObjs},
         function(error, record) {
           if (error) {
             callback(error);
           } else {
-            callback(null);
+            callback(null, record);
           }
         });
     });

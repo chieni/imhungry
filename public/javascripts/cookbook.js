@@ -2,15 +2,19 @@
 // Wrap in an immediately invoked function expression.
 (function() {
   /*
-  Once a recipe has been added, this function is called to add it to the cookbook.
+  Once a recipe has been added, this function is called to add it to the cookbook
+  usring a PUT request and reloads the recipe page.
   */
   $(document).on('click', '#save-btn', function(evt) {
     var recipeId = $(this).data('id');
     var servingsize = $(this).data('servingsize');
       evt.preventDefault();
-      $.post(
-          '/cookbook/' +recipeId
-      ).done(function(response) {
+      $.ajax({
+      url: '/cookbook/'+recipeId,
+      type: 'PUT',
+      data: { 
+      }
+      }).done(function(response) {
         $.post('/recipe/' + recipeId,
         {servingSize: servingsize}
         ).done(function(response) {

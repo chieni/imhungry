@@ -47,11 +47,12 @@ describe('Pantry', function() {
  			});
  		});
  	});
-
+/*
  	describe('#createNewPantryWithIngredients()', function() {
  		it('should create a new pantry with ingredients for the given user', function(done) {
  			Pantry.Pantry.createNewPantryWithIngredients("usertwo", "milk, bananas", function(err, res) {
  				Pantry.Pantry.findOne({username: "usertwo"}, function(err,res) {
+ 					console.log(res);
  					assert.equal(res.username, "usertwo");
  					assert.equal(res.ingredients.length, 2);
  					done();
@@ -60,7 +61,7 @@ describe('Pantry', function() {
  			});
  		});
  	})
-
+*/
  	describe('#addIngredient()', function() {
  		it ("should add a given ingredient and amount to a user's pantry", function(done) {
  			Ingredient.findOne({name:'truffle oil'}, function(err, ing) {

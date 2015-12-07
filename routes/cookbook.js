@@ -8,7 +8,7 @@ var Cookbook = require('../models/Cookbook');
 var Recipe = require('../models/Recipe');
 
 /*
-  Require authentication on ALL access to /freets/*
+  Require authentication on ALL access to cookbook
   Clients which are not logged in will receive a 403 error code.
 */
 var requireAuthentication = function(req, res, next) {
@@ -26,12 +26,13 @@ router.all('*', requireAuthentication);
 
 
 /*
-  The following retrieves all ingredients from the current pantry.
+  The following retrieves all recipes from the current cookbook.
 
-  GET /pantry/current
+  GET /cookbook/recipes
   No request parameters
   Response:
-    - success.ingredients: the ingredients in the pantry
+    - success: true if successful
+    - recipes: all the recipes in the cookbook
 */
 
 router.get('/recipes', function(req, res) {
@@ -62,21 +63,21 @@ router.param('cookbook', function(req, res, next, recipeId) {
 });
 
 /*
-  Adds a new ingredient to the pantry.
+  Adds a new recipe to the cookbook.
 
-  All ingredients in the pantry must be distinct. If a request arrives with a ingredient that
+  All recipes in the cookbook must be distinct. If a request arrives with a ingredient that
   already exists, the response will be an error.
 
-  POST /add
+  PUT /cookbook
   Request body:
-    - username
-    - ingredient
+    - recipeId: the id of the recipe to add
+    - username: the owner of the cookbook
   Response:
     - success: true if user creation succeeded; false otherwise
     - err: on error, an error message
 */
 
-router.post('/:cookbook', function(req, res) {
+router.put('/:cookbook', function(req, res) {
   Cookbook.Cookbook.addRecipe(req.currentUser.username, req.recipe._id.toString(), function(err, cookbook) {
     if (!err) {
       Recipe.getRecipe(req.recipe._id, function(err, recipe) {
@@ -91,12 +92,12 @@ router.post('/:cookbook', function(req, res) {
 });
 
 /*
-  Deletes an ingredient from the pantry
+  Deletes an recipe from the cookbook
 
   DELETE /delete
   Request body:
-    - username
-    - ingredient
+    - username: the owner of the cookbook
+    - recipeId: the id of the recipe to delete
   Response:
     - success: true if ingredient deleted; false otherwise
     - err: on error, an error message

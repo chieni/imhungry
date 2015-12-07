@@ -7,7 +7,7 @@ var User = require('../models/User');
 var Pantry = require('../models/Pantry');
 
 /*
-  Require authentication on ALL access to /freets/*
+  Require authentication on ALL access to the pantry
   Clients which are not logged in will receive a 403 error code.
 */
 var requireAuthentication = function(req, res, next) {
@@ -17,6 +17,8 @@ var requireAuthentication = function(req, res, next) {
     next();
   }
 };
+
+
 
 
 
@@ -35,7 +37,6 @@ router.all('*', requireAuthentication);
 
 router.get('/', function(req, res) {
   Pantry.Pantry.getIngredients(req.currentUser.username, function(err, ingredients) {
-    console.log(ingredients);
     if (!err) {
       utils.sendSuccessResponse(res, { ingredients: ingredients });
     } else {

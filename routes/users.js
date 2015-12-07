@@ -130,6 +130,27 @@ router.post('/', function(req, res) {
   });
 });
 
+/*
+  Create a new user in the system from an anonoymous pantry (creates the pantry with ingredients from the anonoymous pantry).
+
+  All usernames in the system must be distinct. If a request arrives with a username that
+  already exists, the response will be an error.
+
+  This route may only be called accessed without an existing user logged in. If an existing user
+  is already logged in, it will result in an error code 403.
+
+  Does NOT automatically log in the user.
+
+  POST /users/anon
+  Request body:
+    - username
+    - password
+    - ingredients
+  Response:
+    - success: true if user creation succeeded; false otherwise
+    - err: on error, an error message
+*/
+
 router.post('/anon', function(req, res) {
   if (isLoggedInOrInvalidBody(req, res)) {
     return;

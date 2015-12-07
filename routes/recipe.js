@@ -4,6 +4,7 @@ var utils = require('../utils/utils');
 var Recipe = require('../models/Recipe');
 var Cookbook = require('../models/Cookbook');
 
+
 /*
   The following calls getRecipe from the Recipe schema given a recipeId
   It populates req with a recipe object
@@ -68,7 +69,18 @@ router.post('/:recipe', function(req, res) {
 
 
 /*
-Add comments
+  The following gets a recipe from the database
+
+  PUT /:recipe
+  Request body:
+    - serving-size: number representing the desired serving size to be displayed
+    - recipeid: the id of the recipe that is being rated
+    - rating: the user's inputted rating
+    - displayButton: whether or not the recipe is in the current user's cookbook
+  Response:
+    - success: response is true if successful, false otherwise
+    - err if error on request
+
 */
 router.put('/rate', function(req, res) {
 

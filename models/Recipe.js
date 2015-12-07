@@ -260,9 +260,15 @@ recipeSchema.methods.scaleRecipe = function(servingSize) {
 			var frac = vulgarFractionMap[ingredient[1]];
 			scaledIngredient = scaleFactor*(parseInt(ingredient[0])+frac) + " " + remainingString;
 		} else if (ingredient.match(/\d/)) {
-			var stringAmt = ingredient.split(/[a-zA-z]/,2)[0];
-			var remainingIngString = ingredient.substring(stringAmt.length);
-			scaledIngredient = scaleFactor*evaluateStringNumber(stringAmt) + " " + remainingIngString;
+			if (ingredient[0].match(/\d/) || ingredient[1].match(/\d/)) {
+				var stringAmt = ingredient.split(/[a-zA-z]/,2)[0];
+				var remainingIngString = ingredient.substring(stringAmt.length);
+				scaledIngredient = scaleFactor*evaluateStringNumber(stringAmt) + " " + remainingIngString;
+			} else {
+				scaledIngredient = scaleFactor +"x " + ingredient;
+			}
+		} else {
+			scaledIngredient = scaleFactor +"x " + ingredient;
 		}
 		return scaledIngredient;
 	});

@@ -40,14 +40,22 @@ templates['hook'] = template({"1":function(container,depth0,helpers,partials,dat
     var helper;
 
   return "            "
+    + container.escapeExpression(((helper = (helper = helpers["anon-sizing-error"] || (depth0 != null ? depth0["anon-sizing-error"] : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"anon-sizing-error","hash":{},"data":data}) : helper)))
+    + "\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "            "
     + container.escapeExpression(((helper = (helper = helpers.error || (depth0 != null ? depth0.error : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"error","hash":{},"data":data}) : helper)))
     + "\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, alias1=depth0 != null ? depth0 : {};
 
   return ((stack1 = container.invokePartial(partials.anonHeader,depth0,{"name":"anonHeader","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"hook-box\">\n  <form id=\"hook-search-form\">\n    <div class=\"hook-text-line\">\n    <span class=\"hook-text\">I am cooking for </span> \n    <input id=\"hook-number-input\" type=\"number\" value=\"1\"/> \n    <span class=\"hook-text\"> and I have </span>\n    <span class=\"hook-vert-line\"> | </span>\n    \n      <input id=\"hook-ingr-input\" type=\"text\" placeholder=\"corn, pork shoulder, cilantro, etc.\" required/>\n\n      </div>\n        <div class=\"error\">\n"
-    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n\n<div class =\"container-fluid\">\n<div class=\"row\">  \n  <div class=\"hook-box\">\n  <form id=\"hook-search-form\">\n    <div class=\"hook-text-line\">\n    <span class=\"hook-text\">I am cooking for </span> \n    <input id=\"hook-number-input\" type=\"number\" value=\"1\"/> \n    <span class=\"hook-text\"> and I have </span>\n    <span class=\"hook-vert-line\"> | </span>\n    \n      <input id=\"hook-ingr-input\" type=\"text\" placeholder=\"corn, pork shoulder, cilantro, etc.\" required/>\n       <div class=\"anon-sizing-error\">\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0["anon-sizing-error"] : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        </div>\n\n      </div>\n        <div class=\"error\">\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.error : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        </div>\n    \n      <div class=\"hook-search-btn\">\n        <input type=\"submit\" value=\"SCAVENGE\" class=\"btn btn-warning\"/>\n      </div>\n    </form>\n  </div>\n</div>\n</div>";
 },"usePartial":true,"useData":true});
 templates['index'] = template({"1":function(container,depth0,helpers,partials,data) {

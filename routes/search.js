@@ -95,9 +95,15 @@ router.post('/', function(req, res) {
   var ing_list = req.body.ingredients.split(',');
   var final_list = [];
   ing_list.forEach(function(i){
-    final_list.push(i.trim());
+    var trimmed = i.trim();
+    if (trimmed.length > 0) {
+      if (final_list.indexOf(trimmed) < 0) {
+        final_list.push(trimmed);
+      }
+    }
   });
 
+  console.log(final_list);
   Recipe.flexibleSearch(final_list, function(err, recipes) {
     if (err) {
       utils.sendErrResponse(res, 500, 'Unable to retrieve recipes.');

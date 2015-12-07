@@ -179,6 +179,8 @@
       $('#new-ingredient').focus();
 
       loadPage('searchAnon', {currentUser: null, ingredients: cleanIngredientsList});
+    } else {
+      $('.anon-pantry-error').text("You already have this ingredient!");
     }
   });
 })();

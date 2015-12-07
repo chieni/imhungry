@@ -25,6 +25,7 @@
     evt.preventDefault();
 
     var ingredients = $(".container").attr('data-ingredientsList-id');
+    var size = $(".container").attr('data-serving-size');
     var ingredientsList = [];
     if (ingredients.length > 0) {
       ingredientsList = ingredients.split(",");
@@ -34,12 +35,12 @@
           cleanIngredientsList.push(i);
         }
       });
-      loadPage('searchAnon', {currentUser: null, ingredients: cleanIngredientsList, loading: true});
+      loadPage('searchAnon', {currentUser: null, servingSize: size, ingredients: cleanIngredientsList, loading: true});
       $.post(
           '/search',
           {ingredients: ingredients}
       ).done(function(response) {
-        loadPage('searchAnon', {currentUser: null, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true, loading: false});
+        loadPage('searchAnon', {currentUser: null, servingSize: size, ingredients: response.content.ingredients, recipes: response.content.recipes, searched: true, loading: false});
       }).fail(function(responseObject) {
           var response = $.parseJSON(responseObject.responseText);
           $('.error').text(response.err);

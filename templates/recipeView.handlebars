@@ -5,7 +5,7 @@
 {{/if}}
 <div data-recipeid={{recipe._id}}>
 
-<div class="container" data-ingredientsList-id="{{ingredients}}">
+<div class="container" data-ingredientsList-id="{{ingredients}}" data-servingSize={{servingSize}}>
 
 <div class="search-row recipe-box">
 
@@ -92,9 +92,13 @@
     <div class="recipe-info-wrapper">
     
     <form id="scale-form" class="form-inline" data-recipeid={{recipe._id}}>
-       <div class="serving-line">Serving size: <input class="form-control" id="serv-size-input" value={{recipe.servingSize}} type="number" name="servingsize" />
-       {{#if currentUser}}
+       <div class="serving-line">Serving size: 
+      {{#if currentUser}}
+       <input class="form-control" id="serv-size-input" value={{recipe.servingSize}} type="number" name="servingsize" />
+       
        <input type="submit" value="Scale Recipe" class="btn btn-warning"/>
+       {{else}}
+       <span style="display:inline-block"> {{recipe.servingSize}}</span>
         {{/if}}
        </div>
      </form>

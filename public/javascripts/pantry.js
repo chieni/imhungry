@@ -145,14 +145,15 @@
     var element = $(this).parent();
     var ing = element.find('.ingredient').text();
     var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
-    
+    var size = $(".container").attr('data-serving-size');
+
     var index = ingredientsList.indexOf(ing);
 
     if (index > -1){
       ingredientsList.splice(index, 1);
     }
 
-    loadPage('searchAnon', {currentUser: null, ingredients: ingredientsList});
+    loadPage('searchAnon', {currentUser: null, servingSize: size, ingredients: ingredientsList});
 
   });
 
@@ -164,6 +165,7 @@
     var element = $(this).parent();
 
     var ingredientsList = $(".container").attr('data-ingredientsList-id').split(',');
+    var size = $(".container").attr('data-serving-size');
 
     var formData = helpers.getFormData(this);
     var ingredient = formData.ingredient;
@@ -181,7 +183,7 @@
       $('#new-ingredient').val('');
       $('#new-ingredient').focus();
 
-      loadPage('searchAnon', {currentUser: null, ingredients: cleanIngredientsList});
+      loadPage('searchAnon', {currentUser: null, servingSize: size, ingredients: cleanIngredientsList});
     } else {
       $('.anon-pantry-error').text("You already have this ingredient!");
     }

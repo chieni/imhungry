@@ -5,7 +5,7 @@ chieni_nlucas_zlily_mmgong_final
 2. Instructions for local deployment:
 	a. in terminal window, run mongo
 		use command: mongod
-	b. if it is the first time you open the app, make sure lines 35 and 	36 in app.js are NOT commented out
+	b. if it is the first time you open the app, make sure lines 35 and 36 in app.js are NOT commented out
 		in another terminal window run: npm install
 			    		   npm start
 		After running the first time, comment out lines 35 and 36 in app.js
@@ -20,11 +20,11 @@ chieni_nlucas_zlily_mmgong_final
 			into the anonymous pantry, but if a user decides to create an account from the ingredients
 			they entered into the hook page, ingredients that are not present in the database will
 			not be added into the registered pantry
-		- User can also maintain an anonymous pantry with no ingredient amountsthat will not persist (as they have no account) but is editable within the session
+        - The user is not able to specify ingredient amounts in the anonymous pantry
 		- User has access to a limited search (there is no "Load More Recipes" functionality)
 		- User is able to view the recipe but is unable to save the recipe or scale the serving size in recipe view or rate the recipe
 		- From the Hook search page, the User may create an account if they like the functionality they've been presented with
-			- If the User has ingredients in their anonymous pantry, these automatically get transferred over to their pantry once they create an account, except for ingredients that are not present in the database (which will not be part of the registered user's pantry).
+			- If the User has ingredients in their anonymous pantry, these automatically get transferred over to their pantry once they create an account, except for ingredients that are not present in the database (which will not be part of the registered user's pantry). The ingredients will default to empty amounts, but they can easily be edited
 	-Account Creation
 		- User can create an account with a unique username, a password, and their own pre-filled pantry (if done from the hook pantry page)
 	-Pantry
@@ -48,7 +48,7 @@ chieni_nlucas_zlily_mmgong_final
 	- Ratings
 	  	- There is a current Rating displayed to the User in Recipe view that is uneditabale.  
 	  		- For now, if no User's have rated the Recipe, the Rating is the Rating as mined from Yummly's website. Once a User in our app has rated a recipe, the recipe then defaults to being the aggregate of only our users' ratings
-	  		- IMPORTANT NOTE: If you are the first User to rate a recipe (which is the case with most recipes at this point in time), the Recipe Rating will be the same as the rating you input.  This is because we switch over to only using User's in our system right when you rate it and you are the only User to have rated that Recipe
+	  		- IMPORTANT NOTE: If you are the first User to rate a recipe (which is the case with most recipes at this point in time), the Recipe Rating will be the same as the rating you input.  This is because we switch over to only using the ratings of Users in our system right when you rate it and you are the only User to have rated that Recipe. If another User rates it, the rating will be displayed as the average of the two ratings.
 	  	- Under the current Rating, there is a set of 5 stars the User may use to rate the Recipe
 	  		- Once a User clicks on the Rating they wish to rate the Recipe (only whole numbers), that number is then immediately saved to that Recipe's aggregate rating
 	  		- Additionally, a User may only rate a Recipe once.  Once a User has rated a Recipe, they may rate it again multiple times but only their latest Rating will count towards the aggregate Rating of the Recipe
@@ -56,7 +56,7 @@ chieni_nlucas_zlily_mmgong_final
 		- In the recipe view, user can scale the ingredients amounts of the recipe to match the desired serving size
 		- initially, the default serving size is the serving size specified in the original recipe
 		- the user can specify a desrired serving size and click scale, which will scale the displayed ingredient amounts to the desired serving size.
-		- NOTE - if recipe initially does not include ingredient amounts, then the scaled ingredient will just show the scaling factor * the original ingredient.
+		- NOTE - if recipe initially does not include ingredient amounts, then the scaled ingredient will just show the scaling factor x the original ingredient.
 
 4. How to use Final Product
 	- Create an account or use the Hook

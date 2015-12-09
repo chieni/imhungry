@@ -70,7 +70,12 @@
         {{/compare}}
 
       </div>
-{{#if currentUser}}
+
+
+   {{#if rated}}
+   <div class="rated">Thank you for submitting a rating.</div>
+   {{else}}
+   {{#if currentUser}}
       <div class="rating">
         <div class="rate">Rate this Recipe</div>
         <a class="star" href="#"  id="five-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
@@ -79,6 +84,7 @@
         <a class="star" href="#"  id="two-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
         <a class="star" href="#"  id="one-star" data-recipeid={{recipe._id}} data-servingsize={{recipe.servingSize}} data-displaybutton={{displayButton}}><span>☆</span></a>
       </div>
+   {{/if}}
    {{/if}}
     </div>
 
